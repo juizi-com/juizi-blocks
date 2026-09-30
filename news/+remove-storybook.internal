@@ -1,0 +1,1 @@
+Removed the Storybook job from the frontend CI workflow, and let the changelog check read pull requests.
