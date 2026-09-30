@@ -5,8 +5,8 @@
 - makes the site multilingual (plone.app.multilingual) with the languages in
   ``language_demo_texts.LANGUAGES``, which creates a folder per language;
 - adds a page ``<language>/juizi-blocks`` holding a Hero, a Content Row, a
-  Carousel, a Gallery and a Callout, written in that language, and links the
-  pages to each other as translations;
+  Carousel, a second Carousel in its Reviews style, a Gallery and a Callout,
+  written in that language, and links the pages to each other as translations;
 - adds ``<language>/juizi-blocks/redirect``, a page with the Redirect block. It has
   its own page because the block sends visitors away from the page it is on;
   it sends them back to ``<language>/juizi-blocks``.
@@ -133,6 +133,40 @@ def _set_blocks(obj, blocks):
     )
 
 
+# Star ratings of the three made-up reviews.
+REVIEW_RATINGS = ["5", "4", "5"]
+
+
+def _reviews_block(text, images):
+    """The Carousel in its Reviews style, with made-up reviews."""
+    return _block(
+        "emblaCarousel",
+        displayMode="reviews",
+        title=text["reviews_heading"],
+        description=text["reviews_description"],
+        loop=True,
+        slidesToShow=3,
+        minSlidesOnMobile=1,
+        arrowPosition="below",
+        alignment="center",
+        equalHeight=True,
+        backgroundColor="transparent",
+        slideBackgroundColor="var(--fadedgold)",
+        slides=[
+            _item(
+                heading=name,
+                organisation=organisation,
+                content=review,
+                rating=rating,
+                image=_reference(image, **{"@type": "Image"}),
+            )
+            for image, rating, (name, organisation, review) in zip(
+                images, REVIEW_RATINGS, text["reviews"], strict=False
+            )
+        ],
+    )
+
+
 def _showcase_blocks(text, images, redirect_page):
     row_icons = ["Globe", "Calendar", "Settings"]
     return [
@@ -201,6 +235,7 @@ def _showcase_blocks(text, images, redirect_page):
                 for image, (heading, body) in zip(images, text["slides"], strict=True)
             ],
         ),
+        _reviews_block(text, images),
         _block(
             "emblaGallery",
             displayMode="carousel",

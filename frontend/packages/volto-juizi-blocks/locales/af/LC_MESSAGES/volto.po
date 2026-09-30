@@ -71,10 +71,10 @@ msgstr "Ry genommerde stappe, ikone, statistieke of beeldkaarte, met opsionele k
 msgid "Sends anonymous visitors to another page or URL. Editors are not redirected."
 msgstr "Stuur anonieme besoekers na ’n ander bladsy of URL. Redakteurs word nie herlei nie."
 
-#. Default: "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+#. Default: "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
 #: blocks/messages
-msgid "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
-msgstr "Skyfies wat jy byvoeg of bladsye wat outomaties gevind word, gewys as ’n karrousel, kaartry of rollende logostrook."
+msgid "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
+msgstr "Skyfies wat jy byvoeg of bladsye wat outomaties gevind word, gewys as ’n karrousel, kaartry, resensies of rollende logostrook."
 
 #. Default: "Add a label"
 #: components/Blocks/_shared/messages
@@ -401,6 +401,11 @@ msgstr "iets waarmee die leser versigtig moet wees"
 msgid "juizi-carousel-add-picture"
 msgstr "Voeg ’n prent by hierdie skyfie in die sybalk."
 
+#. Default: "Add the review text and the name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-add-review"
+msgstr "Voeg die resensie se teks en die naam in die sybalk by."
+
 #. Default: "Also show slides I add myself"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-append-manual"
@@ -476,6 +481,16 @@ msgstr "Maak die hele kaart klikbaar"
 msgid "juizi-carousel-clickable-help"
 msgstr "As jy enige plek op die kaart klik, volg dit die skyfie se skakel. Die skyfie se opskrif word as die skakelteks vir skermlesers gebruik: voeg ’n opskrif by elke skyfie wanneer dit aan is."
 
+#. Default: "Make entire review clickable"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews"
+msgstr "Maak die hele resensie klikbaar"
+
+#. Default: "Clicking anywhere on a review follows its link. Only reviews with both a link and a name become clickable."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews-help"
+msgstr "As jy enige plek op ’n resensie klik, volg dit die resensie se skakel. Net resensies met ’n skakel én ’n naam word klikbaar."
+
 #. Default: "Don't show a date"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-date-none"
@@ -501,6 +516,11 @@ msgstr "Nog geen skyfies nie. Voeg skyfies in die sybalk onder Skyfies by, of sk
 msgid "juizi-carousel-empty-query"
 msgstr "Jou inhoudsoektog het niks gevind om te wys nie. Verander die kriteria in die sybalk."
 
+#. Default: "No reviews yet. Add reviews in the sidebar under Reviews."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-reviews"
+msgstr "Nog geen resensies nie. Voeg resensies in die sybalk onder Resensies by."
+
 #. Default: "Equal height cards"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height"
@@ -510,6 +530,16 @@ msgstr "Kaarte van gelyke hoogte"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height-help"
 msgstr "Rek alle kaarte om by die hoogste een in die ry te pas"
+
+#. Default: "Equal height reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews"
+msgstr "Resensies van gelyke hoogte"
+
+#. Default: "Stretches all reviews to match the tallest one in the row"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews-help"
+msgstr "Rek alle resensies tot die hoogte van die langste een in die ry"
 
 #. Default: "Fast"
 #: components/Blocks/EmblaCarousel/messages
@@ -656,6 +686,11 @@ msgstr "Beeld bo die inhoud"
 msgid "juizi-carousel-mode-logo"
 msgstr "Rollende logostrook"
 
+#. Default: "Reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-reviews"
+msgstr "Resensies"
+
 #. Default: "\"More\" button alignment"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-more-button-align"
@@ -706,6 +741,11 @@ msgstr "Bo, langs die opskrif"
 msgid "juizi-carousel-navigation"
 msgstr "Navigasie"
 
+#. Default: "No stars"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-no-stars"
+msgstr "Geen sterre"
+
 #. Default: "No results tagged “{tag}”, so its button is hidden."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-no-tag-results"
@@ -736,10 +776,105 @@ msgstr "Gee elke prent dieselfde vorm deur die rande te snoei, sodat die skyfies
 msgid "juizi-carousel-query"
 msgstr "Watter bladsye om te wys"
 
+#. Default: "Rated {number} out of 5"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-rated"
+msgstr "{number} uit 5 sterre"
+
 #. Default: "Your device is set to reduce motion, so the strip isn't moving for you. Visitors without that setting see it scroll."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-reduced-motion"
 msgstr "Jou toestel is gestel om beweging te verminder, so die strook beweeg nie vir jou nie. Besoekers sonder daardie instelling sien dit rol."
+
+#. Default: "Review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review"
+msgstr "Resensie"
+
+#. Default: "Review background colour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background"
+msgstr "Resensies se agtergrondkleur"
+
+#. Default: "Fills the background of each review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background-help"
+msgstr "Vul die agtergrond van elke resensie"
+
+#. Default: "Review layout"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-layout"
+msgstr "Resensie-uitleg"
+
+#. Default: "Optional, for example the full review or the person’s website. Add a name too: the name becomes the link."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-help"
+msgstr "Opsioneel, byvoorbeeld die volledige resensie of die persoon se webwerf. Voeg ook ’n naam by: die naam word die skakel."
+
+#. Default: "This review has a link but no name, so visitors have nothing to click. Add a name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-needs-name"
+msgstr "Hierdie resensie het ’n skakel maar geen naam nie, so besoekers het niks om op te klik nie. Voeg ’n naam in die sybalk by."
+
+#. Default: "Name"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name"
+msgstr "Naam"
+
+#. Default: "Who gave the review. When the review has a link, the name is what visitors click."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name-help"
+msgstr "Wie die resensie gegee het. Wanneer die resensie ’n skakel het, is dit die naam waarop besoekers klik."
+
+#. Default: "Picture"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture"
+msgstr "Prent"
+
+#. Default: "Optional photo of the person, or a logo, shown in a small circle. Screen readers skip it, because the name already says who it is."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture-help"
+msgstr "Opsionele foto van die persoon, of ’n logo, wat in ’n klein sirkel gewys word. Skermlesers slaan dit oor, want die naam sê reeds wie dit is."
+
+#. Default: "Star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating"
+msgstr "Stergradering"
+
+#. Default: "Optional. Choose \"No stars\" to show the review without a rating."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating-help"
+msgstr "Opsioneel. Kies “Geen sterre” om die resensie sonder ’n gradering te wys."
+
+#. Default: "Organisation or role"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role"
+msgstr "Organisasie of rol"
+
+#. Default: "Optional, shown under the name. For example a company or a job title."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role-help"
+msgstr "Opsioneel, word onder die naam gewys. Byvoorbeeld ’n maatskappy of ’n postitel."
+
+#. Default: "Review text"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text"
+msgstr "Resensie se teks"
+
+#. Default: "What the person said, in their own words."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text-help"
+msgstr "Wat die persoon gesê het, in hul eie woorde."
+
+#. Default: "Reviews visible on mobile"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-mobile"
+msgstr "Resensies sigbaar op selfone"
+
+#. Default: "Reviews visible at once"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-to-show"
+msgstr "Resensies gelyktydig sigbaar"
 
 #. Default: "Scroll speed"
 #: components/Blocks/EmblaCarousel/messages
@@ -841,6 +976,11 @@ msgstr "Kaarte gelyktydig sigbaar"
 msgid "juizi-carousel-slow"
 msgstr "Stadig"
 
+#. Default: "{count, plural, one {# star} other {# stars}}"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-stars"
+msgstr "{count, plural, one {# ster} other {# sterre}}"
+
 #. Default: "slides with the heading, text and button laid over the image"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-full"
@@ -860,6 +1000,11 @@ msgstr "kaartstyl-skyfies: beeld bo, opskrif, teks en knoppie onder"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-logo"
 msgstr "’n ry logo’s wat aanhoudend rol, bv. vennote of borge"
+
+#. Default: "what people said about you, each with their name and an optional star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-reviews"
+msgstr "wat mense oor julle gesê het, elk met hul naam en ’n opsionele stergradering"
 
 #. Default: "Starts {date}"
 #: components/Blocks/EmblaCarousel/messages

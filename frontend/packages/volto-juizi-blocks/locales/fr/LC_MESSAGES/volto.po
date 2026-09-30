@@ -71,10 +71,10 @@ msgstr "Rangée d’étapes numérotées, d’icônes, de statistiques ou de car
 msgid "Sends anonymous visitors to another page or URL. Editors are not redirected."
 msgstr "Envoie les visiteurs anonymes vers une autre page ou URL. Les rédacteurs ne sont pas redirigés."
 
-#. Default: "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+#. Default: "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
 #: blocks/messages
-msgid "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
-msgstr "Diapositives que vous ajoutez ou pages trouvées automatiquement, affichées en carrousel, en rangée de cartes ou en bandeau de logos défilant."
+msgid "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
+msgstr "Diapositives que vous ajoutez ou pages trouvées automatiquement, affichées en carrousel, en rangée de cartes, en avis ou en bandeau de logos défilant."
 
 #. Default: "Add a label"
 #: components/Blocks/_shared/messages
@@ -401,6 +401,11 @@ msgstr "un point auquel le lecteur doit faire attention"
 msgid "juizi-carousel-add-picture"
 msgstr "Ajoutez une image à cette diapositive dans la barre latérale."
 
+#. Default: "Add the review text and the name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-add-review"
+msgstr "Ajoutez le texte de l’avis et le nom dans la barre latérale."
+
 #. Default: "Also show slides I add myself"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-append-manual"
@@ -476,6 +481,16 @@ msgstr "Rendre toute la carte cliquable"
 msgid "juizi-carousel-clickable-help"
 msgstr "Un clic n’importe où sur la carte suit le lien de la diapositive. Le titre de la diapositive sert de texte de lien pour les lecteurs d’écran : ajoutez un titre à chaque diapositive lorsque cette option est activée."
 
+#. Default: "Make entire review clickable"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews"
+msgstr "Rendre tout l’avis cliquable"
+
+#. Default: "Clicking anywhere on a review follows its link. Only reviews with both a link and a name become clickable."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews-help"
+msgstr "Un clic n’importe où sur un avis suit son lien. Seuls les avis qui ont à la fois un lien et un nom deviennent cliquables."
+
 #. Default: "Don't show a date"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-date-none"
@@ -501,6 +516,11 @@ msgstr "Aucune diapositive pour l’instant. Ajoutez-en dans la barre latérale,
 msgid "juizi-carousel-empty-query"
 msgstr "Votre recherche de contenu n’a rien trouvé à afficher. Modifiez ses critères dans la barre latérale."
 
+#. Default: "No reviews yet. Add reviews in the sidebar under Reviews."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-reviews"
+msgstr "Aucun avis pour l’instant. Ajoutez-en dans la barre latérale, sous Avis."
+
 #. Default: "Equal height cards"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height"
@@ -510,6 +530,16 @@ msgstr "Cartes de même hauteur"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height-help"
 msgstr "Étire toutes les cartes à la hauteur de la plus grande de la rangée"
+
+#. Default: "Equal height reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews"
+msgstr "Avis de même hauteur"
+
+#. Default: "Stretches all reviews to match the tallest one in the row"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews-help"
+msgstr "Étire tous les avis à la hauteur du plus grand de la rangée"
 
 #. Default: "Fast"
 #: components/Blocks/EmblaCarousel/messages
@@ -656,6 +686,11 @@ msgstr "Image au-dessus du contenu"
 msgid "juizi-carousel-mode-logo"
 msgstr "Bandeau de logos défilant"
 
+#. Default: "Reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-reviews"
+msgstr "Avis"
+
 #. Default: "\"More\" button alignment"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-more-button-align"
@@ -706,6 +741,11 @@ msgstr "En haut, à côté du titre"
 msgid "juizi-carousel-navigation"
 msgstr "Navigation"
 
+#. Default: "No stars"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-no-stars"
+msgstr "Aucune étoile"
+
 #. Default: "No results tagged “{tag}”, so its button is hidden."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-no-tag-results"
@@ -736,10 +776,105 @@ msgstr "Donne la même forme à toutes les images en rognant les bords, pour que
 msgid "juizi-carousel-query"
 msgstr "Pages à afficher"
 
+#. Default: "Rated {number} out of 5"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-rated"
+msgstr "Note : {number} sur 5"
+
 #. Default: "Your device is set to reduce motion, so the strip isn't moving for you. Visitors without that setting see it scroll."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-reduced-motion"
 msgstr "Votre appareil est réglé pour réduire les animations : le bandeau ne bouge donc pas pour vous. Les visiteurs sans ce réglage le voient défiler."
+
+#. Default: "Review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review"
+msgstr "Avis"
+
+#. Default: "Review background colour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background"
+msgstr "Couleur d’arrière-plan des avis"
+
+#. Default: "Fills the background of each review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background-help"
+msgstr "Remplit l’arrière-plan de chaque avis"
+
+#. Default: "Review layout"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-layout"
+msgstr "Disposition des avis"
+
+#. Default: "Optional, for example the full review or the person’s website. Add a name too: the name becomes the link."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-help"
+msgstr "Facultatif, par exemple l’avis complet ou le site de la personne. Ajoutez aussi un nom : c’est le nom qui devient le lien."
+
+#. Default: "This review has a link but no name, so visitors have nothing to click. Add a name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-needs-name"
+msgstr "Cet avis a un lien mais pas de nom : les visiteurs n’ont rien sur quoi cliquer. Ajoutez un nom dans la barre latérale."
+
+#. Default: "Name"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name"
+msgstr "Nom"
+
+#. Default: "Who gave the review. When the review has a link, the name is what visitors click."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name-help"
+msgstr "La personne qui a donné l’avis. Lorsque l’avis a un lien, c’est sur le nom que les visiteurs cliquent."
+
+#. Default: "Picture"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture"
+msgstr "Image"
+
+#. Default: "Optional photo of the person, or a logo, shown in a small circle. Screen readers skip it, because the name already says who it is."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture-help"
+msgstr "Photo de la personne ou logo, facultatif, affiché dans un petit cercle. Les lecteurs d’écran l’ignorent, car le nom indique déjà de qui il s’agit."
+
+#. Default: "Star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating"
+msgstr "Note en étoiles"
+
+#. Default: "Optional. Choose \"No stars\" to show the review without a rating."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating-help"
+msgstr "Facultatif. Choisissez « Aucune étoile » pour afficher l’avis sans note."
+
+#. Default: "Organisation or role"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role"
+msgstr "Organisation ou fonction"
+
+#. Default: "Optional, shown under the name. For example a company or a job title."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role-help"
+msgstr "Facultatif, affiché sous le nom. Par exemple une entreprise ou un intitulé de poste."
+
+#. Default: "Review text"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text"
+msgstr "Texte de l’avis"
+
+#. Default: "What the person said, in their own words."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text-help"
+msgstr "Ce que la personne a dit, avec ses propres mots."
+
+#. Default: "Reviews visible on mobile"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-mobile"
+msgstr "Avis visibles sur mobile"
+
+#. Default: "Reviews visible at once"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-to-show"
+msgstr "Avis visibles en même temps"
 
 #. Default: "Scroll speed"
 #: components/Blocks/EmblaCarousel/messages
@@ -841,6 +976,11 @@ msgstr "Cartes visibles en même temps"
 msgid "juizi-carousel-slow"
 msgstr "Lente"
 
+#. Default: "{count, plural, one {# star} other {# stars}}"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-stars"
+msgstr "{count, plural, one {# étoile} other {# étoiles}}"
+
 #. Default: "slides with the heading, text and button laid over the image"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-full"
@@ -860,6 +1000,11 @@ msgstr "des diapositives en forme de carte : image en haut, titre, texte et bout
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-logo"
 msgstr "une rangée de logos qui défile en continu, par ex. partenaires ou sponsors"
+
+#. Default: "what people said about you, each with their name and an optional star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-reviews"
+msgstr "ce que les gens disent de vous, avec leur nom et, si vous le souhaitez, une note en étoiles"
 
 #. Default: "Starts {date}"
 #: components/Blocks/EmblaCarousel/messages

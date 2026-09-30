@@ -103,7 +103,7 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
     id: 'emblaCarousel',
     title: 'Carousel',
     description:
-      'Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip.',
+      'Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip.',
     icon: carouselSVG,
     view: EmblaCarouselView,
     edit: EmblaCarouselEdit,

@@ -66,9 +66,9 @@ msgstr ""
 msgid "Sends anonymous visitors to another page or URL. Editors are not redirected."
 msgstr ""
 
-#. Default: "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+#. Default: "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
 #: blocks/messages
-msgid "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+msgid "Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip."
 msgstr ""
 
 #. Default: "Add a label"
@@ -396,6 +396,11 @@ msgstr ""
 msgid "juizi-carousel-add-picture"
 msgstr ""
 
+#. Default: "Add the review text and the name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-add-review"
+msgstr ""
+
 #. Default: "Also show slides I add myself"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-append-manual"
@@ -471,6 +476,16 @@ msgstr ""
 msgid "juizi-carousel-clickable-help"
 msgstr ""
 
+#. Default: "Make entire review clickable"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews"
+msgstr ""
+
+#. Default: "Clicking anywhere on a review follows its link. Only reviews with both a link and a name become clickable."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-reviews-help"
+msgstr ""
+
 #. Default: "Don't show a date"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-date-none"
@@ -496,6 +511,11 @@ msgstr ""
 msgid "juizi-carousel-empty-query"
 msgstr ""
 
+#. Default: "No reviews yet. Add reviews in the sidebar under Reviews."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-reviews"
+msgstr ""
+
 #. Default: "Equal height cards"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height"
@@ -504,6 +524,16 @@ msgstr ""
 #. Default: "Stretches all cards to match the tallest one in the row"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-equal-height-help"
+msgstr ""
+
+#. Default: "Equal height reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews"
+msgstr ""
+
+#. Default: "Stretches all reviews to match the tallest one in the row"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-reviews-help"
 msgstr ""
 
 #. Default: "Fast"
@@ -651,6 +681,11 @@ msgstr ""
 msgid "juizi-carousel-mode-logo"
 msgstr ""
 
+#. Default: "Reviews"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-reviews"
+msgstr ""
+
 #. Default: "\"More\" button alignment"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-more-button-align"
@@ -701,6 +736,11 @@ msgstr ""
 msgid "juizi-carousel-navigation"
 msgstr ""
 
+#. Default: "No stars"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-no-stars"
+msgstr ""
+
 #. Default: "No results tagged “{tag}”, so its button is hidden."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-no-tag-results"
@@ -731,9 +771,104 @@ msgstr ""
 msgid "juizi-carousel-query"
 msgstr ""
 
+#. Default: "Rated {number} out of 5"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-rated"
+msgstr ""
+
 #. Default: "Your device is set to reduce motion, so the strip isn't moving for you. Visitors without that setting see it scroll."
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-reduced-motion"
+msgstr ""
+
+#. Default: "Review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review"
+msgstr ""
+
+#. Default: "Review background colour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background"
+msgstr ""
+
+#. Default: "Fills the background of each review"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-background-help"
+msgstr ""
+
+#. Default: "Review layout"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-layout"
+msgstr ""
+
+#. Default: "Optional, for example the full review or the person’s website. Add a name too: the name becomes the link."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-help"
+msgstr ""
+
+#. Default: "This review has a link but no name, so visitors have nothing to click. Add a name in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-link-needs-name"
+msgstr ""
+
+#. Default: "Name"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name"
+msgstr ""
+
+#. Default: "Who gave the review. When the review has a link, the name is what visitors click."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-name-help"
+msgstr ""
+
+#. Default: "Picture"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture"
+msgstr ""
+
+#. Default: "Optional photo of the person, or a logo, shown in a small circle. Screen readers skip it, because the name already says who it is."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-picture-help"
+msgstr ""
+
+#. Default: "Star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating"
+msgstr ""
+
+#. Default: "Optional. Choose \"No stars\" to show the review without a rating."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-rating-help"
+msgstr ""
+
+#. Default: "Organisation or role"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role"
+msgstr ""
+
+#. Default: "Optional, shown under the name. For example a company or a job title."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-role-help"
+msgstr ""
+
+#. Default: "Review text"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text"
+msgstr ""
+
+#. Default: "What the person said, in their own words."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-review-text-help"
+msgstr ""
+
+#. Default: "Reviews visible on mobile"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-mobile"
+msgstr ""
+
+#. Default: "Reviews visible at once"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reviews-to-show"
 msgstr ""
 
 #. Default: "Scroll speed"
@@ -836,6 +971,11 @@ msgstr ""
 msgid "juizi-carousel-slow"
 msgstr ""
 
+#. Default: "{count, plural, one {# star} other {# stars}}"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-stars"
+msgstr ""
+
 #. Default: "slides with the heading, text and button laid over the image"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-full"
@@ -854,6 +994,11 @@ msgstr ""
 #. Default: "a continuously scrolling row of logos, e.g. partners or sponsors"
 #: components/Blocks/EmblaCarousel/messages
 msgid "juizi-carousel-start-logo"
+msgstr ""
+
+#. Default: "what people said about you, each with their name and an optional star rating"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-reviews"
 msgstr ""
 
 #. Default: "Starts {date}"

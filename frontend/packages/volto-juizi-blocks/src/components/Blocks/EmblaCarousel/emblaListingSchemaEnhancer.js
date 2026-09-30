@@ -4,8 +4,12 @@ import messages from './messages';
 
 export function emblaListingSchemaEnhancer(schema, formData = {}, intl) {
   const t = translator(intl);
-  const useListing = !!formData?.useListing;
   const modeSelected = !!formData?.displayMode;
+  // Reviews are always added by hand (see schema-base.js): a carousel that
+  // was filled from site content before switching to Reviews shows its own
+  // list again.
+  const useListing =
+    !!formData?.useListing && formData?.displayMode !== 'reviews';
 
   // Work on the Content fieldset (id: 'default')
   const contentFieldset = schema?.fieldsets?.find((fs) => fs.id === 'default');
@@ -86,7 +90,9 @@ export function emblaListingSchemaEnhancer(schema, formData = {}, intl) {
     // Only show manual slides field once a mode has been selected
     if (modeSelected && !fields.includes('slides')) {
       const idx = fields.indexOf('useListing');
-      fields.splice(idx + 1, 0, 'slides');
+      // Without the automatic fill switch (Reviews), the list comes last.
+      if (idx === -1) fields.push('slides');
+      else fields.splice(idx + 1, 0, 'slides');
     }
 
     // Remove slides if no mode selected yet

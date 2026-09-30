@@ -10,7 +10,8 @@ const initialData = (displayMode) => ({
   loop: true,
   slidesToShow: 1,
   minSlidesOnMobile: 1,
-  arrowPosition: 'bottom',
+  // Reviews are text: arrows on the sides would sit over the words.
+  arrowPosition: displayMode === 'reviews' ? 'below' : 'bottom',
   alignment: 'left',
   ...(displayMode === 'logo-marquee'
     ? {

@@ -1,6 +1,6 @@
 # Carousel block (`emblaCarousel`)
 
-Slides the editor adds, or pages found automatically from site content, shown as a carousel of image slides, cards, or a scrolling logo strip. Built on Embla.
+Slides the editor adds, or pages found automatically from site content, shown as a carousel of image slides, cards, reviews, or a scrolling logo strip. Built on Embla.
 
 Shared parts (dashboard, colours and buttons, shared styling and tokens, links, the block toolkit, the carousel-style controls it shares with the Gallery, and the conventions every block follows) are in the repository's root `README.md`.
 
@@ -14,7 +14,7 @@ Registered through the block list in `src/blocks/index.ts` (`view: EmblaCarousel
 
 ## Dependencies
 
-`embla-carousel-react`, `embla-carousel-autoplay`. The logo strip is CSS only.
+`embla-carousel-react`, `embla-carousel-autoplay`. The logo strip is CSS only. The Reviews style's stars are the `Star` icon from `lucide-react`.
 
 ---
 
@@ -22,7 +22,7 @@ Registered through the block list in `src/blocks/index.ts` (`view: EmblaCarousel
 
 `displayMode` comes first; nothing else shows until it's chosen. The canvas shows the shared start screen with a description of each style (editors only; visitors see nothing). The outer `WrappedEmblaCarousel` is hook-free, so Embla's hooks only mount once a style exists.
 
-After a style is chosen and there are no slides, editors see what to do next, under any heading: "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content'…", or, with site content, "Your content query found nothing to show…". While the query loads, a skeleton in the slides' shape shows (editors and visitors). With nothing to show, visitors see nothing at all.
+After a style is chosen and there are no slides, editors see what to do next, under any heading: "No reviews yet. Add reviews in the sidebar under Reviews." in the Reviews style, otherwise "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content'…", or, with site content, "Your content query found nothing to show…". While the query loads, a skeleton in the slides' shape shows (editors and visitors). With nothing to show, visitors see nothing at all.
 
 ---
 
@@ -33,7 +33,43 @@ After a style is chosen and there are no slides, editors see what to do next, un
 | `full` | Image with text overlay | Yes |
 | `image-only` | Image only, no text | Yes |
 | `image-top` | Image above content | Yes |
+| `reviews` | Reviews: what people said, with a name and optional stars | Yes |
 | `logo-marquee` | Scrolling logo strip (CSS only) | No |
+
+---
+
+## Reviews
+
+A display style, not a block of its own: reviews need everything the Carousel already has (scrolling, arrows, dots, heading, colours), so a separate block would have put two carousels in the chooser. The older standalone `EmblaRatings` block isn't converted; no site in `old-block-setups` uses it.
+
+**A review is a slide with its own labels.** The same stored fields are used, so what the editor typed carries over when the style changes:
+
+| Sidebar label | Stored as | Notes |
+|---|---|---|
+| Review text | `content` | |
+| Star rating | `rating` | `'0'`–`'5'` as a string (Volto's select only shows the label of a string value); "No stars" or nothing chosen shows no stars. The view reads it with `parseInt` |
+| Name | `heading` | Names the review in the sidebar list, and is the review's link when it has one |
+| Organisation or role | `organisation` | New field, only used by this style |
+| Picture | `image` | Shown small and round; decorative (`alt=""`), because the name beside it says who it is |
+| Link | `link` | The name becomes the link; with "Make entire review clickable" it stretches over the review |
+
+**What the sidebar leaves out in this style:** "Fill automatically from site content" and the filter buttons (pages have no rating or reviewer), and the slide button fields (a review has no button). A carousel that was filled automatically before its style was changed ignores the saved query and shows its own reviews; the query stays in the data and comes back if the style is changed back.
+
+**Wording:** the options this style shares with the others are named after reviews ("Reviews visible at once", "Equal height reviews", "Review background colour").
+
+**States:**
+
+- No reviews: editors see "No reviews yet. Add reviews in the sidebar under Reviews."; visitors see nothing.
+- A review with no text, name or stars: flagged for editors (`block__unfinished`), left out for visitors, so the dots and arrows match what's shown.
+- A link but no name: editors get a warning; visitors see the review without a link.
+
+**Layout** (`carousel.css`, "Reviews style"): picture, stars, text, name. Reviews start at the top of the slide so they line up across different lengths. Without a review background colour the text follows the block's colour; with one, the review becomes a card with padding and the shared card radius. The theme's own `blockquote` and `figcaption` looks are reset (the published page indents every blockquote with an id selector, hence the `#page-document` rule).
+
+**Arrows:** a new Reviews carousel starts with the arrows below (`arrowPosition: 'below'`), since arrows on the sides would sit over the words. If an editor chooses "On each side", the reviews move in to make room (`carousel-base.css`).
+
+**Stars:** `--juizi-review-star-color` on light backgrounds and `--juizi-review-star-color-on-dark` on dark ones (tokens in `juizi-common.scss`), chosen from the review's background colour if it has one, else the block's tone. Empty stars are outlines, so full and empty differ in shape and not only in colour.
+
+**Autoplay:** in this style autoplay also waits while the pointer is over the carousel, because a review is read rather than glanced at.
 
 ---
 
@@ -120,6 +156,10 @@ Section, heading and link structure follow the shared conventions (root README):
 
 When "Make entire card clickable" is on, each slide has **one real link** (Volto's `UniversalLink`: router navigation for internal pages, a new tab for other sites): the slide's button, or its heading when there's no button, or its picture in Image only mode. CSS stretches that link over the whole slide (`.embla__stretched-link::after`; the slide's background layers move behind its content with `isolation: isolate`). Screen readers hear one link named by its text; there are no nested controls and the keyboard works natively. Add a heading to every slide when this option is on. When the heading is the link (button hidden or not set), it keeps the heading's own look: no link colour or underline.
 
+### Reviews
+
+Each review is a `<figure>`: the text in a `<blockquote>`, the name and organisation in its `<figcaption>`. The stars are one `role="img"` element named "Rated 4 out of 5" (in the site's language); the five icons inside are `aria-hidden`. The picture is decorative. A review has at most one link, the name. Checked with axe (WCAG 2.1 A and AA rules) on the test page at desktop and phone widths: no violations.
+
 ### Images
 
 - **image-only mode:** The slide image uses `alt={slide.heading}`. If the heading is empty, `alt=""` marks the image as decorative. Add a heading to every slide that has a meaningful image.
@@ -171,6 +211,12 @@ When the active filter tag changes, the carousel calls `embla.reInit()` and scro
 4. Or switch on **Fill automatically from site content** and set **Which pages to show**.
 5. Adjust **Cards visible at once** under Scrolling & behaviour if needed; publish.
 
+Reviews:
+
+1. Add a **Carousel** and choose **Reviews** as the display style. The canvas says there are no reviews yet.
+2. Add a **Heading**, then **Add Review**: the review text, a star rating if there is one, the person's name, and optionally their organisation, a picture and a link.
+3. For several side by side, raise **Reviews visible at once** and pick a **Review background colour** under Background; publish.
+
 ## Decisions and trade-offs (2026-09 audit)
 
 - Configured-but-empty prompts, a loading skeleton, and nothing for visitors when empty (C1).
@@ -184,4 +230,6 @@ When the active filter tag changes, the carousel calls `embla.reInit()` and scro
 - One real link per clickable slide (C9).
 - Dates in the site's language; British English for English, e.g. "13 November 2024".
 - Arrow positions renamed and a real "below" added; arrows sit below on phones; "Centre active card" removed; picture shape as named aspect ratios.
+- **Reviews style (2026-09-30):** added as a display style instead of porting the standalone ratings block. Reuses the slide's fields under review labels; no automatic fill; name is the one link; unfinished reviews hidden from visitors; arrows start below.
+- **First render matches the server (2026-09-30):** the number of cards visible used to be read from the window's width for the first render, so on phones every carousel showing more than one card failed hydration ("Hydration failed… server HTML was replaced"). It now starts from the large-screen number and corrects itself on mount. Affects every style.
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block emblaCarousel` container with `type-*`, `align-*` and `tone-*` classes.

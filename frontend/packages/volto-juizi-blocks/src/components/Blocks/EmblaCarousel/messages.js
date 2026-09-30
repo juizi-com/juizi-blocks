@@ -58,6 +58,10 @@ export default defineMessages({
     id: 'juizi-carousel-mode-image-top',
     defaultMessage: 'Image above content',
   },
+  modeReviews: {
+    id: 'juizi-carousel-mode-reviews',
+    defaultMessage: 'Reviews',
+  },
   modeLogo: {
     id: 'juizi-carousel-mode-logo',
     defaultMessage: 'Scrolling logo strip',
@@ -75,6 +79,11 @@ export default defineMessages({
     id: 'juizi-carousel-start-image-top',
     defaultMessage:
       'card-style slides: image on top, heading, text and button below',
+  },
+  startReviews: {
+    id: 'juizi-carousel-start-reviews',
+    defaultMessage:
+      'what people said about you, each with their name and an optional star rating',
   },
   startLogo: {
     id: 'juizi-carousel-start-logo',
@@ -126,6 +135,101 @@ export default defineMessages({
   buttonArrowHelp: {
     id: 'juizi-carousel-button-arrow-help',
     defaultMessage: "Adds a right arrow to this slide's button",
+  },
+  // Reviews style: the slide list becomes a list of reviews (named with
+  // modeReviews above).
+  review: { id: 'juizi-carousel-review', defaultMessage: 'Review' },
+  reviewRating: {
+    id: 'juizi-carousel-review-rating',
+    defaultMessage: 'Star rating',
+  },
+  reviewRatingHelp: {
+    id: 'juizi-carousel-review-rating-help',
+    defaultMessage:
+      'Optional. Choose "No stars" to show the review without a rating.',
+  },
+  noStars: { id: 'juizi-carousel-no-stars', defaultMessage: 'No stars' },
+  stars: {
+    id: 'juizi-carousel-stars',
+    defaultMessage: '{count, plural, one {# star} other {# stars}}',
+  },
+  reviewText: {
+    id: 'juizi-carousel-review-text',
+    defaultMessage: 'Review text',
+  },
+  reviewTextHelp: {
+    id: 'juizi-carousel-review-text-help',
+    defaultMessage: 'What the person said, in their own words.',
+  },
+  reviewName: { id: 'juizi-carousel-review-name', defaultMessage: 'Name' },
+  reviewNameHelp: {
+    id: 'juizi-carousel-review-name-help',
+    defaultMessage:
+      'Who gave the review. When the review has a link, the name is what visitors click.',
+  },
+  reviewRole: {
+    id: 'juizi-carousel-review-role',
+    defaultMessage: 'Organisation or role',
+  },
+  reviewRoleHelp: {
+    id: 'juizi-carousel-review-role-help',
+    defaultMessage:
+      'Optional, shown under the name. For example a company or a job title.',
+  },
+  reviewPicture: {
+    id: 'juizi-carousel-review-picture',
+    defaultMessage: 'Picture',
+  },
+  reviewPictureHelp: {
+    id: 'juizi-carousel-review-picture-help',
+    defaultMessage:
+      'Optional photo of the person, or a logo, shown in a small circle. Screen readers skip it, because the name already says who it is.',
+  },
+  reviewLinkHelp: {
+    id: 'juizi-carousel-review-link-help',
+    defaultMessage:
+      'Optional, for example the full review or the person’s website. Add a name too: the name becomes the link.',
+  },
+  reviewBackground: {
+    id: 'juizi-carousel-review-background',
+    defaultMessage: 'Review background colour',
+  },
+  reviewBackgroundHelp: {
+    id: 'juizi-carousel-review-background-help',
+    defaultMessage: 'Fills the background of each review',
+  },
+  clickableReviewsHelp: {
+    id: 'juizi-carousel-clickable-reviews-help',
+    defaultMessage:
+      'Clicking anywhere on a review follows its link. Only reviews with both a link and a name become clickable.',
+  },
+  reviewLayout: {
+    id: 'juizi-carousel-review-layout',
+    defaultMessage: 'Review layout',
+  },
+  clickableReviews: {
+    id: 'juizi-carousel-clickable-reviews',
+    defaultMessage: 'Make entire review clickable',
+  },
+  equalHeightReviews: {
+    id: 'juizi-carousel-equal-height-reviews',
+    defaultMessage: 'Equal height reviews',
+  },
+  equalHeightReviewsHelp: {
+    id: 'juizi-carousel-equal-height-reviews-help',
+    defaultMessage: 'Stretches all reviews to match the tallest one in the row',
+  },
+  reviewsToShow: {
+    id: 'juizi-carousel-reviews-to-show',
+    defaultMessage: 'Reviews visible at once',
+  },
+  reviewsMobile: {
+    id: 'juizi-carousel-reviews-mobile',
+    defaultMessage: 'Reviews visible on mobile',
+  },
+  rated: {
+    id: 'juizi-carousel-rated',
+    defaultMessage: 'Rated {number} out of 5',
   },
   slideButtonStyle: {
     id: 'juizi-carousel-slide-button-style',
@@ -379,6 +483,19 @@ export default defineMessages({
     id: 'juizi-carousel-empty-manual',
     defaultMessage:
       "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content' to fill it automatically.",
+  },
+  emptyReviews: {
+    id: 'juizi-carousel-empty-reviews',
+    defaultMessage: 'No reviews yet. Add reviews in the sidebar under Reviews.',
+  },
+  addReview: {
+    id: 'juizi-carousel-add-review',
+    defaultMessage: 'Add the review text and the name in the sidebar.',
+  },
+  reviewLinkNeedsName: {
+    id: 'juizi-carousel-review-link-needs-name',
+    defaultMessage:
+      'This review has a link but no name, so visitors have nothing to click. Add a name in the sidebar.',
   },
   logosFit: {
     id: 'juizi-carousel-logos-fit',
