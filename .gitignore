@@ -3,3 +3,7 @@ node_modules
 /core
 /public
 *.mo
+
+# Audit notes and other working papers: for local use and testing only,
+# never committed.
+*audit*.md

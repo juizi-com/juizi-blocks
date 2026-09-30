@@ -164,5 +164,3 @@ lightbox, or the reverse.
 - Text colour follows the background colour; there's no text-colour field (C4, G6).
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block emblaGallery` container with `type-*`, `align-*` and `tone-*` classes; `gallery` itself no longer carries `block`.
 - Image helpers are shared with the Carousel (`_shared/images.js`).
-
-Full list: `block-audit-actions.md` at the repository root.

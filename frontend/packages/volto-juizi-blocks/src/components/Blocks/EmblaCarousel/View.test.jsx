@@ -1,7 +1,7 @@
 // Render of a manual slide with an external link
 // and a button label (audit C3). Volto's Jest setup needs a window, so this
 // can't prove the absence of `window` reads during a real server render:
-// confirm that on a running site (see block-audit-actions.md C3).
+// confirm that on a running site.
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';

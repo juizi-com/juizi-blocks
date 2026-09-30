@@ -218,5 +218,3 @@ The wrapper `id` is derived from `headerText`. A short block-id suffix (first 6 
 - Numbers are formatted in British English, e.g. "1,000".
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block contentRow` container with `type-*`, `align-*` and `tone-*` classes.
 - The anchor id for same-page links is unchanged.
-
-Full list: `block-audit-actions.md` at the repository root.

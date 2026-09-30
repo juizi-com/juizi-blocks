@@ -53,8 +53,7 @@ point here too.
 The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").
 A block definition can set its own `group` to go elsewhere. The decisions
-from the September 2026 block audit are in
-[block-audit-actions.md](block-audit-actions.md).
+from the September 2026 block audit are summarised in each block's README.
 
 #### Overlapping blocks
 

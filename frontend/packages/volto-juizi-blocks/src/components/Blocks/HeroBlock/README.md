@@ -116,8 +116,6 @@ For a band further down the page: add a Hero, choose **Section (content band)**,
 - The anchor id for same-page links is unchanged (the heading's slug on the published page).
 - No `<h3>` or deeper heading option: the block defines sections; sub-headings belong in the body content.
 
-Full list: `block-audit-actions.md` at the repository root.
-
 ## Known issues
 
 - The TOC mode finds headings by climbing the DOM from the block (`useBlockLayoutHeadingTOC`); in unusual layouts it can fall back to the whole page.

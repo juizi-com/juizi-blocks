@@ -46,5 +46,3 @@ The callout box is the block's inner layer (it isn't full width), so its backgro
 - The empty-callout hint uses the shared `EditHint` (CO2).
 - Contrast warning for icon and link colours (CO3).
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block juiziCallout` container with `type-{calloutType}` and `tone-*` classes (CO4).
-
-Full list: `block-audit-actions.md` at the repository root.

@@ -232,9 +232,7 @@ def _validate_callout_types(value, colors: list[str]) -> dict:
     result = {}
     for callout_type, slots in value.items():
         if not isinstance(callout_type, str) or not NAME.match(callout_type):
-            raise SettingsValidationError(
-                f"Invalid callout type: {callout_type!r}"
-            )
+            raise SettingsValidationError(f"Invalid callout type: {callout_type!r}")
         if not isinstance(slots, dict):
             raise SettingsValidationError(
                 f"Callout type {callout_type!r} must be an object"

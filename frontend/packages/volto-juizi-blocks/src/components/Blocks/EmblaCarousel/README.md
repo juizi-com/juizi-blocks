@@ -185,5 +185,3 @@ When the active filter tag changes, the carousel calls `embla.reInit()` and scro
 - Dates in British English, e.g. "13 November 2024".
 - Arrow positions renamed and a real "below" added; arrows sit below on phones; "Centre active card" removed; picture shape as named aspect ratios.
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block emblaCarousel` container with `type-*`, `align-*` and `tone-*` classes.
-
-Full list: `block-audit-actions.md` at the repository root.
