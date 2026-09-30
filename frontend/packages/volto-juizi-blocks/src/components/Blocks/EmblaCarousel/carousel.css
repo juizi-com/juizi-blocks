@@ -488,6 +488,137 @@
   }
 }
 
+/* ── Reviews style ───────────────────────────────────────────────────────── */
+/* A quotation with its source: picture, stars, text, name. No picture
+   behind the slide, so the text follows the block's colour unless a review
+   background colour is set (slide tone, below). */
+.carousel-slide-inner.reviews {
+  min-height: 0;
+  /* From the top, so pictures and stars line up across reviews of
+     different lengths. */
+  justify-content: flex-start;
+  padding: 1rem 0;
+  background: var(--slide-bg, none) !important;
+  color: inherit;
+}
+
+.carousel-slide-inner.reviews::before,
+.carousel-slide-inner.reviews::after {
+  display: none;
+}
+
+/* Without a background colour, reviews side by side need room between one
+   review's text and the next, on the side away from the alignment so the
+   text still lines up with the block's heading. */
+.embla.align-left .carousel-slide-inner.reviews {
+  padding-right: 1.5rem;
+}
+
+.embla.align-center .carousel-slide-inner.reviews {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.embla.align-right .carousel-slide-inner.reviews {
+  padding-left: 1.5rem;
+}
+
+/* With a background colour the review is a card: room around the text. */
+.embla .carousel-slide-inner.reviews.slide-bg-dark,
+.embla .carousel-slide-inner.reviews.slide-bg-light {
+  padding: 2rem;
+}
+
+/* `align-items: inherit` takes left / centre / right from the slide (see
+   .embla.align-* .carousel-slide-inner). */
+.review {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: inherit;
+  margin: 0;
+  gap: 0.75rem;
+}
+
+.review__picture {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Stars: dark amber on light backgrounds, light gold on dark ones, so they
+   keep at least 3:1 against what's behind them. Filled and empty stars also
+   differ in shape, not only in colour. */
+.review__stars {
+  display: flex;
+  color: var(--juizi-review-star-color, #a15c00);
+  gap: 2px;
+}
+
+.embla.tone-light .review__stars {
+  color: var(--juizi-review-star-color-on-dark, #ffd166);
+}
+
+.carousel-slide-inner.slide-bg-light .review__stars {
+  color: var(--juizi-review-star-color, #a15c00);
+}
+
+.carousel-slide-inner.slide-bg-dark .review__stars {
+  color: var(--juizi-review-star-color-on-dark, #ffd166);
+}
+
+/* The theme's own blockquote look (rule, indent, italics) is dropped: the
+   review is already set apart by its layout. The theme indents every
+   blockquote on a published page with an id selector, hence the second
+   rule. */
+.review .review__text {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  color: inherit;
+  font-size: var(--juizi-description-font-size);
+  font-style: normal;
+  line-height: var(--juizi-description-line-height);
+}
+
+#page-document .review .review__text {
+  padding: 0;
+}
+
+.review .review__text p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Likewise the theme's caption look (small, grey, left-aligned): the name
+   follows the review's own text colour, size and alignment. */
+.review__source {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+.review__name {
+  font-weight: 700;
+}
+
+.review__organisation {
+  font-size: 0.9em;
+}
+
+/* Editors only: a review with nothing in it yet. */
+.review--empty {
+  width: 100%;
+  padding: 1.5rem;
+}
+
 /* ── Slide background tone ───────────────────────────────────────────────── */
 /* Applied automatically from slideBackgroundColor via isColorDark() */
 

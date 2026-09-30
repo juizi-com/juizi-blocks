@@ -19,6 +19,7 @@ import messages from './messages';
 const isContentMode = (formData) =>
   formData?.displayMode === 'full' || formData?.displayMode === 'image-top';
 const isImageTopMode = (formData) => formData?.displayMode === 'image-top';
+const isReviewsMode = (formData) => formData?.displayMode === 'reviews';
 // Styles where the picture itself sets the slide's size (the text-overlay
 // style uses the picture as a background, so its height follows the text).
 const hasPictureShape = (formData) =>
@@ -69,13 +70,17 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
   const displayMode = formData?.displayMode || null;
   const modeSelected = !!displayMode;
   const isLogoMarquee = displayMode === 'logo-marquee';
+  // Reviews are always added by hand: site content has no star rating or
+  // reviewer, so the automatic fill and its filter buttons aren't offered.
+  const isReviews = isReviewsMode(formData);
   const backgroundColor = formData?.backgroundColor;
   const hasBackgroundImage = !!(Array.isArray(formData?.backgroundImage)
     ? formData.backgroundImage[0]
     : formData?.backgroundImage);
   // Filter buttons come from the tags on pages found by the content query;
   // shown for manual carousels only when already set (saved content).
-  const showFilterTags = !!(formData?.useListing || formData?.filterTags);
+  const showFilterTags =
+    !isReviews && !!(formData?.useListing || formData?.filterTags);
   // Colours this block offers — set per block in the Juizi Blocks dashboard.
   const colors = getBlockColorList('emblaCarousel');
 
@@ -94,7 +99,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
             ? [
                 'title',
                 'description',
-                'useListing',
+                ...(isReviews ? [] : ['useListing']),
                 ...(showFilterTags ? ['filterTags'] : []),
               ]
             : []),
@@ -106,10 +111,12 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         ? [
             {
               id: 'card',
-              title: t(messages.cardLayout),
+              title: t(isReviews ? messages.reviewLayout : messages.cardLayout),
               fields: [
-                'slideButtonStyle',
-                'slideButtonLinkStyle',
+                // A review has no button: its name is its link.
+                ...(isReviews
+                  ? []
+                  : ['slideButtonStyle', 'slideButtonLinkStyle']),
                 ...(isContentMode(formData)
                   ? ['dateDisplay', 'hideDescription', 'hideButtons']
                   : []),
@@ -212,6 +219,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
           ['full', t(messages.modeFull)],
           ['image-only', t(messages.modeImageOnly)],
           ['image-top', t(messages.modeImageTop)],
+          ['reviews', t(messages.modeReviews)],
           ['logo-marquee', t(messages.modeLogo)],
         ],
       },
@@ -238,40 +246,84 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         description: t(messages.filterTagsHelp),
         type: 'string',
       },
+      // A review is a slide with its own labels: the name is the slide's
+      // heading and the review text its content, so the editor's work
+      // carries over when the display style changes.
       slides: {
-        title: t(messages.slides),
+        title: t(isReviews ? messages.modeReviews : messages.slides),
         widget: 'object_list',
         schema: {
-          title: t(messages.slide),
+          title: t(isReviews ? messages.review : messages.slide),
           fieldsets: [
             {
               id: 'default',
               title: t(shared.default),
-              fields: [
-                'heading',
-                'content',
-                'image',
-                'link',
-                'buttonText',
-                'buttonArrow',
-              ],
+              fields: isReviews
+                ? [
+                    'content',
+                    'rating',
+                    'heading',
+                    'organisation',
+                    'image',
+                    'link',
+                  ]
+                : [
+                    'heading',
+                    'content',
+                    'image',
+                    'link',
+                    'buttonText',
+                    'buttonArrow',
+                  ],
             },
           ],
           properties: {
             heading: {
-              title: t(shared.heading),
+              title: t(isReviews ? messages.reviewName : shared.heading),
               type: 'string',
-              description: t(messages.slideHeadingHelp),
+              description: t(
+                isReviews ? messages.reviewNameHelp : messages.slideHeadingHelp,
+              ),
             },
-            content: { title: t(shared.content), type: 'text' },
+            content: {
+              title: t(isReviews ? messages.reviewText : shared.content),
+              ...(isReviews ? { description: t(messages.reviewTextHelp) } : {}),
+              type: 'text',
+            },
+            // Stored as '0'–'5': Volto's select only shows the label of a
+            // string value. The view reads it with parseInt.
+            rating: {
+              title: t(messages.reviewRating),
+              description: t(messages.reviewRatingHelp),
+              widget: 'select',
+              // "No stars" is the way back to no rating: without this the
+              // list would also offer Volto's own "No value".
+              noValueOption: false,
+              choices: [
+                ['0', t(messages.noStars)],
+                ...[1, 2, 3, 4, 5].map((count) => [
+                  String(count),
+                  t(messages.stars, { count }),
+                ]),
+              ],
+            },
+            organisation: {
+              title: t(messages.reviewRole),
+              description: t(messages.reviewRoleHelp),
+              type: 'string',
+            },
             image: {
-              title: t(shared.image),
+              title: t(isReviews ? messages.reviewPicture : shared.image),
+              ...(isReviews
+                ? { description: t(messages.reviewPictureHelp) }
+                : {}),
               widget: 'object_browser',
               mode: 'image',
               allowExternals: false,
             },
             link: {
               title: t(shared.link),
+              ...(isReviews ? { description: t(messages.reviewLinkHelp) } : {}),
               widget: 'object_browser',
               mode: 'link',
               allowExternals: true,
@@ -334,8 +386,10 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         default: false,
       },
       clickableSlides: {
-        title: t(messages.clickable),
-        description: t(messages.clickableHelp),
+        title: t(isReviews ? messages.clickableReviews : messages.clickable),
+        description: t(
+          isReviews ? messages.clickableReviewsHelp : messages.clickableHelp,
+        ),
         type: 'boolean',
         default: false,
       },
@@ -347,21 +401,27 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         default: 'original',
       },
       equalHeight: {
-        title: t(messages.equalHeight),
-        description: t(messages.equalHeightHelp),
+        title: t(
+          isReviews ? messages.equalHeightReviews : messages.equalHeight,
+        ),
+        description: t(
+          isReviews
+            ? messages.equalHeightReviewsHelp
+            : messages.equalHeightHelp,
+        ),
         type: 'boolean',
         default: false,
       },
 
       // ── Behaviour ──────────────────────────────────────────────────────
       slidesToShow: {
-        title: t(messages.slidesToShow),
+        title: t(isReviews ? messages.reviewsToShow : messages.slidesToShow),
         description: t(messages.largeScreens),
         type: 'number',
         default: 1,
       },
       minSlidesOnMobile: {
-        title: t(messages.slidesMobile),
+        title: t(isReviews ? messages.reviewsMobile : messages.slidesMobile),
         description: t(messages.phones),
         type: 'number',
         default: 1,
@@ -509,8 +569,14 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         default: 'light',
       },
       slideBackgroundColor: {
-        title: t(messages.slideBackground),
-        description: t(messages.slideBackgroundHelp),
+        title: t(
+          isReviews ? messages.reviewBackground : messages.slideBackground,
+        ),
+        description: t(
+          isReviews
+            ? messages.reviewBackgroundHelp
+            : messages.slideBackgroundHelp,
+        ),
         widget: 'select',
         choices: [noneChoice, ...getColorChoices(colors)],
         default: 'transparent',

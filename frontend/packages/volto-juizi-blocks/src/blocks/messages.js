@@ -18,9 +18,9 @@ export default defineMessages({
   },
   carousel: { id: 'Carousel', defaultMessage: 'Carousel' },
   carouselDescription: {
-    id: 'Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip.',
+    id: 'Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip.',
     defaultMessage:
-      'Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip.',
+      'Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip.',
   },
   gallery: { id: 'Gallery', defaultMessage: 'Gallery' },
   galleryDescription: {

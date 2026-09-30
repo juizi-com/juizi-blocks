@@ -250,6 +250,7 @@ override on a narrower selector wouldn't reach them.
 | Width | `--juizi-gutter`, `--juizi-content-width`, per-block `--juizi-*-width` |
 | Boxes | `--juizi-callout-padding` (1.5rem), `--juizi-redirect-padding` (1.25rem) |
 | Cards | `--juizi-card-radius`, `--juizi-card-shadow` |
+| Reviews | `--juizi-review-star-color`, `--juizi-review-star-color-on-dark` (the Carousel's Reviews style; keep each at 3:1 or more against its background) |
 | Buttons | `--juizi-button-radius`, `--juizi-button-border-width` |
 
 Defaults follow Volto Light Theme's sizes, and the blocks' own stylesheets
@@ -671,8 +672,9 @@ can be seen in place:
 | Spanish | `/es/juizi-blocks` |
 | Afrikaans | `/af/juizi-blocks` |
 
-Each page holds a Hero, a Content Row, a Carousel, a Gallery and a Callout,
-written in that language; the pages are translations of one another, so the
+Each page holds a Hero, a Content Row, a Carousel, a second Carousel in its
+Reviews style (with made-up reviews), a Gallery and a Callout, written in that
+language; the pages are translations of one another, so the
 language switcher moves between them. The Redirect block sends visitors away
 from the page it is on, so it has a page of its own, `…/juizi-blocks/redirect`,
 reached from the Callout; it sends visitors back to the showcase.

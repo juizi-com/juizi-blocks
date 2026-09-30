@@ -59,6 +59,30 @@ TEXTS = {
                 "Cards can share the same height and the same picture shape.",
             ),
         ],
+        "reviews_heading": "Example reviews",
+        "reviews_description": (
+            "Made-up reviews, to show the Reviews style of the carousel."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Content editor",
+                "I added a carousel and published it in five minutes. Every label was "
+                "in my own language.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Web manager",
+                "One dashboard sets the colours for every block, so our pages finally "
+                "match.",
+            ),
+            (
+                "Aisha Patel",
+                "Accessibility tester",
+                "The star rating is read out in words, so nobody has to count stars.",
+            ),
+        ],
         "gallery_heading": "A gallery",
         "gallery_description": "Click a picture to enlarge it.",
         "picture": "Picture {number}",
@@ -125,6 +149,31 @@ TEXTS = {
                 "Les cartes peuvent avoir la même hauteur et la même forme d’image.",
             ),
         ],
+        "reviews_heading": "Exemples d’avis",
+        "reviews_description": (
+            "Des avis inventés, pour montrer le style Avis du carrousel."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Rédactrice de contenu",
+                "J’ai ajouté un carrousel et je l’ai publié en cinq minutes. Tous les "
+                "libellés étaient dans ma langue.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Responsable web",
+                "Un seul tableau de bord règle les couleurs de tous les blocs : nos "
+                "pages sont enfin assorties.",
+            ),
+            (
+                "Aisha Patel",
+                "Testeuse d’accessibilité",
+                "La note en étoiles est lue en toutes lettres : personne n’a besoin de"
+                " compter les étoiles.",
+            ),
+        ],
         "gallery_heading": "Une galerie",
         "gallery_description": "Cliquez sur une image pour l’agrandir.",
         "picture": "Image {number}",
@@ -184,6 +233,31 @@ TEXTS = {
             (
                 "Quarto diapositivo",
                 "Os cartões podem ter a mesma altura e o mesmo formato de imagem.",
+            ),
+        ],
+        "reviews_heading": "Exemplos de avaliações",
+        "reviews_description": (
+            "Avaliações inventadas, para mostrar o estilo Avaliações do carrossel."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Editora de conteúdos",
+                "Adicionei um carrossel e publiquei-o em cinco minutos. Todas as "
+                "etiquetas estavam na minha língua.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Gestor do site",
+                "Um só painel define as cores de todos os blocos, por isso as nossas "
+                "páginas finalmente combinam.",
+            ),
+            (
+                "Aisha Patel",
+                "Testadora de acessibilidade",
+                "A classificação por estrelas é lida por extenso, por isso ninguém tem"
+                " de contar estrelas.",
             ),
         ],
         "gallery_heading": "Uma galeria",
@@ -246,6 +320,31 @@ TEXTS = {
             (
                 "Quarto slide",
                 "Os cartões podem ter a mesma altura e o mesmo formato de imagem.",
+            ),
+        ],
+        "reviews_heading": "Exemplos de avaliações",
+        "reviews_description": (
+            "Avaliações inventadas, para mostrar o estilo Avaliações do carrossel."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Editora de conteúdo",
+                "Adicionei um carrossel e publiquei em cinco minutos. Todos os rótulos"
+                " estavam no meu idioma.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Gerente do site",
+                "Um único painel define as cores de todos os blocos, então nossas "
+                "páginas finalmente combinam.",
+            ),
+            (
+                "Aisha Patel",
+                "Testadora de acessibilidade",
+                "A avaliação por estrelas é lida por extenso, então ninguém precisa "
+                "contar estrelas.",
             ),
         ],
         "gallery_heading": "Uma galeria",
@@ -314,6 +413,31 @@ TEXTS = {
                 "Las tarjetas pueden tener la misma altura y la misma forma de imagen.",
             ),
         ],
+        "reviews_heading": "Reseñas de ejemplo",
+        "reviews_description": (
+            "Reseñas inventadas, para mostrar el estilo Reseñas del carrusel."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Editora de contenidos",
+                "Añadí un carrusel y lo publiqué en cinco minutos. Todas las etiquetas"
+                " estaban en mi idioma.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Responsable web",
+                "Un solo panel define los colores de todos los bloques, así que "
+                "nuestras páginas por fin combinan.",
+            ),
+            (
+                "Aisha Patel",
+                "Evaluadora de accesibilidad",
+                "La valoración con estrellas se lee con palabras, así que nadie tiene "
+                "que contar estrellas.",
+            ),
+        ],
         "gallery_heading": "Una galería",
         "gallery_description": "Pulse una imagen para ampliarla.",
         "picture": "Imagen {number}",
@@ -373,6 +497,31 @@ TEXTS = {
             (
                 "Vierde skyfie",
                 "Kaarte kan dieselfde hoogte en dieselfde prentvorm hê.",
+            ),
+        ],
+        "reviews_heading": "Voorbeeldresensies",
+        "reviews_description": (
+            "Versinde resensies, om die karrousel se Resensies-styl te wys."
+        ),
+        # (name, organisation or role, review text)
+        "reviews": [
+            (
+                "Thandi Nkosi",
+                "Inhoudsredakteur",
+                "Ek het ’n karrousel bygevoeg en dit binne vyf minute gepubliseer. "
+                "Elke etiket was in my eie taal.",
+            ),
+            (
+                "Pieter van Wyk",
+                "Webbestuurder",
+                "Een paneelbord stel die kleure vir elke blok, so ons bladsye pas "
+                "uiteindelik by mekaar.",
+            ),
+            (
+                "Aisha Patel",
+                "Toeganklikheidstoetser",
+                "Die stergradering word in woorde voorgelees, so niemand hoef sterre "
+                "te tel nie.",
             ),
         ],
         "gallery_heading": "’n Galery",

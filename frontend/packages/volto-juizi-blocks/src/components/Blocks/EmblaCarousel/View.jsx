@@ -7,6 +7,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { Star } from 'lucide-react';
 import './carousel-base.css';
 import './carousel.css';
 import '../_shared/skeleton.css';
@@ -49,6 +50,16 @@ const imageFor = (slide, targetSize) => {
     return '';
   }
 };
+
+// Reviews style. The rating is stored as '0'–'5' (or not at all).
+const REVIEW_STARS = [1, 2, 3, 4, 5];
+// The picture is shown small (carousel.css: .review__picture).
+const REVIEW_PICTURE_SIZE = 64;
+const ratingOf = (slide) =>
+  Math.min(5, Math.max(0, parseInt(slide.rating, 10) || 0));
+const trimmed = (value) => (typeof value === 'string' ? value.trim() : '');
+const hasReviewContent = (slide) =>
+  !!(trimmed(slide.content) || trimmed(slide.heading) || ratingOf(slide));
 
 // eslint-disable-next-line no-unused-vars
 const getPresetConfig = (preset) => {
@@ -131,12 +142,17 @@ const EmblaCarousel = (blockProps) => {
     (state) => state.search?.subrequests || {},
   );
 
+  // Reviews are always added by hand: a carousel that was filled from site
+  // content before switching to Reviews shows its own list again.
+  const isReviews = (data.displayMode || data.mode) === 'reviews';
+  const usesListing = !!data.useListing && !isReviews;
+
   // Resolved path map: uid -> '/site/path'
   const [resolvedPaths, setResolvedPaths] = useState({});
 
   // When a resolveuid subrequest lands, extract the path from its first result
   useEffect(() => {
-    if (!data.useListing || !data.query?.query) return;
+    if (!usesListing || !data.query?.query) return;
     const uidCriteria = data.query.query.filter(
       (c) =>
         c.i === 'path' &&
@@ -153,10 +169,10 @@ const EmblaCarousel = (blockProps) => {
         setResolvedPaths((prev) => ({ ...prev, [uid]: path }));
       }
     });
-  }, [allSubrequests, data.useListing, data.query, id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [allSubrequests, usesListing, data.query, id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (!data.useListing || !data.query?.query) return;
+    if (!usesListing || !data.query?.query) return;
     const uidCriteria = data.query.query.filter(
       (c) =>
         c.i === 'path' &&
@@ -186,7 +202,7 @@ const EmblaCarousel = (blockProps) => {
         ),
       );
     });
-  }, [data.useListing, data.query]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [usesListing, data.query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const date = (value) => formatDate(value, undefined, intl.locale);
   const renderDate = (slide) => {
@@ -235,11 +251,7 @@ const EmblaCarousel = (blockProps) => {
 
   const getSlides = () => {
     let slides = [];
-    if (
-      data.useListing &&
-      searchResults?.items &&
-      searchResults.items.length > 0
-    ) {
+    if (usesListing && searchResults?.items && searchResults.items.length > 0) {
       let items = searchResults.items;
 
       // @search doesn't honour Subject.operator natively, so we enforce AND/OR client-side.
@@ -272,7 +284,7 @@ const EmblaCarousel = (blockProps) => {
 
       slides = items.map(convertItemToSlide);
     }
-    if (!data.useListing || (data.useListing && data.appendManualSlides)) {
+    if (!usesListing || (usesListing && data.appendManualSlides)) {
       const manualSlides = (data.slides || []).map((slide) => ({
         ...slide,
         isFromListing: false,
@@ -284,6 +296,10 @@ const EmblaCarousel = (blockProps) => {
     const imageOnly = (data.displayMode || data.mode) === 'image-only';
     if (imageOnly && !isEditMode) {
       slides = slides.filter((slide) => imageFor(slide));
+    }
+    // Reviews: the same for a review with nothing in it yet.
+    if (isReviews && !isEditMode) {
+      slides = slides.filter(hasReviewContent);
     }
     return slides;
   };
@@ -338,9 +354,12 @@ const EmblaCarousel = (blockProps) => {
     return slidesToShow;
   }, [slidesToShow, minSlidesOnMobile]);
 
-  const [effectiveSlidesToShow, setEffectiveSlidesToShow] = useState(
-    calculateSlidesToShow,
-  );
+  // Starts from the large-screen number, which is what the server renders:
+  // reading the window's width for the first render gave phones markup that
+  // didn't match the server's, and React threw the server's page away
+  // ("Hydration failed"). The effect below sets the real number on mount.
+  const [effectiveSlidesToShow, setEffectiveSlidesToShow] =
+    useState(slidesToShow);
   useEffect(() => {
     const onResize = () => {
       setEffectiveSlidesToShow(calculateSlidesToShow());
@@ -351,7 +370,7 @@ const EmblaCarousel = (blockProps) => {
   }, [calculateSlidesToShow]);
 
   useEffect(() => {
-    if (data.useListing && data.query) {
+    if (usesListing && data.query) {
       const baseOptions = {
         metadata_fields: [
           'title',
@@ -427,7 +446,7 @@ const EmblaCarousel = (blockProps) => {
 
       dispatch(searchContent(searchTerm, searchOptions, id));
     }
-  }, [data.useListing, data.query, resolvedPaths, dispatch, id]);
+  }, [usesListing, data.query, resolvedPaths, dispatch, id]);
 
   const carouselType = data.carouselType || 'default';
 
@@ -457,6 +476,9 @@ const EmblaCarousel = (blockProps) => {
           Autoplay({
             delay: parseInt(data.autoplayDelay, 10) || 8000,
             stopOnInteraction: false,
+            // Reviews are read, not glanced at: they wait while the pointer
+            // is over them (and, as in every style, while focus is inside).
+            stopOnMouseEnter: isReviews,
           }),
         ]
       : [];
@@ -501,6 +523,8 @@ const EmblaCarousel = (blockProps) => {
   const variantClass = `type-${_displayMode}`;
   const isImageOnly = _displayMode === 'image-only';
   const isImageTopMode = _displayMode === 'image-top';
+  // Only the text-overlay style paints the slide's picture as its background.
+  const pictureIsBackground = !isImageOnly && !isImageTopMode && !isReviews;
 
   // Solid buttons paint their background from --btn-color; without this the
   // text is hardcoded white in CSS and disappears against light colours
@@ -529,8 +553,11 @@ const EmblaCarousel = (blockProps) => {
   // With "Make entire card clickable", one real link per slide covers the
   // whole card (CSS: .embla__stretched-link::after): the button, or the
   // heading when there's no button, or the picture in Image only mode.
+  // A review's one link is its name, so it needs a name to be clickable.
   const isClickable = (slide) =>
-    !!data.clickableSlides && !!getHref(slide.link);
+    !!data.clickableSlides &&
+    !!getHref(slide.link) &&
+    (!isReviews || !!trimmed(slide.heading));
 
   const renderLink = (slide) => {
     if (!showsButton(slide)) return null;
@@ -587,6 +614,91 @@ const EmblaCarousel = (blockProps) => {
       );
     }
     return <h3>{slide.heading}</h3>;
+  };
+
+  // Reviews style: a quotation with its source. The picture is decorative
+  // (the name beside it says who it is); the stars are one image with a text
+  // alternative; the name is the review's one link when it has a link.
+  const renderReview = (slide) => {
+    if (!hasReviewContent(slide)) {
+      // Visitors never get here: empty reviews are left out for them (see
+      // getSlides).
+      return (
+        <div className="review review--empty block__unfinished">
+          <EditHint isEditMode={isEditMode}>
+            {intl.formatMessage(messages.addReview)}
+          </EditHint>
+        </div>
+      );
+    }
+    const rating = ratingOf(slide);
+    const name = trimmed(slide.heading);
+    const text = trimmed(slide.content);
+    const organisation = trimmed(slide.organisation);
+    const href = getHref(slide.link);
+    const picture = imageFor(slide, REVIEW_PICTURE_SIZE);
+    return (
+      <figure className="review">
+        {picture ? (
+          <img
+            className="review__picture"
+            src={picture}
+            alt=""
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+        ) : null}
+        {rating > 0 && (
+          <div
+            className="review__stars"
+            role="img"
+            aria-label={intl.formatMessage(messages.rated, { number: rating })}
+          >
+            {REVIEW_STARS.map((star) => (
+              <Star
+                key={star}
+                className={
+                  star <= rating ? 'review__star is-filled' : 'review__star'
+                }
+                size={20}
+                fill={star <= rating ? 'currentColor' : 'none'}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+        )}
+        {text ? (
+          <blockquote className="review__text">
+            <p>{text}</p>
+          </blockquote>
+        ) : null}
+        {(name || organisation) && (
+          <figcaption className="review__source">
+            {name && href ? (
+              <UniversalLink
+                href={href}
+                className={`review__name ${isClickable(slide) ? 'embla__stretched-link' : ''}`.trim()}
+              >
+                {name}
+              </UniversalLink>
+            ) : name ? (
+              <span className="review__name">{name}</span>
+            ) : null}
+            {organisation ? (
+              <span className="review__organisation">{organisation}</span>
+            ) : null}
+          </figcaption>
+        )}
+        <EditHint
+          isEditMode={isEditMode && !!href && !name}
+          tone="warning"
+          live
+        >
+          {intl.formatMessage(messages.reviewLinkNeedsName)}
+        </EditHint>
+      </figure>
+    );
   };
 
   // Logo marquee only wants deliberate links, not getHref's normal fallback
@@ -781,7 +893,7 @@ const EmblaCarousel = (blockProps) => {
 
   // ── No slides: still loading, or nothing to show ──────────────────────
   const queryLoading =
-    !!data.useListing &&
+    !!usesListing &&
     !!data.query &&
     (!searchResults || searchResults.loading) &&
     !searchResults?.items?.length;
@@ -825,7 +937,11 @@ const EmblaCarousel = (blockProps) => {
               <BlockPlaceholder
                 blockClass="embla"
                 prompt={intl.formatMessage(
-                  data.useListing ? messages.emptyQuery : messages.emptyManual,
+                  isReviews
+                    ? messages.emptyReviews
+                    : usesListing
+                      ? messages.emptyQuery
+                      : messages.emptyManual,
                 )}
               />
             )}
@@ -1060,10 +1176,10 @@ const EmblaCarousel = (blockProps) => {
                       >
                         <div className="slide__content">
                           <div
-                            className={`carousel-slide-inner ${clickable ? 'clickable' : ''} ${isImageOnly ? 'image-only' : ''} ${isImageTopMode ? 'image-top' : ''} ${slide.isFromListing ? 'listing-slide' : 'manual-slide'} ${!isImageOnly && !isImageTopMode && !imageUrl ? 'no-image' : ''} ${slideToneClass}`}
+                            className={`carousel-slide-inner ${clickable ? 'clickable' : ''} ${isImageOnly ? 'image-only' : ''} ${isImageTopMode ? 'image-top' : ''} ${isReviews ? 'reviews' : ''} ${slide.isFromListing ? 'listing-slide' : 'manual-slide'} ${pictureIsBackground && !imageUrl ? 'no-image' : ''} ${slideToneClass}`}
                             style={{
                               backgroundImage:
-                                !isImageOnly && !isImageTopMode && imageUrl
+                                pictureIsBackground && imageUrl
                                   ? `url(${imageUrl})`
                                   : 'none',
                               '--slide-bg':
@@ -1132,6 +1248,8 @@ const EmblaCarousel = (blockProps) => {
                                   {renderLink(slide)}
                                 </div>
                               </div>
+                            ) : isReviews ? (
+                              renderReview(slide)
                             ) : (
                               <div className="slide__body">
                                 {renderHeading(slide)}
@@ -1221,6 +1339,7 @@ const STYLES = [
   [messages.modeFull, messages.startFull],
   [messages.modeImageOnly, messages.startImageOnly],
   [messages.modeImageTop, messages.startImageTop],
+  [messages.modeReviews, messages.startReviews],
   [messages.modeLogo, messages.startLogo],
 ];
 

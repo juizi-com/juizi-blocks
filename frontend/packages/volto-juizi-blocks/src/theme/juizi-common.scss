@@ -98,6 +98,12 @@
   --juizi-card-radius: 4px;
   --juizi-card-shadow: none;
 
+  // ── Reviews (Carousel, Reviews style) ───────────────────────────────────
+  // Star colour on light and on dark backgrounds. Keep each at 3:1 or more
+  // against the backgrounds it sits on.
+  --juizi-review-star-color: #a15c00;
+  --juizi-review-star-color-on-dark: #ffd166;
+
   // ── Buttons ─────────────────────────────────────────────────────────────
   // Shape of every button (config/buttons.scss) and of the carousel's
   // controls (arrows, "More" button), so they match out of the box.
@@ -166,7 +172,8 @@ $juizi-underlined-links: (
 );
 // Cards and card-like slides
 $juizi-cards: '.content-row__grid > .content-row-item',
-  '.content-row__embla-slide', '.embla .carousel-slide-inner.image-top .card';
+  '.content-row__embla-slide', '.embla .carousel-slide-inner.image-top .card',
+  '.embla .carousel-slide-inner.reviews';
 
 // ── Typography ────────────────────────────────────────────────────────────
 

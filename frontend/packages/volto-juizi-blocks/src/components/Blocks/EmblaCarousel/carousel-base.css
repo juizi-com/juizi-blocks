@@ -235,6 +235,15 @@
   .embla__controls--sides .embla__next {
     right: 0.5rem;
   }
+
+  /* Reviews are text, not pictures: keep the words clear of side arrows. */
+  .embla.type-reviews
+    .embla__inner:has(> .embla__controls--sides)
+    > .embla__viewport {
+    width: auto;
+    margin-right: 3.5rem;
+    margin-left: 3.5rem;
+  }
 }
 
 /* "More" button: same shape as the other buttons */

@@ -15,6 +15,7 @@ SHOWCASE_BLOCKS = [
     "juiziHero",
     "contentRow",
     "emblaCarousel",
+    "emblaCarousel",
     "emblaGallery",
     "juiziCallout",
 ]
@@ -57,6 +58,26 @@ class TestLanguageDemo:
         pictures = [item for item in page.objectValues() if item.portal_type == "Image"]
         assert len(pictures) == 4
         assert ILanguage(pictures[0]).get_language() == language
+
+    @pytest.mark.parametrize("language", LANGUAGES)
+    def test_reviews_carousel(self, demo, language):
+        page = demo[language][PAGE_ID]
+        reviews = next(
+            block
+            for block in page.blocks.values()
+            if block.get("displayMode") == "reviews"
+        )
+        assert reviews["title"] == TEXTS[language]["reviews_heading"]
+        assert len(reviews["slides"]) == 3
+        name, organisation, text = TEXTS[language]["reviews"][0]
+        first = reviews["slides"][0]
+        assert (first["heading"], first["organisation"], first["content"]) == (
+            name,
+            organisation,
+            text,
+        )
+        # Ratings are stored the way the sidebar stores them.
+        assert [slide["rating"] for slide in reviews["slides"]] == ["5", "4", "5"]
 
     def test_pages_are_translations_of_each_other(self, demo):
         translations = ITranslationManager(demo["en"][PAGE_ID]).get_translations()

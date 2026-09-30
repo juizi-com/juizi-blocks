@@ -88,7 +88,7 @@ describe('BlockToggles', () => {
                   title: 'Carousel',
                   config: {
                     description:
-                      'Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip.',
+                      'Slides you add or pages found automatically, shown as a carousel, card row, reviews or scrolling logo strip.',
                   },
                 },
                 { id: 'image', title: 'Image', config: {} },

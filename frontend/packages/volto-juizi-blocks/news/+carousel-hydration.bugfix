@@ -1,0 +1,1 @@
+Carousels showing more than one card no longer fail hydration on phones: the first render now matches the server's.
