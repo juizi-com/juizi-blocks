@@ -1,4 +1,9 @@
+import { translator } from '../_shared/i18n';
+import shared from '../_shared/messages';
+import messages from './messages';
+
 export function emblaListingSchemaEnhancer(schema, formData = {}, intl) {
+  const t = translator(intl);
   const useListing = !!formData?.useListing;
   const modeSelected = !!formData?.displayMode;
 
@@ -11,9 +16,8 @@ export function emblaListingSchemaEnhancer(schema, formData = {}, intl) {
   // Ensure useListing property exists
   if (!schema.properties.useListing) {
     schema.properties.useListing = {
-      title: 'Fill automatically from site content',
-      description:
-        'Shows pages that match rules you set, instead of slides you add one by one.',
+      title: t(messages.useListing),
+      description: t(messages.useListingHelp),
       type: 'boolean',
       default: false,
     };
@@ -39,28 +43,28 @@ export function emblaListingSchemaEnhancer(schema, formData = {}, intl) {
     });
 
     schema.properties.query = schema.properties.query || {
-      title: 'Which pages to show',
+      title: t(messages.query),
       widget: 'query',
     };
     schema.properties.appendManualSlides = schema.properties
       .appendManualSlides || {
-      title: 'Also show slides I add myself',
-      description: 'Your own slides come after the pages found.',
+      title: t(messages.appendManual),
+      description: t(messages.appendManualHelp),
       type: 'boolean',
       default: false,
     };
     schema.properties.listingButtonText = schema.properties
       .listingButtonText || {
-      title: 'Button text',
-      description: "Label for the 'Read more' button on each found page",
+      title: t(shared.buttonText),
+      description: t(messages.listingButtonTextHelp),
       type: 'string',
-      default: 'Read more',
+      // In the site's language: this text is what visitors read.
+      default: t(shared.readMore),
     };
     schema.properties.listingButtonArrow = schema.properties
       .listingButtonArrow || {
-      title: 'Show arrow on buttons',
-      description:
-        "Adds a right arrow to the 'Read more' button on every found page",
+      title: t(messages.listingArrow),
+      description: t(messages.listingArrowHelp),
       type: 'boolean',
       default: false,
     };

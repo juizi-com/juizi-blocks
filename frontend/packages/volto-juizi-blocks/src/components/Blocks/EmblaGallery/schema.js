@@ -5,8 +5,8 @@ import { emblaGallerySchemaEnhancer } from './emblaGallerySchemaEnhancer';
 // Called as ({ intl, props, data, formData }) by makeBlockEdit.
 const emblaGallerySchema = (args = {}) => {
   const formData = schemaData(args);
-  const base = emblaGalleryBaseSchema({ formData });
-  return emblaGallerySchemaEnhancer({ ...base }, formData);
+  const base = emblaGalleryBaseSchema({ formData, intl: args.intl });
+  return emblaGallerySchemaEnhancer({ ...base }, formData, args.intl);
 };
 
 export default emblaGallerySchema;

@@ -184,4 +184,59 @@ export default defineMessages({
     id: 'juizi-dashboard-fix-errors',
     defaultMessage: 'Fix these before saving:',
   },
+  // Problems found by validateColorConfig (settings/helpers.ts): the key is
+  // `error` + the issue's code.
+  errorNoColors: {
+    id: 'juizi-dashboard-error-no-colors',
+    defaultMessage: 'Add at least one colour.',
+  },
+  errorNoThemes: {
+    id: 'juizi-dashboard-error-no-themes',
+    defaultMessage: 'Add at least one theme.',
+  },
+  errorColorName: {
+    id: 'juizi-dashboard-error-color-name',
+    defaultMessage:
+      'Colour “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes.',
+  },
+  errorThemeName: {
+    id: 'juizi-dashboard-error-theme-name',
+    defaultMessage:
+      'Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes.',
+  },
+  errorColorDuplicate: {
+    id: 'juizi-dashboard-error-color-duplicate',
+    defaultMessage: 'Colour “{label}”: the name “{name}” is used twice.',
+  },
+  errorThemeDuplicate: {
+    id: 'juizi-dashboard-error-theme-duplicate',
+    defaultMessage: 'Theme “{label}”: the name “{name}” is used twice.',
+  },
+  errorColorValue: {
+    id: 'juizi-dashboard-error-color-value',
+    defaultMessage: 'Colour “{label}”: the value must be a hex colour.',
+  },
+  errorColorForeground: {
+    id: 'juizi-dashboard-error-color-foreground',
+    defaultMessage:
+      'Colour “{label}”: the text colour must be a hex colour or empty.',
+  },
+  errorThemeSlotMissing: {
+    id: 'juizi-dashboard-error-theme-slot-missing',
+    defaultMessage: 'Theme “{label}”: choose a colour for “{slot}”.',
+  },
+  errorThemeSlotGone: {
+    id: 'juizi-dashboard-error-theme-slot-gone',
+    defaultMessage:
+      'Theme “{label}”: the colour chosen for “{slot}” no longer exists.',
+  },
+  // Stand-ins for a colour or theme without a label.
+  unnamedColor: {
+    id: 'juizi-dashboard-unnamed-color',
+    defaultMessage: 'Colour {number}',
+  },
+  unnamedTheme: {
+    id: 'juizi-dashboard-unnamed-theme',
+    defaultMessage: 'Theme {number}',
+  },
 });

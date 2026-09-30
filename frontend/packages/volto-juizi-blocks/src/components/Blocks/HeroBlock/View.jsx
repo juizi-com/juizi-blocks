@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import {
   getButtonClasses,
@@ -15,6 +16,8 @@ import { externalLinkProps, getHref } from '../_shared/links';
 import { overlayStyleToRgba } from '../_shared/overlays';
 import { blockAnchorId } from '../_shared/anchors';
 import { formatDate } from '../_shared/format';
+import shared from '../_shared/messages';
+import messages from './messages';
 import './style.css';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
@@ -43,7 +46,7 @@ const getPreviewImageUrl = (properties) => {
 // that's what the preheader slot is for. Falls back to a single date when
 // there's no end date, the event is open-ended, or start and end fall on
 // the same day.
-const formatEventDetails = (properties) => {
+const formatEventDetails = (properties, language) => {
   const rawStart = properties?.start;
   if (!rawStart) return '';
 
@@ -53,7 +56,7 @@ const formatEventDetails = (properties) => {
   const sameDay = end && start.toDateString() === end.toDateString();
 
   const day = (d) => d.getDate();
-  const month = (d) => formatDate(d, { month: 'short' });
+  const month = (d) => formatDate(d, { month: 'short' }, language);
   const year = (d) => d.getFullYear();
 
   let dateText;
@@ -244,8 +247,12 @@ const ButtonArrow = () => (
 );
 
 const Breadcrumbs = ({ items }) => {
+  const intl = useIntl();
   if (!items?.length) return null;
-  const crumbs = [{ url: '/', title: 'Home' }, ...items];
+  const crumbs = [
+    { url: '/', title: intl.formatMessage(shared.home) },
+    ...items,
+  ];
   // data-depth reflects how many crumbs render, including the current page.
   // CSS uses this to hide the nav when depth is 2 (Home + current page only —
   // no meaningful trail). Themes can override with [data-depth="2"] { display: flex }.
@@ -253,7 +260,7 @@ const Breadcrumbs = ({ items }) => {
     // nav + aria-label makes this a named landmark, distinct from any other
     // navigation on the page. Screen reader users can jump to it directly.
     <nav
-      aria-label="Breadcrumb"
+      aria-label={intl.formatMessage(shared.breadcrumb)}
       className="hero-breadcrumbs"
       data-depth={crumbs.length}
     >
@@ -287,8 +294,9 @@ const buttonLabel = (btn) => {
   return btn.label?.trim() || link?.title || '';
 };
 
+// A message (format it with `intl`), or null when the button is finished.
 const unfinishedHint = (href, label) =>
-  !href ? 'Add a link' : !label ? 'Add a label' : '';
+  !href ? shared.addLink : !label ? shared.addLabel : null;
 
 // "Use smaller buttons": the shared btn-small modifier (config/buttons.scss).
 // A Hero-only rule lost to the shared button base, so it never showed.
@@ -304,6 +312,7 @@ const HeroButtons = ({
   isEditMode,
   showUnfinished,
 }) => {
+  const intl = useIntl();
   const wrapperClass = `hero-buttons${smallButtons ? ' hero-buttons--small' : ''}`;
   // Unfinished buttons (no link or no text) are left out for visitors. For
   // editors they're flagged ("Add a link") only while the Hero has nothing
@@ -329,8 +338,7 @@ const HeroButtons = ({
       return (
         <div className="hero-buttons hero-buttons--toc-empty">
           <EditHint isEditMode={isEditMode} as="span">
-            No headings on this page yet. Add some below and they&apos;ll appear
-            here as buttons.
+            {intl.formatMessage(messages.tocEmpty)}
           </EditHint>
         </div>
       );
@@ -364,7 +372,7 @@ const HeroButtons = ({
               >
                 {hint ? (
                   <EditHint isEditMode={isEditMode} as="span">
-                    {hint}
+                    {intl.formatMessage(hint)}
                   </EditHint>
                 ) : (
                   label
@@ -398,7 +406,7 @@ const HeroButtons = ({
           >
             {hint ? (
               <EditHint isEditMode={isEditMode} as="span">
-                {hint}
+                {intl.formatMessage(hint)}
               </EditHint>
             ) : (
               label
@@ -408,6 +416,26 @@ const HeroButtons = ({
         );
       })}
     </div>
+  );
+};
+
+// The words of the note shown above the page's Title block in the editor
+// while this Hero is the primary heading. The note itself is drawn by
+// style.css (`.block.title::before`), which can't be translated, so its text
+// is handed over as a CSS variable, in the editor's language.
+const cssString = (text) =>
+  `"${text.replace(/[\\"]/g, '\\$&').replace(/</g, '\\3c ')}"`;
+
+const TitleHiddenNote = () => {
+  const intl = useIntl();
+  const note = cssString(intl.formatMessage(messages.titleHiddenNote));
+  return (
+    <style
+      // Our own message, escaped for CSS above.
+      dangerouslySetInnerHTML={{
+        __html: `:root{--juizi-hero-title-note:${note}}`,
+      }}
+    />
   );
 };
 
@@ -433,6 +461,7 @@ const HeroContent = ({
   hideTitle,
   otherPrimaryHeading,
 }) => {
+  const intl = useIntl();
   const buttonsDisplayMode = data.buttonsDisplayMode || 'buttons';
   const hasButtons =
     buttonsDisplayMode === 'toc'
@@ -463,15 +492,14 @@ const HeroContent = ({
         </div>
       )}
       <EditHint isEditMode={isEditMode && !displayTitle}>
-        Add a heading in the sidebar.
+        {intl.formatMessage(messages.addHeading)}
       </EditHint>
       <EditHint
         isEditMode={isEditMode && otherPrimaryHeading}
         tone="warning"
         live
       >
-        Another block is already the main heading for this page. Untick
-        &apos;This is the primary page heading&apos; on one of them.
+        {intl.formatMessage(messages.otherPrimary)}
       </EditHint>
       {displayTitle && (
         // id ties this heading to the section's aria-labelledby.
@@ -596,6 +624,7 @@ const HeroContent = ({
 const View = (props) => {
   const { data = {}, properties = {} } = props;
   const selfBlockId = props.block || props.id;
+  const intl = useIntl();
   const breadcrumbItems = useSelector(
     (state) => state.breadcrumbs?.items || [],
   );
@@ -619,17 +648,15 @@ const View = (props) => {
       <BlockWrapper {...props}>
         <BlockPlaceholder
           blockClass="hero-block"
-          prompt="Select a display style in the sidebar to get started."
+          prompt={intl.formatMessage(shared.selectStylePrompt)}
           modes={[
             {
               name: 'Hero',
-              description:
-                'a full-width page header with title, description and background image',
+              description: intl.formatMessage(messages.startHero),
             },
             {
-              name: 'Section',
-              description:
-                'a themed content band inside the page with background colour and buttons',
+              name: intl.formatMessage(messages.section),
+              description: intl.formatMessage(messages.startSection),
             },
           ]}
         />
@@ -656,7 +683,7 @@ const View = (props) => {
   // the editor has not set a manual preheader. If both are set, the manual text wins.
   // Available in both modes.
   if (data.showPublicationDate && properties?.effective && !data.preheader) {
-    displayPreheader = formatDate(properties.effective);
+    displayPreheader = formatDate(properties.effective, undefined, intl.locale);
   }
 
   // showEventDetails fills the preheader with the event's date range and
@@ -666,7 +693,7 @@ const View = (props) => {
   // showPublicationDate so that on an Event item with both switched on,
   // event details — the more specific, more useful line — wins.
   if (data.showEventDetails && properties?.start && !data.preheader) {
-    displayPreheader = formatEventDetails(properties);
+    displayPreheader = formatEventDetails(properties, intl.locale);
   }
 
   // ── Background image (both modes) ───────────────────────────────────────
@@ -814,6 +841,7 @@ const View = (props) => {
         `tone-${!isHeroMode ? (isDark ? 'light' : 'dark') : 'light'}`,
       ].join(' ')}
     >
+      {isEditMode && isPrimaryHeading && <TitleHiddenNote />}
       <section
         ref={selfRef}
         id={blockId}

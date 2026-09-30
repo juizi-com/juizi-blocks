@@ -10,7 +10,10 @@ jest.mock(
 jest.mock('@plone/volto/components/manage/Form', () => ({
   BlockDataForm: () => null,
 }));
-jest.mock('react-intl', () => ({ useIntl: () => ({}) }));
+jest.mock('react-intl', () => ({
+  ...jest.requireActual('react-intl'),
+  useIntl: () => ({ formatMessage: (message) => message.defaultMessage }),
+}));
 jest.mock('./View', () => (props) => (
   <div
     data-edit-mode={props.isEditMode === true}

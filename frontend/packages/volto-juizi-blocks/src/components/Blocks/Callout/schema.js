@@ -1,43 +1,10 @@
-import { defineMessages } from 'react-intl';
 import { getBlockColorList, getColorChoices } from '../../../config/colors';
 import { schemaData } from '../../BlockEdit/BlockEdit';
 import { calloutIcons } from './icons';
 import { calloutTypes, isCalloutConfigured } from './types';
-
-const messages = defineMessages({
-  callout: { id: 'juizi-callout', defaultMessage: 'Callout' },
-  calloutType: { id: 'juizi-callout-type', defaultMessage: 'Callout type' },
-  changeType: {
-    id: 'juizi-callout-change-type',
-    defaultMessage:
-      "What this callout is for. Changing it updates the icon and colours, except ones you've changed yourself.",
-  },
-  chooseType: {
-    id: 'juizi-callout-choose-type',
-    defaultMessage: 'Choose a callout type to get started.',
-  },
-  icon: { id: 'juizi-callout-icon', defaultMessage: 'Icon' },
-  title: { id: 'juizi-title', defaultMessage: 'Title' },
-  text: { id: 'juizi-text', defaultMessage: 'Text' },
-  link: { id: 'juizi-link', defaultMessage: 'Link' },
-  linkTitle: { id: 'juizi-link-title', defaultMessage: 'Link text' },
-  colors: { id: 'juizi-callout-colors', defaultMessage: 'Colours' },
-  backgroundColor: {
-    id: 'juizi-callout-background',
-    defaultMessage: 'Background colour',
-  },
-  backgroundColorHelp: {
-    id: 'juizi-callout-background-help',
-    defaultMessage: 'Text colour follows the background automatically.',
-  },
-  iconColor: { id: 'juizi-callout-icon-color', defaultMessage: 'Icon colour' },
-  linkColor: { id: 'juizi-callout-link-color', defaultMessage: 'Link colour' },
-  sameAsText: {
-    id: 'juizi-callout-same-as-text',
-    defaultMessage: 'Same as text',
-  },
-  none: { id: 'juizi-callout-none', defaultMessage: 'None' },
-});
+import blockMessages from '../../../blocks/messages';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 export const calloutSchema = (args) => {
   const { intl } = args;
@@ -55,11 +22,11 @@ export const calloutSchema = (args) => {
     placeholder: intl.formatMessage(emptyLabel),
   });
   return {
-    title: intl.formatMessage(messages.callout),
+    title: intl.formatMessage(blockMessages.callout),
     fieldsets: [
       {
         id: 'default',
-        title: 'Default',
+        title: intl.formatMessage(shared.default),
         fields: configured
           ? ['calloutType', 'icon', 'title', 'text', 'link', 'linkTitle']
           : ['calloutType'],
@@ -76,38 +43,41 @@ export const calloutSchema = (args) => {
     ],
     properties: {
       calloutType: {
-        title: intl.formatMessage(messages.calloutType),
+        title: intl.formatMessage(messages.type),
         description: intl.formatMessage(
           configured ? messages.changeType : messages.chooseType,
         ),
-        choices: calloutTypes.map(({ id, label }) => [id, label]),
+        choices: calloutTypes.map(({ id, label }) => [
+          id,
+          intl.formatMessage(label),
+        ]),
       },
       icon: {
-        title: intl.formatMessage(messages.icon),
+        title: intl.formatMessage(shared.icon),
         choices: Object.entries(calloutIcons).map(([name, { label }]) => [
           name,
-          label,
+          intl.formatMessage(label),
         ]),
         // No default: Volto writes defaults into new blocks, which would skip
         // the type choice. Choosing a type seeds the icon instead.
       },
-      title: { title: intl.formatMessage(messages.title) },
-      text: { title: intl.formatMessage(messages.text), widget: 'textarea' },
+      title: { title: intl.formatMessage(shared.title) },
+      text: { title: intl.formatMessage(shared.text), widget: 'textarea' },
       link: {
-        title: intl.formatMessage(messages.link),
+        title: intl.formatMessage(shared.link),
         widget: 'object_browser',
         mode: 'link',
         return: 'single',
         allowExternals: true,
       },
-      linkTitle: { title: intl.formatMessage(messages.linkTitle) },
+      linkTitle: { title: intl.formatMessage(shared.linkTitle) },
       // 'None' is a real choice (not just the placeholder), so editors can
       // go back to no background.
       backgroundColor: colorField(
-        messages.backgroundColor,
-        messages.none,
-        messages.backgroundColorHelp,
-        [['transparent', intl.formatMessage(messages.none)], ...colors],
+        shared.backgroundColor,
+        shared.none,
+        messages.backgroundHelp,
+        [['transparent', intl.formatMessage(shared.none)], ...colors],
       ),
       iconColor: colorField(messages.iconColor, messages.sameAsText),
       linkColor: colorField(messages.linkColor, messages.sameAsText),

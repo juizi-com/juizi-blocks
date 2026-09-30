@@ -5,36 +5,38 @@
  * sidebar, so the editor can see and change it.
  */
 import { getCalloutTypeColors } from '../../../settings/runtime';
+import messages from './messages';
 
+// `label` and `description` are messages: format them with `intl`.
 export const calloutTypes = [
   {
     id: 'info',
-    label: 'Information',
-    description: 'neutral background information or context',
+    label: messages.typeInfo,
+    description: messages.typeInfoHelp,
     icon: 'info',
   },
   {
     id: 'tip',
-    label: 'Tip',
-    description: 'a helpful suggestion or good practice',
+    label: messages.typeTip,
+    description: messages.typeTipHelp,
     icon: 'lightbulb',
   },
   {
     id: 'warning',
-    label: 'Warning',
-    description: 'something the reader needs to be careful about',
+    label: messages.typeWarning,
+    description: messages.typeWarningHelp,
     icon: 'alert-triangle',
   },
   {
     id: 'success',
-    label: 'Success',
-    description: 'a positive outcome, confirmation or achievement',
+    label: messages.typeSuccess,
+    description: messages.typeSuccessHelp,
     icon: 'check-circle',
   },
   {
     id: 'announcement',
-    label: 'Announcement',
-    description: 'news, an update or a call to action',
+    label: messages.typeAnnouncement,
+    description: messages.typeAnnouncementHelp,
     icon: 'megaphone',
   },
 ];

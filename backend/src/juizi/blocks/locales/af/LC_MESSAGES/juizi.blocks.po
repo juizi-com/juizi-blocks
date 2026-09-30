@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: juizi.blocks\n"
+"POT-Creation-Date: 2026-09-30 08:48+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: af\n"
+"Language-Name: Afrikaans\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: juizi.blocks\n"
+
+#: juizi/blocks/interfaces.py:23
+msgid "Block type ids switched off in the dashboard: editors can no longer add them. Existing blocks of these types keep rendering."
+msgstr "Bloktipe-ID’s wat in die paneelbord afgeskakel is: redakteurs kan hulle nie meer byvoeg nie. Bestaande blokke van hierdie tipes word steeds vertoon."
+
+#: juizi/blocks/interfaces.py:35
+msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
+msgstr "Bloktipe-ID’s wat in die paneelbord aangeskakel is al hou hul eie konfigurasie hulle uit die blokkieser."
+
+#: juizi/blocks/interfaces.py:46
+msgid "Colour configuration"
+msgstr "Kleurkonfigurasie"
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Create example content to showcase the new website"
+msgstr "Skep voorbeeldinhoud om die nuwe webwerf ten toon te stel"
+
+#: juizi/blocks/interfaces.py:22
+msgid "Disabled blocks"
+msgstr "Afgeskakelde blokke"
+
+#: juizi/blocks/interfaces.py:34
+msgid "Enabled blocks"
+msgstr "Aangeskakelde blokke"
+
+#: juizi/blocks/interfaces.py:47
+msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
+msgstr "JSON-dokument met die hoofkleurlys, die bloktemas wat daaruit gebou is, en die toegelate lyste per blok."
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Juizi Blocks: Example content"
+msgstr "Juizi Blocks: voorbeeldinhoud"
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Juizi Blocks: Install"
+msgstr "Juizi Blocks: installeer"
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Package to configure a new Juizi Blocks site"
+msgstr "Pakket om ’n nuwe Juizi Blocks-werf op te stel"

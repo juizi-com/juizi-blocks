@@ -4,15 +4,20 @@ import {
   getButtonChoices,
   getDefaultButton,
 } from '../../../config/colors';
-import { iconChoicesList } from '../../../config/iconChoices';
+import { getIconChoices } from '../../../config/iconChoices';
 import { schemaData } from '../../BlockEdit/BlockEdit';
+import blockMessages from '../../../blocks/messages';
 import {
-  alignmentChoices,
+  getAlignmentChoices,
+  getPaddingChoices,
+  getVerticalChoices,
   msToSeconds,
-  paddingChoices,
   withSavedChoice,
 } from '../_shared/choices';
-import { overlayChoices } from '../_shared/overlays';
+import { translator } from '../_shared/i18n';
+import shared from '../_shared/messages';
+import { getOverlayChoices } from '../_shared/overlays';
+import messages from './messages';
 
 // Colours this block offers — set per block in the Juizi Blocks dashboard.
 // Everything colour-related below is built inside functions so it follows
@@ -34,54 +39,56 @@ const cardFields = [
   'link',
 ];
 
-const linkField = {
-  title: 'Link (optional)',
+const linkField = (t) => ({
+  title: t(messages.linkOptional),
   widget: 'object_browser',
   mode: 'link',
   allowExternals: true,
-};
+});
 
-const cardProperties = (colors) => ({
+const noneChoice = (value, t) => [value, t(shared.none)];
+
+const cardProperties = (colors, t) => ({
   image: {
-    title: 'Image',
+    title: t(shared.image),
     widget: 'object_browser',
     mode: 'image',
     allowExternals: false,
-    description:
-      'The card heading is used as the image alt text. Add a heading to every card that has a meaningful image.',
+    description: t(messages.cardImageHelp),
   },
-  preheader: { title: 'Text above the heading', type: 'string' },
-  heading: { title: 'Heading', type: 'string' },
-  text: { title: 'Description', widget: 'richtext' },
+  preheader: { title: t(shared.textAboveHeading), type: 'string' },
+  heading: { title: t(shared.heading), type: 'string' },
+  text: { title: t(shared.description), widget: 'richtext' },
   backgroundColor: {
-    title: 'Card background colour',
+    title: t(messages.cardBackground),
     widget: 'select',
-    choices: [['transparent', 'None'], ...getColorChoices(colors)],
+    choices: [noneChoice('transparent', t), ...getColorChoices(colors)],
     default: 'transparent',
   },
   buttonText: {
-    title: 'Button text',
+    title: t(shared.buttonText),
     type: 'string',
-    default: 'Read more',
-    description: 'The button only shows when the card has a link.',
+    // In the site's language: this text is what visitors read.
+    default: t(shared.readMore),
+    description: t(messages.buttonTextHelp),
   },
   buttonStyle: {
-    title: 'Button style',
+    title: t(shared.buttonStyle),
     widget: 'select',
-    choices: getButtonChoices(colors),
+    choices: getButtonChoices(colors, t),
     default: getDefaultButton(null, colors),
   },
-  link: linkField,
+  link: linkField(t),
 });
 
 // ─── Item sub-schemas per display style ───────────────────────────────────
-const itemSchemas = (colors) => ({
+const itemSchemas = (colors, t) => ({
   numbered: {
-    title: 'Item',
+    title: t(messages.item),
     fieldsets: [
       {
         id: 'default',
-        title: 'Default',
+        title: t(shared.default),
         fields: [
           'iconCircleColor',
           'preheader',
@@ -94,54 +101,53 @@ const itemSchemas = (colors) => ({
     ],
     properties: {
       iconCircleColor: {
-        title: 'Number circle colour',
+        title: t(messages.numberCircle),
         widget: 'select',
-        choices: [['none', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice('none', t), ...getColorChoices(colors)],
         default: 'none',
-        description:
-          'Places the number inside a coloured circle. Leave as None to keep the plain number.',
+        description: t(messages.numberCircleHelp),
       },
-      preheader: { title: 'Text above the heading', type: 'string' },
-      heading: { title: 'Heading', type: 'string' },
-      text: { title: 'Description', widget: 'richtext' },
+      preheader: { title: t(shared.textAboveHeading), type: 'string' },
+      heading: { title: t(shared.heading), type: 'string' },
+      text: { title: t(shared.description), widget: 'richtext' },
       backgroundColor: {
-        title: 'Item background colour',
+        title: t(messages.itemBackground),
         widget: 'select',
-        choices: [['transparent', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice('transparent', t), ...getColorChoices(colors)],
         default: 'transparent',
       },
-      link: linkField,
+      link: linkField(t),
     },
     required: [],
   },
   statistics: {
-    title: 'Statistic',
+    title: t(messages.statistic),
     fieldsets: [
       {
         id: 'default',
-        title: 'Default',
+        title: t(shared.default),
         fields: ['value', 'suffix', 'label', 'extraInfo', 'link'],
       },
     ],
     properties: {
       value: {
-        title: 'Number',
+        title: t(messages.number),
         type: 'number',
-        description: 'Counts up from 0 to this number.',
+        description: t(messages.numberHelp),
       },
-      suffix: { title: 'After the number (e.g. % or +)', type: 'string' },
-      label: { title: 'Label', type: 'string' },
-      extraInfo: { title: 'Small print', type: 'string' },
-      link: linkField,
+      suffix: { title: t(messages.suffix), type: 'string' },
+      label: { title: t(shared.label), type: 'string' },
+      extraInfo: { title: t(messages.smallPrint), type: 'string' },
+      link: linkField(t),
     },
     required: ['value'],
   },
   icon: {
-    title: 'Item',
+    title: t(messages.item),
     fieldsets: [
       {
         id: 'default',
-        title: 'Default',
+        title: t(shared.default),
         fields: [
           'icon',
           'iconCircleColor',
@@ -155,69 +161,77 @@ const itemSchemas = (colors) => ({
     ],
     properties: {
       icon: {
-        title: 'Icon',
+        title: t(shared.icon),
         type: 'string',
-        choices: iconChoicesList,
+        choices: getIconChoices(t),
         default: 'Globe',
       },
       iconCircleColor: {
-        title: 'Icon circle colour',
+        title: t(messages.iconCircle),
         widget: 'select',
-        choices: [['none', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice('none', t), ...getColorChoices(colors)],
         default: 'none',
-        description:
-          'Places the icon inside a coloured circle. Leave as None to keep the plain icon.',
+        description: t(messages.iconCircleHelp),
       },
-      preheader: { title: 'Text above the heading', type: 'string' },
-      heading: { title: 'Heading', type: 'string' },
-      text: { title: 'Description', widget: 'richtext' },
+      preheader: { title: t(shared.textAboveHeading), type: 'string' },
+      heading: { title: t(shared.heading), type: 'string' },
+      text: { title: t(shared.description), widget: 'richtext' },
       backgroundColor: {
-        title: 'Item background colour',
+        title: t(messages.itemBackground),
         widget: 'select',
-        choices: [['transparent', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice('transparent', t), ...getColorChoices(colors)],
         default: 'transparent',
       },
-      link: linkField,
+      link: linkField(t),
     },
     required: [],
   },
   card: {
-    title: 'Card',
-    fieldsets: [{ id: 'default', title: 'Default', fields: cardFields }],
-    properties: cardProperties(colors),
+    title: t(messages.card),
+    fieldsets: [
+      { id: 'default', title: t(shared.default), fields: cardFields },
+    ],
+    properties: cardProperties(colors, t),
     required: [],
   },
 });
 
 // The style panel is named for what it controls.
 const STYLE_PANELS = {
-  numbered: { title: 'Number position', fields: ['iconPosition'] },
-  icon: { title: 'Icon position', fields: ['iconPosition'] },
+  numbered: { title: messages.numberPosition, fields: ['iconPosition'] },
+  icon: { title: messages.iconPosition, fields: ['iconPosition'] },
   statistics: {
-    title: 'Counting',
+    title: messages.counting,
     fields: ['statsFormatK', 'statAnimationMs'],
   },
-  card: { title: 'Card look', fields: ['imageCardStyle', 'overlayStyle'] },
+  card: {
+    title: messages.cardLook,
+    fields: ['imageCardStyle', 'overlayStyle'],
+  },
 };
 
 const COUNTING_SPEEDS = [
-  [1000, 'Quick (1 second)'],
-  [2000, 'Normal (2 seconds)'],
-  [3000, 'Slow (3 seconds)'],
+  [1000, messages.speedQuick],
+  [2000, messages.speedNormal],
+  [3000, messages.speedSlow],
 ];
 
 // ─── Main schema ───────────────────────────────────────────────────────────
 // Called as ({ intl, props, data, formData }) by makeBlockEdit.
 const schema = (args) => {
+  const t = translator(args?.intl);
   const data = schemaData(args);
   const displayMode = data.displayMode || null;
   const modeSelected = !!displayMode;
 
   const backgroundColor = data.backgroundColor || 'transparent';
   const colors = getBlockColorList(BLOCK_TYPE);
-  const bgColorList = [['transparent', 'None', 'light'], ...colors];
-  const variationItemSchemas = itemSchemas(colors);
+  const bgColorList = [['transparent', t(shared.none), 'light'], ...colors];
+  const variationItemSchemas = itemSchemas(colors, t);
   const showViewAll = data.showViewAll || false;
+  const itemsTitle = t(
+    displayMode === 'statistics' ? messages.statistics : messages.items,
+  );
 
   const stylePanel = modeSelected ? STYLE_PANELS[displayMode] : null;
   const stylePanelFields = stylePanel
@@ -230,7 +244,7 @@ const schema = (args) => {
   const fieldsets = [
     {
       id: 'default',
-      title: 'Options',
+      title: t(shared.options),
       fields: ['displayMode'],
     },
 
@@ -238,7 +252,7 @@ const schema = (args) => {
       ? [
           {
             id: 'header',
-            title: 'Heading',
+            title: t(shared.heading),
             fields: [
               'preheaderText',
               'headerText',
@@ -260,21 +274,21 @@ const schema = (args) => {
           // would leave editors who remove every item unable to add one.
           {
             id: `items-${displayMode}`,
-            title: displayMode === 'statistics' ? 'Statistics' : 'Items',
+            title: itemsTitle,
             fields: ['items'],
           },
           ...(stylePanelFields.length
             ? [
                 {
                   id: 'styleOptions',
-                  title: stylePanel.title,
+                  title: t(stylePanel.title),
                   fields: stylePanelFields,
                 },
               ]
             : []),
           {
             id: 'layout',
-            title: 'Layout',
+            title: t(shared.layout),
             fields: [
               ...(data.sideBySideLayout ? [] : ['columns']),
               'sideBySideLayout',
@@ -287,12 +301,12 @@ const schema = (args) => {
           },
           {
             id: 'background',
-            title: 'Background & spacing',
+            title: t(messages.backgroundSpacing),
             fields: ['backgroundColor', 'paddingTop', 'paddingBottom'],
           },
           {
             id: 'mobile',
-            title: 'On mobile',
+            title: t(shared.onMobile),
             fields: [
               'mobileCarousel',
               ...(data.mobileCarousel ? ['mobileAutoplay', 'mobileDots'] : []),
@@ -300,7 +314,7 @@ const schema = (args) => {
           },
           {
             id: 'advanced',
-            title: 'Advanced',
+            title: t(shared.advanced),
             fields: ['customClass'],
           },
         ]
@@ -308,233 +322,225 @@ const schema = (args) => {
   ];
 
   return {
-    title: 'Content Row',
+    title: t(blockMessages.contentRow),
     fieldsets,
     properties: {
       displayMode: {
-        title: 'Display style',
-        description: modeSelected
-          ? 'Switching style keeps your headings, text and links. Other fields may not carry over.'
-          : 'Choose a display style to get started.',
+        title: t(shared.displayStyle),
+        description: t(
+          modeSelected ? messages.styleSwitchHelp : shared.chooseStyleStart,
+        ),
         choices: [
-          ['numbered', 'Numbered'],
-          ['icon', 'Icon'],
-          ['statistics', 'Statistics'],
-          ['card', 'Image card'],
+          ['numbered', t(messages.modeNumbered)],
+          ['icon', t(shared.icon)],
+          ['statistics', t(messages.statistics)],
+          ['card', t(messages.modeCard)],
         ],
       },
 
       backgroundColor: {
-        title: 'Background colour',
-        description:
-          'The block background is always full width. Text colour updates automatically.',
+        title: t(shared.backgroundColor),
+        description: t(messages.backgroundColorHelp),
         widget: 'select',
         choices: getColorChoices(bgColorList),
         default: 'transparent',
       },
       customClass: {
-        title: 'Extra style name (for your web team)',
+        title: t(shared.customClass),
         type: 'string',
       },
       paddingTop: {
-        title: 'Top padding',
+        title: t(shared.topPadding),
         widget: 'select',
-        choices: paddingChoices,
+        choices: getPaddingChoices(t),
         default: 'default',
       },
       paddingBottom: {
-        title: 'Bottom padding',
+        title: t(shared.bottomPadding),
         widget: 'select',
-        choices: paddingChoices,
+        choices: getPaddingChoices(t),
         default: 'default',
       },
 
       preheaderText: {
-        title: 'Text above the heading',
+        title: t(shared.textAboveHeading),
         type: 'string',
-        description: 'Small text above the main heading.',
+        description: t(messages.preheaderHelp),
       },
       headerText: {
-        title: 'Heading',
+        title: t(shared.heading),
         type: 'string',
-        description:
-          'The main heading for this row. Screen readers use it to name this section, so even a short heading helps.',
+        description: t(messages.headingHelp),
       },
       descriptionText: {
-        title: 'Description',
+        title: t(shared.description),
         type: 'string',
         widget: 'textarea',
-        description: 'Supporting text below the heading.',
+        description: t(messages.descriptionHelp),
       },
       blockImage: {
-        title: 'Block image',
+        title: t(messages.blockImage),
         widget: 'object_browser',
         mode: 'image',
         allowExternals: false,
-        description:
-          'Optional image shown alongside the heading and description. The block heading is used to describe this image to screen reader users.',
+        description: t(messages.blockImageHelp),
       },
       blockImagePosition: {
-        title: 'Block image position',
+        title: t(messages.blockImagePosition),
         widget: 'select',
         choices: [
-          ['below', 'Below description'],
-          ['side', 'Next to description'],
+          ['below', t(messages.belowDescription)],
+          ['side', t(messages.nextToDescription)],
         ],
         default: 'below',
       },
       headerAlignment: {
-        title: 'Heading alignment',
-        choices: alignmentChoices,
+        title: t(messages.headingAlignment),
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       itemsAlignment: {
-        title: 'Items alignment',
-        choices: alignmentChoices,
+        title: t(messages.itemsAlignment),
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       showViewAll: {
-        title: 'Show "View all" button',
+        title: t(messages.showViewAll),
         type: 'boolean',
         default: false,
       },
       viewAllText: {
-        title: '"View all" label',
+        title: t(messages.viewAllLabel),
         type: 'string',
-        default: 'View all',
+        // In the site's language: this text is what visitors read.
+        default: t(shared.viewAll),
       },
       viewAllUrl: {
-        title: '"View all" link',
+        title: t(messages.viewAllLink),
         widget: 'object_browser',
         mode: 'link',
         allowExternals: true,
-        description: "The button isn't shown to visitors until it has a link.",
+        description: t(messages.viewAllLinkHelp),
       },
       viewAllStyle: {
-        title: '"View all" button style',
+        title: t(messages.viewAllStyle),
         widget: 'select',
-        choices: getButtonChoices(colors),
+        choices: getButtonChoices(colors, t),
         default: getDefaultButton(backgroundColor, colors),
       },
       viewAllPosition: {
-        title: '"View all" button position',
+        title: t(messages.viewAllPosition),
         widget: 'select',
         choices: [
-          ['header', 'Above items (with heading)'],
-          ['below', 'Below items'],
+          ['header', t(messages.aboveItems)],
+          ['below', t(messages.belowItems)],
         ],
         default: 'header',
-        description: 'Where the "View all" button sits relative to the items.',
+        description: t(messages.viewAllPositionHelp),
       },
 
       iconPosition: {
-        title: 'Icon/number position',
+        title: t(messages.iconNumberPosition),
         widget: 'select',
         choices: [
-          ['above', 'Above (default)'],
-          ['left', 'Left of content'],
-          ['inline', 'To the right of the text'],
+          ['above', t(messages.positionAbove)],
+          ['left', t(messages.positionLeft)],
+          ['inline', t(messages.positionInline)],
         ],
         default: 'above',
-        description:
-          'Where the icon or number sits relative to the heading and description.',
+        description: t(messages.iconNumberPositionHelp),
       },
 
       // numberHeadingLevel removed: step numbers are decorative sequencing,
       // not headings. The number is an aria-hidden div styled large.
       statsFormatK: {
-        title: 'Shorten thousands (1 000 → 1k)',
+        title: t(messages.shortenThousands),
         type: 'boolean',
         default: false,
       },
       statAnimationMs: {
-        title: 'Counting speed',
-        description: 'How long the numbers take to count up.',
+        title: t(messages.countingSpeed),
+        description: t(messages.countingSpeedHelp),
         widget: 'select',
         choices: withSavedChoice(
-          COUNTING_SPEEDS,
+          COUNTING_SPEEDS.map(([value, label]) => [value, t(label)]),
           data.statAnimationMs,
-          msToSeconds,
+          (ms) => msToSeconds(ms, t),
+          t,
         ),
         default: 2000,
       },
       imageCardStyle: {
-        title: 'Image layout',
+        title: t(messages.imageLayout),
         type: 'string',
         choices: [
-          ['overlay', 'Image as background with text overlay'],
-          ['above', 'Image above content'],
+          ['overlay', t(messages.imageBackground)],
+          ['above', t(messages.imageAbove)],
         ],
         default: 'overlay',
       },
       overlayStyle: {
-        title: 'Card image overlay',
-        description: 'Colour tint applied over all card background images.',
-        choices: overlayChoices,
+        title: t(messages.cardOverlay),
+        description: t(messages.cardOverlayHelp),
+        choices: getOverlayChoices(t),
         default: 'gradient',
       },
 
       columns: {
-        title: 'Columns on large screens',
+        title: t(messages.columns),
         type: 'number',
         minimum: 1,
         maximum: 6,
         default: displayMode === 'icon' ? 4 : 3,
-        description: 'Phones always show one column.',
+        description: t(messages.columnsHelp),
       },
       sideBySideLayout: {
-        title: 'Heading beside the items (large screens)',
+        title: t(messages.sideBySide),
         type: 'boolean',
         default: false,
-        description:
-          'Shows the heading and description next to the items, as two columns. Stacks to one column on phones.',
+        description: t(messages.sideBySideHelp),
       },
       // Keys are ratios, not percentages (flex-grow, see View.jsx); the
       // '60-30' key is kept for saved content.
       sideBySideRatio: {
-        title: 'Column widths (heading / items)',
+        title: t(messages.columnWidths),
         widget: 'select',
         choices: [
-          ['25-75', 'Narrow heading (quarter / three quarters)'],
-          ['40-60', 'Slightly narrow heading (40% / 60%)'],
-          ['50-50', 'Equal (half / half)'],
-          ['60-30', 'Wider heading (two thirds / one third)'],
-          ['75-25', 'Wide heading (three quarters / quarter)'],
+          ['25-75', t(messages.ratio2575)],
+          ['40-60', t(messages.ratio4060)],
+          ['50-50', t(messages.ratio5050)],
+          ['60-30', t(messages.ratio6030)],
+          ['75-25', t(messages.ratio7525)],
         ],
         default: '50-50',
       },
       sideBySideAlign: {
-        title: 'Column alignment',
+        title: t(messages.columnAlignment),
         widget: 'select',
-        choices: [
-          ['top', 'Top'],
-          ['middle', 'Middle'],
-          ['bottom', 'Bottom'],
-        ],
+        choices: getVerticalChoices(t),
         default: 'top',
-        description:
-          'Vertical alignment of the heading column against the items column when they end up different heights.',
+        description: t(messages.columnAlignmentHelp),
       },
 
       mobileCarousel: {
-        title: 'Carousel on mobile',
+        title: t(messages.mobileCarousel),
         type: 'boolean',
         default: false,
-        description: 'Items become a swipeable carousel on small screens.',
+        description: t(messages.mobileCarouselHelp),
       },
       mobileAutoplay: {
-        title: 'Autoplay',
+        title: t(shared.autoplay),
         type: 'boolean',
         default: false,
       },
       mobileDots: {
-        title: 'Show dots',
+        title: t(messages.showDots),
         type: 'boolean',
         default: true,
       },
 
       items: {
-        title: displayMode === 'statistics' ? 'Statistics' : 'Items',
+        title: itemsTitle,
         widget: 'object_list',
         default: [],
         schema: modeSelected

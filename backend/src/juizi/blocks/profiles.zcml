@@ -19,6 +19,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/initial"
       pre_handler=".setuphandlers.initial.create_example_content"
+      post_handler=".setuphandlers.initial.create_language_demo"
       />
 
   <!-- Hide Uninstall Profile-->

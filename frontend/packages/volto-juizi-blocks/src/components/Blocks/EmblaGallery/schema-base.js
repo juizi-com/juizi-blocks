@@ -4,31 +4,31 @@ import {
   getButtonChoices,
   getContrastingColor,
 } from '../../../config/colors';
+import blockMessages from '../../../blocks/messages';
 import {
-  alignmentChoices,
+  getAlignmentChoices,
   msToSeconds,
   withSavedChoice,
 } from '../_shared/choices';
+import { translator } from '../_shared/i18n';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 // Named choices store the same values the fields used to take as numbers;
-// a saved value that isn't one of them shows as "Custom (…)".
+// a saved value that isn't one of them shows as "Custom (…)". The labels are
+// messages (or, for times, a number of seconds), translated in the schema.
 const GAPS = [
-  [0, 'None'],
-  [6, 'Small'],
-  [12, 'Normal'],
-  [24, 'Large'],
+  [0, shared.none],
+  [6, shared.small],
+  [12, shared.normal],
+  [24, shared.large],
 ];
 const THUMB_SIZES = [
-  [60, 'Small'],
-  [90, 'Medium'],
-  [120, 'Large'],
+  [60, shared.small],
+  [90, shared.medium],
+  [120, shared.large],
 ];
-const PICTURE_TIMES = [
-  [4000, '4 seconds'],
-  [6000, '6 seconds'],
-  [8000, '8 seconds'],
-  [10000, '10 seconds'],
-];
+const PICTURE_TIMES = [4000, 6000, 8000, 10000];
 const px = (value) => `${value}px`;
 
 // ─── Schema ────────────────────────────────────────────────────────────────
@@ -36,7 +36,10 @@ const px = (value) => `${value}px`;
 // — pictures always come from the current page or a content query. If a
 // manual "pick individual pictures" mode is needed later, it slots in as a
 // third sourceMode alongside these two.
-const emblaGallerySchema = ({ formData } = {}) => {
+const emblaGallerySchema = ({ formData, intl } = {}) => {
+  const t = translator(intl);
+  const labelled = (choices) =>
+    choices.map(([value, label]) => [value, t(label)]);
   const displayMode = formData?.displayMode || null;
   const modeSelected = !!displayMode;
   const isCarousel = displayMode === 'carousel';
@@ -47,13 +50,13 @@ const emblaGallerySchema = ({ formData } = {}) => {
   const colors = getBlockColorList('emblaGallery');
 
   return {
-    title: 'Gallery',
+    title: t(blockMessages.gallery),
 
     fieldsets: [
       // Display style first, always visible
       {
         id: 'default',
-        title: 'Content',
+        title: t(shared.content),
         fields: [
           'displayMode',
           ...(modeSelected ? ['sourceMode', 'title', 'description'] : []),
@@ -66,7 +69,7 @@ const emblaGallerySchema = ({ formData } = {}) => {
         ? [
             {
               id: 'layout',
-              title: 'Grid layout',
+              title: t(messages.gridLayout),
               fields: [
                 'columnsDesktop',
                 'columnsTablet',
@@ -84,7 +87,7 @@ const emblaGallerySchema = ({ formData } = {}) => {
         ? [
             {
               id: 'carousel',
-              title: 'Slideshow behaviour',
+              title: t(messages.slideshowBehaviour),
               fields: [
                 'loop',
                 'autoplay',
@@ -107,22 +110,22 @@ const emblaGallerySchema = ({ formData } = {}) => {
         ? [
             {
               id: 'appearance',
-              title: 'Appearance',
+              title: t(shared.appearance),
               fields: ['alignment', 'isFullWidth', 'showCaptionOnItem'],
             },
             {
               id: 'background',
-              title: 'Background',
+              title: t(shared.background),
               fields: ['backgroundColor'],
             },
             {
               id: 'lightbox',
-              title: 'Enlarged view',
+              title: t(messages.enlargedView),
               fields: ['enableLightbox', 'showCaptionInLightbox'],
             },
             {
               id: 'advanced',
-              title: 'Advanced',
+              title: t(shared.advanced),
               fields: ['outerClassName'],
             },
           ]
@@ -132,205 +135,201 @@ const emblaGallerySchema = ({ formData } = {}) => {
     properties: {
       // ── Display style ──────────────────────────────────────────────────
       displayMode: {
-        title: 'Display style',
-        description: modeSelected
-          ? 'Changing style may affect how the pictures are presented.'
-          : 'Choose a display style to get started.',
+        title: t(shared.displayStyle),
+        description: t(
+          modeSelected ? messages.styleChangeHelp : shared.chooseStyleStart,
+        ),
         type: 'string',
         // Stored values are unchanged (carousel / blocks / masonry).
         choices: [
-          ['carousel', 'Slideshow'],
-          ['blocks', 'Even grid'],
-          ['masonry', 'Natural grid'],
+          ['carousel', t(messages.modeSlideshow)],
+          ['blocks', t(messages.modeEven)],
+          ['masonry', t(messages.modeNatural)],
         ],
       },
 
       // ── Content ────────────────────────────────────────────────────────
       title: {
-        title: 'Heading',
-        description:
-          'Optional heading shown above the gallery. Screen readers use it to name this section.',
+        title: t(shared.heading),
+        description: t(messages.headingHelp),
         type: 'string',
       },
       description: {
-        title: 'Intro text',
+        title: t(shared.introText),
         type: 'string',
       },
       sourceMode: {
-        title: 'Where the pictures come from',
-        description:
-          "'Pictures inside this page' shows the pictures stored in this page. 'Pictures from across the site' finds them using rules you set.",
+        title: t(messages.source),
+        description: t(messages.sourceHelp),
         type: 'string',
         choices: [
-          ['context', 'Pictures inside this page'],
-          ['query', 'Pictures from across the site'],
+          ['context', t(messages.sourceContext)],
+          ['query', t(messages.sourceQuery)],
         ],
         default: 'context',
       },
       // Injected/removed by emblaGallerySchemaEnhancer depending on sourceMode:
       contextItemTypes: {
-        title: 'What counts as a picture',
+        title: t(messages.itemTypes),
         widget: 'array',
         choices: [
-          ['Image', 'Pictures'],
-          ['Link', 'Links that have a preview picture'],
+          ['Image', t(messages.typeImage)],
+          ['Link', t(messages.typeLink)],
         ],
         default: ['Image', 'Link'],
       },
 
       // ── Slideshow style ────────────────────────────────────────────────
       carouselStyle: {
-        title: 'Slideshow style',
+        title: t(messages.slideshowStyle),
         type: 'string',
         choices: [
-          ['featured', 'Large picture with small pictures below'],
-          ['strip', 'Row of small pictures only'],
+          ['featured', t(messages.styleFeatured)],
+          ['strip', t(messages.styleStrip)],
         ],
         default: 'featured',
       },
 
       // ── Grid layout ────────────────────────────────────────────────────
       columnsDesktop: {
-        title: 'Columns on large screens',
+        title: t(messages.columnsDesktop),
         type: 'number',
         default: 4,
       },
       columnsTablet: {
-        title: 'Columns on tablets',
-        ...(isMasonry
-          ? {
-              description:
-                'Phones always show one column, so pictures stay in order.',
-            }
-          : {}),
+        title: t(messages.columnsTablet),
+        ...(isMasonry ? { description: t(messages.columnsTabletHelp) } : {}),
         type: 'number',
         default: 3,
       },
       columnsMobile: {
-        title: 'Columns on phones',
+        title: t(messages.columnsMobile),
         type: 'number',
         default: 2,
       },
       gap: {
-        title: 'Space between pictures',
+        title: t(messages.gap),
         widget: 'select',
-        choices: withSavedChoice(GAPS, formData?.gap, px),
+        choices: withSavedChoice(labelled(GAPS), formData?.gap, px, t),
         default: 12,
       },
 
       // ── Slideshow behaviour ────────────────────────────────────────────
       loop: {
-        title: 'Loop continuously',
+        title: t(shared.loop),
         type: 'boolean',
         default: true,
       },
       autoplay: {
-        title: 'Autoplay',
+        title: t(shared.autoplay),
         type: 'boolean',
-        description:
-          'Automatically turned off for visitors who have asked their device to reduce motion.',
+        description: t(shared.autoplayReducedMotion),
       },
       autoplayDelay: {
-        title: 'Time on each picture',
+        title: t(messages.pictureTime),
         widget: 'select',
         choices: withSavedChoice(
-          PICTURE_TIMES,
+          PICTURE_TIMES.map((ms) => [ms, msToSeconds(ms, t)]),
           formData?.autoplayDelay,
-          msToSeconds,
+          (ms) => msToSeconds(ms, t),
+          t,
         ),
         default: 8000,
       },
       hideArrows: {
-        title: 'Hide arrows',
-        description:
-          'The row of small pictures only shows arrows when there are more pictures than fit across.',
+        title: t(shared.hideArrows),
+        description: t(messages.hideArrowsHelp),
         type: 'boolean',
       },
       arrowPosition: {
-        title: 'Arrow position',
-        description:
-          'On phones the arrows always sit below the pictures, whatever you choose here, so they are easy to reach with a thumb.',
+        title: t(shared.arrowPosition),
+        description: t(messages.arrowPositionHelp),
         type: 'string',
         choices: [
-          ['sides', 'On each side of the pictures'],
-          ['below', 'Below the pictures'],
+          ['sides', t(messages.arrowsSides)],
+          ['below', t(messages.arrowsBelow)],
         ],
         default: 'sides',
       },
       rowAlignment: {
-        title: 'Small pictures alignment',
-        description:
-          'Where the row of small pictures sits when they all fit across. Once there are more than fit, they scroll from the left.',
+        title: t(messages.rowAlignment),
+        description: t(messages.rowAlignmentHelp),
         type: 'string',
-        choices: alignmentChoices,
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       thumbnailHeight: {
-        title: 'Size of the small pictures',
+        title: t(messages.thumbSize),
         widget: 'select',
-        choices: withSavedChoice(THUMB_SIZES, formData?.thumbnailHeight, px),
+        choices: withSavedChoice(
+          labelled(THUMB_SIZES),
+          formData?.thumbnailHeight,
+          px,
+          t,
+        ),
         default: 90,
       },
       activeThumbColor: {
-        title: 'Highlight around the current picture',
-        description:
-          'Marks the small picture that matches the large one shown.',
+        title: t(messages.highlight),
+        description: t(messages.highlightHelp),
         widget: 'select',
         choices: withSavedChoice(
           getColorChoices(colors),
           formData?.activeThumbColor,
-          (value) => (value === '#ffffff' ? 'White, earlier setting' : value),
+          (value) => (value === '#ffffff' ? t(messages.whiteEarlier) : value),
+          t,
         ),
         default: getContrastingColor(backgroundColor, colors),
       },
 
       // ── Appearance ─────────────────────────────────────────────────────
       alignment: {
-        title: 'Text alignment',
-        choices: alignmentChoices,
+        title: t(shared.textAlignment),
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       isFullWidth: {
-        title: 'Full width',
+        title: t(shared.fullWidth),
         type: 'boolean',
         default: false,
       },
       backgroundColor: {
-        title: 'Background colour',
-        description: 'Text colour follows it automatically.',
+        title: t(shared.backgroundColor),
+        description: t(messages.backgroundColorHelp),
         widget: 'select',
-        choices: [['transparent', 'None'], ...getColorChoices(colors)],
+        choices: [['transparent', t(shared.none)], ...getColorChoices(colors)],
         default: 'transparent',
       },
       arrowStyle: {
-        title: 'Arrow style',
-        description:
-          'Standard: dark arrows over the pictures on the sides, outlined arrows below. Or pick a colour to match your buttons. Also used in the enlarged view.',
+        title: t(shared.arrowStyle),
+        description: t(messages.arrowStyleHelp),
         widget: 'select',
-        choices: [['default', 'Standard'], ...getButtonChoices(colors)],
+        choices: [
+          ['default', t(shared.standard)],
+          ...getButtonChoices(colors, t),
+        ],
         default: 'default',
       },
       showCaptionOnItem: {
-        title: 'Show picture titles on the page',
-        description:
-          "Shows each picture's title on the small picture or grid picture itself",
+        title: t(messages.captionOnItem),
+        description: t(messages.captionOnItemHelp),
         type: 'boolean',
         default: false,
       },
       outerClassName: {
-        title: 'Extra style name (for your web team)',
+        title: t(shared.customClass),
         type: 'string',
       },
 
       // ── Enlarged view ──────────────────────────────────────────────────
       enableLightbox: {
-        title: 'Enlarge pictures when clicked',
-        description: 'When off, clicking a picture opens its own page.',
+        title: t(messages.enableLightbox),
+        description: t(messages.enableLightboxHelp),
         type: 'boolean',
         default: true,
       },
       showCaptionInLightbox: {
-        title: 'Show picture titles in the enlarged view',
+        title: t(messages.captionInLightbox),
         type: 'boolean',
         default: false,
       },

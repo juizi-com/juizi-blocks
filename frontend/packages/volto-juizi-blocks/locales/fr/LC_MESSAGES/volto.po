@@ -1,0 +1,2962 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: volto-juizi-blocks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: fr\n"
+"Language-Team: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Language-Code: fr\n"
+"Language-Name: Français\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: volto\n"
+
+#. Default: "Callout"
+#: blocks/messages
+msgid "Callout"
+msgstr "Encadré"
+
+#. Default: "Carousel"
+#: blocks/messages
+msgid "Carousel"
+msgstr "Carrousel"
+
+#. Default: "Content Row"
+#: blocks/messages
+msgid "Content Row"
+msgstr "Rangée de contenu"
+
+#. Default: "Gallery"
+#: blocks/messages
+msgid "Gallery"
+msgstr "Galerie"
+
+#. Default: "Hero"
+#: blocks/messages
+msgid "Hero"
+msgstr "Hero"
+
+#. Default: "Highlighted message with an icon and an optional link."
+#: blocks/messages
+msgid "Highlighted message with an icon and an optional link."
+msgstr "Message mis en avant avec une icône et un lien facultatif."
+
+#. Default: "Page header or themed section band with title, background image or video, and buttons."
+#: blocks/messages
+msgid "Page header or themed section band with title, background image or video, and buttons."
+msgstr "En-tête de page ou bande de section colorée avec titre, image ou vidéo d’arrière-plan et boutons."
+
+#. Default: "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
+#: blocks/messages
+msgid "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
+msgstr "Images de la page ou de tout le site, en diaporama, en grille régulière ou en grille naturelle, avec une vue agrandie facultative."
+
+#. Default: "Redirect"
+#: blocks/messages
+msgid "Redirect"
+msgstr "Redirection"
+
+#. Default: "Row of numbered steps, icons, statistics or image cards, with optional mobile carousel."
+#: blocks/messages
+msgid "Row of numbered steps, icons, statistics or image cards, with optional mobile carousel."
+msgstr "Rangée d’étapes numérotées, d’icônes, de statistiques ou de cartes avec image, avec carrousel facultatif sur mobile."
+
+#. Default: "Sends anonymous visitors to another page or URL. Editors are not redirected."
+#: blocks/messages
+msgid "Sends anonymous visitors to another page or URL. Editors are not redirected."
+msgstr "Envoie les visiteurs anonymes vers une autre page ou URL. Les rédacteurs ne sont pas redirigés."
+
+#. Default: "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+#: blocks/messages
+msgid "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+msgstr "Diapositives que vous ajoutez ou pages trouvées automatiquement, affichées en carrousel, en rangée de cartes ou en bandeau de logos défilant."
+
+#. Default: "Add a label"
+#: components/Blocks/_shared/messages
+msgid "juizi-add-label"
+msgstr "Ajoutez un libellé"
+
+#. Default: "Add a link"
+#: components/Blocks/_shared/messages
+msgid "juizi-add-link"
+msgstr "Ajoutez un lien"
+
+#. Default: "Advanced"
+#: components/Blocks/_shared/messages
+msgid "juizi-advanced"
+msgstr "Avancé"
+
+#. Default: "All"
+#: components/Blocks/_shared/messages
+msgid "juizi-all"
+msgstr "Tout"
+
+#. Default: "Appearance"
+#: components/Blocks/_shared/messages
+msgid "juizi-appearance"
+msgstr "Apparence"
+
+#. Default: "Arrow position"
+#: components/Blocks/_shared/messages
+msgid "juizi-arrow-position"
+msgstr "Position des flèches"
+
+#. Default: "Arrow style"
+#: components/Blocks/_shared/messages
+msgid "juizi-arrow-style"
+msgstr "Style des flèches"
+
+#. Default: "Autoplay"
+#: components/Blocks/_shared/messages
+msgid "juizi-autoplay"
+msgstr "Lecture automatique"
+
+#. Default: "Automatically turned off for visitors who have asked their device to reduce motion."
+#: components/Blocks/_shared/messages
+msgid "juizi-autoplay-reduced-motion"
+msgstr "Désactivée automatiquement pour les visiteurs qui ont demandé à leur appareil de réduire les animations."
+
+#. Default: "Background"
+#: components/Blocks/_shared/messages
+msgid "juizi-background"
+msgstr "Arrière-plan"
+
+#. Default: "Background colour"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-color"
+msgstr "Couleur d’arrière-plan"
+
+#. Default: "Background image"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-image"
+msgstr "Image d’arrière-plan"
+
+#. Default: "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team."
+#: components/Blocks/_shared/messages
+msgid "juizi-block-error"
+msgstr "Ce bloc n’a pas pu être affiché. Essayez d’annuler votre dernière modification ou de vérifier ses réglages dans la barre latérale. Si le problème persiste, contactez votre équipe web."
+
+#. Default: "Bottom"
+#: components/Blocks/_shared/messages
+msgid "juizi-bottom"
+msgstr "Bas"
+
+#. Default: "Bottom padding"
+#: components/Blocks/_shared/messages
+msgid "juizi-bottom-padding"
+msgstr "Espacement en bas"
+
+#. Default: "Breadcrumb"
+#: components/Blocks/_shared/messages
+msgid "juizi-breadcrumb"
+msgstr "Fil d’Ariane"
+
+#. Default: "Button"
+#: components/Blocks/_shared/messages
+msgid "juizi-button"
+msgstr "Bouton"
+
+#. Default: "{color} — Outlined"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-outlined"
+msgstr "{color} — Contour"
+
+#. Default: "{color} — Solid"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-solid"
+msgstr "{color} — Plein"
+
+#. Default: "Button style"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-style"
+msgstr "Style du bouton"
+
+#. Default: "Button text"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-text"
+msgstr "Texte du bouton"
+
+#. Default: "Buttons"
+#: components/Blocks/_shared/messages
+msgid "juizi-buttons"
+msgstr "Boutons"
+
+#. Default: "Text colour follows the background automatically."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-background-help"
+msgstr "La couleur du texte s’adapte automatiquement à l’arrière-plan."
+
+#. Default: "What this callout is for. Changing it updates the icon and colours, except ones you've changed yourself."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-change-type"
+msgstr "À quoi sert cet encadré. Le modifier met à jour l’icône et les couleurs, sauf celles que vous avez changées vous-même."
+
+#. Default: "Choose a callout type to get started."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-choose-type"
+msgstr "Choisissez un type d’encadré pour commencer."
+
+#. Default: "Colours"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-colors"
+msgstr "Couleurs"
+
+#. Default: "Add a title and text in the sidebar."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-empty"
+msgstr "Ajoutez un titre et un texte dans la barre latérale."
+
+#. Default: "Warning"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-alert-triangle"
+msgstr "Avertissement"
+
+#. Default: "Award"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-award"
+msgstr "Récompense"
+
+#. Default: "Read"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-book-open"
+msgstr "Lecture"
+
+#. Default: "Calendar"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-calendar"
+msgstr "Calendrier"
+
+#. Default: "Success"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-check-circle"
+msgstr "Succès"
+
+#. Default: "Time"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-clock"
+msgstr "Heure"
+
+#. Default: "Icon colour"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-color"
+msgstr "Couleur de l’icône"
+
+#. Default: "The icon colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-contrast"
+msgstr "La couleur de l’icône se voit mal sur cet arrière-plan. Choisissez-en une plus claire ou plus sombre sous Couleurs."
+
+#. Default: "Download"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-download"
+msgstr "Téléchargement"
+
+#. Default: "Heart"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-heart"
+msgstr "Cœur"
+
+#. Default: "Info"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-info"
+msgstr "Info"
+
+#. Default: "Idea"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-lightbulb"
+msgstr "Idée"
+
+#. Default: "Email"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-mail"
+msgstr "E-mail"
+
+#. Default: "Location"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-map-pin"
+msgstr "Lieu"
+
+#. Default: "Announcement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-megaphone"
+msgstr "Annonce"
+
+#. Default: "Phone"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-phone"
+msgstr "Téléphone"
+
+#. Default: "Launch"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-rocket"
+msgstr "Lancement"
+
+#. Default: "Secure"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-shield-check"
+msgstr "Sécurisé"
+
+#. Default: "Highlight"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-sparkles"
+msgstr "Mise en avant"
+
+#. Default: "Star"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-star"
+msgstr "Étoile"
+
+#. Default: "People"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-users"
+msgstr "Personnes"
+
+#. Default: "Fast"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-zap"
+msgstr "Rapide"
+
+#. Default: "Link colour"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-link-color"
+msgstr "Couleur du lien"
+
+#. Default: "The link colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-link-contrast"
+msgstr "La couleur du lien se voit mal sur cet arrière-plan. Choisissez-en une plus claire ou plus sombre sous Couleurs."
+
+#. Default: "Same as text"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-same-as-text"
+msgstr "Identique au texte"
+
+#. Default: "Select a callout type in the sidebar to get started."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-select-type"
+msgstr "Sélectionnez un type d’encadré dans la barre latérale pour commencer."
+
+#. Default: "Callout type"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type"
+msgstr "Type d’encadré"
+
+#. Default: "Announcement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-announcement"
+msgstr "Annonce"
+
+#. Default: "news, an update or a call to action"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-announcement-help"
+msgstr "une actualité, une mise à jour ou un appel à l’action"
+
+#. Default: "Information"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-info"
+msgstr "Information"
+
+#. Default: "neutral background information or context"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-info-help"
+msgstr "information ou contexte neutre"
+
+#. Default: "Success"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-success"
+msgstr "Succès"
+
+#. Default: "a positive outcome, confirmation or achievement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-success-help"
+msgstr "un résultat positif, une confirmation ou une réussite"
+
+#. Default: "Tip"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-tip"
+msgstr "Conseil"
+
+#. Default: "a helpful suggestion or good practice"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-tip-help"
+msgstr "une suggestion utile ou une bonne pratique"
+
+#. Default: "Warning"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-warning"
+msgstr "Avertissement"
+
+#. Default: "something the reader needs to be careful about"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-warning-help"
+msgstr "un point auquel le lecteur doit faire attention"
+
+#. Default: "Add a picture to this slide in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-add-picture"
+msgstr "Ajoutez une image à cette diapositive dans la barre latérale."
+
+#. Default: "Also show slides I add myself"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-append-manual"
+msgstr "Afficher aussi les diapositives que j’ajoute moi-même"
+
+#. Default: "Your own slides come after the pages found."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-append-manual-help"
+msgstr "Vos propres diapositives viennent après les pages trouvées."
+
+#. Default: "On phones the arrows always sit below the carousel, whatever you choose here, so they are easy to reach with a thumb."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrow-position-help"
+msgstr "Sur téléphone, les flèches sont toujours placées sous le carrousel, quel que soit votre choix ici, afin d’être faciles à atteindre avec le pouce."
+
+#. Default: "Standard: dark round arrows on the sides, outlined arrows above or below. Or pick a colour to match your buttons."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrow-style-help"
+msgstr "Standard : flèches rondes sombres sur les côtés, flèches en contour au-dessus ou en dessous. Ou choisissez une couleur assortie à vos boutons."
+
+#. Default: "On each side of the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrows-sides"
+msgstr "De chaque côté du carrousel"
+
+#. Default: "Top right, beside the heading"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrows-top"
+msgstr "En haut à droite, à côté du titre"
+
+#. Default: "Solid fill for the block. Text colour follows it automatically. If a background image is also set, the image is shown on top of this colour."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-background-color-help"
+msgstr "Couleur unie pour le bloc. La couleur du texte s’y adapte automatiquement. Si une image d’arrière-plan est aussi définie, elle s’affiche par-dessus cette couleur."
+
+#. Default: "Optional image behind the whole block. Displayed at full cover, no overlay. Decorative: screen readers skip it."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-background-image-help"
+msgstr "Image facultative derrière tout le bloc. Affichée en couverture complète, sans voile. Décorative : les lecteurs d’écran l’ignorent."
+
+#. Default: "Scrolling & behaviour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-behaviour"
+msgstr "Défilement et comportement"
+
+#. Default: "Below the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-below-carousel"
+msgstr "Sous le carrousel"
+
+#. Default: "Show arrow on button"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-button-arrow"
+msgstr "Afficher une flèche sur le bouton"
+
+#. Default: "Adds a right arrow to this slide's button"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-button-arrow-help"
+msgstr "Ajoute une flèche vers la droite au bouton de cette diapositive"
+
+#. Default: "Card layout"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-card-layout"
+msgstr "Disposition des cartes"
+
+#. Default: "Make entire card clickable"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable"
+msgstr "Rendre toute la carte cliquable"
+
+#. Default: "Clicking anywhere on the card follows the slide link. The slide heading is used as the link text for screen readers — add a heading to every slide when this is on."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-help"
+msgstr "Un clic n’importe où sur la carte suit le lien de la diapositive. Le titre de la diapositive sert de texte de lien pour les lecteurs d’écran : ajoutez un titre à chaque diapositive lorsque cette option est activée."
+
+#. Default: "Don't show a date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-none"
+msgstr "Ne pas afficher de date"
+
+#. Default: "Publication date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-publication"
+msgstr "Date de publication"
+
+#. Default: "Event start date (falls back to publication date)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-start"
+msgstr "Date de début de l’événement (à défaut, date de publication)"
+
+#. Default: "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content' to fill it automatically."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-manual"
+msgstr "Aucune diapositive pour l’instant. Ajoutez-en dans la barre latérale, sous Diapositives, ou activez « Remplir automatiquement à partir du contenu du site »."
+
+#. Default: "Your content query found nothing to show. Change its criteria in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-query"
+msgstr "Votre recherche de contenu n’a rien trouvé à afficher. Modifiez ses critères dans la barre latérale."
+
+#. Default: "Equal height cards"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height"
+msgstr "Cartes de même hauteur"
+
+#. Default: "Stretches all cards to match the tallest one in the row"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-help"
+msgstr "Étire toutes les cartes à la hauteur de la plus grande de la rangée"
+
+#. Default: "Fast"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-fast"
+msgstr "Rapide"
+
+#. Default: "Filter content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-label"
+msgstr "Filtrer le contenu"
+
+#. Default: "Filter buttons by tag"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-tags"
+msgstr "Boutons de filtre par étiquette"
+
+#. Default: "Tags, separated by commas, e.g. News, Events. Each tag becomes a button above the carousel, plus 'All'. Uses the tags set on each page."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-tags-help"
+msgstr "Étiquettes séparées par des virgules, par ex. Actualités, Événements. Chaque étiquette devient un bouton au-dessus du carrousel, en plus de « Tout ». Utilise les étiquettes définies sur chaque page."
+
+#. Default: "Optional heading shown above the carousel. Screen readers use it to name this section, so even a short heading helps."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-heading-help"
+msgstr "Titre facultatif affiché au-dessus du carrousel. Les lecteurs d’écran l’utilisent pour nommer cette section : même un titre court est utile."
+
+#. Default: "Hide \"Read more\" buttons"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-buttons"
+msgstr "Masquer les boutons « Lire la suite »"
+
+#. Default: "Hide description"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-description"
+msgstr "Masquer la description"
+
+#. Default: "Hide dots"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-dots"
+msgstr "Masquer les points"
+
+#. Default: "Hide image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-image"
+msgstr "Masquer l’image"
+
+#. Default: "Hides each card's image in the 'Image above content' layout, even when a slide has one set"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-image-help"
+msgstr "Masque l’image de chaque carte dans la disposition « Image au-dessus du contenu », même si une diapositive en a une"
+
+#. Default: "Optional text shown below the heading, above the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-intro-help"
+msgstr "Texte facultatif affiché sous le titre, au-dessus du carrousel"
+
+#. Default: "On large screens"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-large-screens"
+msgstr "Sur grand écran"
+
+#. Default: "Show arrow on buttons"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-arrow"
+msgstr "Afficher une flèche sur les boutons"
+
+#. Default: "Adds a right arrow to the 'Read more' button on every found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-arrow-help"
+msgstr "Ajoute une flèche vers la droite au bouton « Lire la suite » de chaque page trouvée"
+
+#. Default: "Button style for found pages"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-style"
+msgstr "Style du bouton des pages trouvées"
+
+#. Default: "Style for the 'Read more' button on each found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-style-help"
+msgstr "Style du bouton « Lire la suite » de chaque page trouvée"
+
+#. Default: "Label for the 'Read more' button on each found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-text-help"
+msgstr "Libellé du bouton « Lire la suite » de chaque page trouvée"
+
+#. Default: "Logo alignment"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alignment"
+msgstr "Alignement des logos"
+
+#. Default: "Where the logos sit when they all fit across. Once there are more than fit, they scroll."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alignment-help"
+msgstr "Emplacement des logos lorsqu’ils tiennent tous sur la largeur. Dès qu’il y en a davantage, ils défilent."
+
+#. Default: "Logo"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alt"
+msgstr "Logo"
+
+#. Default: "Space between logos"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-gap"
+msgstr "Espace entre les logos"
+
+#. Default: "Space around each logo"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-padding"
+msgstr "Espace autour de chaque logo"
+
+#. Default: "Logo size"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-size"
+msgstr "Taille des logos"
+
+#. Default: "Logo strip"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-strip"
+msgstr "Bandeau de logos"
+
+#. Default: "All the logos fit across, so the strip stays still. It scrolls once there are more logos than fit."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logos-fit"
+msgstr "Tous les logos tiennent sur la largeur : le bandeau reste donc immobile. Il défile dès qu’il y a plus de logos que la largeur ne peut en contenir."
+
+#. Default: "Image with text overlay"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-full"
+msgstr "Image avec le texte par-dessus"
+
+#. Default: "Image only"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-image-only"
+msgstr "Image seule"
+
+#. Default: "Image above content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-image-top"
+msgstr "Image au-dessus du contenu"
+
+#. Default: "Scrolling logo strip"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-logo"
+msgstr "Bandeau de logos défilant"
+
+#. Default: "\"More\" button alignment"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-align"
+msgstr "Alignement du bouton « Plus »"
+
+#. Default: "Horizontal alignment when the button sits below the carousel dots"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-align-help"
+msgstr "Alignement horizontal lorsque le bouton est placé sous les points du carrousel"
+
+#. Default: "\"More\" button link"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-link"
+msgstr "Lien du bouton « Plus »"
+
+#. Default: "\"More\" button position"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-position"
+msgstr "Position du bouton « Plus »"
+
+#. Default: "Where the optional \"More\" button appears. Independent of the arrow position."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-position-help"
+msgstr "Emplacement du bouton facultatif « Plus ». Indépendant de la position des flèches."
+
+#. Default: "\"More\" button style"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-style"
+msgstr "Style du bouton « Plus »"
+
+#. Default: "\"More\" button text"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-text"
+msgstr "Texte du bouton « Plus »"
+
+#. Default: "Optional button, e.g. \"All news\". Placed using \"More\" button position above."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-text-help"
+msgstr "Bouton facultatif, par ex. « Toutes les actualités ». Placé selon « Position du bouton Plus » ci-dessus."
+
+#. Default: "Top, beside the heading"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-top"
+msgstr "En haut, à côté du titre"
+
+#. Default: "Navigation"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-navigation"
+msgstr "Navigation"
+
+#. Default: "No results tagged “{tag}”, so its button is hidden."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-no-tag-results"
+msgstr "Aucun résultat avec l’étiquette « {tag} » : son bouton est donc masqué."
+
+#. Default: "Pause when hovered"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-pause-on-hover"
+msgstr "Mettre en pause au survol"
+
+#. Default: "On phones"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-phones"
+msgstr "Sur téléphone"
+
+#. Default: "Picture shape"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-picture-shape"
+msgstr "Forme de l’image"
+
+#. Default: "Gives every picture the same shape, trimming the edges to fit, so the slides line up. Try a few to see which suits your pictures."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-picture-shape-help"
+msgstr "Donne la même forme à toutes les images en rognant les bords, pour que les diapositives soient alignées. Essayez-en plusieurs pour voir laquelle convient à vos images."
+
+#. Default: "Which pages to show"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-query"
+msgstr "Pages à afficher"
+
+#. Default: "Your device is set to reduce motion, so the strip isn't moving for you. Visitors without that setting see it scroll."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reduced-motion"
+msgstr "Votre appareil est réglé pour réduire les animations : le bandeau ne bouge donc pas pour vous. Les visiteurs sans ce réglage le voient défiler."
+
+#. Default: "Scroll speed"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-scroll-speed"
+msgstr "Vitesse de défilement"
+
+#. Default: "Landscape (3:2)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-landscape"
+msgstr "Paysage (3:2)"
+
+#. Default: "As uploaded"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-original"
+msgstr "Telle que téléversée"
+
+#. Default: "Portrait (3:4)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-portrait"
+msgstr "Portrait (3:4)"
+
+#. Default: "Square (1:1)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-square"
+msgstr "Carré (1:1)"
+
+#. Default: "Standard (4:3)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-standard"
+msgstr "Standard (4:3)"
+
+#. Default: "Wide (16:9)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-wide"
+msgstr "Large (16:9)"
+
+#. Default: "Show:"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-show"
+msgstr "Afficher :"
+
+#. Default: "Show date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-show-date"
+msgstr "Afficher la date"
+
+#. Default: "Slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide"
+msgstr "Diapositive"
+
+#. Default: "Slide background colour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-background"
+msgstr "Couleur d’arrière-plan des diapositives"
+
+#. Default: "Fills the background of each slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-background-help"
+msgstr "Remplit l’arrière-plan de chaque diapositive"
+
+#. Default: "The button only shows when the slide has a link."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-button-help"
+msgstr "Le bouton ne s’affiche que si la diapositive a un lien."
+
+#. Default: "Slide button style"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-button-style"
+msgstr "Style du bouton des diapositives"
+
+#. Default: "Used as the slide heading, and to describe the slide and its picture to screen reader users. Always add a heading when the slide has a meaningful image."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-heading-help"
+msgstr "Sert de titre à la diapositive et décrit la diapositive et son image aux utilisateurs de lecteurs d’écran. Ajoutez toujours un titre lorsque l’image de la diapositive a un sens."
+
+#. Default: "Time on each slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-time"
+msgstr "Durée de chaque diapositive"
+
+#. Default: "Slides"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides"
+msgstr "Diapositives"
+
+#. Default: "Cards visible on mobile"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides-mobile"
+msgstr "Cartes visibles sur mobile"
+
+#. Default: "Cards visible at once"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides-to-show"
+msgstr "Cartes visibles en même temps"
+
+#. Default: "Slow"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slow"
+msgstr "Lente"
+
+#. Default: "slides with the heading, text and button laid over the image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-full"
+msgstr "des diapositives avec le titre, le texte et le bouton posés sur l’image"
+
+#. Default: "a clean image carousel with no text on the slides"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-image-only"
+msgstr "un carrousel d’images épuré, sans texte sur les diapositives"
+
+#. Default: "card-style slides: image on top, heading, text and button below"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-image-top"
+msgstr "des diapositives en forme de carte : image en haut, titre, texte et bouton en dessous"
+
+#. Default: "a continuously scrolling row of logos, e.g. partners or sponsors"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-logo"
+msgstr "une rangée de logos qui défile en continu, par ex. partenaires ou sponsors"
+
+#. Default: "Starts {date}"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-starts"
+msgstr "Début : {date}"
+
+#. Default: "Changing style may affect how content is presented."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-style-change-help"
+msgstr "Changer de style peut modifier la présentation du contenu."
+
+#. Default: "Only each slide's picture is shown, as a logo. Give a slide a link to make its logo clickable."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-style-logo-help"
+msgstr "Seule l’image de chaque diapositive est affichée, sous forme de logo. Ajoutez un lien à une diapositive pour rendre son logo cliquable."
+
+#. Default: "Show as a text link"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link"
+msgstr "Afficher comme un lien texte"
+
+#. Default: "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to every found page."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link-help-listing"
+msgstr "Supprime le fond et les marges du bouton et affiche la couleur choisie comme un simple lien texte aligné sur le contenu de la diapositive. S’applique à toutes les pages trouvées."
+
+#. Default: "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to slides you add yourself."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link-help-manual"
+msgstr "Supprime le fond et les marges du bouton et affiche la couleur choisie comme un simple lien texte aligné sur le contenu de la diapositive. S’applique aux diapositives que vous ajoutez vous-même."
+
+#. Default: "Text over the background image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-tone"
+msgstr "Texte sur l’image d’arrière-plan"
+
+#. Default: "Tight"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tight"
+msgstr "Serré"
+
+#. Default: "Dark (for light images)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tone-dark"
+msgstr "Sombre (pour les images claires)"
+
+#. Default: "Light (for dark images)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tone-light"
+msgstr "Clair (pour les images sombres)"
+
+#. Default: "Fill automatically from site content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-use-listing"
+msgstr "Remplir automatiquement à partir du contenu du site"
+
+#. Default: "Shows pages that match rules you set, instead of slides you add one by one."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-use-listing-help"
+msgstr "Affiche les pages qui correspondent aux règles que vous définissez, au lieu de diapositives ajoutées une à une."
+
+#. Default: "Wide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-wide"
+msgstr "Large"
+
+#. Default: "Centre"
+#: components/Blocks/_shared/messages
+msgid "juizi-center"
+msgstr "Centre"
+
+#. Default: "Choose a display style to get started."
+#: components/Blocks/_shared/messages
+msgid "juizi-choose-style-start"
+msgstr "Choisissez un style d’affichage pour commencer."
+
+#. Default: "Close"
+#: components/Blocks/_shared/messages
+msgid "juizi-close"
+msgstr "Fermer"
+
+#. Default: "Compact"
+#: components/Blocks/_shared/messages
+msgid "juizi-compact"
+msgstr "Compact"
+
+#. Default: "Content"
+#: components/Blocks/_shared/messages
+msgid "juizi-content"
+msgstr "Contenu"
+
+#. Default: "Above items (with heading)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-above-items"
+msgstr "Au-dessus des éléments (avec le titre)"
+
+#. Default: "The block background is always full width. Text colour updates automatically."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-color-help"
+msgstr "L’arrière-plan du bloc occupe toujours toute la largeur. La couleur du texte s’adapte automatiquement."
+
+#. Default: "Background & spacing"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-spacing"
+msgstr "Arrière-plan et espacement"
+
+#. Default: "Below description"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-below-description"
+msgstr "Sous la description"
+
+#. Default: "Below items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-below-items"
+msgstr "Sous les éléments"
+
+#. Default: "Block image"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image"
+msgstr "Image du bloc"
+
+#. Default: "Optional image shown alongside the heading and description. The block heading is used to describe this image to screen reader users."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image-help"
+msgstr "Image facultative affichée avec le titre et la description. Le titre du bloc sert à décrire cette image aux utilisateurs de lecteurs d’écran."
+
+#. Default: "Block image position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image-position"
+msgstr "Position de l’image du bloc"
+
+#. Default: "The button only shows when the card has a link."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-button-text-help"
+msgstr "Le bouton ne s’affiche que si la carte a un lien."
+
+#. Default: "Card"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card"
+msgstr "Carte"
+
+#. Default: "Card background colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-background"
+msgstr "Couleur d’arrière-plan de la carte"
+
+#. Default: "The card heading is used as the image alt text. Add a heading to every card that has a meaningful image."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-image-help"
+msgstr "Le titre de la carte sert de texte alternatif à l’image. Ajoutez un titre à chaque carte dont l’image a un sens."
+
+#. Default: "Card look"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-look"
+msgstr "Aspect des cartes"
+
+#. Default: "Card image overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-overlay"
+msgstr "Voile sur l’image des cartes"
+
+#. Default: "Colour tint applied over all card background images."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-overlay-help"
+msgstr "Voile de couleur appliqué sur toutes les images d’arrière-plan des cartes."
+
+#. Default: "Content carousel"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-carousel-label"
+msgstr "Carrousel de contenu"
+
+#. Default: "Column alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-alignment"
+msgstr "Alignement des colonnes"
+
+#. Default: "Vertical alignment of the heading column against the items column when they end up different heights."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-alignment-help"
+msgstr "Alignement vertical de la colonne du titre par rapport à celle des éléments lorsqu’elles n’ont pas la même hauteur."
+
+#. Default: "Column widths (heading / items)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-widths"
+msgstr "Largeur des colonnes (titre / éléments)"
+
+#. Default: "Columns on large screens"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-columns"
+msgstr "Colonnes sur grand écran"
+
+#. Default: "Phones always show one column."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-columns-help"
+msgstr "Les téléphones affichent toujours une seule colonne."
+
+#. Default: "Counting"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting"
+msgstr "Comptage"
+
+#. Default: "Counting speed"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting-speed"
+msgstr "Vitesse du comptage"
+
+#. Default: "How long the numbers take to count up."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting-speed-help"
+msgstr "Durée de l’animation des nombres."
+
+#. Default: "Supporting text below the heading."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-description-help"
+msgstr "Texte complémentaire sous le titre."
+
+#. Default: "Heading alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-heading-alignment"
+msgstr "Alignement du titre"
+
+#. Default: "The main heading for this row. Screen readers use it to name this section, so even a short heading helps."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-heading-help"
+msgstr "Le titre principal de cette rangée. Les lecteurs d’écran l’utilisent pour nommer cette section : même un titre court est utile."
+
+#. Default: "Icon circle colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-circle"
+msgstr "Couleur du cercle de l’icône"
+
+#. Default: "Places the icon inside a coloured circle. Leave as None to keep the plain icon."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-circle-help"
+msgstr "Place l’icône dans un cercle coloré. Laissez sur Aucun pour garder l’icône seule."
+
+#. Default: "Icon/number position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-number-position"
+msgstr "Position de l’icône ou du numéro"
+
+#. Default: "Where the icon or number sits relative to the heading and description."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-number-position-help"
+msgstr "Emplacement de l’icône ou du numéro par rapport au titre et à la description."
+
+#. Default: "Icon position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-position"
+msgstr "Position de l’icône"
+
+#. Default: "Image above content"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-above"
+msgstr "Image au-dessus du contenu"
+
+#. Default: "Image as background with text overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-background"
+msgstr "Image en arrière-plan avec le texte par-dessus"
+
+#. Default: "Image layout"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-layout"
+msgstr "Disposition de l’image"
+
+#. Default: "Item"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item"
+msgstr "Élément"
+
+#. Default: "Item background colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-background"
+msgstr "Couleur d’arrière-plan de l’élément"
+
+#. Default: "Items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-items"
+msgstr "Éléments"
+
+#. Default: "Items alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-items-alignment"
+msgstr "Alignement des éléments"
+
+#. Default: "Link (optional)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-link-optional"
+msgstr "Lien (facultatif)"
+
+#. Default: "Carousel on mobile"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mobile-carousel"
+msgstr "Carrousel sur mobile"
+
+#. Default: "Items become a swipeable carousel on small screens."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mobile-carousel-help"
+msgstr "Les éléments deviennent un carrousel à faire défiler sur les petits écrans."
+
+#. Default: "Image card"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mode-card"
+msgstr "Carte avec image"
+
+#. Default: "Numbered"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mode-numbered"
+msgstr "Numéroté"
+
+#. Default: "Next to description"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-next-to-description"
+msgstr "À côté de la description"
+
+#. Default: "No items yet. Add your first item in the sidebar under Items."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-items"
+msgstr "Aucun élément pour l’instant. Ajoutez votre premier élément dans la barre latérale, sous Éléments."
+
+#. Default: "No statistics yet. Add your first statistic in the sidebar under Statistics."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-statistics"
+msgstr "Aucune statistique pour l’instant. Ajoutez votre première statistique dans la barre latérale, sous Statistiques."
+
+#. Default: "Number"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number"
+msgstr "Nombre"
+
+#. Default: "Number circle colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-circle"
+msgstr "Couleur du cercle du numéro"
+
+#. Default: "Places the number inside a coloured circle. Leave as None to keep the plain number."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-circle-help"
+msgstr "Place le numéro dans un cercle coloré. Laissez sur Aucun pour garder le numéro seul."
+
+#. Default: "Counts up from 0 to this number."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-help"
+msgstr "Le compteur monte de 0 jusqu’à ce nombre."
+
+#. Default: "Number position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-position"
+msgstr "Position du numéro"
+
+#. Default: "Above (default)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-above"
+msgstr "Au-dessus (par défaut)"
+
+#. Default: "To the right of the text"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-inline"
+msgstr "À droite du texte"
+
+#. Default: "Left of content"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-left"
+msgstr "À gauche du contenu"
+
+#. Default: "Small text above the main heading."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-preheader-help"
+msgstr "Petit texte au-dessus du titre principal."
+
+#. Default: "Narrow heading (quarter / three quarters)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio2575"
+msgstr "Titre étroit (un quart / trois quarts)"
+
+#. Default: "Slightly narrow heading (40% / 60%)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio4060"
+msgstr "Titre légèrement étroit (40 % / 60 %)"
+
+#. Default: "Equal (half / half)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio5050"
+msgstr "Égales (moitié / moitié)"
+
+#. Default: "Wider heading (two thirds / one third)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio6030"
+msgstr "Titre plus large (deux tiers / un tiers)"
+
+#. Default: "Wide heading (three quarters / quarter)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio7525"
+msgstr "Titre large (trois quarts / un quart)"
+
+#. Default: "Shorten thousands (1 000 → 1k)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-shorten-thousands"
+msgstr "Abréger les milliers (1 000 → 1k)"
+
+#. Default: "Show dots"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-show-dots"
+msgstr "Afficher les points"
+
+#. Default: "Show \"View all\" button"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-show-view-all"
+msgstr "Afficher le bouton « Tout voir »"
+
+#. Default: "Heading beside the items (large screens)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-side-by-side"
+msgstr "Titre à côté des éléments (grands écrans)"
+
+#. Default: "Shows the heading and description next to the items, as two columns. Stacks to one column on phones."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-side-by-side-help"
+msgstr "Affiche le titre et la description à côté des éléments, sur deux colonnes. Passe sur une seule colonne sur téléphone."
+
+#. Default: "Small print"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-small-print"
+msgstr "Petite mention"
+
+#. Default: "Normal (2 seconds)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-normal"
+msgstr "Normale (2 secondes)"
+
+#. Default: "Quick (1 second)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-quick"
+msgstr "Rapide (1 seconde)"
+
+#. Default: "Slow (3 seconds)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-slow"
+msgstr "Lente (3 secondes)"
+
+#. Default: "cards with a picture, either behind the text or above it"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-card"
+msgstr "des cartes avec une image, derrière le texte ou au-dessus"
+
+#. Default: "short points, each with an icon"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-icon"
+msgstr "des points courts, chacun avec une icône"
+
+#. Default: "steps in order, each with a large number"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-numbered"
+msgstr "des étapes dans l’ordre, chacune avec un grand numéro"
+
+#. Default: "key figures that count up when they come into view"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-statistics"
+msgstr "des chiffres clés qui s’animent lorsqu’ils deviennent visibles"
+
+#. Default: "Statistic"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-statistic"
+msgstr "Statistique"
+
+#. Default: "Statistics"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-statistics"
+msgstr "Statistiques"
+
+#. Default: "Switching style keeps your headings, text and links. Other fields may not carry over."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-style-switch-help"
+msgstr "Changer de style conserve vos titres, textes et liens. Les autres champs peuvent ne pas être repris."
+
+#. Default: "After the number (e.g. % or +)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-suffix"
+msgstr "Après le nombre (par ex. % ou +)"
+
+#. Default: "\"View all\" label"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-label"
+msgstr "Libellé de « Tout voir »"
+
+#. Default: "\"View all\" link"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-link"
+msgstr "Lien de « Tout voir »"
+
+#. Default: "The button isn't shown to visitors until it has a link."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-link-help"
+msgstr "Le bouton n’est pas affiché aux visiteurs tant qu’il n’a pas de lien."
+
+#. Default: "\"View all\" button position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-position"
+msgstr "Position du bouton « Tout voir »"
+
+#. Default: "Where the \"View all\" button sits relative to the items."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-position-help"
+msgstr "Emplacement du bouton « Tout voir » par rapport aux éléments."
+
+#. Default: "\"View all\" button style"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-style"
+msgstr "Style du bouton « Tout voir »"
+
+#. Default: "Custom ({label})"
+#: components/Blocks/_shared/messages
+msgid "juizi-custom"
+msgstr "Personnalisé ({label})"
+
+#. Default: "Extra style name (for your web team)"
+#: components/Blocks/_shared/messages
+msgid "juizi-custom-class"
+msgstr "Nom de style supplémentaire (pour votre équipe web)"
+
+#. Default: "Add colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-color"
+msgstr "Ajouter une couleur"
+
+#. Default: "Add theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-theme"
+msgstr "Ajouter un thème"
+
+#. Default: "All"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-all"
+msgstr "Toutes"
+
+#. Default: "Automatic"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-automatic"
+msgstr "Automatique"
+
+#. Default: "Back"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-back"
+msgstr "Retour"
+
+#. Default: "Block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-block"
+msgstr "Bloc"
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks"
+msgstr "Blocs"
+
+#. Default: "Every block registered in this site, grouped as in the block chooser. Switched-off blocks disappear from the chooser; blocks already on pages keep rendering. New blocks appear here automatically after a rebuild, switched on unless their own settings keep them off."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks-help"
+msgstr "Tous les blocs enregistrés sur ce site, regroupés comme dans le sélecteur de blocs. Les blocs désactivés disparaissent du sélecteur ; les blocs déjà présents sur des pages continuent de s’afficher. Les nouveaux blocs apparaissent ici automatiquement après une recompilation, activés sauf si leurs propres réglages les désactivent."
+
+#. Default: "Background colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-background"
+msgstr "Couleur d’arrière-plan"
+
+#. Default: "Icon colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-icon-color"
+msgstr "Couleur de l’icône"
+
+#. Default: "Type"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-type"
+msgstr "Type"
+
+#. Default: "Callout types"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types"
+msgstr "Types d’encadré"
+
+#. Default: "The colours a callout starts with when an editor chooses its type. Editors can still change them per callout. Leave a colour as None for no colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types-help"
+msgstr "Les couleurs de départ d’un encadré lorsqu’un rédacteur choisit son type. Les rédacteurs peuvent toujours les modifier pour chaque encadré. Laissez une couleur sur Aucune pour ne pas en appliquer."
+
+#. Default: "Discard changes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-cancel"
+msgstr "Annuler les modifications"
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors"
+msgstr "Couleurs"
+
+#. Default: "The master colour list. Blocks store a colour by name (var(--name)), so changing a value here updates every block that uses it. Renaming a colour does not update blocks that already use the old name."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-help"
+msgstr "La liste principale des couleurs. Les blocs enregistrent une couleur par son nom (var(--name)) : modifier une valeur ici met donc à jour tous les blocs qui l’utilisent. Renommer une couleur ne met pas à jour les blocs qui utilisent déjà l’ancien nom."
+
+#. Default: "Colours per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block"
+msgstr "Couleurs par bloc"
+
+#. Default: "Tick the colours each block offers in its colour and button pickers. With nothing ticked, the block offers every colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block-help"
+msgstr "Cochez les couleurs que chaque bloc propose dans ses sélecteurs de couleurs et de boutons. Si rien n’est coché, le bloc propose toutes les couleurs."
+
+#. Default: "Only offered where the block allows it (e.g. certain content types)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contextual"
+msgstr "Proposé uniquement là où le bloc l’autorise (par ex. certains types de contenu)"
+
+#. Default: "Contrast {ratio}:1"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contrast"
+msgstr "Contraste {ratio}:1"
+
+#. Default: "Dark colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark"
+msgstr "Couleur sombre"
+
+#. Default: "Dark colours get light text and light default buttons, and vice versa."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark-help"
+msgstr "Les couleurs sombres reçoivent un texte clair et des boutons par défaut clairs, et inversement."
+
+#. Default: "Default"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-default-theme"
+msgstr "Par défaut"
+
+#. Default: "Disabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-disabled"
+msgstr "Désactivé"
+
+#. Default: "Enabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-enabled"
+msgstr "Activé"
+
+#. Default: "Colour “{label}”: the name “{name}” is used twice."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-duplicate"
+msgstr "Couleur « {label} » : le nom « {name} » est utilisé deux fois."
+
+#. Default: "Colour “{label}”: the text colour must be a hex colour or empty."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-foreground"
+msgstr "Couleur « {label} » : la couleur du texte doit être une couleur hexadécimale ou rester vide."
+
+#. Default: "Colour “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-name"
+msgstr "Couleur « {label} » : le nom doit commencer par une lettre et ne contenir que des minuscules, des chiffres et des tirets."
+
+#. Default: "Colour “{label}”: the value must be a hex colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-value"
+msgstr "Couleur « {label} » : la valeur doit être une couleur hexadécimale."
+
+#. Default: "Add at least one colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-no-colors"
+msgstr "Ajoutez au moins une couleur."
+
+#. Default: "Add at least one theme."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-no-themes"
+msgstr "Ajoutez au moins un thème."
+
+#. Default: "Theme “{label}”: the name “{name}” is used twice."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-duplicate"
+msgstr "Thème « {label} » : le nom « {name} » est utilisé deux fois."
+
+#. Default: "Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-name"
+msgstr "Thème « {label} » : le nom doit commencer par une lettre et ne contenir que des minuscules, des chiffres et des tirets."
+
+#. Default: "Theme “{label}”: the colour chosen for “{slot}” no longer exists."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-slot-gone"
+msgstr "Thème « {label} » : la couleur choisie pour « {slot} » n’existe plus."
+
+#. Default: "Theme “{label}”: choose a colour for “{slot}”."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-slot-missing"
+msgstr "Thème « {label} » : choisissez une couleur pour « {slot} »."
+
+#. Default: "Fix these before saving:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-fix-errors"
+msgstr "Corrigez ces points avant d’enregistrer :"
+
+#. Default: "Text colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-foreground"
+msgstr "Couleur du texte"
+
+#. Default: "{on} of {total} on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-group-count"
+msgstr "{on} sur {total} activés"
+
+#. Default: "Switch blocks on or off, manage the colours every block shares, and build the block themes from them."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-intro"
+msgstr "Activez ou désactivez des blocs, gérez les couleurs partagées par tous les blocs et composez les thèmes de blocs à partir de celles-ci."
+
+#. Default: "Label"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-label"
+msgstr "Libellé"
+
+#. Default: "Could not load the Juizi Blocks settings. Is juizi.blocks installed on the site?"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-load-failed"
+msgstr "Impossible de charger les réglages de Juizi Blocks. juizi.blocks est-il installé sur le site ?"
+
+#. Default: "Always on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-locked"
+msgstr "Toujours activé"
+
+#. Default: "Low contrast: text may be hard to read."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-low-contrast"
+msgstr "Contraste faible : le texte risque d’être difficile à lire."
+
+#. Default: "Move down"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-down"
+msgstr "Descendre"
+
+#. Default: "Move up"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-up"
+msgstr "Monter"
+
+#. Default: "Name"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-name"
+msgstr "Nom"
+
+#. Default: "New colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-color"
+msgstr "Nouvelle couleur"
+
+#. Default: "New theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-theme"
+msgstr "Nouveau thème"
+
+#. Default: "— None —"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-none"
+msgstr "— Aucune —"
+
+#. Default: "Off by default in its own settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-off-by-default"
+msgstr "Désactivé par défaut dans ses propres réglages"
+
+#. Default: "Opacity %"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-opacity"
+msgstr "Opacité %"
+
+#. Default: "Card"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-card"
+msgstr "Carte"
+
+#. Default: "Muted supporting text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-text"
+msgstr "Texte complémentaire atténué"
+
+#. Default: "Preview heading"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-title"
+msgstr "Titre d’aperçu"
+
+#. Default: "Remove"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-remove"
+msgstr "Supprimer"
+
+#. Default: "Reset all to their defaults"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-reset-blocks"
+msgstr "Rétablir tous les réglages par défaut"
+
+#. Default: "Save"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save"
+msgstr "Enregistrer"
+
+#. Default: "Could not save the settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save-failed"
+msgstr "Impossible d’enregistrer les réglages"
+
+#. Default: "Changes saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-saved"
+msgstr "Modifications enregistrées"
+
+#. Default: "Background"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-background"
+msgstr "Arrière-plan"
+
+#. Default: "Text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-foreground"
+msgstr "Texte"
+
+#. Default: "Muted text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-muted"
+msgstr "Texte atténué"
+
+#. Default: "Cards / surfaces"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-surface"
+msgstr "Cartes / surfaces"
+
+#. Default: "Suggested: {tone}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-suggested"
+msgstr "Suggestion : {tone}"
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-blocks"
+msgstr "Blocs"
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-colors"
+msgstr "Couleurs"
+
+#. Default: "Block themes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes"
+msgstr "Thèmes de blocs"
+
+#. Default: "The Volto Light Theme background options (Styling > Background color) offered by VLT's own blocks, such as Grid, Teaser, Text and Listing. Juizi blocks use the colour list above instead. Each part picks a colour from that list, optionally faded."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-help"
+msgstr "Les options d’arrière-plan de Volto Light Theme (Styling > Background color) proposées par les blocs de VLT, comme Grid, Teaser, Text et Listing. Les blocs Juizi utilisent plutôt la liste de couleurs ci-dessus. Chaque partie choisit une couleur dans cette liste, éventuellement atténuée."
+
+#. Default: "Themes per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block"
+msgstr "Thèmes par bloc"
+
+#. Default: "Tick the themes each theme-aware block offers. With nothing ticked, the block offers every theme."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block-help"
+msgstr "Cochez les thèmes que propose chaque bloc compatible avec les thèmes. Si rien n’est coché, le bloc propose tous les thèmes."
+
+#. Default: "Juizi Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-title"
+msgstr "Juizi Blocks"
+
+#. Default: "dark"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-dark"
+msgstr "sombre"
+
+#. Default: "light"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-light"
+msgstr "claire"
+
+#. Default: "Colour {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unnamed-color"
+msgstr "Couleur {number}"
+
+#. Default: "Theme {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unnamed-theme"
+msgstr "Thème {number}"
+
+#. Default: "You have unsaved changes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unsaved"
+msgstr "Vous avez des modifications non enregistrées."
+
+#. Default: "Use suggestion"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-use-suggestion"
+msgstr "Utiliser la suggestion"
+
+#. Default: "Colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-value"
+msgstr "Couleur"
+
+#. Default: "Default"
+#: components/Blocks/_shared/messages
+msgid "juizi-default"
+msgstr "Par défaut"
+
+#. Default: "Description"
+#: components/Blocks/_shared/messages
+msgid "juizi-description"
+msgstr "Description"
+
+#. Default: "Display style"
+#: components/Blocks/_shared/messages
+msgid "juizi-display-style"
+msgstr "Style d’affichage"
+
+#. Default: "Extra spacious"
+#: components/Blocks/_shared/messages
+msgid "juizi-extra-spacious"
+msgstr "Très aéré"
+
+#. Default: "Full width"
+#: components/Blocks/_shared/messages
+msgid "juizi-full-width"
+msgstr "Pleine largeur"
+
+#. Default: "On phones the arrows always sit below the pictures, whatever you choose here, so they are easy to reach with a thumb."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrow-position-help"
+msgstr "Sur téléphone, les flèches sont toujours placées sous les images, quel que soit votre choix ici, afin d’être faciles à atteindre avec le pouce."
+
+#. Default: "Standard: dark arrows over the pictures on the sides, outlined arrows below. Or pick a colour to match your buttons. Also used in the enlarged view."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrow-style-help"
+msgstr "Standard : flèches sombres sur les images sur les côtés, flèches en contour en dessous. Ou choisissez une couleur assortie à vos boutons. Également utilisé dans la vue agrandie."
+
+#. Default: "Below the pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrows-below"
+msgstr "Sous les images"
+
+#. Default: "On each side of the pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrows-sides"
+msgstr "De chaque côté des images"
+
+#. Default: "Text colour follows it automatically."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-background-color-help"
+msgstr "La couleur du texte s’y adapte automatiquement."
+
+#. Default: "Show picture titles in the enlarged view"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-in-lightbox"
+msgstr "Afficher les titres des images dans la vue agrandie"
+
+#. Default: "Show picture titles on the page"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-on-item"
+msgstr "Afficher les titres des images sur la page"
+
+#. Default: "Shows each picture's title on the small picture or grid picture itself"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-on-item-help"
+msgstr "Affiche le titre de chaque image sur la petite image ou sur l’image de la grille elle-même"
+
+#. Default: "Columns on large screens"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-desktop"
+msgstr "Colonnes sur grand écran"
+
+#. Default: "Columns on phones"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-mobile"
+msgstr "Colonnes sur téléphone"
+
+#. Default: "Columns on tablets"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-tablet"
+msgstr "Colonnes sur tablette"
+
+#. Default: "Phones always show one column, so pictures stay in order."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-tablet-help"
+msgstr "Les téléphones affichent toujours une seule colonne, afin que les images restent dans l’ordre."
+
+#. Default: "{current} of {total}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-counter"
+msgstr "{current} sur {total}"
+
+#. Default: "Enlarge pictures when clicked"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enable-lightbox"
+msgstr "Agrandir les images au clic"
+
+#. Default: "When off, clicking a picture opens its own page."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enable-lightbox-help"
+msgstr "Si l’option est désactivée, un clic sur une image ouvre sa propre page."
+
+#. Default: "Enlarge: {title}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarge-named"
+msgstr "Agrandir : {title}"
+
+#. Default: "Enlarge picture {number} of {total}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarge-numbered"
+msgstr "Agrandir l’image {number} sur {total}"
+
+#. Default: "Enlarged view"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarged-view"
+msgstr "Vue agrandie"
+
+#. Default: "Space between pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-gap"
+msgstr "Espace entre les images"
+
+#. Default: "Grid layout"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-grid-layout"
+msgstr "Disposition de la grille"
+
+#. Default: "Optional heading shown above the gallery. Screen readers use it to name this section."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-heading-help"
+msgstr "Titre facultatif affiché au-dessus de la galerie. Les lecteurs d’écran l’utilisent pour nommer cette section."
+
+#. Default: "The row of small pictures only shows arrows when there are more pictures than fit across."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-hide-arrows-help"
+msgstr "La rangée de petites images n’affiche des flèches que s’il y a plus d’images que la largeur ne peut en contenir."
+
+#. Default: "Highlight around the current picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-highlight"
+msgstr "Contour autour de l’image en cours"
+
+#. Default: "Marks the small picture that matches the large one shown."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-highlight-help"
+msgstr "Signale la petite image qui correspond à la grande image affichée."
+
+#. Default: "Image {number}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-image-number"
+msgstr "Image {number}"
+
+#. Default: "What counts as a picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-item-types"
+msgstr "Ce qui compte comme une image"
+
+#. Default: "Even grid"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-even"
+msgstr "Grille régulière"
+
+#. Default: "Natural grid"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-natural"
+msgstr "Grille naturelle"
+
+#. Default: "Slideshow"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-slideshow"
+msgstr "Diaporama"
+
+#. Default: "No pictures found. Add some to this page, or choose a different image source in the sidebar."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-no-pictures"
+msgstr "Aucune image trouvée. Ajoutez-en à cette page, ou choisissez une autre source d’images dans la barre latérale."
+
+#. Default: "Time on each picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-picture-time"
+msgstr "Durée de chaque image"
+
+#. Default: "Which pictures to show"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-query"
+msgstr "Images à afficher"
+
+#. Default: "Small pictures alignment"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-row-alignment"
+msgstr "Alignement des petites images"
+
+#. Default: "Where the row of small pictures sits when they all fit across. Once there are more than fit, they scroll from the left."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-row-alignment-help"
+msgstr "Emplacement de la rangée de petites images lorsqu’elles tiennent toutes sur la largeur. Dès qu’il y en a davantage, elles défilent à partir de la gauche."
+
+#. Default: "Slideshow behaviour"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-slideshow-behaviour"
+msgstr "Comportement du diaporama"
+
+#. Default: "Slideshow style"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-slideshow-style"
+msgstr "Style du diaporama"
+
+#. Default: "Where the pictures come from"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source"
+msgstr "Origine des images"
+
+#. Default: "Pictures inside this page"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-context"
+msgstr "Images de cette page"
+
+#. Default: "'Pictures inside this page' shows the pictures stored in this page. 'Pictures from across the site' finds them using rules you set."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-help"
+msgstr "« Images de cette page » affiche les images rangées dans cette page. « Images de tout le site » les trouve à l’aide des règles que vous définissez."
+
+#. Default: "Pictures from across the site"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-query"
+msgstr "Images de tout le site"
+
+#. Default: "pictures in neat rows, all cropped to the same size"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-even"
+msgstr "des images en rangées régulières, toutes recadrées à la même taille"
+
+#. Default: "pictures keep their own shape and fit together in columns"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-natural"
+msgstr "les images gardent leur forme d’origine et s’assemblent en colonnes"
+
+#. Default: "one large picture at a time, with small pictures underneath to click through"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-slideshow"
+msgstr "une grande image à la fois, avec de petites images en dessous pour passer de l’une à l’autre"
+
+#. Default: "Changing style may affect how the pictures are presented."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-change-help"
+msgstr "Changer de style peut modifier la présentation des images."
+
+#. Default: "Large picture with small pictures below"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-featured"
+msgstr "Grande image avec de petites images en dessous"
+
+#. Default: "Row of small pictures only"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-strip"
+msgstr "Rangée de petites images uniquement"
+
+#. Default: "Size of the small pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-thumb-size"
+msgstr "Taille des petites images"
+
+#. Default: "Pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-type-image"
+msgstr "Images"
+
+#. Default: "Links that have a preview picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-type-link"
+msgstr "Liens ayant une image d’aperçu"
+
+#. Default: "White, earlier setting"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-white-earlier"
+msgstr "Blanc, ancien réglage"
+
+#. Default: "Go to slide {number}"
+#: components/Blocks/_shared/messages
+msgid "juizi-go-to-slide"
+msgstr "Aller à la diapositive {number}"
+
+#. Default: "Heading"
+#: components/Blocks/_shared/messages
+msgid "juizi-heading"
+msgstr "Titre"
+
+#. Default: "Above content"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-above-content"
+msgstr "Au-dessus du contenu"
+
+#. Default: "Above title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-above-title"
+msgstr "Au-dessus du titre"
+
+#. Default: "Add a heading in the sidebar."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-add-heading"
+msgstr "Ajoutez un titre dans la barre latérale."
+
+#. Default: "Alt text"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-alt-text"
+msgstr "Texte alternatif"
+
+#. Default: "Describes the image for screen reader users. Leave empty only if the image is purely decorative and adds no information beyond the text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-alt-text-help"
+msgstr "Décrit l’image pour les utilisateurs de lecteurs d’écran. Ne laissez vide que si l’image est purement décorative et n’apporte aucune information en plus du texte."
+
+#. Default: "Sets the block background. Text colour updates automatically based on your choice."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-color-help"
+msgstr "Définit l’arrière-plan du bloc. La couleur du texte s’adapte automatiquement à votre choix."
+
+#. Default: "The background image still shows on top of this colour, but the text colour follows the colour you pick here. If the text is hard to read on your image, try a different colour: a dark colour gives light text, a light colour gives dark text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-color-image-help"
+msgstr "L’image d’arrière-plan reste affichée par-dessus cette couleur, mais la couleur du texte suit celle que vous choisissez ici. Si le texte est difficile à lire sur votre image, essayez une autre couleur : une couleur sombre donne un texte clair, une couleur claire donne un texte sombre."
+
+#. Default: "Treated as a decorative image — no alt text is needed or used. Place meaningful content in the title and description fields above."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-image-help"
+msgstr "Considérée comme une image décorative : aucun texte alternatif n’est nécessaire ni utilisé. Placez le contenu important dans les champs de titre et de description ci-dessus."
+
+#. Default: "Background position"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-position"
+msgstr "Position de l’arrière-plan"
+
+#. Default: "Background video"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-video"
+msgstr "Vidéo d’arrière-plan"
+
+#. Default: "MP4 only. Autoplays, loops, stays muted. The video is automatically paused for visitors who have enabled reduced motion in their operating system settings."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-video-help"
+msgstr "MP4 uniquement. Lecture automatique, en boucle, sans son. La vidéo est automatiquement mise en pause pour les visiteurs qui ont activé la réduction des animations dans les réglages de leur système."
+
+#. Default: "Below content (default)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-below-content"
+msgstr "Sous le contenu (par défaut)"
+
+#. Default: "Beside content (right)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-beside-content"
+msgstr "À côté du contenu (à droite)"
+
+#. Default: "Leave empty to use the linked page's title. A button without a link isn't shown to visitors."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-button-label-help"
+msgstr "Laissez vide pour utiliser le titre de la page liée. Un bouton sans lien n’est pas affiché aux visiteurs."
+
+#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-button-style-help"
+msgstr "Choisissez un style qui contraste avec votre couleur d’arrière-plan. Sur un fond sombre, utilisez un bouton plein ou un contour clair, et inversement."
+
+#. Default: "Buttons display"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-buttons-display"
+msgstr "Affichage des boutons"
+
+#. Default: "Choose a display style to continue."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-choose-style-continue"
+msgstr "Choisissez un style d’affichage pour continuer."
+
+#. Default: "Description text below the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-description-help"
+msgstr "Texte de description sous le titre."
+
+#. Default: "Inline link list"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-display-list"
+msgstr "Liste de liens en ligne"
+
+#. Default: "Buttons to each heading on this page"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-display-toc"
+msgstr "Boutons vers chaque titre de cette page"
+
+#. Default: "Stretch the background edge-to-edge beyond the container."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-full-width-help"
+msgstr "Étend l’arrière-plan d’un bord à l’autre, au-delà du conteneur."
+
+#. Default: "Hidden"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hidden"
+msgstr "Masquée"
+
+#. Default: "Hide title visually"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hide-title"
+msgstr "Masquer le titre visuellement"
+
+#. Default: "Hides the title on screen while keeping it in the page structure for screen readers and search engines. Useful when the design does not need a visible heading but accessibility and SEO still require one."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hide-title-help"
+msgstr "Masque le titre à l’écran tout en le conservant dans la structure de la page pour les lecteurs d’écran et les moteurs de recherche. Utile lorsque le design n’a pas besoin d’un titre visible mais que l’accessibilité et le référencement en exigent un."
+
+#. Default: "Image overlay"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-image-overlay"
+msgstr "Voile sur l’image"
+
+#. Default: "Colour tint over the background image to keep text readable."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-image-overlay-help"
+msgstr "Voile de couleur sur l’image d’arrière-plan pour que le texte reste lisible."
+
+#. Default: "Logo"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo"
+msgstr "Logo"
+
+#. Default: "Optional logo displayed in the hero. Treated as decorative: screen readers skip it, so put anything important in the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-help"
+msgstr "Logo facultatif affiché dans le hero. Considéré comme décoratif : les lecteurs d’écran l’ignorent, mettez donc toute information importante dans le titre."
+
+#. Default: "Logo position"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position"
+msgstr "Position du logo"
+
+#. Default: "Choose where the logo sits. \"Beside content\" is unavailable once a Side image is added."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position-help"
+msgstr "Choisissez l’emplacement du logo. « À côté du contenu » n’est plus disponible dès qu’une image latérale est ajoutée."
+
+#. Default: "Locked to \"Above title\" — the side slot is already in use by the Side image below."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position-locked"
+msgstr "Verrouillé sur « Au-dessus du titre » : l’emplacement latéral est déjà occupé par l’image latérale ci-dessous."
+
+#. Default: "Logo size"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-size"
+msgstr "Taille du logo"
+
+#. Default: "Hero: a full-width page header. Section: a themed content band inside the page."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-help"
+msgstr "Hero : un en-tête de page sur toute la largeur. Section : une bande de contenu colorée à l’intérieur de la page."
+
+#. Default: "Hero (page header)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-hero"
+msgstr "Hero (en-tête de page)"
+
+#. Default: "Section (content band)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-section"
+msgstr "Section (bande de contenu)"
+
+#. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-other-primary"
+msgstr "Un autre bloc est déjà le titre principal de cette page. Décochez « Ceci est le titre principal de la page » sur l’un des deux."
+
+#. Default: "Text above the title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-preheader"
+msgstr "Texte au-dessus du titre"
+
+#. Default: "Small text displayed above the title. If set, this replaces the publication date or event details."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-preheader-help"
+msgstr "Petit texte affiché au-dessus du titre. S’il est renseigné, il remplace la date de publication ou les détails de l’événement."
+
+#. Default: "This is the primary page heading"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-primary-heading"
+msgstr "Ceci est le titre principal de la page"
+
+#. Default: "Makes this the main heading of the page. Use it for the first and most important block. Only one block per page should have this."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-primary-heading-help"
+msgstr "Fait de ce bloc le titre principal de la page. À utiliser pour le premier bloc, le plus important. Un seul bloc par page devrait l’avoir."
+
+#. Default: "Section"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-section"
+msgstr "Section"
+
+#. Default: "Show arrow icon"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-arrow"
+msgstr "Afficher l’icône de flèche"
+
+#. Default: "Adds a small arrow after the label — useful for calls to action like \"Learn more\". Set per button, so some can have it and others not."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-arrow-help"
+msgstr "Ajoute une petite flèche après le libellé, utile pour les appels à l’action comme « En savoir plus ». Se règle bouton par bouton : certains peuvent l’avoir, d’autres non."
+
+#. Default: "Show breadcrumbs"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-breadcrumbs"
+msgstr "Afficher le fil d’Ariane"
+
+#. Default: "Shows where this page sits in the site (for example Home / About) above the title. Hidden on top-level pages."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-breadcrumbs-help"
+msgstr "Indique où se situe cette page dans le site (par exemple Accueil / À propos) au-dessus du titre. Masqué sur les pages de premier niveau."
+
+#. Default: "Show event details"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-event-details"
+msgstr "Afficher les détails de l’événement"
+
+#. Default: "For events — shows the event date(s) and location above the title, e.g. \"13 - 14 Nov 2024 | Cape Town\". Only applies when the 'Text above the title' field is empty and the item has a start date. Takes priority over Show publication date."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-event-details-help"
+msgstr "Pour les événements : affiche la ou les dates et le lieu de l’événement au-dessus du titre, par ex. « 13 - 14 nov. 2024 | Le Cap ». Ne s’applique que si le champ « Texte au-dessus du titre » est vide et que l’élément a une date de début. Prioritaire sur « Afficher la date de publication »."
+
+#. Default: "Show publication date"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-publication-date"
+msgstr "Afficher la date de publication"
+
+#. Default: "For news items — shows the publication date above the title. Only applies when the 'Text above the title' field is empty. If Show event details below is also on, event details take priority."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-publication-date-help"
+msgstr "Pour les actualités : affiche la date de publication au-dessus du titre. Ne s’applique que si le champ « Texte au-dessus du titre » est vide. Si « Afficher les détails de l’événement » ci-dessous est aussi activé, les détails de l’événement sont prioritaires."
+
+#. Default: "Side-by-side layout"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-by-side"
+msgstr "Disposition côte à côte"
+
+#. Default: "Display subtitle and buttons beside the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-by-side-help"
+msgstr "Affiche le sous-titre et les boutons à côté du titre."
+
+#. Default: "Side image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image"
+msgstr "Image latérale"
+
+#. Default: "A larger image displayed beside your text — not the Logo above. Works in both Hero and Section styles. Adding one moves the Logo (if any) to \"Above title\", since only one element can occupy the side slot."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-help"
+msgstr "Une image plus grande affichée à côté de votre texte, distincte du logo ci-dessus. Fonctionne dans les styles Hero et Section. En ajouter une déplace le logo (s’il y en a un) « Au-dessus du titre », car un seul élément peut occuper l’emplacement latéral."
+
+#. Default: "Where the image appears on small screens, where it can no longer sit beside the text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-mobile-help"
+msgstr "Emplacement de l’image sur les petits écrans, où elle ne peut plus se placer à côté du texte."
+
+#. Default: "Use smaller buttons"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-small-buttons"
+msgstr "Utiliser des boutons plus petits"
+
+#. Default: "a full-width page header with title, description and background image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-start-hero"
+msgstr "un en-tête de page sur toute la largeur, avec titre, description et image d’arrière-plan"
+
+#. Default: "a themed content band inside the page with background colour and buttons"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-start-section"
+msgstr "une bande de contenu à l’intérieur de la page, avec couleur d’arrière-plan et boutons"
+
+#. Default: "Subtitle"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-subtitle"
+msgstr "Sous-titre"
+
+#. Default: "Supporting text below the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-subtitle-help"
+msgstr "Texte complémentaire sous le titre."
+
+#. Default: "The heading for this block. Even if you hide it visually, it helps screen readers and search engines understand what this section is about."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-title-help"
+msgstr "Le titre de ce bloc. Même masqué visuellement, il aide les lecteurs d’écran et les moteurs de recherche à comprendre le sujet de cette section."
+
+#. Default: "This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick “This is the primary page heading” in the Hero block’s Advanced settings."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-title-hidden-note"
+msgstr "Ce titre est masqué sur la page, car un bloc Hero est défini comme titre principal de la page. Pour l’afficher à nouveau, décochez « Ceci est le titre principal de la page » dans la section Avancé du bloc Hero."
+
+#. Default: "Style applied to all the heading buttons. Choose a style that contrasts with your background."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-toc-button-style-help"
+msgstr "Style appliqué à tous les boutons de titre. Choisissez un style qui contraste avec votre arrière-plan."
+
+#. Default: "No headings on this page yet. Add some below and they'll appear here as buttons."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-toc-empty"
+msgstr "Aucun titre sur cette page pour l’instant. Ajoutez-en ci-dessous et ils apparaîtront ici sous forme de boutons."
+
+#. Default: "Include main headings"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-h2"
+msgstr "Inclure les titres principaux"
+
+#. Default: "Include sub-headings"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-h3"
+msgstr "Inclure les sous-titres"
+
+#. Default: "Use page description"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-description"
+msgstr "Utiliser la description de la page"
+
+#. Default: "Pulls the description from the page automatically."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-description-help"
+msgstr "Reprend automatiquement la description de la page."
+
+#. Default: "Use page title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-title"
+msgstr "Utiliser le titre de la page"
+
+#. Default: "Pulls the title from the page automatically."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-title-help"
+msgstr "Reprend automatiquement le titre de la page."
+
+#. Default: "Use page preview image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-preview-image"
+msgstr "Utiliser l’image d’aperçu de la page"
+
+#. Default: "Uses the page preview image as the hero background."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-preview-image-help"
+msgstr "Utilise l’image d’aperçu de la page comme arrière-plan du hero."
+
+#. Default: "Vertical alignment"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-vertical-alignment"
+msgstr "Alignement vertical"
+
+#. Default: "Aligns the image against the height of the text content beside it."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-vertical-alignment-help"
+msgstr "Aligne l’image par rapport à la hauteur du texte placé à côté."
+
+#. Default: "Hide arrows"
+#: components/Blocks/_shared/messages
+msgid "juizi-hide-arrows"
+msgstr "Masquer les flèches"
+
+#. Default: "Home"
+#: components/Blocks/_shared/messages
+msgid "juizi-home"
+msgstr "Accueil"
+
+#. Default: "Icon"
+#: components/Blocks/_shared/messages
+msgid "juizi-icon"
+msgstr "Icône"
+
+#. Default: "Arrow right"
+#: config/iconMessages
+msgid "juizi-icon-arrow-right"
+msgstr "Flèche vers la droite"
+
+#. Default: "Award"
+#: config/iconMessages
+msgid "juizi-icon-award"
+msgstr "Récompense"
+
+#. Default: "Chart"
+#: config/iconMessages
+msgid "juizi-icon-bar-chart2"
+msgstr "Graphique"
+
+#. Default: "Book"
+#: config/iconMessages
+msgid "juizi-icon-book-open"
+msgstr "Livre"
+
+#. Default: "Bookmark"
+#: config/iconMessages
+msgid "juizi-icon-bookmark"
+msgstr "Signet"
+
+#. Default: "Briefcase"
+#: config/iconMessages
+msgid "juizi-icon-briefcase"
+msgstr "Mallette"
+
+#. Default: "Building"
+#: config/iconMessages
+msgid "juizi-icon-building"
+msgstr "Bâtiment"
+
+#. Default: "Calendar"
+#: config/iconMessages
+msgid "juizi-icon-calendar"
+msgstr "Calendrier"
+
+#. Default: "Check"
+#: config/iconMessages
+msgid "juizi-icon-check"
+msgstr "Coche"
+
+#. Default: "Clock"
+#: config/iconMessages
+msgid "juizi-icon-clock"
+msgstr "Horloge"
+
+#. Default: "Code"
+#: config/iconMessages
+msgid "juizi-icon-code"
+msgstr "Code"
+
+#. Default: "Database"
+#: config/iconMessages
+msgid "juizi-icon-database"
+msgstr "Base de données"
+
+#. Default: "Download"
+#: config/iconMessages
+msgid "juizi-icon-download"
+msgstr "Téléchargement"
+
+#. Default: "External link"
+#: config/iconMessages
+msgid "juizi-icon-external-link"
+msgstr "Lien externe"
+
+#. Default: "Document"
+#: config/iconMessages
+msgid "juizi-icon-file-text"
+msgstr "Document"
+
+#. Default: "Flag"
+#: config/iconMessages
+msgid "juizi-icon-flag"
+msgstr "Drapeau"
+
+#. Default: "Globe"
+#: config/iconMessages
+msgid "juizi-icon-globe"
+msgstr "Globe"
+
+#. Default: "Education"
+#: config/iconMessages
+msgid "juizi-icon-graduation-cap"
+msgstr "Éducation"
+
+#. Default: "Heart"
+#: config/iconMessages
+msgid "juizi-icon-heart"
+msgstr "Cœur"
+
+#. Default: "Help"
+#: config/iconMessages
+msgid "juizi-icon-help-circle"
+msgstr "Aide"
+
+#. Default: "Home"
+#: config/iconMessages
+msgid "juizi-icon-home"
+msgstr "Accueil"
+
+#. Default: "Info"
+#: config/iconMessages
+msgid "juizi-icon-info"
+msgstr "Info"
+
+#. Default: "Leaf"
+#: config/iconMessages
+msgid "juizi-icon-leaf"
+msgstr "Feuille"
+
+#. Default: "Link"
+#: config/iconMessages
+msgid "juizi-icon-link"
+msgstr "Lien"
+
+#. Default: "Lock"
+#: config/iconMessages
+msgid "juizi-icon-lock"
+msgstr "Cadenas"
+
+#. Default: "Mail"
+#: config/iconMessages
+msgid "juizi-icon-mail"
+msgstr "Courrier"
+
+#. Default: "Location"
+#: config/iconMessages
+msgid "juizi-icon-map-pin"
+msgstr "Lieu"
+
+#. Default: "Message"
+#: config/iconMessages
+msgid "juizi-icon-message-circle"
+msgstr "Message"
+
+#. Default: "Microphone"
+#: config/iconMessages
+msgid "juizi-icon-mic"
+msgstr "Microphone"
+
+#. Default: "News"
+#: config/iconMessages
+msgid "juizi-icon-newspaper"
+msgstr "Actualités"
+
+#. Default: "Phone"
+#: config/iconMessages
+msgid "juizi-icon-phone"
+msgstr "Téléphone"
+
+#. Default: "RSS"
+#: config/iconMessages
+msgid "juizi-icon-rss"
+msgstr "RSS"
+
+#. Default: "Search"
+#: config/iconMessages
+msgid "juizi-icon-search"
+msgstr "Recherche"
+
+#. Default: "Send"
+#: config/iconMessages
+msgid "juizi-icon-send"
+msgstr "Envoyer"
+
+#. Default: "Settings"
+#: config/iconMessages
+msgid "juizi-icon-settings"
+msgstr "Réglages"
+
+#. Default: "Share"
+#: config/iconMessages
+msgid "juizi-icon-share2"
+msgstr "Partage"
+
+#. Default: "Shield"
+#: config/iconMessages
+msgid "juizi-icon-shield"
+msgstr "Bouclier"
+
+#. Default: "Star"
+#: config/iconMessages
+msgid "juizi-icon-star"
+msgstr "Étoile"
+
+#. Default: "Sun"
+#: config/iconMessages
+msgid "juizi-icon-sun"
+msgstr "Soleil"
+
+#. Default: "Trending up"
+#: config/iconMessages
+msgid "juizi-icon-trending-up"
+msgstr "Tendance à la hausse"
+
+#. Default: "Upload"
+#: config/iconMessages
+msgid "juizi-icon-upload"
+msgstr "Téléversement"
+
+#. Default: "Person"
+#: config/iconMessages
+msgid "juizi-icon-user"
+msgstr "Personne"
+
+#. Default: "Person (verified)"
+#: config/iconMessages
+msgid "juizi-icon-user-check"
+msgstr "Personne (vérifiée)"
+
+#. Default: "People"
+#: config/iconMessages
+msgid "juizi-icon-users"
+msgstr "Personnes"
+
+#. Default: "Video"
+#: config/iconMessages
+msgid "juizi-icon-video"
+msgstr "Vidéo"
+
+#. Default: "Lightning"
+#: config/iconMessages
+msgid "juizi-icon-zap"
+msgstr "Éclair"
+
+#. Default: "Image"
+#: components/Blocks/_shared/messages
+msgid "juizi-image"
+msgstr "Image"
+
+#. Default: "Intro text"
+#: components/Blocks/_shared/messages
+msgid "juizi-intro-text"
+msgstr "Texte d’introduction"
+
+#. Default: "Label"
+#: components/Blocks/_shared/messages
+msgid "juizi-label"
+msgstr "Libellé"
+
+#. Default: "Large"
+#: components/Blocks/_shared/messages
+msgid "juizi-large"
+msgstr "Grand"
+
+#. Default: "Layout"
+#: components/Blocks/_shared/messages
+msgid "juizi-layout"
+msgstr "Mise en page"
+
+#. Default: "Left"
+#: components/Blocks/_shared/messages
+msgid "juizi-left"
+msgstr "Gauche"
+
+#. Default: "Link"
+#: components/Blocks/_shared/messages
+msgid "juizi-link"
+msgstr "Lien"
+
+#. Default: "Link text"
+#: components/Blocks/_shared/messages
+msgid "juizi-link-title"
+msgstr "Texte du lien"
+
+#. Default: "Loop continuously"
+#: components/Blocks/_shared/messages
+msgid "juizi-loop"
+msgstr "Défiler en boucle"
+
+#. Default: "Medium"
+#: components/Blocks/_shared/messages
+msgid "juizi-medium"
+msgstr "Moyen"
+
+#. Default: "Middle"
+#: components/Blocks/_shared/messages
+msgid "juizi-middle"
+msgstr "Milieu"
+
+#. Default: "Next image"
+#: components/Blocks/_shared/messages
+msgid "juizi-next-image"
+msgstr "Image suivante"
+
+#. Default: "Next slide"
+#: components/Blocks/_shared/messages
+msgid "juizi-next-slide"
+msgstr "Diapositive suivante"
+
+#. Default: "None"
+#: components/Blocks/_shared/messages
+msgid "juizi-none"
+msgstr "Aucun"
+
+#. Default: "Normal"
+#: components/Blocks/_shared/messages
+msgid "juizi-normal"
+msgstr "Normal"
+
+#. Default: "On mobile"
+#: components/Blocks/_shared/messages
+msgid "juizi-on-mobile"
+msgstr "Sur mobile"
+
+#. Default: "Options"
+#: components/Blocks/_shared/messages
+msgid "juizi-options"
+msgstr "Options"
+
+#. Default: "Black"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-black"
+msgstr "Noir"
+
+#. Default: "Brand colour"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-brand"
+msgstr "Couleur de la marque"
+
+#. Default: "Dark"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-dark"
+msgstr "Fort"
+
+#. Default: "Gradient (default)"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-gradient"
+msgstr "Dégradé (par défaut)"
+
+#. Default: "Light"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-light"
+msgstr "Léger"
+
+#. Default: "Medium"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-medium"
+msgstr "Moyen"
+
+#. Default: "{color} — {strength} ({percent}%)"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-tint"
+msgstr "{color} — {strength} ({percent} %)"
+
+#. Default: "White"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-white"
+msgstr "Blanc"
+
+#. Default: "Previous image"
+#: components/Blocks/_shared/messages
+msgid "juizi-previous-image"
+msgstr "Image précédente"
+
+#. Default: "Previous slide"
+#: components/Blocks/_shared/messages
+msgid "juizi-previous-slide"
+msgstr "Diapositive précédente"
+
+#. Default: "Read more"
+#: components/Blocks/_shared/messages
+msgid "juizi-read-more"
+msgstr "Lire la suite"
+
+#. Default: "Choose where to send visitors in the sidebar, under 'Send visitors to'."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-choose-prompt"
+msgstr "Choisissez où envoyer les visiteurs dans la barre latérale, sous « Envoyer les visiteurs vers »."
+
+#. Default: "Go now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-now"
+msgstr "Y aller maintenant"
+
+#. Default: "Go to {name} now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-to"
+msgstr "Aller maintenant à {name}"
+
+#. Default: "Go to the page now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-to-page"
+msgstr "Aller maintenant à la page"
+
+#. Default: "This redirect has no destination yet, so visitors stay on this page. Edit the page to choose one."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-no-destination"
+msgstr "Cette redirection n’a pas encore de destination : les visiteurs restent donc sur cette page. Modifiez la page pour en choisir une."
+
+#. Default: "Page name"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-page-name"
+msgstr "Nom de la page"
+
+#. Default: "Shown instead of the web address, e.g. 'Our new events page'. Leave empty to show the address."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-page-name-help"
+msgstr "Affiché à la place de l’adresse web, par ex. « Notre nouvelle page d’événements ». Laissez vide pour afficher l’adresse."
+
+#. Default: "Search engines keep listing this page. To move a page for good, ask your site administrator to set up a permanent redirect."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-permanent-hint"
+msgstr "Les moteurs de recherche continuent de référencer cette page. Pour déplacer définitivement une page, demandez à l’administrateur du site de mettre en place une redirection permanente."
+
+#. Default: "Redirecting in {seconds}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-redirecting"
+msgstr "Redirection dans {seconds}…"
+
+#. Default: "Redirecting…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-redirecting-now"
+msgstr "Redirection…"
+
+#. Default: "This points to the page you're editing, so visitors would go round in circles. Choose a different page in the sidebar."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-same-page-edit"
+msgstr "Ceci pointe vers la page en cours de modification : les visiteurs tourneraient donc en rond. Choisissez une autre page dans la barre latérale."
+
+#. Default: "This redirect points to this same page, so visitors aren't sent anywhere. Edit the page to choose a different one."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-same-page-view"
+msgstr "Cette redirection pointe vers cette même page : les visiteurs ne sont donc envoyés nulle part. Modifiez la page pour en choisir une autre."
+
+#. Default: "Send visitors to"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-send-to"
+msgstr "Envoyer les visiteurs vers"
+
+#. Default: "Choose a page on this site, or type a web address. Visitors see this page for a few seconds, then move on. You and other editors aren't redirected."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-send-to-help"
+msgstr "Choisissez une page de ce site ou saisissez une adresse web. Les visiteurs voient cette page quelques secondes, puis sont redirigés. Vous et les autres rédacteurs n’êtes pas redirigés."
+
+#. Default: "Taking you to {name} in {seconds}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-taking"
+msgstr "Redirection vers {name} dans {seconds}…"
+
+#. Default: "Taking you to {name}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-taking-now"
+msgstr "Redirection vers {name}…"
+
+#. Default: "Visitors will be sent to {destination}"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-will-be-sent"
+msgstr "Les visiteurs seront envoyés vers {destination}"
+
+#. Default: "Right"
+#: components/Blocks/_shared/messages
+msgid "juizi-right"
+msgstr "Droite"
+
+#. Default: "{count, plural, one {# second} other {# seconds}}"
+#: components/Blocks/_shared/messages
+msgid "juizi-seconds"
+msgstr "{count, plural, one {# seconde} other {# secondes}}"
+
+#. Default: "Select a display style in the sidebar to get started."
+#: components/Blocks/_shared/messages
+msgid "juizi-select-style-prompt"
+msgstr "Sélectionnez un style d’affichage dans la barre latérale pour commencer."
+
+#. Default: "Slide navigation"
+#: components/Blocks/_shared/messages
+msgid "juizi-slide-navigation"
+msgstr "Navigation entre les diapositives"
+
+#. Default: "Small"
+#: components/Blocks/_shared/messages
+msgid "juizi-small"
+msgstr "Petit"
+
+#. Default: "Spacious"
+#: components/Blocks/_shared/messages
+msgid "juizi-spacious"
+msgstr "Aéré"
+
+#. Default: "Standard"
+#: components/Blocks/_shared/messages
+msgid "juizi-standard"
+msgstr "Standard"
+
+#. Default: "Text"
+#: components/Blocks/_shared/messages
+msgid "juizi-text"
+msgstr "Texte"
+
+#. Default: "Text above the heading"
+#: components/Blocks/_shared/messages
+msgid "juizi-text-above-heading"
+msgstr "Texte au-dessus du titre"
+
+#. Default: "Text alignment"
+#: components/Blocks/_shared/messages
+msgid "juizi-text-alignment"
+msgstr "Alignement du texte"
+
+#. Default: "Title"
+#: components/Blocks/_shared/messages
+msgid "juizi-title"
+msgstr "Titre"
+
+#. Default: "Top"
+#: components/Blocks/_shared/messages
+msgid "juizi-top"
+msgstr "Haut"
+
+#. Default: "Top padding"
+#: components/Blocks/_shared/messages
+msgid "juizi-top-padding"
+msgstr "Espacement en haut"
+
+#. Default: "View all"
+#: components/Blocks/_shared/messages
+msgid "juizi-view-all"
+msgstr "Tout voir"

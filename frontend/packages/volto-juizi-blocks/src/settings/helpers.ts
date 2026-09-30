@@ -11,6 +11,7 @@ import type {
   ColorEntry,
   ThemeEntry,
   ThemeSlot,
+  ThemeSlotName,
 } from './types';
 
 const HEX_COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -296,60 +297,80 @@ export function removeTheme(config: ColorConfig, name: string): ColorConfig {
   };
 }
 
+/** One problem found by validateColorConfig. The dashboard turns it into a
+ * sentence in the editor's language (Dashboard/messages.js, `error…`):
+ * - `label` is the colour's or theme's label ('' when it has none, with
+ *   `index` telling which entry it is);
+ * - `name` is the duplicated name;
+ * - `slot` is the theme part concerned ('background', 'foreground', …). */
+export type ColorConfigIssue = {
+  code:
+    | 'noColors'
+    | 'noThemes'
+    | 'colorName'
+    | 'themeName'
+    | 'colorDuplicate'
+    | 'themeDuplicate'
+    | 'colorValue'
+    | 'colorForeground'
+    | 'themeSlotMissing'
+    | 'themeSlotGone';
+  label?: string;
+  index?: number;
+  name?: string;
+  slot?: ThemeSlotName;
+};
+
 /** Problems the backend would reject, so the dashboard can show them before
  * saving. Empty when the config is fine. */
-export function validateColorConfig(config: ColorConfig): string[] {
-  const errors: string[] = [];
+export function validateColorConfig(config: ColorConfig): ColorConfigIssue[] {
+  const issues: ColorConfigIssue[] = [];
   const colors = config?.colors || [];
   const themes = config?.themes || [];
-  if (!colors.length) errors.push('Add at least one colour.');
-  if (!themes.length) errors.push('Add at least one theme.');
+  if (!colors.length) issues.push({ code: 'noColors' });
+  if (!themes.length) issues.push({ code: 'noThemes' });
 
   const names = colors.map((c) => c.name);
   const checkNames = (
     entries: { name: string; label: string }[],
-    kind: string,
+    kind: 'color' | 'theme',
   ) => {
     const seen = new Set<string>();
-    entries.forEach((e, i) => {
-      const label = e.label || `${kind} #${i + 1}`;
+    entries.forEach((e, index) => {
+      const entry = { label: e.label || '', index };
       if (!isValidName(e.name)) {
-        errors.push(
-          `${kind} "${label}": the name must start with a letter and only use lowercase letters, digits and dashes.`,
-        );
+        issues.push({ code: `${kind}Name`, ...entry });
       } else if (seen.has(e.name)) {
-        errors.push(`${kind} "${label}": the name "${e.name}" is used twice.`);
+        issues.push({ code: `${kind}Duplicate`, ...entry, name: e.name });
       }
       seen.add(e.name);
     });
   };
-  checkNames(colors, 'Colour');
-  checkNames(themes, 'Theme');
+  checkNames(colors, 'color');
+  checkNames(themes, 'theme');
 
-  colors.forEach((c) => {
-    if (!isHexColor(c.value)) {
-      errors.push(`Colour "${c.label}": the value must be a hex colour.`);
-    }
+  colors.forEach((c, index) => {
+    const entry = { label: c.label || '', index };
+    if (!isHexColor(c.value)) issues.push({ code: 'colorValue', ...entry });
     if (c.foreground && !isHexColor(c.foreground)) {
-      errors.push(
-        `Colour "${c.label}": the text colour must be a hex colour or empty.`,
-      );
+      issues.push({ code: 'colorForeground', ...entry });
     }
   });
-  themes.forEach((t) => {
+  themes.forEach((t, index) => {
+    const entry = { label: t.label || '', index };
     (['background', 'foreground'] as const).forEach((slot) => {
       if (!t[slot]?.color) {
-        errors.push(`Theme "${t.label}": pick a ${slot} colour.`);
+        issues.push({ code: 'themeSlotMissing', ...entry, slot });
       }
     });
     THEME_SLOTS.forEach((slot) => {
       const value = t[slot];
       if (value?.color && !names.includes(value.color)) {
-        errors.push(`Theme "${t.label}": the ${slot} colour no longer exists.`);
+        issues.push({ code: 'themeSlotGone', ...entry, slot });
       }
     });
   });
-  return errors;
+  return issues;
 }
 
 /** WCAG contrast ratio between two hex colours (1 to 21). */

@@ -1,0 +1,2962 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: volto-juizi-blocks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: af\n"
+"Language-Team: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Language-Code: af\n"
+"Language-Name: Afrikaans\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: volto\n"
+
+#. Default: "Callout"
+#: blocks/messages
+msgid "Callout"
+msgstr "Uitligblok"
+
+#. Default: "Carousel"
+#: blocks/messages
+msgid "Carousel"
+msgstr "Karrousel"
+
+#. Default: "Content Row"
+#: blocks/messages
+msgid "Content Row"
+msgstr "Inhoudry"
+
+#. Default: "Gallery"
+#: blocks/messages
+msgid "Gallery"
+msgstr "Galery"
+
+#. Default: "Hero"
+#: blocks/messages
+msgid "Hero"
+msgstr "Hero"
+
+#. Default: "Highlighted message with an icon and an optional link."
+#: blocks/messages
+msgid "Highlighted message with an icon and an optional link."
+msgstr "Uitgeligte boodskap met ’n ikoon en ’n opsionele skakel."
+
+#. Default: "Page header or themed section band with title, background image or video, and buttons."
+#: blocks/messages
+msgid "Page header or themed section band with title, background image or video, and buttons."
+msgstr "Bladsyopskrif of gekleurde afdelingsband met titel, agtergrondbeeld of -video, en knoppies."
+
+#. Default: "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
+#: blocks/messages
+msgid "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
+msgstr "Prente van die bladsy of van oor die hele werf, as ’n skyfievertoning, egalige rooster of natuurlike rooster, met ’n opsionele vergrote aansig."
+
+#. Default: "Redirect"
+#: blocks/messages
+msgid "Redirect"
+msgstr "Herleiding"
+
+#. Default: "Row of numbered steps, icons, statistics or image cards, with optional mobile carousel."
+#: blocks/messages
+msgid "Row of numbered steps, icons, statistics or image cards, with optional mobile carousel."
+msgstr "Ry genommerde stappe, ikone, statistieke of beeldkaarte, met opsionele karrousel op selfone."
+
+#. Default: "Sends anonymous visitors to another page or URL. Editors are not redirected."
+#: blocks/messages
+msgid "Sends anonymous visitors to another page or URL. Editors are not redirected."
+msgstr "Stuur anonieme besoekers na ’n ander bladsy of URL. Redakteurs word nie herlei nie."
+
+#. Default: "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+#: blocks/messages
+msgid "Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip."
+msgstr "Skyfies wat jy byvoeg of bladsye wat outomaties gevind word, gewys as ’n karrousel, kaartry of rollende logostrook."
+
+#. Default: "Add a label"
+#: components/Blocks/_shared/messages
+msgid "juizi-add-label"
+msgstr "Voeg ’n etiket by"
+
+#. Default: "Add a link"
+#: components/Blocks/_shared/messages
+msgid "juizi-add-link"
+msgstr "Voeg ’n skakel by"
+
+#. Default: "Advanced"
+#: components/Blocks/_shared/messages
+msgid "juizi-advanced"
+msgstr "Gevorderd"
+
+#. Default: "All"
+#: components/Blocks/_shared/messages
+msgid "juizi-all"
+msgstr "Alles"
+
+#. Default: "Appearance"
+#: components/Blocks/_shared/messages
+msgid "juizi-appearance"
+msgstr "Voorkoms"
+
+#. Default: "Arrow position"
+#: components/Blocks/_shared/messages
+msgid "juizi-arrow-position"
+msgstr "Posisie van pyltjies"
+
+#. Default: "Arrow style"
+#: components/Blocks/_shared/messages
+msgid "juizi-arrow-style"
+msgstr "Pyltjiestyl"
+
+#. Default: "Autoplay"
+#: components/Blocks/_shared/messages
+msgid "juizi-autoplay"
+msgstr "Speel outomaties"
+
+#. Default: "Automatically turned off for visitors who have asked their device to reduce motion."
+#: components/Blocks/_shared/messages
+msgid "juizi-autoplay-reduced-motion"
+msgstr "Word outomaties afgeskakel vir besoekers wat hul toestel gevra het om beweging te verminder."
+
+#. Default: "Background"
+#: components/Blocks/_shared/messages
+msgid "juizi-background"
+msgstr "Agtergrond"
+
+#. Default: "Background colour"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-color"
+msgstr "Agtergrondkleur"
+
+#. Default: "Background image"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-image"
+msgstr "Agtergrondbeeld"
+
+#. Default: "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team."
+#: components/Blocks/_shared/messages
+msgid "juizi-block-error"
+msgstr "Hierdie blok kon nie vertoon word nie. Probeer jou laaste verandering ontdoen of gaan sy instellings in die sybalk na. As dit aanhou gebeur, kontak jou webspan."
+
+#. Default: "Bottom"
+#: components/Blocks/_shared/messages
+msgid "juizi-bottom"
+msgstr "Onder"
+
+#. Default: "Bottom padding"
+#: components/Blocks/_shared/messages
+msgid "juizi-bottom-padding"
+msgstr "Spasie onder"
+
+#. Default: "Breadcrumb"
+#: components/Blocks/_shared/messages
+msgid "juizi-breadcrumb"
+msgstr "Broodkrummelpad"
+
+#. Default: "Button"
+#: components/Blocks/_shared/messages
+msgid "juizi-button"
+msgstr "Knoppie"
+
+#. Default: "{color} — Outlined"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-outlined"
+msgstr "{color} — Buitelyn"
+
+#. Default: "{color} — Solid"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-solid"
+msgstr "{color} — Solied"
+
+#. Default: "Button style"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-style"
+msgstr "Knoppiestyl"
+
+#. Default: "Button text"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-text"
+msgstr "Knoppieteks"
+
+#. Default: "Buttons"
+#: components/Blocks/_shared/messages
+msgid "juizi-buttons"
+msgstr "Knoppies"
+
+#. Default: "Text colour follows the background automatically."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-background-help"
+msgstr "Die tekskleur volg die agtergrond outomaties."
+
+#. Default: "What this callout is for. Changing it updates the icon and colours, except ones you've changed yourself."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-change-type"
+msgstr "Waarvoor hierdie uitligblok is. As jy dit verander, word die ikoon en kleure bygewerk, behalwe dié wat jy self verander het."
+
+#. Default: "Choose a callout type to get started."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-choose-type"
+msgstr "Kies ’n tipe uitligblok om te begin."
+
+#. Default: "Colours"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-colors"
+msgstr "Kleure"
+
+#. Default: "Add a title and text in the sidebar."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-empty"
+msgstr "Voeg ’n titel en teks in die sybalk by."
+
+#. Default: "Warning"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-alert-triangle"
+msgstr "Waarskuwing"
+
+#. Default: "Award"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-award"
+msgstr "Toekenning"
+
+#. Default: "Read"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-book-open"
+msgstr "Lees"
+
+#. Default: "Calendar"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-calendar"
+msgstr "Kalender"
+
+#. Default: "Success"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-check-circle"
+msgstr "Sukses"
+
+#. Default: "Time"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-clock"
+msgstr "Tyd"
+
+#. Default: "Icon colour"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-color"
+msgstr "Ikoonkleur"
+
+#. Default: "The icon colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-contrast"
+msgstr "Die ikoonkleur is moeilik om op hierdie agtergrond te sien. Kies ’n ligter of donkerder een onder Kleure."
+
+#. Default: "Download"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-download"
+msgstr "Aflaai"
+
+#. Default: "Heart"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-heart"
+msgstr "Hart"
+
+#. Default: "Info"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-info"
+msgstr "Inligting"
+
+#. Default: "Idea"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-lightbulb"
+msgstr "Idee"
+
+#. Default: "Email"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-mail"
+msgstr "E-pos"
+
+#. Default: "Location"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-map-pin"
+msgstr "Ligging"
+
+#. Default: "Announcement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-megaphone"
+msgstr "Aankondiging"
+
+#. Default: "Phone"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-phone"
+msgstr "Telefoon"
+
+#. Default: "Launch"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-rocket"
+msgstr "Bekendstelling"
+
+#. Default: "Secure"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-shield-check"
+msgstr "Veilig"
+
+#. Default: "Highlight"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-sparkles"
+msgstr "Hoogtepunt"
+
+#. Default: "Star"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-star"
+msgstr "Ster"
+
+#. Default: "People"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-users"
+msgstr "Mense"
+
+#. Default: "Fast"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-icon-zap"
+msgstr "Vinnig"
+
+#. Default: "Link colour"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-link-color"
+msgstr "Skakelkleur"
+
+#. Default: "The link colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-link-contrast"
+msgstr "Die skakelkleur is moeilik om op hierdie agtergrond te sien. Kies ’n ligter of donkerder een onder Kleure."
+
+#. Default: "Same as text"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-same-as-text"
+msgstr "Dieselfde as die teks"
+
+#. Default: "Select a callout type in the sidebar to get started."
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-select-type"
+msgstr "Kies ’n tipe uitligblok in die sybalk om te begin."
+
+#. Default: "Callout type"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type"
+msgstr "Tipe uitligblok"
+
+#. Default: "Announcement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-announcement"
+msgstr "Aankondiging"
+
+#. Default: "news, an update or a call to action"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-announcement-help"
+msgstr "nuus, ’n opdatering of ’n oproep tot aksie"
+
+#. Default: "Information"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-info"
+msgstr "Inligting"
+
+#. Default: "neutral background information or context"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-info-help"
+msgstr "neutrale agtergrondinligting of konteks"
+
+#. Default: "Success"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-success"
+msgstr "Sukses"
+
+#. Default: "a positive outcome, confirmation or achievement"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-success-help"
+msgstr "’n positiewe uitkoms, bevestiging of prestasie"
+
+#. Default: "Tip"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-tip"
+msgstr "Wenk"
+
+#. Default: "a helpful suggestion or good practice"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-tip-help"
+msgstr "’n nuttige voorstel of goeie praktyk"
+
+#. Default: "Warning"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-warning"
+msgstr "Waarskuwing"
+
+#. Default: "something the reader needs to be careful about"
+#: components/Blocks/Callout/messages
+msgid "juizi-callout-type-warning-help"
+msgstr "iets waarmee die leser versigtig moet wees"
+
+#. Default: "Add a picture to this slide in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-add-picture"
+msgstr "Voeg ’n prent by hierdie skyfie in die sybalk."
+
+#. Default: "Also show slides I add myself"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-append-manual"
+msgstr "Wys ook skyfies wat ek self byvoeg"
+
+#. Default: "Your own slides come after the pages found."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-append-manual-help"
+msgstr "Jou eie skyfies kom ná die gevonde bladsye."
+
+#. Default: "On phones the arrows always sit below the carousel, whatever you choose here, so they are easy to reach with a thumb."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrow-position-help"
+msgstr "Op fone sit die pyltjies altyd onder die karrousel, wat jy ook al hier kies, sodat hulle maklik met ’n duim bereik kan word."
+
+#. Default: "Standard: dark round arrows on the sides, outlined arrows above or below. Or pick a colour to match your buttons."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrow-style-help"
+msgstr "Standaard: donker ronde pyltjies aan die kante, buitelynpyltjies bo of onder. Of kies ’n kleur wat by jou knoppies pas."
+
+#. Default: "On each side of the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrows-sides"
+msgstr "Aan elke kant van die karrousel"
+
+#. Default: "Top right, beside the heading"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-arrows-top"
+msgstr "Regs bo, langs die opskrif"
+
+#. Default: "Solid fill for the block. Text colour follows it automatically. If a background image is also set, the image is shown on top of this colour."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-background-color-help"
+msgstr "Soliede kleur vir die blok. Die tekskleur volg dit outomaties. As ’n agtergrondbeeld ook gestel is, word die beeld bo-oor hierdie kleur gewys."
+
+#. Default: "Optional image behind the whole block. Displayed at full cover, no overlay. Decorative: screen readers skip it."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-background-image-help"
+msgstr "Opsionele beeld agter die hele blok. Word volledig dekkend vertoon, sonder oorleg. Dekoratief: skermlesers slaan dit oor."
+
+#. Default: "Scrolling & behaviour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-behaviour"
+msgstr "Rol en gedrag"
+
+#. Default: "Below the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-below-carousel"
+msgstr "Onder die karrousel"
+
+#. Default: "Show arrow on button"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-button-arrow"
+msgstr "Wys pyltjie op knoppie"
+
+#. Default: "Adds a right arrow to this slide's button"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-button-arrow-help"
+msgstr "Voeg ’n pyltjie na regs by hierdie skyfie se knoppie"
+
+#. Default: "Card layout"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-card-layout"
+msgstr "Kaartuitleg"
+
+#. Default: "Make entire card clickable"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable"
+msgstr "Maak die hele kaart klikbaar"
+
+#. Default: "Clicking anywhere on the card follows the slide link. The slide heading is used as the link text for screen readers — add a heading to every slide when this is on."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-clickable-help"
+msgstr "As jy enige plek op die kaart klik, volg dit die skyfie se skakel. Die skyfie se opskrif word as die skakelteks vir skermlesers gebruik: voeg ’n opskrif by elke skyfie wanneer dit aan is."
+
+#. Default: "Don't show a date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-none"
+msgstr "Moenie ’n datum wys nie"
+
+#. Default: "Publication date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-publication"
+msgstr "Publikasiedatum"
+
+#. Default: "Event start date (falls back to publication date)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-date-start"
+msgstr "Geleentheid se begindatum (anders die publikasiedatum)"
+
+#. Default: "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content' to fill it automatically."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-manual"
+msgstr "Nog geen skyfies nie. Voeg skyfies in die sybalk onder Skyfies by, of skakel “Vul outomaties uit werfinhoud” aan."
+
+#. Default: "Your content query found nothing to show. Change its criteria in the sidebar."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-empty-query"
+msgstr "Jou inhoudsoektog het niks gevind om te wys nie. Verander die kriteria in die sybalk."
+
+#. Default: "Equal height cards"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height"
+msgstr "Kaarte van gelyke hoogte"
+
+#. Default: "Stretches all cards to match the tallest one in the row"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-equal-height-help"
+msgstr "Rek alle kaarte om by die hoogste een in die ry te pas"
+
+#. Default: "Fast"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-fast"
+msgstr "Vinnig"
+
+#. Default: "Filter content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-label"
+msgstr "Filtreer inhoud"
+
+#. Default: "Filter buttons by tag"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-tags"
+msgstr "Filterknoppies volgens etiket"
+
+#. Default: "Tags, separated by commas, e.g. News, Events. Each tag becomes a button above the carousel, plus 'All'. Uses the tags set on each page."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-filter-tags-help"
+msgstr "Etikette, geskei deur kommas, bv. Nuus, Geleenthede. Elke etiket word ’n knoppie bo die karrousel, plus “Alles”. Gebruik die etikette wat op elke bladsy gestel is."
+
+#. Default: "Optional heading shown above the carousel. Screen readers use it to name this section, so even a short heading helps."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-heading-help"
+msgstr "Opsionele opskrif wat bo die karrousel gewys word. Skermlesers gebruik dit om hierdie afdeling te benoem, so selfs ’n kort opskrif help."
+
+#. Default: "Hide \"Read more\" buttons"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-buttons"
+msgstr "Versteek “Lees meer”-knoppies"
+
+#. Default: "Hide description"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-description"
+msgstr "Versteek beskrywing"
+
+#. Default: "Hide dots"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-dots"
+msgstr "Versteek kolletjies"
+
+#. Default: "Hide image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-image"
+msgstr "Versteek beeld"
+
+#. Default: "Hides each card's image in the 'Image above content' layout, even when a slide has one set"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-hide-image-help"
+msgstr "Versteek elke kaart se beeld in die “Beeld bo die inhoud”-uitleg, selfs wanneer ’n skyfie een het"
+
+#. Default: "Optional text shown below the heading, above the carousel"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-intro-help"
+msgstr "Opsionele teks wat onder die opskrif, bo die karrousel gewys word"
+
+#. Default: "On large screens"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-large-screens"
+msgstr "Op groot skerms"
+
+#. Default: "Show arrow on buttons"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-arrow"
+msgstr "Wys pyltjie op knoppies"
+
+#. Default: "Adds a right arrow to the 'Read more' button on every found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-arrow-help"
+msgstr "Voeg ’n pyltjie na regs by die “Lees meer”-knoppie op elke gevonde bladsy"
+
+#. Default: "Button style for found pages"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-style"
+msgstr "Knoppiestyl vir gevonde bladsye"
+
+#. Default: "Style for the 'Read more' button on each found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-style-help"
+msgstr "Styl vir die “Lees meer”-knoppie op elke gevonde bladsy"
+
+#. Default: "Label for the 'Read more' button on each found page"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-listing-button-text-help"
+msgstr "Etiket vir die “Lees meer”-knoppie op elke gevonde bladsy"
+
+#. Default: "Logo alignment"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alignment"
+msgstr "Logobelyning"
+
+#. Default: "Where the logos sit when they all fit across. Once there are more than fit, they scroll."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alignment-help"
+msgstr "Waar die logo’s sit wanneer almal in die breedte pas. Sodra daar meer is as wat pas, rol hulle."
+
+#. Default: "Logo"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-alt"
+msgstr "Logo"
+
+#. Default: "Space between logos"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-gap"
+msgstr "Spasie tussen logo’s"
+
+#. Default: "Space around each logo"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-padding"
+msgstr "Spasie rondom elke logo"
+
+#. Default: "Logo size"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-size"
+msgstr "Logogrootte"
+
+#. Default: "Logo strip"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logo-strip"
+msgstr "Logostrook"
+
+#. Default: "All the logos fit across, so the strip stays still. It scrolls once there are more logos than fit."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-logos-fit"
+msgstr "Al die logo’s pas in die breedte, so die strook bly stil. Dit rol sodra daar meer logo’s is as wat pas."
+
+#. Default: "Image with text overlay"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-full"
+msgstr "Beeld met teks bo-oor"
+
+#. Default: "Image only"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-image-only"
+msgstr "Slegs beeld"
+
+#. Default: "Image above content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-image-top"
+msgstr "Beeld bo die inhoud"
+
+#. Default: "Scrolling logo strip"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-mode-logo"
+msgstr "Rollende logostrook"
+
+#. Default: "\"More\" button alignment"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-align"
+msgstr "Belyning van die “Meer”-knoppie"
+
+#. Default: "Horizontal alignment when the button sits below the carousel dots"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-align-help"
+msgstr "Horisontale belyning wanneer die knoppie onder die karrousel se kolletjies sit"
+
+#. Default: "\"More\" button link"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-link"
+msgstr "Skakel van die “Meer”-knoppie"
+
+#. Default: "\"More\" button position"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-position"
+msgstr "Posisie van die “Meer”-knoppie"
+
+#. Default: "Where the optional \"More\" button appears. Independent of the arrow position."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-position-help"
+msgstr "Waar die opsionele “Meer”-knoppie verskyn. Onafhanklik van die pyltjies se posisie."
+
+#. Default: "\"More\" button style"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-style"
+msgstr "Styl van die “Meer”-knoppie"
+
+#. Default: "\"More\" button text"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-text"
+msgstr "Teks van die “Meer”-knoppie"
+
+#. Default: "Optional button, e.g. \"All news\". Placed using \"More\" button position above."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-button-text-help"
+msgstr "Opsionele knoppie, bv. “Alle nuus”. Word geplaas volgens “Posisie van die Meer-knoppie” hierbo."
+
+#. Default: "Top, beside the heading"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-more-top"
+msgstr "Bo, langs die opskrif"
+
+#. Default: "Navigation"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-navigation"
+msgstr "Navigasie"
+
+#. Default: "No results tagged “{tag}”, so its button is hidden."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-no-tag-results"
+msgstr "Geen resultate met die etiket “{tag}” nie, so sy knoppie is versteek."
+
+#. Default: "Pause when hovered"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-pause-on-hover"
+msgstr "Onderbreek wanneer die muis daaroor beweeg"
+
+#. Default: "On phones"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-phones"
+msgstr "Op fone"
+
+#. Default: "Picture shape"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-picture-shape"
+msgstr "Prentvorm"
+
+#. Default: "Gives every picture the same shape, trimming the edges to fit, so the slides line up. Try a few to see which suits your pictures."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-picture-shape-help"
+msgstr "Gee elke prent dieselfde vorm deur die rande te snoei, sodat die skyfies in lyn is. Probeer ’n paar om te sien watter een by jou prente pas."
+
+#. Default: "Which pages to show"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-query"
+msgstr "Watter bladsye om te wys"
+
+#. Default: "Your device is set to reduce motion, so the strip isn't moving for you. Visitors without that setting see it scroll."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-reduced-motion"
+msgstr "Jou toestel is gestel om beweging te verminder, so die strook beweeg nie vir jou nie. Besoekers sonder daardie instelling sien dit rol."
+
+#. Default: "Scroll speed"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-scroll-speed"
+msgstr "Rolspoed"
+
+#. Default: "Landscape (3:2)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-landscape"
+msgstr "Landskap (3:2)"
+
+#. Default: "As uploaded"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-original"
+msgstr "Soos opgelaai"
+
+#. Default: "Portrait (3:4)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-portrait"
+msgstr "Portret (3:4)"
+
+#. Default: "Square (1:1)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-square"
+msgstr "Vierkant (1:1)"
+
+#. Default: "Standard (4:3)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-standard"
+msgstr "Standaard (4:3)"
+
+#. Default: "Wide (16:9)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-shape-wide"
+msgstr "Wyd (16:9)"
+
+#. Default: "Show:"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-show"
+msgstr "Wys:"
+
+#. Default: "Show date"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-show-date"
+msgstr "Wys datum"
+
+#. Default: "Slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide"
+msgstr "Skyfie"
+
+#. Default: "Slide background colour"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-background"
+msgstr "Skyfies se agtergrondkleur"
+
+#. Default: "Fills the background of each slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-background-help"
+msgstr "Vul die agtergrond van elke skyfie"
+
+#. Default: "The button only shows when the slide has a link."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-button-help"
+msgstr "Die knoppie wys net wanneer die skyfie ’n skakel het."
+
+#. Default: "Slide button style"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-button-style"
+msgstr "Styl van skyfieknoppies"
+
+#. Default: "Used as the slide heading, and to describe the slide and its picture to screen reader users. Always add a heading when the slide has a meaningful image."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-heading-help"
+msgstr "Word as die skyfie se opskrif gebruik, en om die skyfie en sy prent aan skermlesergebruikers te beskryf. Voeg altyd ’n opskrif by wanneer die skyfie ’n betekenisvolle beeld het."
+
+#. Default: "Time on each slide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slide-time"
+msgstr "Tyd op elke skyfie"
+
+#. Default: "Slides"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides"
+msgstr "Skyfies"
+
+#. Default: "Cards visible on mobile"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides-mobile"
+msgstr "Kaarte sigbaar op selfone"
+
+#. Default: "Cards visible at once"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slides-to-show"
+msgstr "Kaarte gelyktydig sigbaar"
+
+#. Default: "Slow"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-slow"
+msgstr "Stadig"
+
+#. Default: "slides with the heading, text and button laid over the image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-full"
+msgstr "skyfies met die opskrif, teks en knoppie bo-oor die beeld"
+
+#. Default: "a clean image carousel with no text on the slides"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-image-only"
+msgstr "’n skoon beeldkarrousel sonder teks op die skyfies"
+
+#. Default: "card-style slides: image on top, heading, text and button below"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-image-top"
+msgstr "kaartstyl-skyfies: beeld bo, opskrif, teks en knoppie onder"
+
+#. Default: "a continuously scrolling row of logos, e.g. partners or sponsors"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-start-logo"
+msgstr "’n ry logo’s wat aanhoudend rol, bv. vennote of borge"
+
+#. Default: "Starts {date}"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-starts"
+msgstr "Begin {date}"
+
+#. Default: "Changing style may affect how content is presented."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-style-change-help"
+msgstr "As jy die styl verander, kan dit beïnvloed hoe die inhoud aangebied word."
+
+#. Default: "Only each slide's picture is shown, as a logo. Give a slide a link to make its logo clickable."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-style-logo-help"
+msgstr "Net elke skyfie se prent word gewys, as ’n logo. Gee ’n skyfie ’n skakel om sy logo klikbaar te maak."
+
+#. Default: "Show as a text link"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link"
+msgstr "Wys as ’n teksskakel"
+
+#. Default: "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to every found page."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link-help-listing"
+msgstr "Verwyder die knoppie se agtergrond en opvulling en wys die gekose kleur eerder as ’n gewone teksskakel wat met die skyfie se inhoud belyn is. Geld vir elke bladsy wat gevind word."
+
+#. Default: "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to slides you add yourself."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-link-help-manual"
+msgstr "Verwyder die knoppie se agtergrond en opvulling en wys die gekose kleur eerder as ’n gewone teksskakel wat met die skyfie se inhoud belyn is. Geld vir skyfies wat jy self byvoeg."
+
+#. Default: "Text over the background image"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-text-tone"
+msgstr "Teks oor die agtergrondbeeld"
+
+#. Default: "Tight"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tight"
+msgstr "Nou"
+
+#. Default: "Dark (for light images)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tone-dark"
+msgstr "Donker (vir ligte beelde)"
+
+#. Default: "Light (for dark images)"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-tone-light"
+msgstr "Lig (vir donker beelde)"
+
+#. Default: "Fill automatically from site content"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-use-listing"
+msgstr "Vul outomaties uit werfinhoud"
+
+#. Default: "Shows pages that match rules you set, instead of slides you add one by one."
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-use-listing-help"
+msgstr "Wys bladsye wat by die reëls pas wat jy stel, in plaas van skyfies wat jy een vir een byvoeg."
+
+#. Default: "Wide"
+#: components/Blocks/EmblaCarousel/messages
+msgid "juizi-carousel-wide"
+msgstr "Wyd"
+
+#. Default: "Centre"
+#: components/Blocks/_shared/messages
+msgid "juizi-center"
+msgstr "Middel"
+
+#. Default: "Choose a display style to get started."
+#: components/Blocks/_shared/messages
+msgid "juizi-choose-style-start"
+msgstr "Kies ’n vertoonstyl om te begin."
+
+#. Default: "Close"
+#: components/Blocks/_shared/messages
+msgid "juizi-close"
+msgstr "Maak toe"
+
+#. Default: "Compact"
+#: components/Blocks/_shared/messages
+msgid "juizi-compact"
+msgstr "Kompak"
+
+#. Default: "Content"
+#: components/Blocks/_shared/messages
+msgid "juizi-content"
+msgstr "Inhoud"
+
+#. Default: "Above items (with heading)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-above-items"
+msgstr "Bo die items (by die opskrif)"
+
+#. Default: "The block background is always full width. Text colour updates automatically."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-color-help"
+msgstr "Die blok se agtergrond is altyd volle breedte. Die tekskleur pas outomaties aan."
+
+#. Default: "Background & spacing"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-spacing"
+msgstr "Agtergrond en spasiëring"
+
+#. Default: "Below description"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-below-description"
+msgstr "Onder die beskrywing"
+
+#. Default: "Below items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-below-items"
+msgstr "Onder die items"
+
+#. Default: "Block image"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image"
+msgstr "Blokbeeld"
+
+#. Default: "Optional image shown alongside the heading and description. The block heading is used to describe this image to screen reader users."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image-help"
+msgstr "Opsionele beeld wat saam met die opskrif en beskrywing gewys word. Die blok se opskrif word gebruik om hierdie beeld aan skermlesergebruikers te beskryf."
+
+#. Default: "Block image position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-block-image-position"
+msgstr "Posisie van die blokbeeld"
+
+#. Default: "The button only shows when the card has a link."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-button-text-help"
+msgstr "Die knoppie wys net wanneer die kaart ’n skakel het."
+
+#. Default: "Card"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card"
+msgstr "Kaart"
+
+#. Default: "Card background colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-background"
+msgstr "Kaart se agtergrondkleur"
+
+#. Default: "The card heading is used as the image alt text. Add a heading to every card that has a meaningful image."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-image-help"
+msgstr "Die kaart se opskrif word as die beeld se alt-teks gebruik. Voeg ’n opskrif by elke kaart met ’n betekenisvolle beeld."
+
+#. Default: "Card look"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-look"
+msgstr "Kaartvoorkoms"
+
+#. Default: "Card image overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-overlay"
+msgstr "Oorleg op kaartbeelde"
+
+#. Default: "Colour tint applied over all card background images."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-card-overlay-help"
+msgstr "Kleurtint wat oor alle kaarte se agtergrondbeelde toegepas word."
+
+#. Default: "Content carousel"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-carousel-label"
+msgstr "Inhoudkarrousel"
+
+#. Default: "Column alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-alignment"
+msgstr "Kolombelyning"
+
+#. Default: "Vertical alignment of the heading column against the items column when they end up different heights."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-alignment-help"
+msgstr "Vertikale belyning van die opskrifkolom teen die itemkolom wanneer hulle verskillende hoogtes het."
+
+#. Default: "Column widths (heading / items)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-column-widths"
+msgstr "Kolomwydtes (opskrif / items)"
+
+#. Default: "Columns on large screens"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-columns"
+msgstr "Kolomme op groot skerms"
+
+#. Default: "Phones always show one column."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-columns-help"
+msgstr "Fone wys altyd een kolom."
+
+#. Default: "Counting"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting"
+msgstr "Telling"
+
+#. Default: "Counting speed"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting-speed"
+msgstr "Telspoed"
+
+#. Default: "How long the numbers take to count up."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-counting-speed-help"
+msgstr "Hoe lank die getalle neem om op te tel."
+
+#. Default: "Supporting text below the heading."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-description-help"
+msgstr "Ondersteunende teks onder die opskrif."
+
+#. Default: "Heading alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-heading-alignment"
+msgstr "Opskrifbelyning"
+
+#. Default: "The main heading for this row. Screen readers use it to name this section, so even a short heading helps."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-heading-help"
+msgstr "Die hoofopskrif vir hierdie ry. Skermlesers gebruik dit om hierdie afdeling te benoem, so selfs ’n kort opskrif help."
+
+#. Default: "Icon circle colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-circle"
+msgstr "Kleur van die ikoonsirkel"
+
+#. Default: "Places the icon inside a coloured circle. Leave as None to keep the plain icon."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-circle-help"
+msgstr "Plaas die ikoon in ’n gekleurde sirkel. Los dit op Geen om die gewone ikoon te hou."
+
+#. Default: "Icon/number position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-number-position"
+msgstr "Posisie van ikoon/nommer"
+
+#. Default: "Where the icon or number sits relative to the heading and description."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-number-position-help"
+msgstr "Waar die ikoon of nommer relatief tot die opskrif en beskrywing sit."
+
+#. Default: "Icon position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-position"
+msgstr "Ikoonposisie"
+
+#. Default: "Image above content"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-above"
+msgstr "Beeld bo die inhoud"
+
+#. Default: "Image as background with text overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-background"
+msgstr "Beeld as agtergrond met teks bo-oor"
+
+#. Default: "Image layout"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-image-layout"
+msgstr "Beelduitleg"
+
+#. Default: "Item"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item"
+msgstr "Item"
+
+#. Default: "Item background colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-background"
+msgstr "Item se agtergrondkleur"
+
+#. Default: "Items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-items"
+msgstr "Items"
+
+#. Default: "Items alignment"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-items-alignment"
+msgstr "Belyning van items"
+
+#. Default: "Link (optional)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-link-optional"
+msgstr "Skakel (opsioneel)"
+
+#. Default: "Carousel on mobile"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mobile-carousel"
+msgstr "Karrousel op selfone"
+
+#. Default: "Items become a swipeable carousel on small screens."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mobile-carousel-help"
+msgstr "Items word ’n karrousel wat jy kan vee op klein skerms."
+
+#. Default: "Image card"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mode-card"
+msgstr "Beeldkaart"
+
+#. Default: "Numbered"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-mode-numbered"
+msgstr "Genommer"
+
+#. Default: "Next to description"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-next-to-description"
+msgstr "Langs die beskrywing"
+
+#. Default: "No items yet. Add your first item in the sidebar under Items."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-items"
+msgstr "Nog geen items nie. Voeg jou eerste item in die sybalk onder Items by."
+
+#. Default: "No statistics yet. Add your first statistic in the sidebar under Statistics."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-statistics"
+msgstr "Nog geen statistieke nie. Voeg jou eerste statistiek in die sybalk onder Statistieke by."
+
+#. Default: "Number"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number"
+msgstr "Getal"
+
+#. Default: "Number circle colour"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-circle"
+msgstr "Kleur van die nommersirkel"
+
+#. Default: "Places the number inside a coloured circle. Leave as None to keep the plain number."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-circle-help"
+msgstr "Plaas die nommer in ’n gekleurde sirkel. Los dit op Geen om die gewone nommer te hou."
+
+#. Default: "Counts up from 0 to this number."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-help"
+msgstr "Tel van 0 af op tot by hierdie getal."
+
+#. Default: "Number position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-number-position"
+msgstr "Nommerposisie"
+
+#. Default: "Above (default)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-above"
+msgstr "Bo (verstek)"
+
+#. Default: "To the right of the text"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-inline"
+msgstr "Regs van die teks"
+
+#. Default: "Left of content"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-left"
+msgstr "Links van die inhoud"
+
+#. Default: "Small text above the main heading."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-preheader-help"
+msgstr "Klein teks bo die hoofopskrif."
+
+#. Default: "Narrow heading (quarter / three quarters)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio2575"
+msgstr "Smal opskrif (kwart / driekwart)"
+
+#. Default: "Slightly narrow heading (40% / 60%)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio4060"
+msgstr "Effens smal opskrif (40% / 60%)"
+
+#. Default: "Equal (half / half)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio5050"
+msgstr "Gelyk (helfte / helfte)"
+
+#. Default: "Wider heading (two thirds / one third)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio6030"
+msgstr "Breër opskrif (twee derdes / een derde)"
+
+#. Default: "Wide heading (three quarters / quarter)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-ratio7525"
+msgstr "Breë opskrif (driekwart / kwart)"
+
+#. Default: "Shorten thousands (1 000 → 1k)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-shorten-thousands"
+msgstr "Verkort duisende (1 000 → 1k)"
+
+#. Default: "Show dots"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-show-dots"
+msgstr "Wys kolletjies"
+
+#. Default: "Show \"View all\" button"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-show-view-all"
+msgstr "Wys die “Bekyk alles”-knoppie"
+
+#. Default: "Heading beside the items (large screens)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-side-by-side"
+msgstr "Opskrif langs die items (groot skerms)"
+
+#. Default: "Shows the heading and description next to the items, as two columns. Stacks to one column on phones."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-side-by-side-help"
+msgstr "Wys die opskrif en beskrywing langs die items, as twee kolomme. Stapel tot een kolom op fone."
+
+#. Default: "Small print"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-small-print"
+msgstr "Fyn druk"
+
+#. Default: "Normal (2 seconds)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-normal"
+msgstr "Normaal (2 sekondes)"
+
+#. Default: "Quick (1 second)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-quick"
+msgstr "Vinnig (1 sekonde)"
+
+#. Default: "Slow (3 seconds)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-speed-slow"
+msgstr "Stadig (3 sekondes)"
+
+#. Default: "cards with a picture, either behind the text or above it"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-card"
+msgstr "kaarte met ’n prent, óf agter die teks óf bo dit"
+
+#. Default: "short points, each with an icon"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-icon"
+msgstr "kort punte, elk met ’n ikoon"
+
+#. Default: "steps in order, each with a large number"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-numbered"
+msgstr "stappe in volgorde, elk met ’n groot nommer"
+
+#. Default: "key figures that count up when they come into view"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-start-statistics"
+msgstr "sleutelsyfers wat optel wanneer hulle in sig kom"
+
+#. Default: "Statistic"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-statistic"
+msgstr "Statistiek"
+
+#. Default: "Statistics"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-statistics"
+msgstr "Statistieke"
+
+#. Default: "Switching style keeps your headings, text and links. Other fields may not carry over."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-style-switch-help"
+msgstr "As jy van styl verander, bly jou opskrifte, teks en skakels behoue. Ander velde word dalk nie oorgedra nie."
+
+#. Default: "After the number (e.g. % or +)"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-suffix"
+msgstr "Ná die getal (bv. % of +)"
+
+#. Default: "\"View all\" label"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-label"
+msgstr "Etiket vir “Bekyk alles”"
+
+#. Default: "\"View all\" link"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-link"
+msgstr "Skakel vir “Bekyk alles”"
+
+#. Default: "The button isn't shown to visitors until it has a link."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-link-help"
+msgstr "Die knoppie word nie aan besoekers gewys totdat dit ’n skakel het nie."
+
+#. Default: "\"View all\" button position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-position"
+msgstr "Posisie van die “Bekyk alles”-knoppie"
+
+#. Default: "Where the \"View all\" button sits relative to the items."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-position-help"
+msgstr "Waar die “Bekyk alles”-knoppie relatief tot die items sit."
+
+#. Default: "\"View all\" button style"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-view-all-style"
+msgstr "Styl van die “Bekyk alles”-knoppie"
+
+#. Default: "Custom ({label})"
+#: components/Blocks/_shared/messages
+msgid "juizi-custom"
+msgstr "Pasgemaak ({label})"
+
+#. Default: "Extra style name (for your web team)"
+#: components/Blocks/_shared/messages
+msgid "juizi-custom-class"
+msgstr "Ekstra stylnaam (vir jou webspan)"
+
+#. Default: "Add colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-color"
+msgstr "Voeg kleur by"
+
+#. Default: "Add theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-theme"
+msgstr "Voeg tema by"
+
+#. Default: "All"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-all"
+msgstr "Almal"
+
+#. Default: "Automatic"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-automatic"
+msgstr "Outomaties"
+
+#. Default: "Back"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-back"
+msgstr "Terug"
+
+#. Default: "Block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-block"
+msgstr "Blok"
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks"
+msgstr "Blokke"
+
+#. Default: "Every block registered in this site, grouped as in the block chooser. Switched-off blocks disappear from the chooser; blocks already on pages keep rendering. New blocks appear here automatically after a rebuild, switched on unless their own settings keep them off."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks-help"
+msgstr "Elke blok wat op hierdie werf geregistreer is, gegroepeer soos in die blokkieser. Blokke wat afgeskakel is, verdwyn uit die kieser; blokke wat reeds op bladsye is, word steeds vertoon. Nuwe blokke verskyn outomaties hier ná ’n herbou, aangeskakel tensy hul eie instellings hulle af hou."
+
+#. Default: "Background colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-background"
+msgstr "Agtergrondkleur"
+
+#. Default: "Icon colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-icon-color"
+msgstr "Ikoonkleur"
+
+#. Default: "Type"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-type"
+msgstr "Tipe"
+
+#. Default: "Callout types"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types"
+msgstr "Tipes uitligblokke"
+
+#. Default: "The colours a callout starts with when an editor chooses its type. Editors can still change them per callout. Leave a colour as None for no colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types-help"
+msgstr "Die kleure waarmee ’n uitligblok begin wanneer ’n redakteur sy tipe kies. Redakteurs kan dit steeds per uitligblok verander. Los ’n kleur op Geen vir geen kleur."
+
+#. Default: "Discard changes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-cancel"
+msgstr "Gooi veranderinge weg"
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors"
+msgstr "Kleure"
+
+#. Default: "The master colour list. Blocks store a colour by name (var(--name)), so changing a value here updates every block that uses it. Renaming a colour does not update blocks that already use the old name."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-help"
+msgstr "Die hoofkleurlys. Blokke stoor ’n kleur volgens naam (var(--name)), so as jy ’n waarde hier verander, word elke blok wat dit gebruik bygewerk. As jy ’n kleur hernoem, word blokke wat reeds die ou naam gebruik nie bygewerk nie."
+
+#. Default: "Colours per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block"
+msgstr "Kleure per blok"
+
+#. Default: "Tick the colours each block offers in its colour and button pickers. With nothing ticked, the block offers every colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block-help"
+msgstr "Merk die kleure wat elke blok in sy kleur- en knoppiekiesers aanbied. As niks gemerk is nie, bied die blok elke kleur aan."
+
+#. Default: "Only offered where the block allows it (e.g. certain content types)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contextual"
+msgstr "Word net aangebied waar die blok dit toelaat (bv. sekere inhoudtipes)"
+
+#. Default: "Contrast {ratio}:1"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contrast"
+msgstr "Kontras {ratio}:1"
+
+#. Default: "Dark colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark"
+msgstr "Donker kleur"
+
+#. Default: "Dark colours get light text and light default buttons, and vice versa."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark-help"
+msgstr "Donker kleure kry ligte teks en ligte verstekknoppies, en omgekeerd."
+
+#. Default: "Default"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-default-theme"
+msgstr "Verstek"
+
+#. Default: "Disabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-disabled"
+msgstr "Af"
+
+#. Default: "Enabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-enabled"
+msgstr "Aan"
+
+#. Default: "Colour “{label}”: the name “{name}” is used twice."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-duplicate"
+msgstr "Kleur “{label}”: die naam “{name}” word twee keer gebruik."
+
+#. Default: "Colour “{label}”: the text colour must be a hex colour or empty."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-foreground"
+msgstr "Kleur “{label}”: die tekskleur moet ’n heksadesimale kleur of leeg wees."
+
+#. Default: "Colour “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-name"
+msgstr "Kleur “{label}”: die naam moet met ’n letter begin en net kleinletters, syfers en koppeltekens gebruik."
+
+#. Default: "Colour “{label}”: the value must be a hex colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-color-value"
+msgstr "Kleur “{label}”: die waarde moet ’n heksadesimale kleur wees."
+
+#. Default: "Add at least one colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-no-colors"
+msgstr "Voeg ten minste een kleur by."
+
+#. Default: "Add at least one theme."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-no-themes"
+msgstr "Voeg ten minste een tema by."
+
+#. Default: "Theme “{label}”: the name “{name}” is used twice."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-duplicate"
+msgstr "Tema “{label}”: die naam “{name}” word twee keer gebruik."
+
+#. Default: "Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-name"
+msgstr "Tema “{label}”: die naam moet met ’n letter begin en net kleinletters, syfers en koppeltekens gebruik."
+
+#. Default: "Theme “{label}”: the colour chosen for “{slot}” no longer exists."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-slot-gone"
+msgstr "Tema “{label}”: die kleur wat vir “{slot}” gekies is, bestaan nie meer nie."
+
+#. Default: "Theme “{label}”: choose a colour for “{slot}”."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-error-theme-slot-missing"
+msgstr "Tema “{label}”: kies ’n kleur vir “{slot}”."
+
+#. Default: "Fix these before saving:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-fix-errors"
+msgstr "Maak dit reg voordat jy stoor:"
+
+#. Default: "Text colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-foreground"
+msgstr "Tekskleur"
+
+#. Default: "{on} of {total} on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-group-count"
+msgstr "{on} van {total} aan"
+
+#. Default: "Switch blocks on or off, manage the colours every block shares, and build the block themes from them."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-intro"
+msgstr "Skakel blokke aan of af, bestuur die kleure wat alle blokke deel, en bou die bloktemas daaruit."
+
+#. Default: "Label"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-label"
+msgstr "Etiket"
+
+#. Default: "Could not load the Juizi Blocks settings. Is juizi.blocks installed on the site?"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-load-failed"
+msgstr "Kon nie die Juizi Blocks-instellings laai nie. Is juizi.blocks op die werf geïnstalleer?"
+
+#. Default: "Always on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-locked"
+msgstr "Altyd aan"
+
+#. Default: "Low contrast: text may be hard to read."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-low-contrast"
+msgstr "Lae kontras: die teks kan moeilik leesbaar wees."
+
+#. Default: "Move down"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-down"
+msgstr "Skuif af"
+
+#. Default: "Move up"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-up"
+msgstr "Skuif op"
+
+#. Default: "Name"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-name"
+msgstr "Naam"
+
+#. Default: "New colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-color"
+msgstr "Nuwe kleur"
+
+#. Default: "New theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-theme"
+msgstr "Nuwe tema"
+
+#. Default: "— None —"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-none"
+msgstr "— Geen —"
+
+#. Default: "Off by default in its own settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-off-by-default"
+msgstr "Af by verstek in sy eie instellings"
+
+#. Default: "Opacity %"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-opacity"
+msgstr "Ondeursigtigheid %"
+
+#. Default: "Card"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-card"
+msgstr "Kaart"
+
+#. Default: "Muted supporting text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-text"
+msgstr "Gedempte ondersteunende teks"
+
+#. Default: "Preview heading"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-title"
+msgstr "Voorskou-opskrif"
+
+#. Default: "Remove"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-remove"
+msgstr "Verwyder"
+
+#. Default: "Reset all to their defaults"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-reset-blocks"
+msgstr "Stel almal terug na hul verstekwaardes"
+
+#. Default: "Save"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save"
+msgstr "Stoor"
+
+#. Default: "Could not save the settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save-failed"
+msgstr "Kon nie die instellings stoor nie"
+
+#. Default: "Changes saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-saved"
+msgstr "Veranderinge gestoor"
+
+#. Default: "Background"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-background"
+msgstr "Agtergrond"
+
+#. Default: "Text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-foreground"
+msgstr "Teks"
+
+#. Default: "Muted text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-muted"
+msgstr "Gedempte teks"
+
+#. Default: "Cards / surfaces"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-surface"
+msgstr "Kaarte / oppervlakke"
+
+#. Default: "Suggested: {tone}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-suggested"
+msgstr "Voorgestel: {tone}"
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-blocks"
+msgstr "Blokke"
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-colors"
+msgstr "Kleure"
+
+#. Default: "Block themes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes"
+msgstr "Bloktemas"
+
+#. Default: "The Volto Light Theme background options (Styling > Background color) offered by VLT's own blocks, such as Grid, Teaser, Text and Listing. Juizi blocks use the colour list above instead. Each part picks a colour from that list, optionally faded."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-help"
+msgstr "Die Volto Light Theme-agtergrondopsies (Styling > Background color) wat deur VLT se eie blokke aangebied word, soos Grid, Teaser, Text en Listing. Juizi-blokke gebruik eerder die kleurlys hierbo. Elke deel kies ’n kleur uit daardie lys, opsioneel verdof."
+
+#. Default: "Themes per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block"
+msgstr "Temas per blok"
+
+#. Default: "Tick the themes each theme-aware block offers. With nothing ticked, the block offers every theme."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block-help"
+msgstr "Merk die temas wat elke blok wat temas ondersteun, aanbied. As niks gemerk is nie, bied die blok elke tema aan."
+
+#. Default: "Juizi Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-title"
+msgstr "Juizi Blocks"
+
+#. Default: "dark"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-dark"
+msgstr "donker"
+
+#. Default: "light"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-light"
+msgstr "lig"
+
+#. Default: "Colour {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unnamed-color"
+msgstr "Kleur {number}"
+
+#. Default: "Theme {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unnamed-theme"
+msgstr "Tema {number}"
+
+#. Default: "You have unsaved changes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unsaved"
+msgstr "Jy het ongestoorde veranderinge."
+
+#. Default: "Use suggestion"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-use-suggestion"
+msgstr "Gebruik voorstel"
+
+#. Default: "Colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-value"
+msgstr "Kleur"
+
+#. Default: "Default"
+#: components/Blocks/_shared/messages
+msgid "juizi-default"
+msgstr "Verstek"
+
+#. Default: "Description"
+#: components/Blocks/_shared/messages
+msgid "juizi-description"
+msgstr "Beskrywing"
+
+#. Default: "Display style"
+#: components/Blocks/_shared/messages
+msgid "juizi-display-style"
+msgstr "Vertoonstyl"
+
+#. Default: "Extra spacious"
+#: components/Blocks/_shared/messages
+msgid "juizi-extra-spacious"
+msgstr "Ekstra ruim"
+
+#. Default: "Full width"
+#: components/Blocks/_shared/messages
+msgid "juizi-full-width"
+msgstr "Volle breedte"
+
+#. Default: "On phones the arrows always sit below the pictures, whatever you choose here, so they are easy to reach with a thumb."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrow-position-help"
+msgstr "Op fone sit die pyltjies altyd onder die prente, wat jy ook al hier kies, sodat hulle maklik met ’n duim bereik kan word."
+
+#. Default: "Standard: dark arrows over the pictures on the sides, outlined arrows below. Or pick a colour to match your buttons. Also used in the enlarged view."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrow-style-help"
+msgstr "Standaard: donker pyltjies oor die prente aan die kante, buitelynpyltjies onder. Of kies ’n kleur wat by jou knoppies pas. Word ook in die vergrote aansig gebruik."
+
+#. Default: "Below the pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrows-below"
+msgstr "Onder die prente"
+
+#. Default: "On each side of the pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-arrows-sides"
+msgstr "Aan elke kant van die prente"
+
+#. Default: "Text colour follows it automatically."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-background-color-help"
+msgstr "Die tekskleur volg dit outomaties."
+
+#. Default: "Show picture titles in the enlarged view"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-in-lightbox"
+msgstr "Wys prenttitels in die vergrote aansig"
+
+#. Default: "Show picture titles on the page"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-on-item"
+msgstr "Wys prenttitels op die bladsy"
+
+#. Default: "Shows each picture's title on the small picture or grid picture itself"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-caption-on-item-help"
+msgstr "Wys elke prent se titel op die klein prentjie of roosterprent self"
+
+#. Default: "Columns on large screens"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-desktop"
+msgstr "Kolomme op groot skerms"
+
+#. Default: "Columns on phones"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-mobile"
+msgstr "Kolomme op fone"
+
+#. Default: "Columns on tablets"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-tablet"
+msgstr "Kolomme op tablette"
+
+#. Default: "Phones always show one column, so pictures stay in order."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-columns-tablet-help"
+msgstr "Fone wys altyd een kolom, sodat die prente in volgorde bly."
+
+#. Default: "{current} of {total}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-counter"
+msgstr "{current} van {total}"
+
+#. Default: "Enlarge pictures when clicked"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enable-lightbox"
+msgstr "Vergroot prente wanneer daarop geklik word"
+
+#. Default: "When off, clicking a picture opens its own page."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enable-lightbox-help"
+msgstr "Wanneer dit af is, maak ’n klik op ’n prent sy eie bladsy oop."
+
+#. Default: "Enlarge: {title}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarge-named"
+msgstr "Vergroot: {title}"
+
+#. Default: "Enlarge picture {number} of {total}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarge-numbered"
+msgstr "Vergroot prent {number} van {total}"
+
+#. Default: "Enlarged view"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-enlarged-view"
+msgstr "Vergrote aansig"
+
+#. Default: "Space between pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-gap"
+msgstr "Spasie tussen prente"
+
+#. Default: "Grid layout"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-grid-layout"
+msgstr "Roosteruitleg"
+
+#. Default: "Optional heading shown above the gallery. Screen readers use it to name this section."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-heading-help"
+msgstr "Opsionele opskrif wat bo die galery gewys word. Skermlesers gebruik dit om hierdie afdeling te benoem."
+
+#. Default: "The row of small pictures only shows arrows when there are more pictures than fit across."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-hide-arrows-help"
+msgstr "Die ry klein prentjies wys net pyltjies wanneer daar meer prente is as wat in die breedte pas."
+
+#. Default: "Highlight around the current picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-highlight"
+msgstr "Uitligting rondom die huidige prent"
+
+#. Default: "Marks the small picture that matches the large one shown."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-highlight-help"
+msgstr "Merk die klein prentjie wat by die groot een pas wat gewys word."
+
+#. Default: "Image {number}"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-image-number"
+msgstr "Beeld {number}"
+
+#. Default: "What counts as a picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-item-types"
+msgstr "Wat as ’n prent tel"
+
+#. Default: "Even grid"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-even"
+msgstr "Egalige rooster"
+
+#. Default: "Natural grid"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-natural"
+msgstr "Natuurlike rooster"
+
+#. Default: "Slideshow"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-mode-slideshow"
+msgstr "Skyfievertoning"
+
+#. Default: "No pictures found. Add some to this page, or choose a different image source in the sidebar."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-no-pictures"
+msgstr "Geen prente gevind nie. Voeg ’n paar by hierdie bladsy, of kies ’n ander beeldbron in die sybalk."
+
+#. Default: "Time on each picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-picture-time"
+msgstr "Tyd op elke prent"
+
+#. Default: "Which pictures to show"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-query"
+msgstr "Watter prente om te wys"
+
+#. Default: "Small pictures alignment"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-row-alignment"
+msgstr "Belyning van klein prentjies"
+
+#. Default: "Where the row of small pictures sits when they all fit across. Once there are more than fit, they scroll from the left."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-row-alignment-help"
+msgstr "Waar die ry klein prentjies sit wanneer almal in die breedte pas. Sodra daar meer is as wat pas, rol hulle van links af."
+
+#. Default: "Slideshow behaviour"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-slideshow-behaviour"
+msgstr "Skyfievertoning se gedrag"
+
+#. Default: "Slideshow style"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-slideshow-style"
+msgstr "Skyfievertoning se styl"
+
+#. Default: "Where the pictures come from"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source"
+msgstr "Waar die prente vandaan kom"
+
+#. Default: "Pictures inside this page"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-context"
+msgstr "Prente in hierdie bladsy"
+
+#. Default: "'Pictures inside this page' shows the pictures stored in this page. 'Pictures from across the site' finds them using rules you set."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-help"
+msgstr "“Prente in hierdie bladsy” wys die prente wat in hierdie bladsy gestoor is. “Prente van oor die hele werf” vind hulle met reëls wat jy stel."
+
+#. Default: "Pictures from across the site"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-source-query"
+msgstr "Prente van oor die hele werf"
+
+#. Default: "pictures in neat rows, all cropped to the same size"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-even"
+msgstr "prente in netjiese rye, almal tot dieselfde grootte gesnoei"
+
+#. Default: "pictures keep their own shape and fit together in columns"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-natural"
+msgstr "prente behou hul eie vorm en pas in kolomme saam"
+
+#. Default: "one large picture at a time, with small pictures underneath to click through"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-start-slideshow"
+msgstr "een groot prent op ’n slag, met klein prentjies onder om deur te klik"
+
+#. Default: "Changing style may affect how the pictures are presented."
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-change-help"
+msgstr "As jy die styl verander, kan dit beïnvloed hoe die prente aangebied word."
+
+#. Default: "Large picture with small pictures below"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-featured"
+msgstr "Groot prent met klein prentjies onder"
+
+#. Default: "Row of small pictures only"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-style-strip"
+msgstr "Net ’n ry klein prentjies"
+
+#. Default: "Size of the small pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-thumb-size"
+msgstr "Grootte van die klein prentjies"
+
+#. Default: "Pictures"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-type-image"
+msgstr "Prente"
+
+#. Default: "Links that have a preview picture"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-type-link"
+msgstr "Skakels met ’n voorskouprent"
+
+#. Default: "White, earlier setting"
+#: components/Blocks/EmblaGallery/messages
+msgid "juizi-gallery-white-earlier"
+msgstr "Wit, vorige instelling"
+
+#. Default: "Go to slide {number}"
+#: components/Blocks/_shared/messages
+msgid "juizi-go-to-slide"
+msgstr "Gaan na skyfie {number}"
+
+#. Default: "Heading"
+#: components/Blocks/_shared/messages
+msgid "juizi-heading"
+msgstr "Opskrif"
+
+#. Default: "Above content"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-above-content"
+msgstr "Bo die inhoud"
+
+#. Default: "Above title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-above-title"
+msgstr "Bo die titel"
+
+#. Default: "Add a heading in the sidebar."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-add-heading"
+msgstr "Voeg ’n opskrif in die sybalk by."
+
+#. Default: "Alt text"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-alt-text"
+msgstr "Alt-teks"
+
+#. Default: "Describes the image for screen reader users. Leave empty only if the image is purely decorative and adds no information beyond the text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-alt-text-help"
+msgstr "Beskryf die beeld vir skermlesergebruikers. Laat dit net leeg as die beeld suiwer dekoratief is en geen inligting buiten die teks byvoeg nie."
+
+#. Default: "Sets the block background. Text colour updates automatically based on your choice."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-color-help"
+msgstr "Stel die blok se agtergrond. Die tekskleur pas outomaties by jou keuse aan."
+
+#. Default: "The background image still shows on top of this colour, but the text colour follows the colour you pick here. If the text is hard to read on your image, try a different colour: a dark colour gives light text, a light colour gives dark text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-color-image-help"
+msgstr "Die agtergrondbeeld wys steeds bo-oor hierdie kleur, maar die tekskleur volg die kleur wat jy hier kies. As die teks moeilik leesbaar op jou beeld is, probeer ’n ander kleur: ’n donker kleur gee ligte teks, ’n ligte kleur gee donker teks."
+
+#. Default: "Treated as a decorative image — no alt text is needed or used. Place meaningful content in the title and description fields above."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-image-help"
+msgstr "Word as ’n dekoratiewe beeld hanteer: geen alt-teks is nodig of word gebruik nie. Plaas betekenisvolle inhoud in die titel- en beskrywingsvelde hierbo."
+
+#. Default: "Background position"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-position"
+msgstr "Agtergrondposisie"
+
+#. Default: "Background video"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-video"
+msgstr "Agtergrondvideo"
+
+#. Default: "MP4 only. Autoplays, loops, stays muted. The video is automatically paused for visitors who have enabled reduced motion in their operating system settings."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-background-video-help"
+msgstr "Slegs MP4. Speel outomaties, herhaal en bly gedemp. Die video word outomaties onderbreek vir besoekers wat verminderde beweging in hul bedryfstelsel se instellings aangeskakel het."
+
+#. Default: "Below content (default)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-below-content"
+msgstr "Onder die inhoud (verstek)"
+
+#. Default: "Beside content (right)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-beside-content"
+msgstr "Langs die inhoud (regs)"
+
+#. Default: "Leave empty to use the linked page's title. A button without a link isn't shown to visitors."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-button-label-help"
+msgstr "Laat leeg om die gekoppelde bladsy se titel te gebruik. ’n Knoppie sonder ’n skakel word nie aan besoekers gewys nie."
+
+#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-button-style-help"
+msgstr "Kies ’n styl wat met jou agtergrondkleur kontrasteer. Op ’n donker agtergrond, gebruik ’n ligte soliede knoppie of buitelyn, en omgekeerd."
+
+#. Default: "Buttons display"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-buttons-display"
+msgstr "Vertoning van knoppies"
+
+#. Default: "Choose a display style to continue."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-choose-style-continue"
+msgstr "Kies ’n vertoonstyl om voort te gaan."
+
+#. Default: "Description text below the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-description-help"
+msgstr "Beskrywende teks onder die titel."
+
+#. Default: "Inline link list"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-display-list"
+msgstr "Inlyn-skakellys"
+
+#. Default: "Buttons to each heading on this page"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-display-toc"
+msgstr "Knoppies na elke opskrif op hierdie bladsy"
+
+#. Default: "Stretch the background edge-to-edge beyond the container."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-full-width-help"
+msgstr "Rek die agtergrond van rand tot rand, verby die houer."
+
+#. Default: "Hidden"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hidden"
+msgstr "Versteek"
+
+#. Default: "Hide title visually"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hide-title"
+msgstr "Versteek titel visueel"
+
+#. Default: "Hides the title on screen while keeping it in the page structure for screen readers and search engines. Useful when the design does not need a visible heading but accessibility and SEO still require one."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-hide-title-help"
+msgstr "Versteek die titel op die skerm maar hou dit in die bladsystruktuur vir skermlesers en soekenjins. Nuttig wanneer die ontwerp nie ’n sigbare opskrif nodig het nie, maar toeganklikheid en SEO steeds een vereis."
+
+#. Default: "Image overlay"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-image-overlay"
+msgstr "Beeldoorleg"
+
+#. Default: "Colour tint over the background image to keep text readable."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-image-overlay-help"
+msgstr "Kleurtint oor die agtergrondbeeld om die teks leesbaar te hou."
+
+#. Default: "Logo"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo"
+msgstr "Logo"
+
+#. Default: "Optional logo displayed in the hero. Treated as decorative: screen readers skip it, so put anything important in the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-help"
+msgstr "Opsionele logo wat in die hero vertoon word. Word as dekoratief hanteer: skermlesers slaan dit oor, so sit enigiets belangriks in die titel."
+
+#. Default: "Logo position"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position"
+msgstr "Logoposisie"
+
+#. Default: "Choose where the logo sits. \"Beside content\" is unavailable once a Side image is added."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position-help"
+msgstr "Kies waar die logo sit. “Langs die inhoud” is nie beskikbaar sodra ’n sybeeld bygevoeg is nie."
+
+#. Default: "Locked to \"Above title\" — the side slot is already in use by the Side image below."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-position-locked"
+msgstr "Gesluit op “Bo die titel”: die syspasie word reeds deur die sybeeld hieronder gebruik."
+
+#. Default: "Logo size"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-logo-size"
+msgstr "Logogrootte"
+
+#. Default: "Hero: a full-width page header. Section: a themed content band inside the page."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-help"
+msgstr "Hero: ’n bladsyopskrif oor die volle breedte. Afdeling: ’n gekleurde inhoudsband binne die bladsy."
+
+#. Default: "Hero (page header)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-hero"
+msgstr "Hero (bladsyopskrif)"
+
+#. Default: "Section (content band)"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-mode-section"
+msgstr "Afdeling (inhoudsband)"
+
+#. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-other-primary"
+msgstr "’n Ander blok is reeds die hoofopskrif van hierdie bladsy. Ontmerk “Dit is die hoofopskrif van die bladsy” by een van hulle."
+
+#. Default: "Text above the title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-preheader"
+msgstr "Teks bo die titel"
+
+#. Default: "Small text displayed above the title. If set, this replaces the publication date or event details."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-preheader-help"
+msgstr "Klein teks wat bo die titel vertoon word. As dit ingevul is, vervang dit die publikasiedatum of die geleentheidsbesonderhede."
+
+#. Default: "This is the primary page heading"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-primary-heading"
+msgstr "Dit is die hoofopskrif van die bladsy"
+
+#. Default: "Makes this the main heading of the page. Use it for the first and most important block. Only one block per page should have this."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-primary-heading-help"
+msgstr "Maak hierdie die hoofopskrif van die bladsy. Gebruik dit vir die eerste en belangrikste blok. Net een blok per bladsy behoort dit te hê."
+
+#. Default: "Section"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-section"
+msgstr "Afdeling"
+
+#. Default: "Show arrow icon"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-arrow"
+msgstr "Wys pyltjie-ikoon"
+
+#. Default: "Adds a small arrow after the label — useful for calls to action like \"Learn more\". Set per button, so some can have it and others not."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-arrow-help"
+msgstr "Voeg ’n klein pyltjie ná die etiket by; nuttig vir oproepe tot aksie soos “Vind meer uit”. Word per knoppie gestel, so sommige kan dit hê en ander nie."
+
+#. Default: "Show breadcrumbs"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-breadcrumbs"
+msgstr "Wys broodkrummelpad"
+
+#. Default: "Shows where this page sits in the site (for example Home / About) above the title. Hidden on top-level pages."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-breadcrumbs-help"
+msgstr "Wys waar hierdie bladsy in die werf pas (byvoorbeeld Tuis / Meer oor ons) bo die titel. Versteek op topvlakbladsye."
+
+#. Default: "Show event details"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-event-details"
+msgstr "Wys geleentheidsbesonderhede"
+
+#. Default: "For events — shows the event date(s) and location above the title, e.g. \"13 - 14 Nov 2024 | Cape Town\". Only applies when the 'Text above the title' field is empty and the item has a start date. Takes priority over Show publication date."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-event-details-help"
+msgstr "Vir geleenthede: wys die geleentheid se datum(s) en plek bo die titel, bv. “13 - 14 Nov. 2024 | Kaapstad”. Geld net wanneer die veld “Teks bo die titel” leeg is en die item ’n begindatum het. Kry voorrang bo “Wys publikasiedatum”."
+
+#. Default: "Show publication date"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-publication-date"
+msgstr "Wys publikasiedatum"
+
+#. Default: "For news items — shows the publication date above the title. Only applies when the 'Text above the title' field is empty. If Show event details below is also on, event details take priority."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-show-publication-date-help"
+msgstr "Vir nuusitems: wys die publikasiedatum bo die titel. Geld net wanneer die veld “Teks bo die titel” leeg is. As “Wys geleentheidsbesonderhede” hieronder ook aan is, kry die geleentheidsbesonderhede voorrang."
+
+#. Default: "Side-by-side layout"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-by-side"
+msgstr "Langs-mekaar-uitleg"
+
+#. Default: "Display subtitle and buttons beside the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-by-side-help"
+msgstr "Vertoon die subtitel en knoppies langs die titel."
+
+#. Default: "Side image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image"
+msgstr "Sybeeld"
+
+#. Default: "A larger image displayed beside your text — not the Logo above. Works in both Hero and Section styles. Adding one moves the Logo (if any) to \"Above title\", since only one element can occupy the side slot."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-help"
+msgstr "’n Groter beeld wat langs jou teks vertoon word; nie die logo hierbo nie. Werk in beide die Hero- en Afdeling-style. As jy een byvoeg, skuif die logo (indien enige) na “Bo die titel”, want net een element kan die syspasie beset."
+
+#. Default: "Where the image appears on small screens, where it can no longer sit beside the text."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-mobile-help"
+msgstr "Waar die beeld op klein skerms verskyn, waar dit nie meer langs die teks kan sit nie."
+
+#. Default: "Use smaller buttons"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-small-buttons"
+msgstr "Gebruik kleiner knoppies"
+
+#. Default: "a full-width page header with title, description and background image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-start-hero"
+msgstr "’n bladsyopskrif oor die volle breedte, met titel, beskrywing en agtergrondbeeld"
+
+#. Default: "a themed content band inside the page with background colour and buttons"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-start-section"
+msgstr "’n inhoudsband binne die bladsy, met agtergrondkleur en knoppies"
+
+#. Default: "Subtitle"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-subtitle"
+msgstr "Subtitel"
+
+#. Default: "Supporting text below the title."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-subtitle-help"
+msgstr "Ondersteunende teks onder die titel."
+
+#. Default: "The heading for this block. Even if you hide it visually, it helps screen readers and search engines understand what this section is about."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-title-help"
+msgstr "Die opskrif vir hierdie blok. Selfs as jy dit visueel versteek, help dit skermlesers en soekenjins om te verstaan waaroor hierdie afdeling gaan."
+
+#. Default: "This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick “This is the primary page heading” in the Hero block’s Advanced settings."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-title-hidden-note"
+msgstr "Hierdie titel is op die bladsy versteek omdat ’n Hero-blok as die hoofopskrif van die bladsy gestel is. Om dit weer te wys, ontmerk “Dit is die hoofopskrif van die bladsy” in die Gevorderd-afdeling van die Hero-blok."
+
+#. Default: "Style applied to all the heading buttons. Choose a style that contrasts with your background."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-toc-button-style-help"
+msgstr "Styl wat op al die opskrifknoppies toegepas word. Kies ’n styl wat met jou agtergrond kontrasteer."
+
+#. Default: "No headings on this page yet. Add some below and they'll appear here as buttons."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-toc-empty"
+msgstr "Nog geen opskrifte op hierdie bladsy nie. Voeg ’n paar hieronder by en hulle sal hier as knoppies verskyn."
+
+#. Default: "Include main headings"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-h2"
+msgstr "Sluit hoofopskrifte in"
+
+#. Default: "Include sub-headings"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-h3"
+msgstr "Sluit subopskrifte in"
+
+#. Default: "Use page description"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-description"
+msgstr "Gebruik bladsybeskrywing"
+
+#. Default: "Pulls the description from the page automatically."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-description-help"
+msgstr "Haal die beskrywing outomaties van die bladsy af."
+
+#. Default: "Use page title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-title"
+msgstr "Gebruik bladsytitel"
+
+#. Default: "Pulls the title from the page automatically."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-page-title-help"
+msgstr "Haal die titel outomaties van die bladsy af."
+
+#. Default: "Use page preview image"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-preview-image"
+msgstr "Gebruik die bladsy se voorskoubeeld"
+
+#. Default: "Uses the page preview image as the hero background."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-use-preview-image-help"
+msgstr "Gebruik die bladsy se voorskoubeeld as die hero se agtergrond."
+
+#. Default: "Vertical alignment"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-vertical-alignment"
+msgstr "Vertikale belyning"
+
+#. Default: "Aligns the image against the height of the text content beside it."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-vertical-alignment-help"
+msgstr "Belyn die beeld teen die hoogte van die teks langsaan."
+
+#. Default: "Hide arrows"
+#: components/Blocks/_shared/messages
+msgid "juizi-hide-arrows"
+msgstr "Versteek pyltjies"
+
+#. Default: "Home"
+#: components/Blocks/_shared/messages
+msgid "juizi-home"
+msgstr "Tuis"
+
+#. Default: "Icon"
+#: components/Blocks/_shared/messages
+msgid "juizi-icon"
+msgstr "Ikoon"
+
+#. Default: "Arrow right"
+#: config/iconMessages
+msgid "juizi-icon-arrow-right"
+msgstr "Pyltjie regs"
+
+#. Default: "Award"
+#: config/iconMessages
+msgid "juizi-icon-award"
+msgstr "Toekenning"
+
+#. Default: "Chart"
+#: config/iconMessages
+msgid "juizi-icon-bar-chart2"
+msgstr "Grafiek"
+
+#. Default: "Book"
+#: config/iconMessages
+msgid "juizi-icon-book-open"
+msgstr "Boek"
+
+#. Default: "Bookmark"
+#: config/iconMessages
+msgid "juizi-icon-bookmark"
+msgstr "Boekmerk"
+
+#. Default: "Briefcase"
+#: config/iconMessages
+msgid "juizi-icon-briefcase"
+msgstr "Aktetas"
+
+#. Default: "Building"
+#: config/iconMessages
+msgid "juizi-icon-building"
+msgstr "Gebou"
+
+#. Default: "Calendar"
+#: config/iconMessages
+msgid "juizi-icon-calendar"
+msgstr "Kalender"
+
+#. Default: "Check"
+#: config/iconMessages
+msgid "juizi-icon-check"
+msgstr "Regmerkie"
+
+#. Default: "Clock"
+#: config/iconMessages
+msgid "juizi-icon-clock"
+msgstr "Horlosie"
+
+#. Default: "Code"
+#: config/iconMessages
+msgid "juizi-icon-code"
+msgstr "Kode"
+
+#. Default: "Database"
+#: config/iconMessages
+msgid "juizi-icon-database"
+msgstr "Databasis"
+
+#. Default: "Download"
+#: config/iconMessages
+msgid "juizi-icon-download"
+msgstr "Aflaai"
+
+#. Default: "External link"
+#: config/iconMessages
+msgid "juizi-icon-external-link"
+msgstr "Eksterne skakel"
+
+#. Default: "Document"
+#: config/iconMessages
+msgid "juizi-icon-file-text"
+msgstr "Dokument"
+
+#. Default: "Flag"
+#: config/iconMessages
+msgid "juizi-icon-flag"
+msgstr "Vlag"
+
+#. Default: "Globe"
+#: config/iconMessages
+msgid "juizi-icon-globe"
+msgstr "Aardbol"
+
+#. Default: "Education"
+#: config/iconMessages
+msgid "juizi-icon-graduation-cap"
+msgstr "Onderwys"
+
+#. Default: "Heart"
+#: config/iconMessages
+msgid "juizi-icon-heart"
+msgstr "Hart"
+
+#. Default: "Help"
+#: config/iconMessages
+msgid "juizi-icon-help-circle"
+msgstr "Hulp"
+
+#. Default: "Home"
+#: config/iconMessages
+msgid "juizi-icon-home"
+msgstr "Tuis"
+
+#. Default: "Info"
+#: config/iconMessages
+msgid "juizi-icon-info"
+msgstr "Inligting"
+
+#. Default: "Leaf"
+#: config/iconMessages
+msgid "juizi-icon-leaf"
+msgstr "Blaar"
+
+#. Default: "Link"
+#: config/iconMessages
+msgid "juizi-icon-link"
+msgstr "Skakel"
+
+#. Default: "Lock"
+#: config/iconMessages
+msgid "juizi-icon-lock"
+msgstr "Slot"
+
+#. Default: "Mail"
+#: config/iconMessages
+msgid "juizi-icon-mail"
+msgstr "Pos"
+
+#. Default: "Location"
+#: config/iconMessages
+msgid "juizi-icon-map-pin"
+msgstr "Ligging"
+
+#. Default: "Message"
+#: config/iconMessages
+msgid "juizi-icon-message-circle"
+msgstr "Boodskap"
+
+#. Default: "Microphone"
+#: config/iconMessages
+msgid "juizi-icon-mic"
+msgstr "Mikrofoon"
+
+#. Default: "News"
+#: config/iconMessages
+msgid "juizi-icon-newspaper"
+msgstr "Nuus"
+
+#. Default: "Phone"
+#: config/iconMessages
+msgid "juizi-icon-phone"
+msgstr "Telefoon"
+
+#. Default: "RSS"
+#: config/iconMessages
+msgid "juizi-icon-rss"
+msgstr "RSS"
+
+#. Default: "Search"
+#: config/iconMessages
+msgid "juizi-icon-search"
+msgstr "Soek"
+
+#. Default: "Send"
+#: config/iconMessages
+msgid "juizi-icon-send"
+msgstr "Stuur"
+
+#. Default: "Settings"
+#: config/iconMessages
+msgid "juizi-icon-settings"
+msgstr "Instellings"
+
+#. Default: "Share"
+#: config/iconMessages
+msgid "juizi-icon-share2"
+msgstr "Deel"
+
+#. Default: "Shield"
+#: config/iconMessages
+msgid "juizi-icon-shield"
+msgstr "Skild"
+
+#. Default: "Star"
+#: config/iconMessages
+msgid "juizi-icon-star"
+msgstr "Ster"
+
+#. Default: "Sun"
+#: config/iconMessages
+msgid "juizi-icon-sun"
+msgstr "Son"
+
+#. Default: "Trending up"
+#: config/iconMessages
+msgid "juizi-icon-trending-up"
+msgstr "Stygende neiging"
+
+#. Default: "Upload"
+#: config/iconMessages
+msgid "juizi-icon-upload"
+msgstr "Oplaai"
+
+#. Default: "Person"
+#: config/iconMessages
+msgid "juizi-icon-user"
+msgstr "Persoon"
+
+#. Default: "Person (verified)"
+#: config/iconMessages
+msgid "juizi-icon-user-check"
+msgstr "Persoon (geverifieer)"
+
+#. Default: "People"
+#: config/iconMessages
+msgid "juizi-icon-users"
+msgstr "Mense"
+
+#. Default: "Video"
+#: config/iconMessages
+msgid "juizi-icon-video"
+msgstr "Video"
+
+#. Default: "Lightning"
+#: config/iconMessages
+msgid "juizi-icon-zap"
+msgstr "Weerlig"
+
+#. Default: "Image"
+#: components/Blocks/_shared/messages
+msgid "juizi-image"
+msgstr "Beeld"
+
+#. Default: "Intro text"
+#: components/Blocks/_shared/messages
+msgid "juizi-intro-text"
+msgstr "Inleidende teks"
+
+#. Default: "Label"
+#: components/Blocks/_shared/messages
+msgid "juizi-label"
+msgstr "Etiket"
+
+#. Default: "Large"
+#: components/Blocks/_shared/messages
+msgid "juizi-large"
+msgstr "Groot"
+
+#. Default: "Layout"
+#: components/Blocks/_shared/messages
+msgid "juizi-layout"
+msgstr "Uitleg"
+
+#. Default: "Left"
+#: components/Blocks/_shared/messages
+msgid "juizi-left"
+msgstr "Links"
+
+#. Default: "Link"
+#: components/Blocks/_shared/messages
+msgid "juizi-link"
+msgstr "Skakel"
+
+#. Default: "Link text"
+#: components/Blocks/_shared/messages
+msgid "juizi-link-title"
+msgstr "Skakelteks"
+
+#. Default: "Loop continuously"
+#: components/Blocks/_shared/messages
+msgid "juizi-loop"
+msgstr "Herhaal aanhoudend"
+
+#. Default: "Medium"
+#: components/Blocks/_shared/messages
+msgid "juizi-medium"
+msgstr "Medium"
+
+#. Default: "Middle"
+#: components/Blocks/_shared/messages
+msgid "juizi-middle"
+msgstr "Middel"
+
+#. Default: "Next image"
+#: components/Blocks/_shared/messages
+msgid "juizi-next-image"
+msgstr "Volgende beeld"
+
+#. Default: "Next slide"
+#: components/Blocks/_shared/messages
+msgid "juizi-next-slide"
+msgstr "Volgende skyfie"
+
+#. Default: "None"
+#: components/Blocks/_shared/messages
+msgid "juizi-none"
+msgstr "Geen"
+
+#. Default: "Normal"
+#: components/Blocks/_shared/messages
+msgid "juizi-normal"
+msgstr "Normaal"
+
+#. Default: "On mobile"
+#: components/Blocks/_shared/messages
+msgid "juizi-on-mobile"
+msgstr "Op selfone"
+
+#. Default: "Options"
+#: components/Blocks/_shared/messages
+msgid "juizi-options"
+msgstr "Opsies"
+
+#. Default: "Black"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-black"
+msgstr "Swart"
+
+#. Default: "Brand colour"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-brand"
+msgstr "Handelsmerkkleur"
+
+#. Default: "Dark"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-dark"
+msgstr "Donker"
+
+#. Default: "Gradient (default)"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-gradient"
+msgstr "Gradiënt (verstek)"
+
+#. Default: "Light"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-light"
+msgstr "Lig"
+
+#. Default: "Medium"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-medium"
+msgstr "Medium"
+
+#. Default: "{color} — {strength} ({percent}%)"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-tint"
+msgstr "{color} — {strength} ({percent}%)"
+
+#. Default: "White"
+#: components/Blocks/_shared/messages
+msgid "juizi-overlay-white"
+msgstr "Wit"
+
+#. Default: "Previous image"
+#: components/Blocks/_shared/messages
+msgid "juizi-previous-image"
+msgstr "Vorige beeld"
+
+#. Default: "Previous slide"
+#: components/Blocks/_shared/messages
+msgid "juizi-previous-slide"
+msgstr "Vorige skyfie"
+
+#. Default: "Read more"
+#: components/Blocks/_shared/messages
+msgid "juizi-read-more"
+msgstr "Lees meer"
+
+#. Default: "Choose where to send visitors in the sidebar, under 'Send visitors to'."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-choose-prompt"
+msgstr "Kies in die sybalk waarheen om besoekers te stuur, onder “Stuur besoekers na”."
+
+#. Default: "Go now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-now"
+msgstr "Gaan nou"
+
+#. Default: "Go to {name} now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-to"
+msgstr "Gaan nou na {name}"
+
+#. Default: "Go to the page now"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-go-to-page"
+msgstr "Gaan nou na die bladsy"
+
+#. Default: "This redirect has no destination yet, so visitors stay on this page. Edit the page to choose one."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-no-destination"
+msgstr "Hierdie herleiding het nog geen bestemming nie, so besoekers bly op hierdie bladsy. Redigeer die bladsy om een te kies."
+
+#. Default: "Page name"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-page-name"
+msgstr "Bladsynaam"
+
+#. Default: "Shown instead of the web address, e.g. 'Our new events page'. Leave empty to show the address."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-page-name-help"
+msgstr "Word in plaas van die webadres gewys, bv. “Ons nuwe geleentheidsbladsy”. Laat leeg om die adres te wys."
+
+#. Default: "Search engines keep listing this page. To move a page for good, ask your site administrator to set up a permanent redirect."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-permanent-hint"
+msgstr "Soekenjins hou aan om hierdie bladsy te lys. Om ’n bladsy permanent te skuif, vra jou werfadministrateur om ’n permanente herleiding op te stel."
+
+#. Default: "Redirecting in {seconds}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-redirecting"
+msgstr "Herlei oor {seconds}…"
+
+#. Default: "Redirecting…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-redirecting-now"
+msgstr "Herlei tans…"
+
+#. Default: "This points to the page you're editing, so visitors would go round in circles. Choose a different page in the sidebar."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-same-page-edit"
+msgstr "Dit wys na die bladsy wat jy redigeer, so besoekers sou in sirkels loop. Kies ’n ander bladsy in die sybalk."
+
+#. Default: "This redirect points to this same page, so visitors aren't sent anywhere. Edit the page to choose a different one."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-same-page-view"
+msgstr "Hierdie herleiding wys na hierdie selfde bladsy, so besoekers word nêrens heen gestuur nie. Redigeer die bladsy om ’n ander een te kies."
+
+#. Default: "Send visitors to"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-send-to"
+msgstr "Stuur besoekers na"
+
+#. Default: "Choose a page on this site, or type a web address. Visitors see this page for a few seconds, then move on. You and other editors aren't redirected."
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-send-to-help"
+msgstr "Kies ’n bladsy op hierdie werf, of tik ’n webadres. Besoekers sien hierdie bladsy vir ’n paar sekondes en gaan dan verder. Jy en ander redakteurs word nie herlei nie."
+
+#. Default: "Taking you to {name} in {seconds}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-taking"
+msgstr "Ons neem jou oor {seconds} na {name}…"
+
+#. Default: "Taking you to {name}…"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-taking-now"
+msgstr "Ons neem jou na {name}…"
+
+#. Default: "Visitors will be sent to {destination}"
+#: components/Blocks/Redirect/messages
+msgid "juizi-redirect-will-be-sent"
+msgstr "Besoekers sal gestuur word na {destination}"
+
+#. Default: "Right"
+#: components/Blocks/_shared/messages
+msgid "juizi-right"
+msgstr "Regs"
+
+#. Default: "{count, plural, one {# second} other {# seconds}}"
+#: components/Blocks/_shared/messages
+msgid "juizi-seconds"
+msgstr "{count, plural, one {# sekonde} other {# sekondes}}"
+
+#. Default: "Select a display style in the sidebar to get started."
+#: components/Blocks/_shared/messages
+msgid "juizi-select-style-prompt"
+msgstr "Kies ’n vertoonstyl in die sybalk om te begin."
+
+#. Default: "Slide navigation"
+#: components/Blocks/_shared/messages
+msgid "juizi-slide-navigation"
+msgstr "Skyfienavigasie"
+
+#. Default: "Small"
+#: components/Blocks/_shared/messages
+msgid "juizi-small"
+msgstr "Klein"
+
+#. Default: "Spacious"
+#: components/Blocks/_shared/messages
+msgid "juizi-spacious"
+msgstr "Ruim"
+
+#. Default: "Standard"
+#: components/Blocks/_shared/messages
+msgid "juizi-standard"
+msgstr "Standaard"
+
+#. Default: "Text"
+#: components/Blocks/_shared/messages
+msgid "juizi-text"
+msgstr "Teks"
+
+#. Default: "Text above the heading"
+#: components/Blocks/_shared/messages
+msgid "juizi-text-above-heading"
+msgstr "Teks bo die opskrif"
+
+#. Default: "Text alignment"
+#: components/Blocks/_shared/messages
+msgid "juizi-text-alignment"
+msgstr "Teksbelyning"
+
+#. Default: "Title"
+#: components/Blocks/_shared/messages
+msgid "juizi-title"
+msgstr "Titel"
+
+#. Default: "Top"
+#: components/Blocks/_shared/messages
+msgid "juizi-top"
+msgstr "Bo"
+
+#. Default: "Top padding"
+#: components/Blocks/_shared/messages
+msgid "juizi-top-padding"
+msgstr "Spasie bo"
+
+#. Default: "View all"
+#: components/Blocks/_shared/messages
+msgid "juizi-view-all"
+msgstr "Bekyk alles"

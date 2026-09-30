@@ -1,5 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {
+  readTranslations,
+  renderWithIntl as render,
+} from '../_shared/testUtils';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import View from './View';
@@ -21,11 +24,12 @@ jest.mock('@plone/volto/registry', () => ({
   blocks: { blocksConfig: {} },
 }));
 
-const renderHero = (props) =>
+const renderHero = (props, options) =>
   render(
     <Provider store={configureStore()({ breadcrumbs: { items: [] } })}>
       <View block="hero1" {...props} />
     </Provider>,
+    options,
   );
 
 describe('Hero', () => {
@@ -110,6 +114,40 @@ describe('Hero', () => {
       container.querySelector('.hero-block--primary-heading'),
     ).not.toBeNull();
     expect(document.body.className).not.toContain('has-hero');
+  });
+
+  it('gives the editor note above the hidden page title its words, translated', () => {
+    const props = {
+      data: { blockMode: 'hero', isPrimaryHeading: true },
+      properties: { title: 'T' },
+    };
+    const note = (container) => container.querySelector('style')?.innerHTML;
+
+    // style.css draws the note with `content: var(--juizi-hero-title-note)`.
+    const english = renderHero({ ...props, isEditMode: true });
+    expect(note(english.container)).toBe(
+      ':root{--juizi-hero-title-note:"This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick “This is the primary page heading” in the Hero block’s Advanced settings."}',
+    );
+
+    const afrikaans = renderHero(
+      { ...props, isEditMode: true },
+      { locale: 'af', messages: readTranslations('af') },
+    );
+    expect(note(afrikaans.container)).toContain(
+      '"Hierdie titel is op die bladsy versteek omdat ’n Hero-blok',
+    );
+
+    // Only in the editor, and only while this Hero is the primary heading.
+    expect(note(renderHero(props).container)).toBeUndefined();
+    expect(
+      note(
+        renderHero({
+          ...props,
+          data: { blockMode: 'section' },
+          isEditMode: true,
+        }).container,
+      ),
+    ).toBeUndefined();
   });
 
   it('warns editors when another Hero is also the primary heading', () => {

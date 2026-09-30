@@ -9,14 +9,25 @@ import {
 import SettingsLoader from '../components/SettingsLoader';
 import Dashboard from '../components/Dashboard/Dashboard';
 import paletteSVG from '@plone/volto/icons/paint.svg';
+import voltoLanguages from '@plone/volto/constants/Languages.cjs';
 
 export const CONTROLPANEL_ID = 'juizi-blocks';
 
+/**
+ * Interface languages this add-on is translated into that Volto doesn't list
+ * yet. Volto only renders in a language from its own list (the server falls
+ * back to English for any other), so a site whose language is Afrikaans
+ * would get these blocks in English. Listing the language here lets such a
+ * site use it; it also appears in the personal preferences language choice.
+ * Remove an entry once Volto lists the language itself.
+ */
+const EXTRA_LANGUAGES: Record<string, string> = { af: 'Afrikaans' };
+
 export default function install(config: ConfigType) {
-  // Language settings
-  config.settings.isMultilingual = false;
-  config.settings.supportedLanguages = ['en'];
-  config.settings.defaultLanguage = 'en';
+  // Runs before Volto's server reads its language list.
+  Object.entries(EXTRA_LANGUAGES).forEach(([code, name]) => {
+    if (!voltoLanguages[code]) voltoLanguages[code] = name;
+  });
 
   // Settings store
   config.addonReducers = {

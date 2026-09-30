@@ -58,6 +58,25 @@ const toDraft = (data) => ({
 
 const TABS = ['blocks', 'colors'];
 
+/** A problem from validateColorConfig as a sentence in the editor's
+ * language. */
+const issueText = (intl, { code, label, index, name, slot }) => {
+  const isTheme = code.startsWith('theme');
+  return intl.formatMessage(
+    messages[`error${code.charAt(0).toUpperCase()}${code.slice(1)}`],
+    {
+      label:
+        label ||
+        intl.formatMessage(
+          isTheme ? messages.unnamedTheme : messages.unnamedColor,
+          { number: (index ?? 0) + 1 },
+        ),
+      name,
+      slot: slot ? intl.formatMessage(messages[`slot_${slot}`]) : undefined,
+    },
+  );
+};
+
 const Dashboard = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
@@ -136,9 +155,10 @@ const Dashboard = () => {
         <div className="juizi-dashboard__error" role="alert">
           <strong>{intl.formatMessage(messages.fixErrors)}</strong>
           <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
+            {errors.map((error) => {
+              const text = issueText(intl, error);
+              return <li key={text}>{text}</li>;
+            })}
           </ul>
         </div>
       )}

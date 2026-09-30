@@ -101,7 +101,7 @@ The icon variation uses **Lucide React** for rendering. The icon picker in the s
 
 ### Adding Lucide icons
 
-Import the icon in `iconChoices.js`, add it to `lucideIconMap`, and add an entry to `lucideChoices`. The key must match the Lucide component name exactly (PascalCase), e.g. `'BookOpen'`. An icon saved on a page that isn't in `lucideIconMap` shows the fallback circle, so before removing an icon, check that no live page uses it.
+Import the icon in `iconChoices.js`, add it to `lucideIconMap`, add its key to `lucideChoiceKeys`, and give it a name in `src/config/iconMessages.js` (then `make i18n` and translate it). The key must match the Lucide component name exactly (PascalCase), e.g. `'BookOpen'`. An icon saved on a page that isn't in `lucideIconMap` shows the fallback circle, so before removing an icon, check that no live page uses it.
 
 ### Adding custom SVG icons
 
@@ -215,6 +215,6 @@ The wrapper `id` is derived from `headerText`. A short block-id suffix (first 6 
 - Counting speed is Quick / Normal / Slow; unusual saved values show as "Custom (…)" (CR8).
 - Statistics render the real number on the server and count up once in view (CR11).
 - Image cards with a link but no button style used to wrap the whole card in a link around the button link; now the button is the one real link and a mouse-only cover link (hidden from screen readers and the keyboard) makes the card clickable.
-- Numbers are formatted in British English, e.g. "1,000".
+- Numbers are formatted for the site's language; British English for English, e.g. "1,000".
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block contentRow` container with `type-*`, `align-*` and `tone-*` classes.
 - The anchor id for same-page links is unchanged.

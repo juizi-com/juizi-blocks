@@ -137,9 +137,12 @@ describe('editing', () => {
     expect(next.themes[0].background).toBeUndefined();
     expect(next.blocks.contentRow.colors).toEqual(['gold']);
     // The now-incomplete theme is reported.
-    expect(validateColorConfig(next)).toContain(
-      'Theme "Default": pick a background colour.',
-    );
+    expect(validateColorConfig(next)).toContainEqual({
+      code: 'themeSlotMissing',
+      label: 'Default',
+      index: 0,
+      slot: 'background',
+    });
   });
 
   it('removes a theme and its block references', () => {
@@ -177,6 +180,11 @@ describe('validateColorConfig', () => {
         { ...first, name: 'fg', foreground: 'blue' },
       ],
     });
-    expect(errors).toHaveLength(4);
+    expect(errors.map((error) => error.code)).toEqual([
+      'colorDuplicate',
+      'colorName',
+      'colorValue',
+      'colorForeground',
+    ]);
   });
 });

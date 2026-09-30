@@ -67,6 +67,8 @@ import {
   Video,
   Zap,
 } from 'lucide-react';
+import iconMessages from './iconMessages';
+import { translator } from '../components/Blocks/_shared/i18n';
 
 // ─── Lucide icon components ────────────────────────────────────────────────
 // Imported one by one: `import * as` from lucide-react would put every
@@ -131,66 +133,61 @@ export const lucideIconMap = {
 export const FallbackIcon = Circle;
 
 // ─── Lucide icon choices ───────────────────────────────────────────────────
-const lucideChoices = [
+// In the order editors see them. Each name is a message in iconMessages.js.
+const lucideChoiceKeys = [
   // Communication
-  ['Globe', 'Globe'],
-  ['Mail', 'Mail'],
-  ['Phone', 'Phone'],
-  ['MessageCircle', 'Message'],
-  ['Send', 'Send'],
-  ['Rss', 'RSS'],
-
+  'Globe',
+  'Mail',
+  'Phone',
+  'MessageCircle',
+  'Send',
+  'Rss',
   // People & organisation
-  ['Users', 'People'],
-  ['User', 'Person'],
-  ['UserCheck', 'Person (verified)'],
-  ['Building', 'Building'],
-  ['Briefcase', 'Briefcase'],
-  ['GraduationCap', 'Education'],
-
+  'Users',
+  'User',
+  'UserCheck',
+  'Building',
+  'Briefcase',
+  'GraduationCap',
   // Content & media
-  ['BookOpen', 'Book'],
-  ['FileText', 'Document'],
-  ['Newspaper', 'News'],
-  ['Video', 'Video'],
-  ['Mic', 'Microphone'],
-
+  'BookOpen',
+  'FileText',
+  'Newspaper',
+  'Video',
+  'Mic',
   // Navigation & links
-  ['Link', 'Link'],
-  ['ExternalLink', 'External link'],
-  ['ArrowRight', 'Arrow right'],
-  ['Home', 'Home'],
-  ['MapPin', 'Location'],
-
+  'Link',
+  'ExternalLink',
+  'ArrowRight',
+  'Home',
+  'MapPin',
   // Actions
-  ['Search', 'Search'],
-  ['Download', 'Download'],
-  ['Upload', 'Upload'],
-  ['Share2', 'Share'],
-  ['Star', 'Star'],
-  ['Heart', 'Heart'],
-  ['Bookmark', 'Bookmark'],
-  ['Check', 'Check'],
-
+  'Search',
+  'Download',
+  'Upload',
+  'Share2',
+  'Star',
+  'Heart',
+  'Bookmark',
+  'Check',
   // Data & tech
-  ['BarChart2', 'Chart'],
-  ['TrendingUp', 'Trending up'],
-  ['Shield', 'Shield'],
-  ['Lock', 'Lock'],
-  ['Code', 'Code'],
-  ['Database', 'Database'],
-
+  'BarChart2',
+  'TrendingUp',
+  'Shield',
+  'Lock',
+  'Code',
+  'Database',
   // General
-  ['Leaf', 'Leaf'],
-  ['Sun', 'Sun'],
-  ['Zap', 'Lightning'],
-  ['Award', 'Award'],
-  ['Flag', 'Flag'],
-  ['Clock', 'Clock'],
-  ['Calendar', 'Calendar'],
-  ['Settings', 'Settings'],
-  ['HelpCircle', 'Help'],
-  ['Info', 'Info'],
+  'Leaf',
+  'Sun',
+  'Zap',
+  'Award',
+  'Flag',
+  'Clock',
+  'Calendar',
+  'Settings',
+  'HelpCircle',
+  'Info',
 ];
 
 // ─── Custom SVG icons ──────────────────────────────────────────────────────
@@ -223,5 +220,12 @@ try {
 }
 
 // ─── Combined export ───────────────────────────────────────────────────────
-// Lucide choices first, custom SVGs appended after.
-export const iconChoicesList = [...lucideChoices, ...customSvgChoices];
+// Lucide choices first, custom SVGs appended after. `t` is the schema's
+// translator; custom SVGs keep the name made from their file name.
+export const getIconChoices = (t = translator()) => [
+  ...lucideChoiceKeys.map((key) => [key, t(iconMessages[key])]),
+  ...customSvgChoices,
+];
+
+/** The choices in English, for code that has no translator. */
+export const iconChoicesList = getIconChoices();

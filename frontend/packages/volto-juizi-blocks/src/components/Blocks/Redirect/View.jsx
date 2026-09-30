@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FormattedMessage, useIntl } from 'react-intl';
 import BlockPlaceholder from '../_shared/BlockPlaceholder';
 import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';
@@ -12,6 +13,7 @@ import {
   isSamePage,
   rememberRedirect,
 } from './redirectTarget';
+import messages from './messages';
 
 import './redirect-block.less';
 
@@ -31,6 +33,7 @@ const Wrapper = ({ blockProps, children }) => (
 const View = (props) => {
   const { data } = props;
   const isEditMode = isEditing(props);
+  const intl = useIntl();
   const history = useHistory();
   const [countdown, setCountdown] = useState(3);
   const [looped, setLooped] = useState(false);
@@ -83,12 +86,11 @@ const View = (props) => {
         {isEditMode ? (
           <BlockPlaceholder
             blockClass="redirect-block-placeholder"
-            prompt="Choose where to send visitors in the sidebar, under 'Send visitors to'."
+            prompt={intl.formatMessage(messages.choosePrompt)}
           />
         ) : (
           <div className="redirect-block redirect-block--unconfigured">
-            This redirect has no destination yet, so visitors stay on this page.
-            Edit the page to choose one.
+            {intl.formatMessage(messages.noDestination)}
           </div>
         )}
       </Wrapper>
@@ -101,11 +103,10 @@ const View = (props) => {
         <div className="redirect-block redirect-block--unconfigured">
           {isEditMode ? (
             <EditHint isEditMode tone="warning" live>
-              This points to the page you&apos;re editing, so visitors would go
-              round in circles. Choose a different page in the sidebar.
+              {intl.formatMessage(messages.samePageEdit)}
             </EditHint>
           ) : (
-            "This redirect points to this same page, so visitors aren't sent anywhere. Edit the page to choose a different one."
+            intl.formatMessage(messages.samePageView)
           )}
         </div>
       </Wrapper>
@@ -121,18 +122,23 @@ const View = (props) => {
           </span>
           <div className="redirect-block__body">
             <p className="redirect-block__line">
-              Visitors will be sent to{' '}
-              <strong className="redirect-block__name">
-                {pageName || url}
-              </strong>
+              <FormattedMessage
+                {...messages.willBeSent}
+                values={{
+                  destination: (
+                    <strong className="redirect-block__name">
+                      {pageName || url}
+                    </strong>
+                  ),
+                }}
+              />
               {pageName && (
                 <span className="redirect-block__url"> ({url})</span>
               )}
             </p>
             {isEditMode ? (
               <EditHint isEditMode>
-                Search engines keep listing this page. To move a page for good,
-                ask your site administrator to set up a permanent redirect.
+                {intl.formatMessage(messages.permanentHint)}
               </EditHint>
             ) : (
               // You aren't redirected while logged in: go there yourself.
@@ -145,7 +151,9 @@ const View = (props) => {
                   navigate();
                 }}
               >
-                Go to {pageName || 'the page'} now
+                {pageName
+                  ? intl.formatMessage(messages.goTo, { name: pageName })
+                  : intl.formatMessage(messages.goToPage)}
               </a>
             )}
           </div>
@@ -159,8 +167,16 @@ const View = (props) => {
       <div className="redirect-block redirect-block--redirecting">
         <span className="redirect-block__spinner" aria-hidden="true" />
         <span role="status" aria-live="polite">
-          {pageName ? `Taking you to ${pageName}` : 'Redirecting'}
-          {countdown > 0 ? ` in ${countdown}…` : '…'}
+          {intl.formatMessage(
+            pageName
+              ? countdown > 0
+                ? messages.taking
+                : messages.takingNow
+              : countdown > 0
+                ? messages.redirecting
+                : messages.redirectingNow,
+            { name: pageName, seconds: countdown },
+          )}
         </span>
         {/* Skip the countdown. A real link, so it also works before the
             page's scripts have loaded. */}
@@ -172,7 +188,7 @@ const View = (props) => {
             redirectNow();
           }}
         >
-          Go now
+          {intl.formatMessage(messages.goNow)}
         </a>
       </div>
     </Wrapper>

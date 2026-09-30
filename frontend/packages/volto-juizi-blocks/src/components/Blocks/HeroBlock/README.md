@@ -77,7 +77,7 @@ body:has(.hero-block--has-breadcrumbs) .breadcrumbs { display: none; }
 
 This replaced `<body>` classes set during render (`has-hero-primary-heading`, `has-hero-breadcrumbs`). **Site themes that targeted the old body classes need the new selectors.**
 
-**In the editor**, hiding the Title block's text left what looked like an empty block. There the page title shows faded (40%) instead, with a note above it: "This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick 'This is the primary page heading' in the Hero block's Advanced settings." (CSS only, on `#page-edit` / `#page-add`.)
+**In the editor**, hiding the Title block's text left what looked like an empty block. There the page title shows faded (40%) instead, with a note above it: "This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick “This is the primary page heading” in the Hero block’s Advanced settings." The note is drawn by CSS on `#page-edit` / `#page-add`; its words are the message `titleHiddenNote`, which the Hero hands to the stylesheet as `--juizi-hero-title-note` in the editor's language.
 
 Only rely on the Hero's `<h1>` when it actually renders a title (page title or a typed one). Don't add `role="banner"`: Volto already renders the site header, and `<section>` + `<h1>` gives the right structure without the collision.
 
@@ -109,7 +109,7 @@ For a band further down the page: add a Hero, choose **Section (content band)**,
 
 - Section bands use their own heading by default; saved ones keep today's behaviour (H1).
 - Page title/breadcrumb hiding moved to CSS `:has()`; site themes need the new selectors (H2).
-- Dates in British English, e.g. "13 November 2024" (H6).
+- Dates in the site's language; British English for English, e.g. "13 November 2024" (H6).
 - Unfinished buttons are hidden from visitors and flagged for editors (H7), only while the Hero is otherwise empty.
 - Alignment is a Left / Centre / Right choice, not icon buttons (X10).
 - Renders inside `BlockWrapper`: the outer `block juiziHero` container carries `type-*`, `align-*` and `tone-*`; `hero-block` itself no longer carries `block` (S5/S7).

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import {
   colorValueToKey,
@@ -13,35 +13,22 @@ import EditHint from '../_shared/EditHint';
 import { isEditing } from '../_shared/editMode';
 import { calloutIcons } from './icons';
 import { calloutTypes, isCalloutConfigured } from './types';
+import shared from '../_shared/messages';
+import messages from './messages';
 
-const messages = defineMessages({
-  empty: {
-    id: 'juizi-callout-empty',
-    defaultMessage: 'Add a title and text in the sidebar.',
-  },
-  more: { id: 'juizi-callout-more', defaultMessage: 'Read more' },
-  iconContrast: {
-    id: 'juizi-callout-icon-contrast',
-    defaultMessage:
-      'The icon colour is hard to see on this background. Choose a lighter or darker one under Colours.',
-  },
-  linkContrast: {
-    id: 'juizi-callout-link-contrast',
-    defaultMessage:
-      'The link colour is hard to see on this background. Choose a lighter or darker one under Colours.',
-  },
-});
-
-const CalloutPlaceholder = () => (
-  <BlockPlaceholder
-    blockClass="juizi-callout"
-    prompt="Select a callout type in the sidebar to get started."
-    modes={calloutTypes.map(({ label, description }) => ({
-      name: label,
-      description,
-    }))}
-  />
-);
+const CalloutPlaceholder = () => {
+  const intl = useIntl();
+  return (
+    <BlockPlaceholder
+      blockClass="juizi-callout"
+      prompt={intl.formatMessage(messages.selectType)}
+      modes={calloutTypes.map(({ label, description }) => ({
+        name: intl.formatMessage(label),
+        description: intl.formatMessage(description),
+      }))}
+    />
+  );
+};
 
 const hasColor = (value) => !!value && value !== 'transparent';
 
@@ -128,7 +115,7 @@ const CalloutView = (props) => {
                 style={linkStyle}
                 onClick={isEditMode ? (e) => e.preventDefault() : undefined}
               >
-                {data.linkTitle || intl.formatMessage(messages.more)}
+                {data.linkTitle || intl.formatMessage(shared.readMore)}
                 <ArrowRight size={18} aria-hidden />
               </UniversalLink>
             )}

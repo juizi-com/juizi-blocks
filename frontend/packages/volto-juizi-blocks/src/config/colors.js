@@ -56,6 +56,8 @@ import {
 
 import { isHexColor, suggestDark } from '../settings/helpers';
 import { normalizeButtonStyle, normalizeColorValue } from '../legacy/colors';
+import messages from '../components/Blocks/_shared/messages';
+import { translator } from '../components/Blocks/_shared/i18n';
 
 export { MASTER_COLOR_LIST, getBlockColorList };
 
@@ -171,18 +173,28 @@ export const colorKeyToCssVar = (key, colorList = MASTER_COLOR_LIST) => {
 //   ['solid__white',   'White — Solid',    'light']
 //   ['outline__white', 'White — Outlined', 'light']
 //
+// The "Solid" / "Outlined" part of the label is translated: pass the schema's
+// translator (components/Blocks/_shared/i18n.js) as the second argument.
+//
 // Usage in block schemas:
 //   buttonStyle: {
 //     widget: 'select',
-//     choices: getButtonChoices(MASTER_COLOR_LIST),
+//     choices: getButtonChoices(MASTER_COLOR_LIST, t),
 //     default: getDefaultButton(data.backgroundColor, MASTER_COLOR_LIST),
 //   }
-export const getButtonChoices = (colorList = MASTER_COLOR_LIST) =>
+export const getButtonChoices = (
+  colorList = MASTER_COLOR_LIST,
+  t = translator(),
+) =>
   colorList.flatMap(([value, label, lightness]) => {
     const key = colorValueToKey(value);
     return [
-      [`solid__${key}`, `${label} — Solid`, lightness],
-      [`outline__${key}`, `${label} — Outlined`, lightness],
+      [`solid__${key}`, t(messages.buttonSolid, { color: label }), lightness],
+      [
+        `outline__${key}`,
+        t(messages.buttonOutlined, { color: label }),
+        lightness,
+      ],
     ];
   });
 

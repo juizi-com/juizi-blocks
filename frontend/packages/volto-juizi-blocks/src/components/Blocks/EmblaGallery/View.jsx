@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import { searchContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -29,6 +30,8 @@ import BlockErrorBoundary from '../_shared/BlockErrorBoundary';
 import { isEditing } from '../_shared/editMode';
 import { getHref as getLinkHref } from '../_shared/links';
 import { getImageUrl, getListingImageUrl } from '../_shared/images';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 // ─── Icons ──────────────────────────────────────────────────────────────
 // Same plain-line-arrow convention as EmblaCarousel's NavArrowIcon — no
@@ -56,6 +59,7 @@ const NavArrowIcon = ({ direction }) => (
 // ─── Component ────────────────────────────────────────────────────────────
 const EmblaGallery = (blockProps) => {
   const { data, id, isEditMode } = blockProps;
+  const intl = useIntl();
   const dispatch = useDispatch();
   const contentId = useSelector((state) => state.content?.data?.['@id']);
   const contentPath = contentId ? flattenToAppURL(contentId) : null;
@@ -397,7 +401,7 @@ const EmblaGallery = (blockProps) => {
         type="button"
         className={`gallery__prev ${arrowStyleParsed.className}`}
         style={arrowStyleParsed.style}
-        aria-label="Previous image"
+        aria-label={intl.formatMessage(shared.previousImage)}
         onClick={() => api && api.scrollPrev()}
       >
         <NavArrowIcon direction="left" />
@@ -406,7 +410,7 @@ const EmblaGallery = (blockProps) => {
         type="button"
         className={`gallery__next ${arrowStyleParsed.className}`}
         style={arrowStyleParsed.style}
-        aria-label="Next image"
+        aria-label={intl.formatMessage(shared.nextImage)}
         onClick={() => api && api.scrollNext()}
       >
         <NavArrowIcon direction="right" />
@@ -430,8 +434,13 @@ const EmblaGallery = (blockProps) => {
           className={`gallery__trigger ${className}`}
           aria-label={
             item.heading
-              ? `Enlarge: ${item.heading}`
-              : `Enlarge picture ${index + 1} of ${items.length}`
+              ? intl.formatMessage(messages.enlargeNamed, {
+                  title: item.heading,
+                })
+              : intl.formatMessage(messages.enlargeNumbered, {
+                  number: index + 1,
+                  total: items.length,
+                })
           }
           onClick={() => openLightbox(index)}
         >
@@ -561,7 +570,7 @@ const EmblaGallery = (blockProps) => {
           ) : items.length === 0 ? (
             <BlockPlaceholder
               blockClass="gallery"
-              prompt="No pictures found. Add some to this page, or choose a different image source in the sidebar."
+              prompt={intl.formatMessage(messages.noPictures)}
             />
           ) : displayMode === 'carousel' ? (
             <div className="gallery__carousel">
@@ -616,7 +625,12 @@ const EmblaGallery = (blockProps) => {
                         <button
                           type="button"
                           className={`gallery__thumb ${carouselStyle === 'featured' && index === selectedIndex ? 'is-active' : ''}`}
-                          aria-label={item.heading || `Image ${index + 1}`}
+                          aria-label={
+                            item.heading ||
+                            intl.formatMessage(messages.imageNumber, {
+                              number: index + 1,
+                            })
+                          }
                           onClick={() =>
                             carouselStyle === 'featured'
                               ? embla && embla.scrollTo(index)
@@ -697,28 +711,26 @@ const EmblaGallery = (blockProps) => {
   );
 };
 
-const GalleryPlaceholder = () => (
-  <BlockPlaceholder
-    blockClass="gallery"
-    prompt="Select a display style in the sidebar to get started."
-    modes={[
-      {
-        name: 'Slideshow',
-        description:
-          'one large picture at a time, with small pictures underneath to click through',
-      },
-      {
-        name: 'Even grid',
-        description: 'pictures in neat rows, all cropped to the same size',
-      },
-      {
-        name: 'Natural grid',
-        description:
-          'pictures keep their own shape and fit together in columns',
-      },
-    ]}
-  />
-);
+// The start screen lists the styles in the same order as the dropdown.
+const STYLES = [
+  [messages.modeSlideshow, messages.startSlideshow],
+  [messages.modeEven, messages.startEven],
+  [messages.modeNatural, messages.startNatural],
+];
+
+const GalleryPlaceholder = () => {
+  const intl = useIntl();
+  return (
+    <BlockPlaceholder
+      blockClass="gallery"
+      prompt={intl.formatMessage(shared.selectStylePrompt)}
+      modes={STYLES.map(([name, description]) => ({
+        name: intl.formatMessage(name),
+        description: intl.formatMessage(description),
+      }))}
+    />
+  );
+};
 
 const WrappedEmblaGallery = (props) => {
   const { data } = props;

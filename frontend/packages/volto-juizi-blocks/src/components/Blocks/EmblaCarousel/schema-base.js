@@ -4,11 +4,16 @@ import {
   getButtonChoices,
   getDefaultButton,
 } from '../../../config/colors';
+import blockMessages from '../../../blocks/messages';
 import {
-  alignmentChoices,
+  getAlignmentChoices,
   msToSeconds,
+  secondsLabel,
   withSavedChoice,
 } from '../_shared/choices';
+import { translator } from '../_shared/i18n';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 // ─── Condition helpers ─────────────────────────────────────────────────────
 const isContentMode = (formData) =>
@@ -20,48 +25,47 @@ const hasPictureShape = (formData) =>
   formData?.displayMode === 'image-only' || isImageTopMode(formData);
 
 // Named choices store the same values the fields used to take as numbers;
-// a saved value that isn't one of them shows as "Custom (…)".
-const SLIDE_TIMES = [
-  [4000, '4 seconds'],
-  [6000, '6 seconds'],
-  [8000, '8 seconds'],
-  [10000, '10 seconds'],
-];
+// a saved value that isn't one of them shows as "Custom (…)". The labels are
+// messages (or, for times, a number of seconds), translated in the schema.
+const SLIDE_TIMES = [4000, 6000, 8000, 10000];
 const MARQUEE_SPEEDS = [
-  [30, 'Slow'],
-  [20, 'Normal'],
-  [12, 'Fast'],
+  [30, messages.slow],
+  [20, shared.normal],
+  [12, messages.fast],
 ];
 const LOGO_SIZES = [
-  [32, 'Small'],
-  [48, 'Medium'],
-  [64, 'Large'],
+  [32, shared.small],
+  [48, shared.medium],
+  [64, shared.large],
 ];
 const LOGO_GAPS = [
-  [16, 'Tight'],
-  [32, 'Normal'],
-  [48, 'Wide'],
+  [16, messages.tight],
+  [32, shared.normal],
+  [48, messages.wide],
 ];
 const LOGO_PADDINGS = [
-  [4, 'Small'],
-  [8, 'Normal'],
-  [16, 'Large'],
+  [4, shared.small],
+  [8, shared.normal],
+  [16, shared.large],
 ];
 // Stored as "width:height"; View.jsx turns it into a CSS aspect-ratio.
 // Strings, so the select keeps the value exactly as chosen.
 const PICTURE_SHAPES = [
-  ['original', 'As uploaded'],
-  ['16:9', 'Wide (16:9)'],
-  ['3:2', 'Landscape (3:2)'],
-  ['4:3', 'Standard (4:3)'],
-  ['1:1', 'Square (1:1)'],
-  ['3:4', 'Portrait (3:4)'],
+  ['original', messages.shapeOriginal],
+  ['16:9', messages.shapeWide],
+  ['3:2', messages.shapeLandscape],
+  ['4:3', messages.shapeStandard],
+  ['1:1', messages.shapeSquare],
+  ['3:4', messages.shapePortrait],
 ];
 const px = (value) => `${value}px`;
-const seconds = (value) => `${value} seconds`;
 
 // ─── Schema ────────────────────────────────────────────────────────────────
-const emblaCarouselSchema = ({ formData } = {}) => {
+const emblaCarouselSchema = ({ formData, intl } = {}) => {
+  const t = translator(intl);
+  const labelled = (choices) =>
+    choices.map(([value, label]) => [value, t(label)]);
+  const noneChoice = ['transparent', t(shared.none)];
   const displayMode = formData?.displayMode || null;
   const modeSelected = !!displayMode;
   const isLogoMarquee = displayMode === 'logo-marquee';
@@ -76,13 +80,13 @@ const emblaCarouselSchema = ({ formData } = {}) => {
   const colors = getBlockColorList('emblaCarousel');
 
   return {
-    title: 'Carousel',
+    title: t(blockMessages.carousel),
 
     fieldsets: [
       // Display style first, always visible
       {
         id: 'default',
-        title: 'Content',
+        title: t(shared.content),
         fields: [
           'displayMode',
           // Everything below only shown once a style is selected
@@ -102,7 +106,7 @@ const emblaCarouselSchema = ({ formData } = {}) => {
         ? [
             {
               id: 'card',
-              title: 'Card layout',
+              title: t(messages.cardLayout),
               fields: [
                 'slideButtonStyle',
                 'slideButtonLinkStyle',
@@ -117,7 +121,7 @@ const emblaCarouselSchema = ({ formData } = {}) => {
             },
             {
               id: 'behaviour',
-              title: 'Scrolling & behaviour',
+              title: t(messages.behaviour),
               fields: [
                 'slidesToShow',
                 'minSlidesOnMobile',
@@ -128,7 +132,7 @@ const emblaCarouselSchema = ({ formData } = {}) => {
             },
             {
               id: 'navigation',
-              title: 'Navigation',
+              title: t(messages.navigation),
               fields: [
                 'arrowPosition',
                 'arrowStyle',
@@ -153,7 +157,7 @@ const emblaCarouselSchema = ({ formData } = {}) => {
         ? [
             {
               id: 'marquee',
-              title: 'Logo strip',
+              title: t(messages.logoStrip),
               fields: [
                 'marqueeSpeed',
                 'logoHeight',
@@ -170,12 +174,12 @@ const emblaCarouselSchema = ({ formData } = {}) => {
         ? [
             {
               id: 'appearance',
-              title: 'Appearance',
+              title: t(shared.appearance),
               fields: ['alignment', 'isFullWidth'],
             },
             {
               id: 'background',
-              title: 'Background',
+              title: t(shared.background),
               fields: [
                 'backgroundImage',
                 'backgroundColor',
@@ -185,7 +189,7 @@ const emblaCarouselSchema = ({ formData } = {}) => {
             },
             {
               id: 'advanced',
-              title: 'Advanced',
+              title: t(shared.advanced),
               fields: ['outerClassName'],
             },
           ]
@@ -195,56 +199,54 @@ const emblaCarouselSchema = ({ formData } = {}) => {
     properties: {
       // ── Display style ──────────────────────────────────────────────────
       displayMode: {
-        title: 'Display style',
-        description: !modeSelected
-          ? 'Choose a display style to get started.'
-          : isLogoMarquee
-            ? "Only each slide's picture is shown, as a logo. Give a slide a link to make its logo clickable."
-            : 'Changing style may affect how content is presented.',
+        title: t(shared.displayStyle),
+        description: t(
+          !modeSelected
+            ? shared.chooseStyleStart
+            : isLogoMarquee
+              ? messages.styleLogoHelp
+              : messages.styleChangeHelp,
+        ),
         type: 'string',
         choices: [
-          ['full', 'Image with text overlay'],
-          ['image-only', 'Image only'],
-          ['image-top', 'Image above content'],
-          ['logo-marquee', 'Scrolling logo strip'],
+          ['full', t(messages.modeFull)],
+          ['image-only', t(messages.modeImageOnly)],
+          ['image-top', t(messages.modeImageTop)],
+          ['logo-marquee', t(messages.modeLogo)],
         ],
       },
 
       // ── Content ────────────────────────────────────────────────────────
       title: {
-        title: 'Heading',
-        description:
-          'Optional heading shown above the carousel. Screen readers use it to name this section, so even a short heading helps.',
+        title: t(shared.heading),
+        description: t(messages.headingHelp),
         type: 'string',
       },
       description: {
-        title: 'Intro text',
-        description:
-          'Optional text shown below the heading, above the carousel',
+        title: t(shared.introText),
+        description: t(messages.introHelp),
         type: 'string',
       },
       useListing: {
-        title: 'Fill automatically from site content',
-        description:
-          'Shows pages that match rules you set, instead of slides you add one by one.',
+        title: t(messages.useListing),
+        description: t(messages.useListingHelp),
         type: 'boolean',
         default: false,
       },
       filterTags: {
-        title: 'Filter buttons by tag',
-        description:
-          "Tags, separated by commas, e.g. News, Events. Each tag becomes a button above the carousel, plus 'All'. Uses the tags set on each page.",
+        title: t(messages.filterTags),
+        description: t(messages.filterTagsHelp),
         type: 'string',
       },
       slides: {
-        title: 'Slides',
+        title: t(messages.slides),
         widget: 'object_list',
         schema: {
-          title: 'Slide',
+          title: t(messages.slide),
           fieldsets: [
             {
               id: 'default',
-              title: 'Default',
+              title: t(shared.default),
               fields: [
                 'heading',
                 'content',
@@ -257,20 +259,19 @@ const emblaCarouselSchema = ({ formData } = {}) => {
           ],
           properties: {
             heading: {
-              title: 'Heading',
+              title: t(shared.heading),
               type: 'string',
-              description:
-                'Used as the slide heading, and to describe the slide and its picture to screen reader users. Always add a heading when the slide has a meaningful image.',
+              description: t(messages.slideHeadingHelp),
             },
-            content: { title: 'Content', type: 'text' },
+            content: { title: t(shared.content), type: 'text' },
             image: {
-              title: 'Image',
+              title: t(shared.image),
               widget: 'object_browser',
               mode: 'image',
               allowExternals: false,
             },
             link: {
-              title: 'Link',
+              title: t(shared.link),
               widget: 'object_browser',
               mode: 'link',
               allowExternals: true,
@@ -278,13 +279,13 @@ const emblaCarouselSchema = ({ formData } = {}) => {
               default: null,
             },
             buttonText: {
-              title: 'Button text',
+              title: t(shared.buttonText),
               type: 'string',
-              description: 'The button only shows when the slide has a link.',
+              description: t(messages.slideButtonHelp),
             },
             buttonArrow: {
-              title: 'Show arrow on button',
-              description: "Adds a right arrow to this slide's button",
+              title: t(messages.buttonArrow),
+              description: t(messages.buttonArrowHelp),
               type: 'boolean',
               default: false,
             },
@@ -295,144 +296,136 @@ const emblaCarouselSchema = ({ formData } = {}) => {
 
       // ── Card layout ────────────────────────────────────────────────────
       slideButtonStyle: {
-        title: 'Slide button style',
+        title: t(messages.slideButtonStyle),
         widget: 'select',
-        choices: getButtonChoices(colors),
+        choices: getButtonChoices(colors, t),
         default: getDefaultButton(backgroundColor, colors),
       },
       slideButtonLinkStyle: {
-        title: 'Show as a text link',
-        description:
-          "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to slides you add yourself.",
+        title: t(messages.textLink),
+        description: t(messages.textLinkHelpManual),
         type: 'boolean',
         default: false,
       },
       dateDisplay: {
-        title: 'Show date',
+        title: t(messages.showDate),
         type: 'string',
         choices: [
-          ['none', "Don't show a date"],
-          ['effective', 'Publication date'],
-          ['start', 'Event start date (falls back to publication date)'],
+          ['none', t(messages.dateNone)],
+          ['effective', t(messages.datePublication)],
+          ['start', t(messages.dateStart)],
         ],
         default: 'none',
       },
       hideDescription: {
-        title: 'Hide description',
+        title: t(messages.hideDescription),
         type: 'boolean',
         default: false,
       },
       hideButtons: {
-        title: 'Hide "Read more" buttons',
+        title: t(messages.hideButtons),
         type: 'boolean',
         default: false,
       },
       hideCardImage: {
-        title: 'Hide image',
-        description:
-          "Hides each card's image in the 'Image above content' layout, even when a slide has one set",
+        title: t(messages.hideImage),
+        description: t(messages.hideImageHelp),
         type: 'boolean',
         default: false,
       },
       clickableSlides: {
-        title: 'Make entire card clickable',
-        description:
-          'Clicking anywhere on the card follows the slide link. The slide heading is used as the link text for screen readers — add a heading to every slide when this is on.',
+        title: t(messages.clickable),
+        description: t(messages.clickableHelp),
         type: 'boolean',
         default: false,
       },
       imageAspectRatio: {
-        title: 'Picture shape',
-        description:
-          'Gives every picture the same shape, trimming the edges to fit, so the slides line up. Try a few to see which suits your pictures.',
+        title: t(messages.pictureShape),
+        description: t(messages.pictureShapeHelp),
         widget: 'select',
-        choices: PICTURE_SHAPES,
+        choices: labelled(PICTURE_SHAPES),
         default: 'original',
       },
       equalHeight: {
-        title: 'Equal height cards',
-        description: 'Stretches all cards to match the tallest one in the row',
+        title: t(messages.equalHeight),
+        description: t(messages.equalHeightHelp),
         type: 'boolean',
         default: false,
       },
 
       // ── Behaviour ──────────────────────────────────────────────────────
       slidesToShow: {
-        title: 'Cards visible at once',
-        description: 'On large screens',
+        title: t(messages.slidesToShow),
+        description: t(messages.largeScreens),
         type: 'number',
         default: 1,
       },
       minSlidesOnMobile: {
-        title: 'Cards visible on mobile',
-        description: 'On phones',
+        title: t(messages.slidesMobile),
+        description: t(messages.phones),
         type: 'number',
         default: 1,
       },
       loop: {
-        title: 'Loop continuously',
+        title: t(shared.loop),
         type: 'boolean',
         default: true,
       },
       autoplay: {
-        title: 'Autoplay',
+        title: t(shared.autoplay),
         type: 'boolean',
-        description:
-          'Automatically turned off for visitors who have asked their device to reduce motion.',
+        description: t(shared.autoplayReducedMotion),
       },
       autoplayDelay: {
-        title: 'Time on each slide',
+        title: t(messages.slideTime),
         widget: 'select',
         choices: withSavedChoice(
-          SLIDE_TIMES,
+          SLIDE_TIMES.map((ms) => [ms, msToSeconds(ms, t)]),
           formData?.autoplayDelay,
-          msToSeconds,
+          (ms) => msToSeconds(ms, t),
+          t,
         ),
         default: 8000,
       },
 
       // ── Navigation ─────────────────────────────────────────────────────
       arrowPosition: {
-        title: 'Arrow position',
-        description:
-          'On phones the arrows always sit below the carousel, whatever you choose here, so they are easy to reach with a thumb.',
+        title: t(shared.arrowPosition),
+        description: t(messages.arrowPositionHelp),
         type: 'string',
         // 'bottom' is what saved carousels store for arrows on the sides;
         // kept so they don't change.
         choices: [
-          ['bottom', 'On each side of the carousel'],
-          ['below', 'Below the carousel'],
-          ['top', 'Top right, beside the heading'],
+          ['bottom', t(messages.arrowsSides)],
+          ['below', t(messages.belowCarousel)],
+          ['top', t(messages.arrowsTop)],
         ],
         default: 'bottom',
       },
       moreButtonPosition: {
-        title: '"More" button position',
-        description:
-          'Where the optional "More" button appears. Independent of the arrow position.',
+        title: t(messages.moreButtonPosition),
+        description: t(messages.moreButtonPositionHelp),
         type: 'string',
         choices: [
-          ['top', 'Top, beside the heading'],
-          ['bottom', 'Below the carousel'],
+          ['top', t(messages.moreTop)],
+          ['bottom', t(messages.belowCarousel)],
         ],
         default: 'top',
       },
       moreButtonAlign: {
-        title: '"More" button alignment',
-        description:
-          'Horizontal alignment when the button sits below the carousel dots',
+        title: t(messages.moreButtonAlign),
+        description: t(messages.moreButtonAlignHelp),
         type: 'string',
-        choices: alignmentChoices,
+        choices: getAlignmentChoices(t),
         default: 'center',
       },
       headerLinkText: {
-        title: '"More" button text',
-        description:
-          'Optional button, e.g. "All news". Placed using "More" button position above.',
+        title: t(messages.moreButtonText),
+        description: t(messages.moreButtonTextHelp),
         type: 'string',
       },
       headerLinkUrl: {
-        title: '"More" button link',
+        title: t(messages.moreButtonLink),
         widget: 'object_browser',
         mode: 'link',
         allowExternals: true,
@@ -440,133 +433,142 @@ const emblaCarouselSchema = ({ formData } = {}) => {
         default: null,
       },
       headerLinkStyle: {
-        title: '"More" button style',
+        title: t(messages.moreButtonStyle),
         widget: 'select',
-        choices: getButtonChoices(colors),
+        choices: getButtonChoices(colors, t),
         default: getDefaultButton(backgroundColor, colors),
       },
       arrowStyle: {
-        title: 'Arrow style',
-        description:
-          'Standard: dark round arrows on the sides, outlined arrows above or below. Or pick a colour to match your buttons.',
+        title: t(shared.arrowStyle),
+        description: t(messages.arrowStyleHelp),
         widget: 'select',
-        choices: [['default', 'Standard'], ...getButtonChoices(colors)],
+        choices: [
+          ['default', t(shared.standard)],
+          ...getButtonChoices(colors, t),
+        ],
         default: 'default',
       },
       listingButtonStyle: {
-        title: 'Button style for found pages',
-        description: "Style for the 'Read more' button on each found page",
+        title: t(messages.listingButtonStyle),
+        description: t(messages.listingButtonStyleHelp),
         widget: 'select',
-        choices: getButtonChoices(colors),
+        choices: getButtonChoices(colors, t),
         default: getDefaultButton(backgroundColor, colors),
       },
       listingButtonLinkStyle: {
-        title: 'Show as a text link',
-        description:
-          "Removes the button's background and padding, showing the chosen colour as a plain text link aligned with the slide content instead. Applies to every found page.",
+        title: t(messages.textLink),
+        description: t(messages.textLinkHelpListing),
         type: 'boolean',
         default: false,
       },
       hideArrows: {
-        title: 'Hide arrows',
+        title: t(shared.hideArrows),
         type: 'boolean',
       },
       hideDots: {
-        title: 'Hide dots',
+        title: t(messages.hideDots),
         type: 'boolean',
       },
 
       // ── Appearance ─────────────────────────────────────────────────────
       alignment: {
-        title: 'Text alignment',
-        choices: alignmentChoices,
+        title: t(shared.textAlignment),
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       isFullWidth: {
-        title: 'Full width',
+        title: t(shared.fullWidth),
         type: 'boolean',
         default: false,
       },
 
       // ── Background ─────────────────────────────────────────────────────
       backgroundImage: {
-        title: 'Background image',
-        description:
-          'Optional image behind the whole block. Displayed at full cover, no overlay. Decorative: screen readers skip it.',
+        title: t(shared.backgroundImage),
+        description: t(messages.backgroundImageHelp),
         widget: 'object_browser',
         mode: 'image',
         allowExternals: false,
       },
       backgroundColor: {
-        title: 'Background colour',
-        description:
-          'Solid fill for the block. Text colour follows it automatically. If a background image is also set, the image is shown on top of this colour.',
+        title: t(shared.backgroundColor),
+        description: t(messages.backgroundColorHelp),
         widget: 'select',
-        choices: [['transparent', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice, ...getColorChoices(colors)],
         default: 'transparent',
       },
       // Only asked when there's a background image: an image can't be
       // judged automatically; everywhere else the tone follows the colour.
       textTone: {
-        title: 'Text over the background image',
+        title: t(messages.textTone),
         widget: 'select',
         choices: [
-          ['light', 'Light (for dark images)'],
-          ['dark', 'Dark (for light images)'],
+          ['light', t(messages.toneLight)],
+          ['dark', t(messages.toneDark)],
         ],
         default: 'light',
       },
       slideBackgroundColor: {
-        title: 'Slide background colour',
-        description: 'Fills the background of each slide',
+        title: t(messages.slideBackground),
+        description: t(messages.slideBackgroundHelp),
         widget: 'select',
-        choices: [['transparent', 'None'], ...getColorChoices(colors)],
+        choices: [noneChoice, ...getColorChoices(colors)],
         default: 'transparent',
       },
       outerClassName: {
-        title: 'Extra style name (for your web team)',
+        title: t(shared.customClass),
         type: 'string',
       },
 
       // ── Logo strip ─────────────────────────────────────────────────────
       marqueeSpeed: {
-        title: 'Scroll speed',
+        title: t(messages.scrollSpeed),
         widget: 'select',
         choices: withSavedChoice(
-          MARQUEE_SPEEDS,
+          labelled(MARQUEE_SPEEDS),
           formData?.marqueeSpeed,
-          seconds,
+          (value) => secondsLabel(value, t),
+          t,
         ),
         default: 20,
       },
       logoHeight: {
-        title: 'Logo size',
+        title: t(messages.logoSize),
         widget: 'select',
-        choices: withSavedChoice(LOGO_SIZES, formData?.logoHeight, px),
+        choices: withSavedChoice(
+          labelled(LOGO_SIZES),
+          formData?.logoHeight,
+          px,
+          t,
+        ),
         default: 48,
       },
       logoGap: {
-        title: 'Space between logos',
+        title: t(messages.logoGap),
         widget: 'select',
-        choices: withSavedChoice(LOGO_GAPS, formData?.logoGap, px),
+        choices: withSavedChoice(labelled(LOGO_GAPS), formData?.logoGap, px, t),
         default: 32,
       },
       logoPadding: {
-        title: 'Space around each logo',
+        title: t(messages.logoPadding),
         widget: 'select',
-        choices: withSavedChoice(LOGO_PADDINGS, formData?.logoPadding, px),
+        choices: withSavedChoice(
+          labelled(LOGO_PADDINGS),
+          formData?.logoPadding,
+          px,
+          t,
+        ),
         default: 8,
       },
       logoAlignment: {
-        title: 'Logo alignment',
-        description:
-          'Where the logos sit when they all fit across. Once there are more than fit, they scroll.',
+        title: t(messages.logoAlignment),
+        description: t(messages.logoAlignmentHelp),
         type: 'string',
-        choices: alignmentChoices,
+        choices: getAlignmentChoices(t),
         default: 'center',
       },
       pauseOnHover: {
-        title: 'Pause when hovered',
+        title: t(messages.pauseOnHover),
         type: 'boolean',
         default: true,
       },

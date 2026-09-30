@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import BlockToggles from './BlockToggles';
+import { readTranslations } from '../Blocks/_shared/testUtils';
 
 const groups = [
   {
@@ -70,6 +71,42 @@ describe('BlockToggles', () => {
     expect(screen.queryByLabelText(/^Image:/)).toBeNull();
     expect(
       screen.getByText(/Only offered where the block allows it/),
+    ).toBeTruthy();
+  });
+
+  it('is translated, block names and descriptions included', () => {
+    render(
+      <IntlProvider locale="fr" messages={readTranslations('fr')}>
+        <BlockToggles
+          groups={[
+            {
+              id: 'juizi',
+              title: 'Juizi',
+              blocks: [
+                {
+                  id: 'emblaCarousel',
+                  title: 'Carousel',
+                  config: {
+                    description:
+                      'Slides you add or pages found automatically, shown as a carousel, card row or scrolling logo strip.',
+                  },
+                },
+                { id: 'image', title: 'Image', config: {} },
+              ],
+            },
+          ]}
+          lists={{ disabled_blocks: ['emblaCarousel'], enabled_blocks: [] }}
+          onChange={jest.fn()}
+        />
+      </IntlProvider>,
+    );
+    expect(screen.getByText('Carrousel')).toBeTruthy();
+    expect(screen.getByText(/^Diapositives que vous ajoutez/)).toBeTruthy();
+    expect(screen.getByText('1 sur 2 activés')).toBeTruthy();
+    expect(screen.getByLabelText('Carrousel: Désactivé')).toBeTruthy();
+    expect(screen.getByText('Toujours activé')).toBeTruthy();
+    expect(
+      screen.getByText('Rétablir tous les réglages par défaut'),
     ).toBeTruthy();
   });
 

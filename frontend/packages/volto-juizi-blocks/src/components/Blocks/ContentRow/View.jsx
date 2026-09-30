@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import {
   customSvgMap,
   FallbackIcon,
@@ -20,6 +21,8 @@ import { overlayStyleToRgba } from '../_shared/overlays';
 import { blockAnchorId } from '../_shared/anchors';
 import { getPickedImageUrl } from '../_shared/images';
 import { formatNumber } from '../_shared/format';
+import shared from '../_shared/messages';
+import messages from './messages';
 import './style.css';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -145,6 +148,7 @@ const getImageUrl = (image) => getPickedImageUrl(image, 'large') || null;
 // browser it counts up once, when the statistic first comes into view.
 // Reduced motion: no animation.
 const CountUp = ({ end = 0, duration = 2000, formatK = false }) => {
+  const { locale } = useIntl();
   const safeEnd = Number(end) || 0;
   const [value, setValue] = React.useState(safeEnd);
   const ref = React.useRef(null);
@@ -191,8 +195,8 @@ const CountUp = ({ end = 0, duration = 2000, formatK = false }) => {
 
   const text =
     formatK && safeEnd >= 1000
-      ? `${formatNumber(Math.max(1, Math.floor(value / 1000)))}k`
-      : formatNumber(value);
+      ? `${formatNumber(Math.max(1, Math.floor(value / 1000)), locale)}k`
+      : formatNumber(value, locale);
   return <span ref={ref}>{text}</span>;
 };
 
@@ -226,6 +230,7 @@ const getCardBgStyle = (item, blockIsDark = null) => {
 // On desktop the grid renders normally regardless of this setting.
 
 const MobileCarousel = ({ children, autoplay, showDots }) => {
+  const intl = useIntl();
   // Respect reduced motion: disable autoplay entirely when the user has
   // requested it in their OS settings.
   const reducedMotion =
@@ -278,7 +283,7 @@ const MobileCarousel = ({ children, autoplay, showDots }) => {
     <div
       className="content-row__embla"
       role="region"
-      aria-label="Content carousel"
+      aria-label={intl.formatMessage(messages.carouselLabel)}
     >
       <div className="content-row__embla-viewport" ref={emblaRef}>
         <div className="content-row__embla-container">
@@ -296,7 +301,9 @@ const MobileCarousel = ({ children, autoplay, showDots }) => {
               key={i}
               className={`content-row__embla-dot${i === selectedIndex ? ' is-selected' : ''}`}
               onClick={() => emblaApi?.scrollTo(i)}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={intl.formatMessage(shared.goToSlide, {
+                number: i + 1,
+              })}
             />
           ))}
         </div>
@@ -398,6 +405,7 @@ const NumberedItem = ({ item, blockIsDark = null, index, iconPosition }) => {
 };
 
 const StatisticItem = ({ item, formatK, animationMs, blockIsDark = null }) => {
+  const { locale } = useIntl();
   const href = getHref(item.link);
   const hasLink = !!href;
 
@@ -408,7 +416,7 @@ const StatisticItem = ({ item, formatK, animationMs, blockIsDark = null }) => {
   const finalValue =
     formatK && (item.value || 0) >= 1000
       ? `${Math.floor((item.value || 0) / 1000)}k`
-      : formatNumber(item.value || 0);
+      : formatNumber(item.value || 0, locale);
   const srLabel = [finalValue, safeString(item.suffix), safeString(item.label)]
     .filter(Boolean)
     .join(' ');
@@ -556,6 +564,7 @@ const IconItem = ({ item, blockIsDark = null, iconPosition }) => {
 // `stretched` makes it the card's single link, covering the whole card
 // (no link-inside-a-link).
 const CardButton = ({ item, href, isEditMode, stretched = false }) => {
+  const intl = useIntl();
   const { className: btnClass, style: btnStyle } = getButtonClasses(
     item.buttonStyle || '',
     'card-button',
@@ -564,7 +573,7 @@ const CardButton = ({ item, href, isEditMode, stretched = false }) => {
     return isEditMode && safeString(item.buttonText) ? (
       <span className={`${btnClass} block__unfinished`} style={btnStyle}>
         <EditHint isEditMode as="span">
-          Add a link
+          {intl.formatMessage(shared.addLink)}
         </EditHint>
       </span>
     ) : null;
@@ -578,7 +587,7 @@ const CardButton = ({ item, href, isEditMode, stretched = false }) => {
       style={btnStyle}
       {...externalLinkProps(href)}
     >
-      {safeString(item.buttonText) || 'Read more'}
+      {safeString(item.buttonText) || intl.formatMessage(shared.readMore)}
     </a>
   );
 };
@@ -728,21 +737,17 @@ const ImageCardItem = ({
 // ─── Main View ─────────────────────────────────────────────────────────────
 
 // The start screen lists the styles in the same order as the dropdown.
+// Names and descriptions are messages.
 const STYLE_DESCRIPTIONS = [
-  { name: 'Numbered', description: 'steps in order, each with a large number' },
-  { name: 'Icon', description: 'short points, each with an icon' },
-  {
-    name: 'Statistics',
-    description: 'key figures that count up when they come into view',
-  },
-  {
-    name: 'Image card',
-    description: 'cards with a picture, either behind the text or above it',
-  },
+  { name: messages.modeNumbered, description: messages.startNumbered },
+  { name: shared.icon, description: messages.startIcon },
+  { name: messages.statistics, description: messages.startStatistics },
+  { name: messages.modeCard, description: messages.startCard },
 ];
 
 const View = (props) => {
   const { data = {} } = props;
+  const intl = useIntl();
   // `displayMode` (was `variation`: VLT's CSS hides the fourth option of any
   // field with that id). Saved blocks are repaired as they load
   // (legacy/blocks.js repairCurrentBlock).
@@ -759,8 +764,11 @@ const View = (props) => {
       <BlockWrapper {...props}>
         <BlockPlaceholder
           blockClass="content-row"
-          prompt="Select a display style in the sidebar to get started."
-          modes={STYLE_DESCRIPTIONS}
+          prompt={intl.formatMessage(shared.selectStylePrompt)}
+          modes={STYLE_DESCRIPTIONS.map(({ name, description }) => ({
+            name: intl.formatMessage(name),
+            description: intl.formatMessage(description),
+          }))}
         />
       </BlockWrapper>
     );
@@ -929,10 +937,10 @@ const View = (props) => {
       >
         {viewAllUnfinished ? (
           <EditHint isEditMode as="span">
-            Add a link
+            {intl.formatMessage(shared.addLink)}
           </EditHint>
         ) : (
-          data.viewAllText || 'View all'
+          data.viewAllText || intl.formatMessage(shared.viewAll)
         )}
       </a>
     ) : null;
@@ -1037,11 +1045,11 @@ const View = (props) => {
             isEditMode && (
               <BlockPlaceholder
                 blockClass="content-row"
-                prompt={
+                prompt={intl.formatMessage(
                   displayMode === 'statistics'
-                    ? 'No statistics yet. Add your first statistic in the sidebar under Statistics.'
-                    : 'No items yet. Add your first item in the sidebar under Items.'
-                }
+                    ? messages.noStatistics
+                    : messages.noItems,
+                )}
               />
             )
           )}

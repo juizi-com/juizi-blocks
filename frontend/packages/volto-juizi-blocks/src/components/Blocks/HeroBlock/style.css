@@ -453,6 +453,8 @@ body:has(.hero-block--primary-heading) #page-document .dates {
 /* In the editor, hiding the Title block's text left what looked like an     */
 /* empty block. Show the title faded instead, with a note saying why, so     */
 /* editors know it is hidden on the page and how to bring it back.           */
+/* The note's words come from the Hero itself, in the editor's language      */
+/* (--juizi-hero-title-note, see TitleHiddenNote in View.jsx).               */
 
 body:has(.hero-block--primary-heading)
   :is(#page-edit, #page-add)
@@ -466,11 +468,11 @@ body:has(.hero-block--primary-heading)
   .block.title::before {
   display: block;
   padding: 0.5rem 0.75rem;
-  border-left: 3px solid var(--dark, #111);
+  border-left: 3px solid #111;
   margin-bottom: 0.5rem;
-  background: var(--lightest, #f9f9f9);
-  color: var(--dark, #111);
-  content: 'This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick "This is the primary page heading" in the Hero block\'s Advanced settings.';
+  background: #f9f9f9;
+  color: #111;
+  content: var(--juizi-hero-title-note);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: normal;

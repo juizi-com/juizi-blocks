@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { createIntl } from 'react-intl';
+import {
+  readTranslations,
+  renderWithIntl as render,
+} from '../_shared/testUtils';
 import View from './View';
 import schema from './schema';
 
@@ -34,6 +39,35 @@ describe('Content Row', () => {
       'statistics',
       'card',
     ]);
+  });
+
+  it('speaks the site language on the canvas and in the sidebar', () => {
+    const messages = readTranslations('fr');
+    render(<View data={{ '@type': 'contentRow' }} isEditMode />, {
+      locale: 'fr',
+      messages,
+    });
+    expect(
+      screen.getByText(
+        'Sélectionnez un style d’affichage dans la barre latérale pour commencer.',
+      ),
+    ).toBeTruthy();
+    expect(screen.getByText('Numéroté')).toBeTruthy();
+
+    const intl = createIntl({ locale: 'af', messages: readTranslations('af') });
+    const { title, properties } = schema({
+      intl,
+      data: { displayMode: 'card', statAnimationMs: 1500 },
+    });
+    expect(title).toBe('Inhoudry');
+    expect(properties.displayMode.title).toBe('Vertoonstyl');
+    // Custom values, plurals and the text visitors read are translated too.
+    expect(properties.statAnimationMs.choices.pop()[1]).toBe(
+      'Pasgemaak (1,5 sekondes)',
+    );
+    expect(properties.items.schema.properties.buttonText.default).toBe(
+      'Lees meer',
+    );
   });
 
   it('uses displayMode, not variation (CR1: VLT hides option 4 of "variation")', () => {

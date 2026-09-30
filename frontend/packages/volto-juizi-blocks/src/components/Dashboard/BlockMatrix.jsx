@@ -9,6 +9,9 @@ import messages from './messages';
 
 const BlockMatrix = ({ kind, blocks, colorConfig, onChange }) => {
   const intl = useIntl();
+  // Block titles are message ids, as in Volto's block chooser.
+  const blockTitle = (block) =>
+    intl.formatMessage({ id: block.title, defaultMessage: block.title });
   const entries = colorConfig[kind];
   const isThemes = kind === 'themes';
 
@@ -75,7 +78,7 @@ const BlockMatrix = ({ kind, blocks, colorConfig, onChange }) => {
             return (
               <tr key={block.id}>
                 <td>
-                  {block.title}
+                  {blockTitle(block)}
                   {!allowed.length && (
                     <div className="juizi-dashboard__muted">
                       {intl.formatMessage(messages.all)}
@@ -90,7 +93,7 @@ const BlockMatrix = ({ kind, blocks, colorConfig, onChange }) => {
                     <input
                       type="checkbox"
                       checked={allowed.includes(entry.name)}
-                      aria-label={`${block.title} – ${entry.label}`}
+                      aria-label={`${blockTitle(block)} – ${entry.label}`}
                       onChange={(e) =>
                         toggle(block.id, entry.name, e.target.checked)
                       }
@@ -102,7 +105,7 @@ const BlockMatrix = ({ kind, blocks, colorConfig, onChange }) => {
                     <select
                       className="juizi-dashboard__select"
                       value={getBlockDefaultTheme(colorConfig, block.id) || ''}
-                      aria-label={`${block.title} – ${intl.formatMessage(
+                      aria-label={`${blockTitle(block)} – ${intl.formatMessage(
                         messages.defaultTheme,
                       )}`}
                       onChange={(e) =>

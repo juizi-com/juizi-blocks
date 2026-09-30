@@ -11,6 +11,10 @@ import messages from './messages';
  */
 const BlockToggles = ({ groups, lists, onChange }) => {
   const intl = useIntl();
+  // Volto's block chooser looks titles up as message ids; so do we, for
+  // titles, descriptions and group names.
+  const translate = (text) =>
+    text ? intl.formatMessage({ id: text, defaultMessage: text }) : text;
   const registered = groups.flatMap((group) => group.blocks);
 
   // Only clear entries for blocks that are registered now: entries for
@@ -37,7 +41,7 @@ const BlockToggles = ({ groups, lists, onChange }) => {
         return (
           <section key={group.id} className="juizi-dashboard__group">
             <h3>
-              {group.title}{' '}
+              {translate(group.title)}{' '}
               <span className="juizi-dashboard__muted">
                 {intl.formatMessage(messages.groupCount, {
                   on,
@@ -51,6 +55,7 @@ const BlockToggles = ({ groups, lists, onChange }) => {
                   const stateLabel = intl.formatMessage(
                     state.on ? messages.enabled : messages.disabled,
                   );
+                  const title = translate(block.title);
                   return (
                     // The row is only dimmed, never disabled: the toggle has
                     // to stay usable to switch the block back on.
@@ -66,13 +71,13 @@ const BlockToggles = ({ groups, lists, onChange }) => {
                         ) : null}
                       </td>
                       <td>
-                        <strong>{block.title}</strong>{' '}
+                        <strong>{title}</strong>{' '}
                         <code className="juizi-dashboard__muted">
                           {block.id}
                         </code>
                         {block.config.description && (
                           <div className="juizi-dashboard__muted">
-                            {block.config.description}
+                            {translate(block.config.description)}
                           </div>
                         )}
                         {state.contextual && (
@@ -97,7 +102,7 @@ const BlockToggles = ({ groups, lists, onChange }) => {
                             <input
                               type="checkbox"
                               checked={state.on}
-                              aria-label={`${block.title}: ${stateLabel}`}
+                              aria-label={`${title}: ${stateLabel}`}
                               onChange={(e) =>
                                 onChange(
                                   setBlockToggle(

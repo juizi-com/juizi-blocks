@@ -9,10 +9,9 @@
  * change the editor makes gets a fresh try without reloading the page.
  */
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import BlockPlaceholder from './BlockPlaceholder';
-
-const MESSAGE =
-  "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team.";
+import messages from './messages';
 
 class BlockErrorBoundary extends React.Component {
   constructor(props) {
@@ -42,11 +41,14 @@ class BlockErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return this.props.isEditMode ? (
-        <BlockPlaceholder blockClass={this.props.blockClass} prompt={MESSAGE} />
+        <BlockPlaceholder
+          blockClass={this.props.blockClass}
+          prompt={this.props.intl.formatMessage(messages.blockError)}
+        />
       ) : null;
     }
     return this.props.children;
   }
 }
 
-export default BlockErrorBoundary;
+export default injectIntl(BlockErrorBoundary);

@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: juizi.blocks\n"
+"POT-Creation-Date: 2026-09-30 08:48+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Code: fr\n"
+"Language-Name: Français\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: juizi.blocks\n"
+
+#: juizi/blocks/interfaces.py:23
+msgid "Block type ids switched off in the dashboard: editors can no longer add them. Existing blocks of these types keep rendering."
+msgstr "Identifiants des types de blocs désactivés dans le tableau de bord : les rédacteurs ne peuvent plus les ajouter. Les blocs existants de ces types continuent de s’afficher."
+
+#: juizi/blocks/interfaces.py:35
+msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
+msgstr "Identifiants des types de blocs activés dans le tableau de bord bien que leur propre configuration les exclue du sélecteur de blocs."
+
+#: juizi/blocks/interfaces.py:46
+msgid "Colour configuration"
+msgstr "Configuration des couleurs"
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Create example content to showcase the new website"
+msgstr "Crée du contenu d’exemple pour présenter le nouveau site"
+
+#: juizi/blocks/interfaces.py:22
+msgid "Disabled blocks"
+msgstr "Blocs désactivés"
+
+#: juizi/blocks/interfaces.py:34
+msgid "Enabled blocks"
+msgstr "Blocs activés"
+
+#: juizi/blocks/interfaces.py:47
+msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
+msgstr "Document JSON contenant la liste principale des couleurs, les thèmes de blocs qui en sont tirés et les listes autorisées par bloc."
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Juizi Blocks: Example content"
+msgstr "Juizi Blocks : contenu d’exemple"
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Juizi Blocks: Install"
+msgstr "Juizi Blocks : installation"
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Package to configure a new Juizi Blocks site"
+msgstr "Paquet qui configure un nouveau site Juizi Blocks"

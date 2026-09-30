@@ -3,18 +3,34 @@
  * exception to the colour list: this is image compositing, not a background
  * colour choice.
  */
-export const overlayChoices = [
-  ['gradient', 'Gradient (default)'],
-  ['none', 'None'],
-  ['black-30', 'Black — Light (30%)'],
-  ['black-50', 'Black — Medium (50%)'],
-  ['black-70', 'Black — Dark (70%)'],
-  ['white-30', 'White — Light (30%)'],
-  ['white-50', 'White — Medium (50%)'],
-  ['white-70', 'White — Dark (70%)'],
-  ['primary-30', 'Brand colour — Light (30%)'],
-  ['primary-50', 'Brand colour — Medium (50%)'],
-  ['primary-70', 'Brand colour — Dark (70%)'],
+import messages from './messages';
+import { translator } from './i18n';
+
+const TINTS = [
+  ['black', messages.overlayBlack],
+  ['white', messages.overlayWhite],
+  ['primary', messages.overlayBrand],
+];
+const STRENGTHS = [
+  [30, messages.overlayLight],
+  [50, messages.overlayMedium],
+  [70, messages.overlayDark],
+];
+
+/** Overlay choices for a schema; `t` is the schema's translator. */
+export const getOverlayChoices = (t = translator()) => [
+  ['gradient', t(messages.overlayGradient)],
+  ['none', t(messages.none)],
+  ...TINTS.flatMap(([tint, color]) =>
+    STRENGTHS.map(([percent, strength]) => [
+      `${tint}-${percent}`,
+      t(messages.overlayTint, {
+        color: t(color),
+        strength: t(strength),
+        percent,
+      }),
+    ]),
+  ),
 ];
 
 const OVERLAY_RGBA = {

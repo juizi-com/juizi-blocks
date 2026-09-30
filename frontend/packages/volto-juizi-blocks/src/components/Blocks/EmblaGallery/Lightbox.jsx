@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { useIntl } from 'react-intl';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 // aria-hidden — the button's own aria-label carries the accessible name,
 // matching the convention EmblaCarousel uses for its nav arrows.
@@ -52,6 +55,7 @@ const Lightbox = ({
   showCaption,
   arrowStyleParsed,
 }) => {
+  const intl = useIntl();
   const closeRef = useRef(null);
   const touchStartX = useRef(null);
   const previouslyFocused = useRef(null);
@@ -110,7 +114,7 @@ const Lightbox = ({
       className="gallery__lightbox"
       role="dialog"
       aria-modal="true"
-      aria-label={item.heading || 'Image'}
+      aria-label={item.heading || intl.formatMessage(shared.image)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -119,7 +123,7 @@ const Lightbox = ({
         type="button"
         className={`gallery__lightbox-close ${arrowStyleParsed.className}`}
         style={arrowStyleParsed.style}
-        aria-label="Close"
+        aria-label={intl.formatMessage(shared.close)}
         onClick={onClose}
       >
         <CloseIcon />
@@ -130,7 +134,7 @@ const Lightbox = ({
           type="button"
           className={`gallery__lightbox-prev ${arrowStyleParsed.className}`}
           style={arrowStyleParsed.style}
-          aria-label="Previous image"
+          aria-label={intl.formatMessage(shared.previousImage)}
           onClick={onPrev}
         >
           <ChevronIcon direction="left" />
@@ -148,7 +152,10 @@ const Lightbox = ({
         )}
         {items.length > 1 && (
           <p className="gallery__lightbox-counter">
-            {activeIndex + 1} of {items.length}
+            {intl.formatMessage(messages.counter, {
+              current: activeIndex + 1,
+              total: items.length,
+            })}
           </p>
         )}
       </div>
@@ -158,7 +165,7 @@ const Lightbox = ({
           type="button"
           className={`gallery__lightbox-next ${arrowStyleParsed.className}`}
           style={arrowStyleParsed.style}
-          aria-label="Next image"
+          aria-label={intl.formatMessage(shared.nextImage)}
           onClick={onNext}
         >
           <ChevronIcon direction="right" />

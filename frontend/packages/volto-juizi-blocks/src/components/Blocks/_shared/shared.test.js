@@ -1,6 +1,6 @@
 import { getHref, isExternalHref } from './links';
 import { withSavedChoice, msToSeconds } from './choices';
-import { formatDate, formatNumber } from './format';
+import { formatDate, formatNumber, toLocale } from './format';
 import { blockAnchorId, slugify } from './anchors';
 
 jest.mock('@plone/volto/registry', () => ({
@@ -91,6 +91,20 @@ describe('format', () => {
     expect(formatDate('2024-11-13T10:00:00')).toBe('13 November 2024');
     expect(formatDate('not a date')).toBe('');
     expect(formatNumber(1000)).toBe('1,000');
+  });
+
+  it('follows the site language, with British English for "en"', () => {
+    const date = '2024-11-13T10:00:00';
+    expect(formatDate(date, undefined, 'en')).toBe('13 November 2024');
+    expect(formatDate(date, undefined, 'fr')).toBe('13 novembre 2024');
+    expect(formatDate(date, undefined, 'es')).toBe('13 de noviembre de 2024');
+    expect(formatDate(date, undefined, 'pt_BR')).toBe('13 de novembro de 2024');
+    expect(formatDate(date, undefined, 'af')).toBe('13 November 2024');
+    expect(formatDate(date, undefined, 'not a language')).toBe(
+      '13 November 2024',
+    );
+    expect(toLocale('pt_BR')).toBe('pt-BR');
+    expect(toLocale(undefined)).toBe('en-GB');
   });
 });
 

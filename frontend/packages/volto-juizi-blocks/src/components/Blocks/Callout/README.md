@@ -10,7 +10,7 @@ Defined in `index.js` and listed in `src/blocks/index.ts`. The Edit is the share
 
 ## Dependencies
 
-`lucide-react`: the offered icons are imported one by one in `icons.js`.
+`lucide-react`: the offered icons are imported one by one in `icons.js`. The names of the icons and of the callout types are messages in `messages.js`, so they are translated.
 
 ## Callout types
 

@@ -1,0 +1,1 @@
+Warnings shown to editors inside a block (duplicate primary heading, low-contrast callout colours, a redirect to the same page) keep dark text on their light background when the block's text is light.

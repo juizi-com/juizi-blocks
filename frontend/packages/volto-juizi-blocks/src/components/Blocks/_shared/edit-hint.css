@@ -13,12 +13,21 @@
   opacity: 0.8;
 }
 
-.block__edit-hint--warning {
+/* A warning is a box of its own: always dark text on a light background,
+   whatever the block's colours. Fixed colours, not site variables (a site can
+   name a colour "dark"), and selectors strong enough to beat the rules that
+   make a block's text follow its background (`.bg-dark .block__edit-hint`
+   above, `.juizi-block p`): with those, a block with light text gave the
+   warning light text on its light background. */
+.block__edit-hint.block__edit-hint--warning,
+.bg-dark .block__edit-hint.block__edit-hint--warning,
+.tone-light .block__edit-hint.block__edit-hint--warning {
   padding: 0.5rem 0.75rem;
-  border-left: 3px solid var(--dark, #111);
-  background: var(--lightest, #f9f9f9);
-  color: var(--dark, #111);
+  border-left: 3px solid #111;
+  background: #f9f9f9;
+  color: #111;
   font-style: normal;
+  opacity: 1;
 }
 
 /* Unfinished items (a button without a link, a slide without a picture):

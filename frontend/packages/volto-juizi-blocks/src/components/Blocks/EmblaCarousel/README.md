@@ -182,6 +182,6 @@ When the active filter tag changes, the carousel calls `embla.reInit()` and scro
 - Times and sizes are named choices; unusual saved values show as "Custom (…)" (C7).
 - Picture-less slides in Image only mode are left out for visitors and flagged for editors (C8).
 - One real link per clickable slide (C9).
-- Dates in British English, e.g. "13 November 2024".
+- Dates in the site's language; British English for English, e.g. "13 November 2024".
 - Arrow positions renamed and a real "below" added; arrows sit below on phones; "Centre active card" removed; picture shape as named aspect ratios.
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block emblaCarousel` container with `type-*`, `align-*` and `tone-*` classes.

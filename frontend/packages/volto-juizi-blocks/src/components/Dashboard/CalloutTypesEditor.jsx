@@ -55,13 +55,13 @@ const CalloutTypesEditor = ({ colorConfig, onChange }) => {
       <tbody>
         {calloutTypes.map((type) => (
           <tr key={type.id}>
-            <td>{type.label}</td>
+            <td>{intl.formatMessage(type.label)}</td>
             {SLOTS.map((slot) => (
               <td key={slot}>
                 <select
                   className="juizi-dashboard__select"
                   value={types[type.id]?.[slot] || ''}
-                  aria-label={`${type.label} – ${slotLabel(slot)}`}
+                  aria-label={`${intl.formatMessage(type.label)} – ${slotLabel(slot)}`}
                   onChange={(e) => setColor(type.id, slot, e.target.value)}
                 >
                   <option value="">{intl.formatMessage(messages.none)}</option>

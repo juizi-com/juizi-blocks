@@ -3,20 +3,36 @@
 Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles
 
 [![npm](https://img.shields.io/npm/v/volto-juizi-blocks)](https://www.npmjs.com/package/volto-juizi-blocks)
-[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://juizi.github.io/volto-juizi-blocks/)
 [![CI](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml/badge.svg)](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml)
 
 
 ## Features
 
-<!-- List your awesome features here -->
+- A consolidated block set: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
+- A dashboard (Site Setup → Juizi Blocks) to switch blocks on or off and manage the colours and themes they share.
+- Available in English, French, Portuguese (`pt` and `pt_BR`), Spanish and Afrikaans; German is scaffolded and falls back to English.
+
+## Languages
+
+The dashboard and the blocks follow the language Volto renders the site in.
+The translations are in `packages/volto-juizi-blocks/locales/<code>/LC_MESSAGES/volto.po`.
+
+> **The translations were produced by AI** (Claude, Anthropic's AI assistant)
+> and have not yet been reviewed by native speakers. **We welcome feedback and
+> collaboration:** please [open an issue](https://github.com/juizi-com/juizi-blocks/issues)
+> or send a pull request if a wording is wrong or awkward, or to add a language.
+
+Afrikaans isn't in Volto 18's own list of interface languages; the add-on adds
+it, so an Afrikaans site gets the blocks in Afrikaans (Volto's own interface
+stays in English until Volto is translated). The repository's root `README.md`
+has the details, under **Languages**.
 
 ## Installation
 
-To install your project, you must choose the method appropriate to your version of Volto.
-
-
-### Volto 18 and later
+The add-on needs **Volto 18** and
+[Volto Light Theme](https://github.com/kitconcept/volto-light-theme) 7, and
+the backend add-on `juizi.blocks` installed on the Plone site (it stores the
+dashboard's settings).
 
 Add `volto-juizi-blocks` to your `package.json`.
 
@@ -32,50 +48,26 @@ Add `volto-juizi-blocks` to your `volto.config.js`.
 const addons = ['volto-juizi-blocks'];
 ```
 
-If this package provides a Volto theme, and you want to activate it, then add the following to your `volto.config.js`.
+The blocks are styled for Volto Light Theme, which the add-on brings with it.
+Use it as the site's theme in `volto.config.js`.
 
 ```javascript
-const theme = 'volto-juizi-blocks';
+const theme = '@kitconcept/volto-light-theme';
 ```
 
-### Volto 17 and earlier
-
-Create a new Volto project.
-You can skip this step if you already have one.
-
-```
-npm install -g yo @plone/generator-volto
-yo @plone/volto my-volto-project --addon volto-juizi-blocks
-cd my-volto-project
-```
-
-Add `volto-juizi-blocks` to your `package.json`.
-
-```JSON
-"addons": [
-    "volto-juizi-blocks"
-],
-
-"dependencies": {
-    "volto-juizi-blocks": "*"
-}
-```
-
-Download and install the new add-on.
-
-```
-yarn install
-```
-
-Start Volto.
-
-```
-yarn start
-```
+The add-on doesn't set the site's language. `volto-juizi-blocks:languageDemo`
+(instead of `volto-juizi-blocks`) is this repository's own development setup:
+it makes Volto multilingual in every translated language.
 
 ## Test installation
 
-Visit http://localhost:3000/ in a browser, login, and check the awesome new features.
+Visit http://localhost:3000/ in a browser and log in. The Juizi blocks are in
+the block chooser under **Juizi**, and the dashboard is under Site Setup →
+Juizi Blocks.
+
+How the blocks, the dashboard, the colours and the shared styling work is
+documented in the repository's root `README.md`; each block has its own
+`README.md` in `packages/volto-juizi-blocks/src/components/Blocks/`.
 
 
 ## Development
@@ -124,7 +116,9 @@ make install
 
 ### Start developing
 
-Start the backend.
+Start the backend. Either this repository's own, from the repository root
+(`make backend-create-site` once, then `make backend-start`), which has the
+multilingual demo content, or a plain one in Docker:
 
 ```shell
 make backend-docker-start
@@ -159,6 +153,10 @@ Extract the i18n messages to locales.
 ```shell
 make i18n
 ```
+
+New messages appear in every `locales/<code>/LC_MESSAGES/volto.po` with an
+empty `msgstr`: translate them for the languages listed in `TRANSLATED` in
+`src/locales.test.js`, which fails while any of those is incomplete.
 
 ### Unit tests
 

@@ -1,0 +1,1 @@
+The dashboard and every block are translatable, and translated into French, Portuguese (`pt`, `pt_BR`), Spanish and Afrikaans (AI-produced translations; corrections welcome). Dates and numbers follow the site's language. The add-on no longer forces the site's language to English.

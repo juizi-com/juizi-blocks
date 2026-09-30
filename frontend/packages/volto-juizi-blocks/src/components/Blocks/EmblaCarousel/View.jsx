@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import { searchContent } from '@plone/volto/actions';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
@@ -23,6 +24,8 @@ import { getHref } from '../_shared/links';
 import { getImageUrl, getListingImageUrl } from '../_shared/images';
 import { blockAnchorId } from '../_shared/anchors';
 import { formatDate } from '../_shared/format';
+import shared from '../_shared/messages';
+import messages from './messages';
 
 // The picture for a slide: query results use their image (or preview
 // image); slides added in the sidebar use the picked image, through the same
@@ -121,6 +124,7 @@ const NavArrowIcon = ({ direction }) => (
 
 const EmblaCarousel = (blockProps) => {
   const { data, id, isEditMode } = blockProps;
+  const intl = useIntl();
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => state.search?.subrequests?.[id]);
   const allSubrequests = useSelector(
@@ -184,21 +188,26 @@ const EmblaCarousel = (blockProps) => {
     });
   }, [data.useListing, data.query]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const date = (value) => formatDate(value, undefined, intl.locale);
   const renderDate = (slide) => {
     const mode = data.dateDisplay;
     if (!mode || mode === 'none') return null;
     if (mode === 'effective') {
       if (!slide.effectiveDate) return null;
-      return <p className="slide-date">{formatDate(slide.effectiveDate)}</p>;
+      return <p className="slide-date">{date(slide.effectiveDate)}</p>;
     }
     if (mode === 'start') {
       if (slide.startDate) {
         return (
-          <p className="slide-date">Starts {formatDate(slide.startDate)}</p>
+          <p className="slide-date">
+            {intl.formatMessage(messages.starts, {
+              date: date(slide.startDate),
+            })}
+          </p>
         );
       }
       if (slide.effectiveDate) {
-        return <p className="slide-date">{formatDate(slide.effectiveDate)}</p>;
+        return <p className="slide-date">{date(slide.effectiveDate)}</p>;
       }
       return null;
     }
@@ -210,7 +219,7 @@ const EmblaCarousel = (blockProps) => {
     content: item.description || '',
     image: null,
     link: item,
-    buttonText: data.listingButtonText || 'Read more',
+    buttonText: data.listingButtonText || intl.formatMessage(shared.readMore),
     buttonArrow: !!data.listingButtonArrow,
     effectiveDate: item.effective || null,
     startDate: item.start || null,
@@ -550,7 +559,7 @@ const EmblaCarousel = (blockProps) => {
       return isEditMode ? (
         <span className={`${className} block__unfinished`} style={parsed.style}>
           <EditHint isEditMode as="span">
-            Add a link
+            {intl.formatMessage(shared.addLink)}
           </EditHint>
         </span>
       ) : null;
@@ -727,7 +736,7 @@ const EmblaCarousel = (blockProps) => {
       style={linkStyleParsed.style}
     >
       <EditHint isEditMode={isEditMode} as="span">
-        Add a link
+        {intl.formatMessage(shared.addLink)}
       </EditHint>
     </span>
   );
@@ -815,11 +824,9 @@ const EmblaCarousel = (blockProps) => {
             ) : (
               <BlockPlaceholder
                 blockClass="embla"
-                prompt={
-                  data.useListing
-                    ? 'Your content query found nothing to show. Change its criteria in the sidebar.'
-                    : "No slides yet. Add slides in the sidebar under Slides, or switch on 'Fill automatically from site content' to fill it automatically."
-                }
+                prompt={intl.formatMessage(
+                  data.useListing ? messages.emptyQuery : messages.emptyManual,
+                )}
               />
             )}
           </div>
@@ -868,7 +875,8 @@ const EmblaCarousel = (blockProps) => {
                         parseInt(data.logoHeight, 10) || 48,
                       );
                       if (!src) return null;
-                      const alt = slide.heading || 'Logo';
+                      const alt =
+                        slide.heading || intl.formatMessage(messages.logoAlt);
                       const href = getMarqueeHref(slide);
                       // Marquee has no "card" fieldset (and so no clickableSlides
                       // toggle) exposed in the sidebar — a logo is clickable
@@ -907,14 +915,12 @@ const EmblaCarousel = (blockProps) => {
               </div>
               {isMarqueeStatic && slides.length > 0 && (
                 <EditHint isEditMode={isEditMode}>
-                  All the logos fit across, so the strip stays still. It scrolls
-                  once there are more logos than fit.
+                  {intl.formatMessage(messages.logosFit)}
                 </EditHint>
               )}
               {!isMarqueeStatic && reducedMotion && (
                 <EditHint isEditMode={isEditMode}>
-                  Your device is set to reduce motion, so the strip isn&apos;t
-                  moving for you. Visitors without that setting see it scroll.
+                  {intl.formatMessage(messages.reducedMotion)}
                 </EditHint>
               )}
             </>
@@ -943,7 +949,9 @@ const EmblaCarousel = (blockProps) => {
                           <button
                             className={`embla__prev ${arrowStyleParsed.className}`}
                             style={arrowStyleParsed.style}
-                            aria-label="Previous slide"
+                            aria-label={intl.formatMessage(
+                              shared.previousSlide,
+                            )}
                             onClick={() => embla && embla.scrollPrev()}
                           >
                             <NavArrowIcon direction="left" />
@@ -954,7 +962,7 @@ const EmblaCarousel = (blockProps) => {
                           <button
                             className={`embla__next ${arrowStyleParsed.className}`}
                             style={arrowStyleParsed.style}
-                            aria-label="Next slide"
+                            aria-label={intl.formatMessage(shared.nextSlide)}
                             onClick={() => embla && embla.scrollNext()}
                           >
                             <NavArrowIcon direction="right" />
@@ -986,7 +994,7 @@ const EmblaCarousel = (blockProps) => {
                 <div
                   className="embla__filter-tabs"
                   role="tablist"
-                  aria-label="Filter content"
+                  aria-label={intl.formatMessage(messages.filterLabel)}
                 >
                   <button
                     role="tab"
@@ -994,7 +1002,7 @@ const EmblaCarousel = (blockProps) => {
                     className={`embla__filter-tab ${activeTag === 'all' ? 'is-active' : ''}`}
                     onClick={() => setActiveTag('all')}
                   >
-                    All
+                    {intl.formatMessage(shared.all)}
                   </button>
                   {tagsWithSlides.map((tag) => (
                     <button
@@ -1013,13 +1021,17 @@ const EmblaCarousel = (blockProps) => {
                 there, see carousel-base.css). */}
               {tagsWithSlides.length > 0 && (
                 <div className="embla__filter-select">
-                  <label htmlFor={`${id}-filter`}>Show:</label>
+                  <label htmlFor={`${id}-filter`}>
+                    {intl.formatMessage(messages.show)}
+                  </label>
                   <select
                     id={`${id}-filter`}
                     value={activeTag}
                     onChange={(e) => setActiveTag(e.target.value)}
                   >
-                    <option value="all">All</option>
+                    <option value="all">
+                      {intl.formatMessage(shared.all)}
+                    </option>
                     {tagsWithSlides.map((tag) => (
                       <option key={tag} value={tag}>
                         {tag}
@@ -1030,7 +1042,7 @@ const EmblaCarousel = (blockProps) => {
               )}
               {unmatchedTags.map((tag) => (
                 <EditHint key={tag} isEditMode={isEditMode}>
-                  No results tagged &apos;{tag}&apos;, so its button is hidden.
+                  {intl.formatMessage(messages.noTagResults, { tag })}
                 </EditHint>
               ))}
               <div className="embla__viewport" ref={viewportRef}>
@@ -1092,7 +1104,7 @@ const EmblaCarousel = (blockProps) => {
                                 // are left out for them (see getSlides).
                                 <div className="image-placeholder block__unfinished">
                                   <EditHint isEditMode={isEditMode}>
-                                    Add a picture to this slide in the sidebar.
+                                    {intl.formatMessage(messages.addPicture)}
                                   </EditHint>
                                 </div>
                               )
@@ -1149,7 +1161,7 @@ const EmblaCarousel = (blockProps) => {
                     <button
                       className={`embla__prev ${arrowStyleParsed.className}`}
                       style={arrowStyleParsed.style}
-                      aria-label="Previous slide"
+                      aria-label={intl.formatMessage(shared.previousSlide)}
                       onClick={() => embla && embla.scrollPrev()}
                     >
                       <NavArrowIcon direction="left" />
@@ -1157,7 +1169,7 @@ const EmblaCarousel = (blockProps) => {
                     <button
                       className={`embla__next ${arrowStyleParsed.className}`}
                       style={arrowStyleParsed.style}
-                      aria-label="Next slide"
+                      aria-label={intl.formatMessage(shared.nextSlide)}
                       onClick={() => embla && embla.scrollNext()}
                     >
                       <NavArrowIcon direction="right" />
@@ -1170,13 +1182,15 @@ const EmblaCarousel = (blockProps) => {
                 <div
                   className="embla__nav"
                   role="tablist"
-                  aria-label="Slide navigation"
+                  aria-label={intl.formatMessage(shared.slideNavigation)}
                 >
                   {Array.from({ length: pageCount }).map((_, i) => (
                     <button
                       key={i}
                       role="tab"
-                      aria-label={`Go to slide ${i + 1}`}
+                      aria-label={intl.formatMessage(shared.goToSlide, {
+                        number: i + 1,
+                      })}
                       aria-selected={i === selectedIndex}
                       onClick={() => embla && embla.scrollTo(i)}
                       className={`embla__dot ${i === selectedIndex ? 'is-selected' : ''}`}
@@ -1202,33 +1216,27 @@ const EmblaCarousel = (blockProps) => {
   );
 };
 
-const CarouselPlaceholder = () => (
-  <BlockPlaceholder
-    blockClass="embla"
-    prompt="Select a display style in the sidebar to get started."
-    modes={[
-      {
-        name: 'Image with text overlay',
-        description:
-          'slides with the heading, text and button laid over the image',
-      },
-      {
-        name: 'Image only',
-        description: 'a clean image carousel with no text on the slides',
-      },
-      {
-        name: 'Image above content',
-        description:
-          'card-style slides: image on top, heading, text and button below',
-      },
-      {
-        name: 'Scrolling logo strip',
-        description:
-          'a continuously scrolling row of logos, e.g. partners or sponsors',
-      },
-    ]}
-  />
-);
+// The start screen lists the styles in the same order as the dropdown.
+const STYLES = [
+  [messages.modeFull, messages.startFull],
+  [messages.modeImageOnly, messages.startImageOnly],
+  [messages.modeImageTop, messages.startImageTop],
+  [messages.modeLogo, messages.startLogo],
+];
+
+const CarouselPlaceholder = () => {
+  const intl = useIntl();
+  return (
+    <BlockPlaceholder
+      blockClass="embla"
+      prompt={intl.formatMessage(shared.selectStylePrompt)}
+      modes={STYLES.map(([name, description]) => ({
+        name: intl.formatMessage(name),
+        description: intl.formatMessage(description),
+      }))}
+    />
+  );
+};
 
 const WrappedEmblaCarousel = (props) => {
   const { data } = props;

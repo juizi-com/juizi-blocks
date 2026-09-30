@@ -1,4 +1,8 @@
-export function emblaGallerySchemaEnhancer(schema, formData = {}) {
+import { translator } from '../_shared/i18n';
+import messages from './messages';
+
+export function emblaGallerySchemaEnhancer(schema, formData = {}, intl) {
+  const t = translator(intl);
   const modeSelected = !!formData?.displayMode;
   const sourceMode = formData?.sourceMode || 'context';
 
@@ -22,7 +26,7 @@ export function emblaGallerySchemaEnhancer(schema, formData = {}) {
       fields.splice(sourceIdx + 1, 0, 'query');
     }
     schema.properties.query = schema.properties.query || {
-      title: 'Which pictures to show',
+      title: t(messages.query),
       widget: 'query',
     };
   } else {

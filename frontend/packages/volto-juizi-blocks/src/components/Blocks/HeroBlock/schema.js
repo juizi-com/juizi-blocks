@@ -5,8 +5,16 @@ import {
   getDefaultButton,
 } from '../../../config/colors';
 import { schemaData } from '../../BlockEdit/BlockEdit';
-import { alignmentChoices, paddingChoices } from '../_shared/choices';
-import { overlayChoices } from '../_shared/overlays';
+import blockMessages from '../../../blocks/messages';
+import {
+  getAlignmentChoices,
+  getPaddingChoices,
+  getVerticalChoices,
+} from '../_shared/choices';
+import { translator } from '../_shared/i18n';
+import shared from '../_shared/messages';
+import { getOverlayChoices } from '../_shared/overlays';
+import messages from './messages';
 
 // Colours this block offers — set per block in the Juizi Blocks dashboard.
 // Read at schema time: the list follows dashboard changes.
@@ -15,24 +23,23 @@ const getHeroColors = () => getBlockColorList('juiziHero');
 // ─── Button sub-schema ─────────────────────────────────────────────────────
 // Each button's name in the sidebar list comes from its label (see
 // normalizeData in index.js), so there's no separate title field.
-const buttonSchema = (bgColor, colors) => ({
-  title: 'Button',
+const buttonSchema = (bgColor, colors, t) => ({
+  title: t(shared.button),
   fieldsets: [
     {
       id: 'default',
-      title: 'Default',
+      title: t(shared.default),
       fields: ['label', 'link', 'buttonStyle', 'showArrow'],
     },
   ],
   properties: {
     label: {
-      title: 'Label',
+      title: t(shared.label),
       type: 'string',
-      description:
-        "Leave empty to use the linked page's title. A button without a link isn't shown to visitors.",
+      description: t(messages.buttonLabelHelp),
     },
     link: {
-      title: 'Link',
+      title: t(shared.link),
       widget: 'object_browser',
       mode: 'link',
       allowExternals: true,
@@ -40,17 +47,15 @@ const buttonSchema = (bgColor, colors) => ({
       default: null,
     },
     buttonStyle: {
-      title: 'Button style',
-      description:
-        'Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa.',
+      title: t(shared.buttonStyle),
+      description: t(messages.buttonStyleHelp),
       widget: 'select',
-      choices: getButtonChoices(colors),
+      choices: getButtonChoices(colors, t),
       default: getDefaultButton(bgColor, colors),
     },
     showArrow: {
-      title: 'Show arrow icon',
-      description:
-        'Adds a small arrow after the label — useful for calls to action like "Learn more". Set per button, so some can have it and others not.',
+      title: t(messages.showArrow),
+      description: t(messages.showArrowHelp),
       type: 'boolean',
       default: false,
     },
@@ -61,6 +66,7 @@ const buttonSchema = (bgColor, colors) => ({
 // ─── Main schema ───────────────────────────────────────────────────────────
 // Called as ({ intl, props, data, formData }) by makeBlockEdit.
 const schema = (args) => {
+  const t = translator(args?.intl);
   const data = schemaData(args);
   const blockMode = data.blockMode || null;
   const isHeroMode = blockMode === 'hero';
@@ -76,7 +82,7 @@ const schema = (args) => {
   const hasSideImage = !!data.sideImage?.[0];
   const colors = getHeroColors();
   // Section mode background list — includes a "None" option
-  const sectionBgList = [['transparent', 'None', 'light'], ...colors];
+  const sectionBgList = [['transparent', t(shared.none), 'light'], ...colors];
 
   // ── Fieldsets — only the display style until one is chosen; after that,
   // in the order the editor works through the block, each switch directly
@@ -84,7 +90,7 @@ const schema = (args) => {
   const fieldsets = [
     {
       id: 'default',
-      title: 'Options',
+      title: t(shared.options),
       fields: ['blockMode'],
     },
 
@@ -92,7 +98,7 @@ const schema = (args) => {
       ? [
           {
             id: 'content',
-            title: 'Content',
+            title: t(shared.content),
             fields: [
               'usePageTitle',
               ...(!usePageTitle ? ['title'] : []),
@@ -107,7 +113,7 @@ const schema = (args) => {
           },
           {
             id: 'background',
-            title: 'Background',
+            title: t(shared.background),
             fields: isHeroMode
               ? [
                   'usePreviewImage',
@@ -129,7 +135,7 @@ const schema = (args) => {
           // feature from the Logo, not a variant of it.
           {
             id: 'sideImage',
-            title: 'Side image',
+            title: t(messages.sideImage),
             fields: [
               'sideImage',
               ...(hasSideImage
@@ -139,7 +145,7 @@ const schema = (args) => {
           },
           {
             id: 'buttons',
-            title: 'Buttons',
+            title: t(shared.buttons),
             fields: [
               'buttonsDisplayMode',
               ...(buttonsDisplayMode === 'toc'
@@ -150,7 +156,7 @@ const schema = (args) => {
           },
           {
             id: 'layout',
-            title: 'Layout',
+            title: t(shared.layout),
             fields: [
               'alignment',
               'horizontalLayout',
@@ -161,7 +167,7 @@ const schema = (args) => {
           },
           {
             id: 'advanced',
-            title: 'Advanced',
+            title: t(shared.advanced),
             fields: ['isPrimaryHeading', 'hideTitle', 'customClass'],
           },
         ]
@@ -169,100 +175,95 @@ const schema = (args) => {
   ];
 
   return {
-    title: 'Hero',
+    title: t(blockMessages.hero),
     fieldsets,
     properties: {
       // Options
       blockMode: {
-        title: 'Display style',
-        description: modeSelected
-          ? 'Hero: a full-width page header. Section: a themed content band inside the page.'
-          : 'Choose a display style to continue.',
+        title: t(shared.displayStyle),
+        description: t(
+          modeSelected ? messages.modeHelp : messages.chooseStyleContinue,
+        ),
         choices: [
-          ['hero', 'Hero (page header)'],
-          ['section', 'Section (content band)'],
+          ['hero', t(messages.modeHero)],
+          ['section', t(messages.modeSection)],
         ],
       },
       isFullWidth: {
-        title: 'Full width',
-        description:
-          'Stretch the background edge-to-edge beyond the container.',
+        title: t(shared.fullWidth),
+        description: t(messages.fullWidthHelp),
         type: 'boolean',
         default: false,
       },
       customClass: {
-        title: 'Extra style name (for your web team)',
+        title: t(shared.customClass),
         type: 'string',
       },
       isPrimaryHeading: {
-        title: 'This is the primary page heading',
+        title: t(messages.primaryHeading),
         type: 'boolean',
         default: false,
-        description:
-          'Makes this the main heading of the page. Use it for the first and most important block. Only one block per page should have this.',
+        description: t(messages.primaryHeadingHelp),
       },
       hideTitle: {
-        title: 'Hide title visually',
+        title: t(messages.hideTitle),
         type: 'boolean',
         default: false,
-        description:
-          'Hides the title on screen while keeping it in the page structure for screen readers and search engines. Useful when the design does not need a visible heading but accessibility and SEO still require one.',
+        description: t(messages.hideTitleHelp),
       },
 
       // Content
       preheader: {
-        title: 'Text above the title',
+        title: t(messages.preheader),
         type: 'string',
-        description:
-          'Small text displayed above the title. If set, this replaces the publication date or event details.',
+        description: t(messages.preheaderHelp),
       },
       title: {
-        title: 'Title',
+        title: t(shared.title),
         type: 'string',
-        description:
-          'The heading for this block. Even if you hide it visually, it helps screen readers and search engines understand what this section is about.',
+        description: t(messages.titleHelp),
       },
       subtitle: {
-        title: isHeroMode ? 'Subtitle' : 'Description',
+        title: t(isHeroMode ? messages.subtitle : shared.description),
         type: 'string',
-        description: isHeroMode
-          ? 'Supporting text below the title.'
-          : 'Description text below the title.',
+        description: t(
+          isHeroMode ? messages.subtitleHelp : messages.descriptionHelp,
+        ),
       },
       showBreadcrumbs: {
-        title: 'Show breadcrumbs',
+        title: t(messages.showBreadcrumbs),
         type: 'boolean',
         default: false,
-        description:
-          'Shows where this page sits in the site (for example Home / About) above the title. Hidden on top-level pages.',
+        description: t(messages.showBreadcrumbsHelp),
       },
       heroLogo: {
-        title: 'Logo',
+        title: t(messages.logo),
         widget: 'object_browser',
         mode: 'image',
         allowExternals: false,
-        description:
-          'Optional logo displayed in the hero. Treated as decorative: screen readers skip it, so put anything important in the title.',
+        description: t(messages.logoHelp),
       },
       logoPosition: {
-        title: 'Logo position',
-        description: hasSideImage
-          ? 'Locked to "Above title" — the side slot is already in use by the Side image below.'
-          : 'Choose where the logo sits. "Beside content" is unavailable once a Side image is added.',
+        title: t(messages.logoPosition),
+        description: t(
+          hasSideImage
+            ? messages.logoPositionLocked
+            : messages.logoPositionHelp,
+        ),
         choices: hasSideImage
-          ? [['above-title', 'Above title']]
+          ? [['above-title', t(messages.aboveTitle)]]
           : [
-              ['above-title', 'Above title'],
-              ['beside-content', 'Beside content (right)'],
+              ['above-title', t(messages.aboveTitle)],
+              ['beside-content', t(messages.besideContent)],
             ],
         default: 'above-title',
       },
       logoSize: {
-        title: 'Logo size',
+        title: t(messages.logoSize),
         choices: [
-          ['small', 'Small'],
-          ['medium', 'Medium'],
-          ['large', 'Large'],
+          ['small', t(shared.small)],
+          ['medium', t(shared.medium)],
+          ['large', t(shared.large)],
         ],
         default: 'medium',
       },
@@ -270,115 +271,104 @@ const schema = (args) => {
       // Side image (both modes) — a larger, editor-uploaded content image
       // displayed beside the text. Distinct from the Logo above.
       sideImage: {
-        title: 'Side image',
+        title: t(messages.sideImage),
         widget: 'object_browser',
         mode: 'image',
         allowExternals: false,
-        description:
-          'A larger image displayed beside your text — not the Logo above. Works in both Hero and Section styles. Adding one moves the Logo (if any) to "Above title", since only one element can occupy the side slot.',
+        description: t(messages.sideImageHelp),
       },
       sideImageAlt: {
-        title: 'Alt text',
+        title: t(messages.altText),
         type: 'string',
-        description:
-          'Describes the image for screen reader users. Leave empty only if the image is purely decorative and adds no information beyond the text.',
+        description: t(messages.altTextHelp),
       },
       sideImageAlignment: {
-        title: 'Vertical alignment',
-        description:
-          'Aligns the image against the height of the text content beside it.',
-        choices: [
-          ['top', 'Top'],
-          ['middle', 'Middle'],
-          ['bottom', 'Bottom'],
-        ],
+        title: t(messages.verticalAlignment),
+        description: t(messages.verticalAlignmentHelp),
+        choices: getVerticalChoices(t),
         default: 'middle',
       },
       sideImageMobile: {
-        title: 'On mobile',
-        description:
-          'Where the image appears on small screens, where it can no longer sit beside the text.',
+        title: t(shared.onMobile),
+        description: t(messages.sideImageMobileHelp),
         choices: [
-          ['below', 'Below content (default)'],
-          ['above', 'Above content'],
-          ['hidden', 'Hidden'],
+          ['below', t(messages.belowContent)],
+          ['above', t(messages.aboveContent)],
+          ['hidden', t(messages.hidden)],
         ],
         default: 'below',
       },
 
       // Page title / description / dates
       usePageTitle: {
-        title: 'Use page title',
+        title: t(messages.usePageTitle),
         type: 'boolean',
         default: true,
-        description: 'Pulls the title from the page automatically.',
+        description: t(messages.usePageTitleHelp),
       },
       usePageDescription: {
-        title: 'Use page description',
+        title: t(messages.usePageDescription),
         type: 'boolean',
         default: true,
-        description: 'Pulls the description from the page automatically.',
+        description: t(messages.usePageDescriptionHelp),
       },
       usePreviewImage: {
-        title: 'Use page preview image',
+        title: t(messages.usePreviewImage),
         type: 'boolean',
         default: false,
-        description: 'Uses the page preview image as the hero background.',
+        description: t(messages.usePreviewImageHelp),
       },
       showPublicationDate: {
-        title: 'Show publication date',
+        title: t(messages.showPublicationDate),
         type: 'boolean',
         default: false,
-        description:
-          "For news items — shows the publication date above the title. Only applies when the 'Text above the title' field is empty. If Show event details below is also on, event details take priority.",
+        description: t(messages.showPublicationDateHelp),
       },
       showEventDetails: {
-        title: 'Show event details',
+        title: t(messages.showEventDetails),
         type: 'boolean',
         default: false,
-        description:
-          'For events — shows the event date(s) and location above the title, e.g. "13 - 14 Nov 2024 | Cape Town". Only applies when the \'Text above the title\' field is empty and the item has a start date. Takes priority over Show publication date.',
+        description: t(messages.showEventDetailsHelp),
       },
 
       // Background
       backgroundImage: {
-        title: 'Background image',
+        title: t(shared.backgroundImage),
         widget: 'object_browser',
         mode: 'image',
         allowExternals: false,
-        description:
-          'Treated as a decorative image — no alt text is needed or used. Place meaningful content in the title and description fields above.',
+        description: t(messages.backgroundImageHelp),
       },
       backgroundVideo: {
-        title: 'Background video',
+        title: t(messages.backgroundVideo),
         widget: 'object_browser',
         mode: 'file',
         allowExternals: false,
         selectableTypes: ['File'],
-        description:
-          'MP4 only. Autoplays, loops, stays muted. The video is automatically paused for visitors who have enabled reduced motion in their operating system settings.',
+        description: t(messages.backgroundVideoHelp),
       },
       backgroundPosition: {
-        title: 'Background position',
+        title: t(messages.backgroundPosition),
         choices: [
-          ['top', 'Top'],
-          ['center', 'Centre'],
-          ['bottom', 'Bottom'],
+          ['top', t(shared.top)],
+          ['center', t(shared.center)],
+          ['bottom', t(shared.bottom)],
         ],
         default: 'center',
       },
       overlayStyle: {
-        title: 'Image overlay',
-        description:
-          'Colour tint over the background image to keep text readable.',
-        choices: overlayChoices,
+        title: t(messages.imageOverlay),
+        description: t(messages.imageOverlayHelp),
+        choices: getOverlayChoices(t),
         default: 'gradient',
       },
       backgroundColor: {
-        title: 'Background colour',
-        description: hasBgMedia
-          ? 'The background image still shows on top of this colour, but the text colour follows the colour you pick here. If the text is hard to read on your image, try a different colour: a dark colour gives light text, a light colour gives dark text.'
-          : 'Sets the block background. Text colour updates automatically based on your choice.',
+        title: t(shared.backgroundColor),
+        description: t(
+          hasBgMedia
+            ? messages.backgroundColorImageHelp
+            : messages.backgroundColorHelp,
+        ),
         widget: 'select',
         choices: getColorChoices(sectionBgList),
         default: 'transparent',
@@ -386,64 +376,63 @@ const schema = (args) => {
 
       // Buttons
       buttonsDisplayMode: {
-        title: 'Buttons display',
+        title: t(messages.buttonsDisplay),
         choices: [
-          ['buttons', 'Buttons'],
-          ['list', 'Inline link list'],
-          ['toc', 'Buttons to each heading on this page'],
+          ['buttons', t(shared.buttons)],
+          ['list', t(messages.displayList)],
+          ['toc', t(messages.displayToc)],
         ],
         default: 'buttons',
       },
       useH2: {
-        title: 'Include main headings',
+        title: t(messages.useH2),
         type: 'boolean',
         default: true,
       },
       useH3: {
-        title: 'Include sub-headings',
+        title: t(messages.useH3),
         type: 'boolean',
         default: true,
       },
       tocButtonStyle: {
-        title: 'Button style',
-        description:
-          'Style applied to all the heading buttons. Choose a style that contrasts with your background.',
+        title: t(shared.buttonStyle),
+        description: t(messages.tocButtonStyleHelp),
         widget: 'select',
-        choices: getButtonChoices(colors),
+        choices: getButtonChoices(colors, t),
         default: getDefaultButton(backgroundColor, colors),
       },
       buttons: {
-        title: 'Buttons',
+        title: t(shared.buttons),
         widget: 'object_list',
-        schema: buttonSchema(backgroundColor, colors),
+        schema: buttonSchema(backgroundColor, colors, t),
         default: [],
       },
       smallButtons: {
-        title: 'Use smaller buttons',
+        title: t(messages.smallButtons),
         type: 'boolean',
         default: false,
       },
 
       // Layout
       alignment: {
-        title: 'Text alignment',
-        choices: alignmentChoices,
+        title: t(shared.textAlignment),
+        choices: getAlignmentChoices(t),
         default: 'left',
       },
       horizontalLayout: {
-        title: 'Side-by-side layout',
-        description: 'Display subtitle and buttons beside the title.',
+        title: t(messages.sideBySide),
+        description: t(messages.sideBySideHelp),
         type: 'boolean',
         default: false,
       },
       paddingTop: {
-        title: 'Top padding',
-        choices: paddingChoices,
+        title: t(shared.topPadding),
+        choices: getPaddingChoices(t),
         default: 'default',
       },
       paddingBottom: {
-        title: 'Bottom padding',
-        choices: paddingChoices,
+        title: t(shared.bottomPadding),
+        choices: getPaddingChoices(t),
         default: 'default',
       },
     },

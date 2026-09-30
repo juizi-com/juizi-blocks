@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2026-09-30 08:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,3 +16,43 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: juizi.blocks\n"
+
+#: juizi/blocks/interfaces.py:23
+msgid "Block type ids switched off in the dashboard: editors can no longer add them. Existing blocks of these types keep rendering."
+msgstr ""
+
+#: juizi/blocks/interfaces.py:35
+msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
+msgstr ""
+
+#: juizi/blocks/interfaces.py:46
+msgid "Colour configuration"
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Create example content to showcase the new website"
+msgstr ""
+
+#: juizi/blocks/interfaces.py:22
+msgid "Disabled blocks"
+msgstr ""
+
+#: juizi/blocks/interfaces.py:34
+msgid "Enabled blocks"
+msgstr ""
+
+#: juizi/blocks/interfaces.py:47
+msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:22
+msgid "Juizi Blocks: Example content"
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Juizi Blocks: Install"
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:13
+msgid "Package to configure a new Juizi Blocks site"
+msgstr ""

@@ -112,6 +112,10 @@ console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone in
 create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scratch
 	@uv run zconsole run instance/etc/zope.conf ./scripts/create_site.py
 
+.PHONY: create-language-demo
+create-language-demo: $(VENV_FOLDER) instance/etc/zope.ini ## Make the existing site multilingual and add a block showcase page per language
+	@uv run zconsole run instance/etc/zope.conf ./scripts/create_language_demo.py
+
 ############################################
 # Example Content
 ############################################

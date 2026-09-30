@@ -1,10 +1,16 @@
 # Juizi Blocks 🚀
 
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![CI](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml/badge.svg)](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml)
 
 Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles
+
+- Six blocks: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
+- A dashboard to switch any block on or off and to manage the colours and
+  themes the blocks share.
+- Available in English, French, Portuguese, Brazilian Portuguese, Spanish and
+  Afrikaans (see [Languages](#languages-)).
 
 ## Stack
 
@@ -24,8 +30,8 @@ The backend runs on Python 3.12 (`backend/.python-version`).
 backend  juizi.blocks                        frontend  volto-juizi-blocks
 ─────────────────────────────                ───────────────────────────────────────────
 registry  juizi.blocks.disabled_blocks       blocks/index.ts        the block manifest
-          juizi.blocks.color_config (JSON)   components/Blocks/*    the blocks
-                                             config/colors.js       colour API used by blocks
+          juizi.blocks.enabled_blocks        components/Blocks/*    the blocks
+          juizi.blocks.color_config (JSON)   config/colors.js       colour API used by blocks
 GET   /@juizi-blocks-settings   (public) ─►  settings/runtime.ts    applies settings to the app
 PATCH /@juizi-blocks-settings   (Manager) ◄─ components/Dashboard   /controlpanel/juizi-blocks
 ```
@@ -75,11 +81,24 @@ The Hero's Snapshot summary mode was removed: it depended on the NQF
 
 ## The dashboard (Site Setup → Juizi Blocks)
 
-Two tabs, sharing one Save.
+Two tabs, sharing one Save: the save button in Volto's toolbar, or the bar
+that appears at the top as soon as something has changed (Save / Discard
+changes). Problems that would stop a save (a colour without a valid name, a
+theme missing its text colour, …) are listed there in the editor's language.
 
-**Blocks tab** — a switch for every block registered in the site (Volto,
-Volto Light Theme, add-ons and Juizi), grouped as in the block chooser with
-the Juizi group first.
+The footer shows the add-on's name and version, read from the package.
+
+**Look:** the dashboard follows the Juizi dashboard style (first used in
+`collective.bulkmailproviders`): a centred 800px column of plain elements,
+light grey cards with white panels inside, flat buttons, small upper-case
+badges for state. The rules are in `src/theme/juizi-blocks.scss`; new
+dashboard sections should reuse its classes (`juizi-dashboard__section`,
+`__btn`, `__badge`, `__table`, `__input`, …) rather than Semantic UI
+components.
+
+**Blocks tab** — a checkbox for every block registered in the site (Volto,
+Volto Light Theme, add-ons and Juizi), with an Enabled / Disabled badge,
+grouped as in the block chooser with the Juizi group first.
 
 - The list is read from the running configuration, so a rebuild that adds or
   removes blocks updates it automatically. New blocks start switched on.
@@ -143,7 +162,7 @@ colour lists at module level), so the dashboard's "Colours per block" applies.
 | `getBlockColorList(blockType)` | The colours the dashboard allows for a block |
 | `getColorTextStyle(value)` | `{ color: var(--<name>-foreground) }` for a background colour |
 | `getColorChoices(list)` | `[value, label]` pairs for Volto select widgets |
-| `getButtonChoices(list)` | Solid + outlined button options for every colour |
+| `getButtonChoices(list, t)` | Solid + outlined button options for every colour (`t`: the schema's translator) |
 | `getDefaultButton(bgColor, list)` | A contrasting button style for a background |
 | `getContrastingColor(bgColor, list)` | The first colour of opposite lightness to the background (a transparent or unknown background counts as light), for defaults that must stand out, e.g. the Gallery's highlight around the current picture |
 | `getButtonClasses(value, baseClass)` | `className` and `style` for a button element |
@@ -356,7 +375,10 @@ with fallbacks.
 ("Add a heading in the sidebar.", "No results tagged 'Events'…"). Renders
 nothing unless `isEditMode`. Props: `isEditMode`, `tone` (`'hint'` or
 `'warning'`), `as` (`p` by default; `span` inside a button), `live` (announce
-it when it appears, for warnings that follow an editor's change).
+it when it appears, for warnings that follow an editor's change). A hint
+follows the block's text colour on a dark background; a warning is a box of
+its own, always dark text on a light background, so it stays readable
+whatever the block's colours (`edit-hint.css`).
 
 **Unfinished items** (a button without a link, a slide without a picture) use
 the class `block__unfinished` (dashed outline) with an `EditHint` as their
@@ -364,8 +386,8 @@ text, and are left out for visitors. Flag them only where it helps: the Hero
 flags an unfinished button only while it has nothing else in it.
 
 **`BlockErrorBoundary`** — wrap a block's view in it. On an error, editors
-see "This block couldn't be displayed. Try undoing your last change…",
-visitors see nothing, and the error is logged. Pass `resetKey` (e.g.
+see "This block couldn't be displayed. Try undoing your last change…" (in
+their language), visitors see nothing, and the error is logged. Pass `resetKey` (e.g.
 `JSON.stringify(data)`) so the editor's next change gets a fresh try.
 
 **`BlockWrapper`** — the block's outer container, from
@@ -391,10 +413,11 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 | `editMode.js` | `isEditing(props)`: `props.isEditMode` (set by makeBlockEdit), else `typeof props.onChangeBlock === 'function'`. Never `props.mode`. |
 | `links.js` | `getHref(link)` for every stored shape (object browser array, object, plain string); `''` when there's no link. `isExternalHref(href)` and `externalLinkProps(href)`. No `window` reads, so safe on the server. |
 | `images.js` | `getImageUrl`, `getListingImageUrl`, `resolveScales` (size-aware scale picking), `getPickedImageUrl(image, scale)` |
-| `choices.js` | `alignmentChoices` (Left / Centre / Right, not icons), `paddingChoices`, `withSavedChoice(choices, saved, formatLabel)` for fields that became named choices ("Custom (…)" for unusual saved values; values as strings, see above), `msToSeconds` |
-| `format.js` | `formatDate`, `formatNumber`, always en-GB ("13 November 2024", "1,000"), so the server and every browser agree |
+| `choices.js` | `getAlignmentChoices(t)` (Left / Centre / Right, not icons), `getPaddingChoices(t)`, `getVerticalChoices(t)`, `withSavedChoice(choices, saved, formatLabel, t)` for fields that became named choices ("Custom (…)" for unusual saved values; values as strings, see above), `msToSeconds(ms, t)` |
+| `i18n.js`, `messages.js` | `translator(intl)` gives schemas and choice lists their `t(message, values)`; `messages.js` holds the text several blocks share. See [Languages](#languages-) |
+| `format.js` | `formatDate(value, options, language)`, `formatNumber(value, language)`: in the site's language (pass `intl.locale`), British English for English ("13 November 2024", "1,000"), so the server and every browser agree |
 | `anchors.js` | `slugify`, `blockAnchorId(heading, blockId, fallback)` |
-| `overlays.js` | Image overlay choices and `overlayStyleToRgba` |
+| `overlays.js` | `getOverlayChoices(t)` and `overlayStyleToRgba` |
 | `items.js` | `withItemTitles(items, ...fields)` names list items in the sidebar after their own heading (VLT's list widget shows `item.title`); `ensureIds(items)` |
 | `skeleton.css` | Loading skeleton tiles (`block-skeleton`, `block-skeleton__tile`, `--mixed`) |
 
@@ -418,7 +441,9 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
   card with CSS where the whole card is clickable.
 - **Reduced motion:** autoplay, count-ups, moving strips, videos and hover
   zooms stop or don't run for visitors who ask for less motion.
-- **Dates and numbers** in British English (`format.js`).
+- **Languages:** every string an editor or visitor can read is a translatable
+  message, and dates and numbers follow the site's language (`format.js`;
+  British English for English). See [Languages](#languages-).
 - **Anchors:** blocks with a heading get an id from it (`blockAnchorId`), in
   the same format as before, so existing same-page links keep working.
 
@@ -448,6 +473,9 @@ where and what's only partly supported.
    setting their sizes in the block's own stylesheet.
 6. Buttons: `getButtonClasses()` in the view, and the button base class in
    `$block-btn-classes` in `buttons.scss`.
+7. Text: put every string in the block's `messages.js`, add its title and
+   description to `src/blocks/messages.js`, run `make i18n` and translate the
+   new entries (see [Languages](#languages-)).
 
 ## Quick Start 🏁
 
@@ -480,7 +508,9 @@ where and what's only partly supported.
 
 ### Fire Up the Servers 🔥
 
-1.  Create a new Plone site on your first run.
+1.  Create a new Plone site on your first run. It is multilingual, with a
+    page showing one of each block in every language (see
+    [Languages](#languages-)).
 
     ```shell
     make backend-create-site
@@ -498,7 +528,9 @@ where and what's only partly supported.
     make frontend-start
     ```
 
-Voila! Your Plone site should be live and kicking! 🎉
+Voila! Your Plone site should be live and kicking! 🎉 The home page sends
+you to `/en`; the block showcase is at `/en/juizi-blocks`, and the dashboard
+under Site Setup → Juizi Blocks (log in first).
 
 ### Local Stack Deployment 📦
 
@@ -524,7 +556,6 @@ This monorepo consists of the following distinct sections:
 - **backend**: Houses the API and Plone installation, utilizing pip instead of buildout, and includes a policy package named juizi.blocks.
 - **frontend**: Contains the React (Volto) package.
 - **devops**: Encompasses Docker stack, Ansible playbooks, and cache settings.
-- **docs**: Scaffold for writing documentation for your project.
 
 ### Why this structure? 🤔
 
@@ -553,9 +584,9 @@ make format
 | --- | --- | --- | --- |
 | backend | Ruff | Python code formatting, imports sorting  | [`backend/pyproject.toml`](./backend/pyproject.toml) |
 | backend | `zpretty` | XML and ZCML formatting  | -- |
-| frontend | ESLint | Fixes most common frontend issues | [`frontend/.eslintrc.js`](.frontend/.eslintrc.js) |
-| frontend | prettier | Format JS and Typescript code  | [`frontend/.prettierrc`](.frontend/.prettierrc) |
-| frontend | Stylelint | Format Styles (css, less, sass)  | [`frontend/.stylelintrc`](.frontend/.stylelintrc) |
+| frontend | ESLint | Fixes most common frontend issues | [`frontend/.eslintrc.js`](./frontend/.eslintrc.js) |
+| frontend | prettier | Format JS and Typescript code  | [`frontend/.prettierrc`](./frontend/.prettierrc) |
+| frontend | Stylelint | Format Styles (css, less, sass)  | [`frontend/.stylelintrc`](./frontend/.stylelintrc) |
 
 Formatters can also be run within the `backend` or `frontend` folders.
 
@@ -572,19 +603,131 @@ make lint
 | backend | Pyroma | Checks Python package metadata  | -- |
 | backend | check-python-versions | Checks Python version information  | -- |
 | backend | `zpretty` | Checks XML and ZCML formatting  | -- |
-| frontend | ESLint | Checks JS / Typescript lint | [`frontend/.eslintrc.js`](.frontend/.eslintrc.js) |
-| frontend | prettier | Check JS / Typescript formatting  | [`frontend/.prettierrc`](.frontend/.prettierrc) |
-| frontend | Stylelint | Check Styles (css, less, sass) formatting  | [`frontend/.stylelintrc`](.frontend/.stylelintrc) |
+| frontend | ESLint | Checks JS / Typescript lint | [`frontend/.eslintrc.js`](./frontend/.eslintrc.js) |
+| frontend | prettier | Check JS / Typescript formatting  | [`frontend/.prettierrc`](./frontend/.prettierrc) |
+| frontend | Stylelint | Check Styles (css, less, sass) formatting  | [`frontend/.stylelintrc`](./frontend/.stylelintrc) |
 
 Linters can be run individually within the `backend` or `frontend` folders.
 
-## Internationalization 🌐
+## Languages 🌐
 
-Generate translation files for Plone and Volto with ease:
+The dashboard and every Juizi block are available in:
+
+| Language | Code | Status |
+| --- | --- | --- |
+| English | `en` | Source language (British English) |
+| French | `fr` | Translated |
+| Portuguese | `pt` | Translated |
+| Portuguese (Brazil) | `pt_BR` | Translated |
+| Spanish | `es` | Translated |
+| Afrikaans | `af` | Translated |
+| German | `de` | Scaffolding only: falls back to English until translated |
+
+That covers what editors see (the sidebar, the prompts on the canvas, the
+dashboard) and what visitors see or hear (default button text such as "Read
+more", the Redirect's countdown, the names screen readers announce for arrows
+and dots, dates and numbers).
+
+> **These translations were produced by AI** (Claude, Anthropic's AI
+> assistant) and have not yet been reviewed by native speakers. They are
+> tested for completeness and for technical correctness, not for tone or
+> local usage. **We welcome feedback and collaboration:** if a wording is
+> wrong, awkward or not what your region would say, please
+> [open an issue](https://github.com/juizi-com/juizi-blocks/issues) or send a
+> pull request. Corrections from native speakers and translations into
+> further languages are very welcome.
+
+### Which language a site gets
+
+The blocks follow the language Volto renders the site in: the site's language
+in Plone, with Volto told about it (for a single-language site, start Volto
+with `SITE_DEFAULT_LANGUAGE=fr`, or set `config.settings.defaultLanguage` and
+`supportedLanguages` in the project's config). The add-on doesn't set or
+override the site's language.
+
+Afrikaans isn't in Volto 18's own list of interface languages, so Volto would
+render an Afrikaans site in English. The add-on adds it to that list
+(`EXTRA_LANGUAGES` in `src/config/settings.ts`); as a result "Afrikaans" is
+also offered in Volto's personal preferences. Volto's own interface (toolbar,
+core blocks) has no Afrikaans translation yet and stays in English.
+
+Not translated: the default colour and theme names the dashboard starts with
+(they are site data, renamed in the dashboard), text editors have already
+saved in a block, and the error messages the backend returns if a save is
+rejected (the dashboard checks the same rules first, in the editor's
+language).
+
+### The development site is multilingual
+
+This repository's own site runs in all six languages, so every translation
+can be seen in place:
+
+| Language | Block showcase page |
+| --- | --- |
+| English | `/en/juizi-blocks` |
+| French | `/fr/juizi-blocks` |
+| Portuguese | `/pt/juizi-blocks` |
+| Portuguese (Brazil) | `/pt-br/juizi-blocks` |
+| Spanish | `/es/juizi-blocks` |
+| Afrikaans | `/af/juizi-blocks` |
+
+Each page holds a Hero, a Content Row, a Carousel, a Gallery and a Callout,
+written in that language; the pages are translations of one another, so the
+language switcher moves between them. The Redirect block sends visitors away
+from the page it is on, so it has a page of its own, `…/juizi-blocks/redirect`,
+reached from the Callout; it sends visitors back to the showcase.
+
+- Backend: `make create-site` sets this up on a new site (the example content
+  profile, `juizi.blocks:initial`). For a site that already exists, run
+  `make create-language-demo` in `backend/`; it is safe to run again. The code
+  is in `backend/src/juizi/blocks/setuphandlers/language_demo.py`, the words
+  in `language_demo_texts.py`.
+- Frontend: `frontend/volto.config.js` loads the add-on as
+  `volto-juizi-blocks:languageDemo`, which switches Volto to multilingual with
+  these languages. Only this repository's site does that.
+
+Installing the add-on on another site does none of this: neither package
+changes a site's languages.
+
+Volto renders pages that aren't content (the dashboard, other control panels)
+in the language of the site root when they are loaded directly, which is
+English here. Reached from a page in another language without reloading, they
+stay in that language.
+
+### Where the translations live
+
+- Frontend: `frontend/packages/volto-juizi-blocks/locales/<code>/LC_MESSAGES/volto.po`
+  (one entry per message, with the English text in the `#. Default:` comment).
+- Backend: `backend/src/juizi/blocks/locales/<code>/LC_MESSAGES/juizi.blocks.po`
+  (the add-on's name and the registry field descriptions).
+
+To correct a translation, edit the `msgstr` in the `.po` file. To add a
+language, copy a language folder, change the `Language` headers and translate
+(or leave `msgstr ""` to fall back to English), then add the code to
+`TRANSLATED` in `src/locales.test.js`, which checks that every listed language
+is complete, keeps every `{placeholder}` and is valid for react-intl.
+
+After adding or changing text in the code, regenerate the translation files:
 
 ```shell
 make i18n
 ```
+
+### Writing translatable blocks
+
+- Every string an editor or visitor can read is a message: each block has a
+  `messages.js` (`defineMessages`, ids `juizi-<block>-<name>`), and
+  `_shared/messages.js` holds what several blocks share.
+- Components use `useIntl()`. Schemas and choice lists use
+  `translator(intl)` from `_shared/i18n.js`: `const t = translator(args.intl)`,
+  then `title: t(messages.heading)`. Without `intl` (tests) it returns English.
+- Block titles and descriptions (`src/blocks/messages.js`) use the English
+  text as the message id, because Volto's block chooser looks a block's
+  `title` up that way.
+- Dates and numbers: `formatDate(value, options, intl.locale)` and
+  `formatNumber(value, intl.locale)`.
+- Apostrophes in translations are typographic (’): a straight `'` before `{`
+  starts a quoted section in react-intl's message syntax.
 
 ## Contributors
 
