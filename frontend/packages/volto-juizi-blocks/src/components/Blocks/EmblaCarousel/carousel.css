@@ -1,0 +1,536 @@
+.carousel-slide-inner {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  color: white;
+}
+
+.carousel-slide-inner.clickable {
+  cursor: pointer;
+}
+
+/* "Make entire card clickable": the slide's one real link (button, heading
+   or picture) stretches over the whole slide with ::after. The slide's
+   layers move behind its content (isolation + negative z-index), so the
+   content can be static and the link's ::after measures from the slide. */
+.carousel-slide-inner.clickable {
+  isolation: isolate;
+}
+
+.carousel-slide-inner.clickable::before {
+  z-index: -2;
+}
+
+.carousel-slide-inner.clickable::after {
+  z-index: -1;
+}
+
+.carousel-slide-inner.clickable > *,
+.carousel-slide-inner.clickable .slide__body,
+.carousel-slide-inner.clickable .card,
+.carousel-slide-inner.clickable .card-content,
+.carousel-slide-inner.clickable .card-media {
+  position: static;
+}
+
+/* With the button hidden, the heading is the card's link: it keeps the
+   heading's own look (the theme would otherwise style it as a link; the
+   underline is removed in juizi-common.scss, Links). */
+.carousel-slide-inner h3 > .embla__stretched-link {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.carousel-slide-inner.clickable .embla__stretched-link::after {
+  position: absolute;
+  z-index: 1;
+  content: '';
+  inset: 0;
+}
+
+.carousel-slide-inner.clickable:focus-within {
+  outline: 2px solid currentColor;
+  outline-offset: -4px;
+}
+
+/* Background image lives on ::before so we can scale it independently */
+.carousel-slide-inner::before {
+  position: absolute;
+  z-index: 0;
+  background-image: inherit;
+  background-position: center;
+  background-size: cover;
+  content: '';
+  inset: 0;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.carousel-slide-inner.clickable:hover::before {
+  transform: scale(1.07);
+}
+
+.carousel-slide-inner p:empty {
+  display: none;
+}
+.carousel-slide-inner > * {
+  position: relative;
+  z-index: 2;
+}
+/* Gradient overlay sits above the background pseudo-element */
+.carousel-slide-inner::after {
+  position: absolute;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Slides with no background image — use slide background colour if set, else subtle tint */
+.carousel-slide-inner.no-image {
+  background-color: var(--slide-bg, rgba(0, 0, 0, 0.06));
+}
+.carousel-slide-inner.no-image::before {
+  display: none;
+}
+/* Suppress the gradient overlay on solid-colour no-image slides */
+.carousel-slide-inner.no-image::after {
+  display: none;
+}
+
+/* Image-only mode styles */
+.carousel-slide-inner.image-only {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--slide-bg, none) !important;
+}
+
+.carousel-slide-inner.image-only::before,
+.carousel-slide-inner.image-only::after {
+  display: none;
+}
+
+.carousel-slide-inner.image-only h3,
+.carousel-slide-inner.image-only p,
+.carousel-slide-inner.image-only .embla__slide-btn {
+  display: none;
+}
+
+.carousel-slide-inner.image-only img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Picture shape (sidebar): every picture fills the slide's width at the
+   chosen shape, edges trimmed to fit. The slide follows the picture. */
+.embla.has-image-ratio .carousel-slide-inner.image-only {
+  min-height: 0;
+}
+
+.embla.has-image-ratio .carousel-slide-inner.image-only img {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: var(--slide-image-ratio);
+  object-fit: cover;
+}
+
+/* Image only, slide without a picture: editors only (visitors never get
+   the slide). The message is a shared EditHint. */
+.carousel-slide-inner.image-only .image-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lightest, #f9f9f9);
+}
+
+.embla__slide-btn {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  --btn-color: #ffffff;
+}
+
+/* Default (no variant) — white outline, matching existing behaviour */
+.embla__slide-btn:not(.embla__slide-btn--solid):not(
+    .embla__slide-btn--outline
+  ) {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff !important;
+}
+.embla__slide-btn:not(.embla__slide-btn--solid):not(
+    .embla__slide-btn--outline
+  ):hover {
+  background-color: #fff;
+  color: #000 !important;
+}
+
+/* Outlined variant */
+.embla__slide-btn--outline {
+  border: 1px solid var(--btn-color);
+  background-color: transparent;
+  color: var(--btn-color) !important;
+}
+.embla__slide-btn--outline:hover {
+  background-color: var(--btn-color);
+  color: #000 !important;
+}
+
+/* Solid variant — text colour comes from --btn-text (set in View.jsx via
+   isColorDark() against the chosen swatch), not a hardcoded white. A white
+   or other light swatch previously produced invisible white-on-white text. */
+.embla__slide-btn--solid {
+  border: 1px solid var(--btn-color);
+  background-color: var(--btn-color);
+  color: var(--btn-text, #fff) !important;
+}
+.embla__slide-btn--solid:hover {
+  opacity: 0.85;
+}
+
+/* Link variant — no background, border or padding; renders as plain
+   coloured text aligned with the slide content rather than stretched
+   full-width like the solid/outline variants.
+   !important throughout: getButtonClasses() may set backgroundColor/
+   border/padding directly as inline styles (not just the --btn-color
+   custom property), and inline styles beat a same-specificity class rule
+   regardless of stylesheet order — only !important reliably overrides it. */
+.embla__slide-btn--link {
+  display: inline-block !important;
+  width: auto !important;
+  align-self: flex-start;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--btn-color, #fff) !important;
+  text-decoration: underline !important;
+}
+.embla__slide-btn--link:hover {
+  background: transparent !important;
+  color: var(--btn-color, #fff) !important;
+  opacity: 0.75;
+}
+.embla.align-center .embla__slide-btn--link {
+  align-self: center;
+}
+.embla.align-right .embla__slide-btn--link {
+  align-self: flex-end;
+}
+
+/* Optional right-arrow on slide/listing buttons (schema: buttonArrow /
+   listingButtonArrow). Sized in em so it scales with the button's font
+   size, and inherits colour via currentColor from the button/link text —
+   no extra colour config needed across MASTER_COLOR_LIST variants. */
+.embla__slide-btn-arrow {
+  display: inline-block;
+  margin-left: 0.4em;
+  transition: transform 0.15s ease;
+  vertical-align: -0.125em;
+}
+
+.embla__slide-btn:hover .embla__slide-btn-arrow,
+.embla__slide-btn:focus-visible .embla__slide-btn-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .embla__slide-btn-arrow {
+    transition: none;
+  }
+}
+
+/* Sits directly under the slide heading; alignment follows the block's
+   text alignment (inherited via text-align from .embla.align-* on
+   .carousel-slide-inner) rather than being fixed to the right. */
+.slide-date {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Wrapper div around carousel-slide-inner — must fill the slide fully */
+.embla__slide .slide__content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Full-mode inner layout */
+.carousel-slide-inner .slide__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Push button to the bottom of the slide */
+.carousel-slide-inner .slide__body .embla__slide-btn,
+.carousel-slide-inner .card-content .embla__slide-btn {
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.embla .type-image-top .carousel-slide-inner {
+  height: 100%;
+}
+.embla.align-left .carousel-slide-inner {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.embla.align-center .carousel-slide-inner {
+  align-items: center;
+  text-align: center;
+}
+
+.embla.align-right .carousel-slide-inner {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.embla.align-left .embla__slide-btn {
+  text-align: left;
+}
+
+.embla.align-center .embla__slide-btn {
+  text-align: center;
+}
+
+.embla.align-right .embla__slide-btn {
+  text-align: right;
+}
+
+.embla.equal-height .embla__slide {
+  display: flex;
+}
+
+.embla.equal-height .carousel-slide-inner {
+  height: 100%;
+}
+
+/* Ensure title spacing inside colored background */
+.embla .embla__title + .embla__viewport {
+  margin-top: 0.25rem;
+}
+
+/* Optional: tweak title padding when full width */
+.embla.full-width .embla__title {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Image-top variant */
+.carousel-slide-inner.image-top {
+  padding: 0; /* card handles padding */
+  background: none !important;
+  color: inherit;
+}
+
+.carousel-slide-inner.image-top::before,
+.carousel-slide-inner.image-top::after {
+  display: none; /* card has its own image, no background needed */
+}
+
+/* width + align-self: stretch are the actual fix — .embla.align-*
+   .carousel-slide-inner sets align-items: flex-start/center/flex-end for
+   text alignment, which (being a flex-column container) also shrinks any
+   child to its content width unless the child opts back into stretching.
+   Without this the card only ever grew to its heading/text's natural
+   width instead of filling the slide slot. */
+.carousel-slide-inner.image-top .card {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-self: stretch;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--slide-bg, #fff);
+  color: #000;
+}
+
+.embla.tone-light .carousel-slide-inner.image-top .card {
+  background: var(--slide-bg, rgba(255, 255, 255, 0.9));
+  color: #111;
+}
+
+.embla.tone-dark .carousel-slide-inner.image-top .card {
+  background: var(--slide-bg, #fff);
+  color: #111;
+}
+
+.carousel-slide-inner.image-top .card-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Picture shape (sidebar): every card picture at the chosen shape */
+.embla.has-image-ratio .carousel-slide-inner.image-top .card-media img {
+  aspect-ratio: var(--slide-image-ratio);
+}
+
+.carousel-slide-inner.image-top .card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+}
+
+.carousel-slide-inner.image-top .embla__slide-btn {
+  margin-top: 0.5rem;
+}
+
+/* ===== Logo marquee mode ===== */
+.type-logo-marquee .embla__viewport,
+.type-logo-marquee .embla__container,
+.type-logo-marquee .embla__nav,
+.type-logo-marquee .embla__prev,
+.type-logo-marquee .embla__next {
+  display: none !important; /* hide embla UI; the marquee uses pure CSS */
+}
+
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logo-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: logo-marquee var(--marquee-duration, 20s) linear infinite;
+  gap: var(--logo-gap, 2rem);
+}
+
+.pause-on-hover .logo-marquee__track:hover {
+  animation-play-state: paused;
+}
+
+/* Static mode: the full set of logos already fits within the query's batch
+   size, so there's nothing extra a scroll would reveal. Show one centred,
+   wrapping row instead of an animated, duplicated track. */
+.logo-marquee.static .logo-marquee__track {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: none;
+}
+
+/* "Logo alignment" (sidebar), for the still row only */
+.logo-marquee.static.align-left .logo-marquee__track {
+  justify-content: flex-start;
+}
+
+.logo-marquee.static.align-right .logo-marquee__track {
+  justify-content: flex-end;
+}
+
+.logo-marquee__item {
+  flex: 0 0 auto;
+  padding: var(--logo-pad, 0.5rem);
+}
+
+.logo-marquee__img {
+  display: block;
+  width: auto;
+  height: var(--logo-height, 48px);
+  object-fit: contain;
+}
+
+.logo-marquee__link {
+  display: inline-block;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* track is duplicated in DOM for seamless loop */
+}
+
+/* Pause the marquee animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+/* ── Slide background tone ───────────────────────────────────────────────── */
+/* Applied automatically from slideBackgroundColor via isColorDark() */
+
+.carousel-slide-inner.slide-bg-dark {
+  color: #fff;
+}
+
+.carousel-slide-inner.slide-bg-dark h1,
+.carousel-slide-inner.slide-bg-dark h2,
+.carousel-slide-inner.slide-bg-dark h3,
+.carousel-slide-inner.slide-bg-dark h4,
+.carousel-slide-inner.slide-bg-dark p,
+.carousel-slide-inner.slide-bg-dark a {
+  color: #fff;
+}
+
+/* image-top: tone applies to the card, not the outer wrapper */
+.carousel-slide-inner.image-top.slide-bg-dark .card {
+  color: #fff;
+}
+
+.carousel-slide-inner.image-top.slide-bg-dark .card h1,
+.carousel-slide-inner.image-top.slide-bg-dark .card h2,
+.carousel-slide-inner.image-top.slide-bg-dark .card h3,
+.carousel-slide-inner.image-top.slide-bg-dark .card h4,
+.carousel-slide-inner.image-top.slide-bg-dark .card p,
+.carousel-slide-inner.image-top.slide-bg-dark .card a {
+  color: #fff;
+}
+
+.carousel-slide-inner.slide-bg-light {
+  color: #111;
+}
+
+.carousel-slide-inner.slide-bg-light h1,
+.carousel-slide-inner.slide-bg-light h2,
+.carousel-slide-inner.slide-bg-light h3,
+.carousel-slide-inner.slide-bg-light h4,
+.carousel-slide-inner.slide-bg-light p,
+.carousel-slide-inner.slide-bg-light a {
+  color: #111;
+}
+
+.carousel-slide-inner.image-top.slide-bg-light .card {
+  color: #111;
+}

@@ -1,0 +1,88 @@
+import React from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
+import BlockToggles from './BlockToggles';
+
+const groups = [
+  {
+    id: 'juizi',
+    title: 'Juizi',
+    blocks: [{ id: 'juiziHero', title: 'Hero', config: { icon: {} } }],
+  },
+  {
+    id: 'common',
+    title: 'Common',
+    blocks: [
+      { id: 'hero', title: 'Legacy hero', config: { restricted: true } },
+      { id: 'image', title: 'Image', config: {} },
+      {
+        id: 'eventMetadata',
+        title: 'Event metadata',
+        config: { restricted: () => true },
+      },
+    ],
+  },
+];
+
+const renderToggles = (lists, onChange = jest.fn()) =>
+  render(
+    <IntlProvider locale="en">
+      <BlockToggles groups={groups} lists={lists} onChange={onChange} />
+    </IntlProvider>,
+  );
+
+const none = { disabled_blocks: [], enabled_blocks: [] };
+
+describe('BlockToggles', () => {
+  it('lists every group with its on count', () => {
+    renderToggles(none);
+    expect(screen.getByText('Juizi')).toBeTruthy();
+    expect(screen.getByText('1 of 1 on')).toBeTruthy();
+    // Legacy hero is off by its own settings.
+    expect(screen.getByText('2 of 3 on')).toBeTruthy();
+  });
+
+  it('can switch a disabled block back on', () => {
+    const onChange = jest.fn();
+    const { container } = renderToggles(
+      { disabled_blocks: ['juiziHero'], enabled_blocks: [] },
+      onChange,
+    );
+    // Semantic's `disabled` row blocks all clicks (pointer-events: none).
+    expect(container.querySelector('tr.disabled')).toBeNull();
+    fireEvent.click(screen.getByLabelText('Hero: Disabled'));
+    expect(onChange).toHaveBeenCalledWith(none);
+  });
+
+  it('switches on a block that is off by default', () => {
+    const onChange = jest.fn();
+    renderToggles(none, onChange);
+    fireEvent.click(screen.getByLabelText('Legacy hero: Disabled'));
+    expect(onChange).toHaveBeenCalledWith({
+      disabled_blocks: [],
+      enabled_blocks: ['hero'],
+    });
+  });
+
+  it('shows locked and contextual blocks', () => {
+    renderToggles(none);
+    expect(screen.getByText('Always on')).toBeTruthy();
+    expect(screen.queryByLabelText(/^Image:/)).toBeNull();
+    expect(
+      screen.getByText(/Only offered where the block allows it/),
+    ).toBeTruthy();
+  });
+
+  it('resets only registered blocks', () => {
+    const onChange = jest.fn();
+    renderToggles(
+      { disabled_blocks: ['juiziHero', 'gone'], enabled_blocks: ['hero'] },
+      onChange,
+    );
+    fireEvent.click(screen.getByText('Reset all to their defaults'));
+    expect(onChange).toHaveBeenCalledWith({
+      disabled_blocks: ['gone'],
+      enabled_blocks: [],
+    });
+  });
+});

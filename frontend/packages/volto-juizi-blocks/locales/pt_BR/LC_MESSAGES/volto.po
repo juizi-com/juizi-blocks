@@ -1,0 +1,447 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-06T16:01:32.969Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"Language: \n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Language-Code: pt_BR\n"
+"Language-Name: Português do Brasil\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: volto\n"
+
+#. Default: "Callout"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout"
+msgstr ""
+
+#. Default: "Background colour"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-background"
+msgstr ""
+
+#. Default: "Text colour follows the background automatically."
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-background-help"
+msgstr ""
+
+#. Default: "What this callout is for. Changing it updates the icon and colours, except ones you've changed yourself."
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-change-type"
+msgstr ""
+
+#. Default: "Choose a callout type to get started."
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-choose-type"
+msgstr ""
+
+#. Default: "Colours"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-colors"
+msgstr ""
+
+#. Default: "Add a title and text in the sidebar."
+#: components/Blocks/Callout/View
+msgid "juizi-callout-empty"
+msgstr ""
+
+#. Default: "Icon"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-icon"
+msgstr ""
+
+#. Default: "Icon colour"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-icon-color"
+msgstr ""
+
+#. Default: "The icon colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/View
+msgid "juizi-callout-icon-contrast"
+msgstr ""
+
+#. Default: "Link colour"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-link-color"
+msgstr ""
+
+#. Default: "The link colour is hard to see on this background. Choose a lighter or darker one under Colours."
+#: components/Blocks/Callout/View
+msgid "juizi-callout-link-contrast"
+msgstr ""
+
+#. Default: "Read more"
+#: components/Blocks/Callout/View
+msgid "juizi-callout-more"
+msgstr ""
+
+#. Default: "None"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-none"
+msgstr ""
+
+#. Default: "Same as text"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-same-as-text"
+msgstr ""
+
+#. Default: "Callout type"
+#: components/Blocks/Callout/schema
+msgid "juizi-callout-type"
+msgstr ""
+
+#. Default: "Add colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-color"
+msgstr ""
+
+#. Default: "Add theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-add-theme"
+msgstr ""
+
+#. Default: "All"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-all"
+msgstr ""
+
+#. Default: "Automatic"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-automatic"
+msgstr ""
+
+#. Default: "Back"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-back"
+msgstr ""
+
+#. Default: "Block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-block"
+msgstr ""
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks"
+msgstr ""
+
+#. Default: "Every block registered in this site, grouped as in the block chooser. Switched-off blocks disappear from the chooser; blocks already on pages keep rendering. New blocks appear here automatically after a rebuild, switched on unless their own settings keep them off."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-blocks-help"
+msgstr ""
+
+#. Default: "Background colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-background"
+msgstr ""
+
+#. Default: "Icon colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-icon-color"
+msgstr ""
+
+#. Default: "Type"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-type"
+msgstr ""
+
+#. Default: "Callout types"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types"
+msgstr ""
+
+#. Default: "The colours a callout starts with when an editor chooses its type. Editors can still change them per callout. Leave a colour as None for no colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-callout-types-help"
+msgstr ""
+
+#. Default: "Discard changes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-cancel"
+msgstr ""
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors"
+msgstr ""
+
+#. Default: "The master colour list. Blocks store a colour by name (var(--name)), so changing a value here updates every block that uses it. Renaming a colour does not update blocks that already use the old name."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-help"
+msgstr ""
+
+#. Default: "Colours per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block"
+msgstr ""
+
+#. Default: "Tick the colours each block offers in its colour and button pickers. With nothing ticked, the block offers every colour."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-colors-per-block-help"
+msgstr ""
+
+#. Default: "Only offered where the block allows it (e.g. certain content types)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contextual"
+msgstr ""
+
+#. Default: "Contrast {ratio}:1"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-contrast"
+msgstr ""
+
+#. Default: "Dark colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark"
+msgstr ""
+
+#. Default: "Dark colours get light text and light default buttons, and vice versa."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-dark-help"
+msgstr ""
+
+#. Default: "Default"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-default-theme"
+msgstr ""
+
+#. Default: "Disabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-disabled"
+msgstr ""
+
+#. Default: "Enabled"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-enabled"
+msgstr ""
+
+#. Default: "Fix these before saving:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-fix-errors"
+msgstr ""
+
+#. Default: "Text colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-foreground"
+msgstr ""
+
+#. Default: "{on} of {total} on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-group-count"
+msgstr ""
+
+#. Default: "Switch blocks on or off, manage the colours every block shares, and build the block themes from them."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-intro"
+msgstr ""
+
+#. Default: "Label"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-label"
+msgstr ""
+
+#. Default: "Could not load the Juizi Blocks settings. Is juizi.blocks installed on the site?"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-load-failed"
+msgstr ""
+
+#. Default: "Always on"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-locked"
+msgstr ""
+
+#. Default: "Low contrast: text may be hard to read."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-low-contrast"
+msgstr ""
+
+#. Default: "Move down"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-down"
+msgstr ""
+
+#. Default: "Move up"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-move-up"
+msgstr ""
+
+#. Default: "Name"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-name"
+msgstr ""
+
+#. Default: "New colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-color"
+msgstr ""
+
+#. Default: "New theme"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-new-theme"
+msgstr ""
+
+#. Default: "— None —"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-none"
+msgstr ""
+
+#. Default: "Off by default in its own settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-off-by-default"
+msgstr ""
+
+#. Default: "Opacity %"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-opacity"
+msgstr ""
+
+#. Default: "Card"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-card"
+msgstr ""
+
+#. Default: "Muted supporting text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-text"
+msgstr ""
+
+#. Default: "Preview heading"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-preview-title"
+msgstr ""
+
+#. Default: "Remove"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-remove"
+msgstr ""
+
+#. Default: "Reset all to their defaults"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-reset-blocks"
+msgstr ""
+
+#. Default: "Save"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save"
+msgstr ""
+
+#. Default: "Could not save the settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-save-failed"
+msgstr ""
+
+#. Default: "Changes saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-saved"
+msgstr ""
+
+#. Default: "Background"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-background"
+msgstr ""
+
+#. Default: "Text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-foreground"
+msgstr ""
+
+#. Default: "Muted text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-muted"
+msgstr ""
+
+#. Default: "Cards / surfaces"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-slot-surface"
+msgstr ""
+
+#. Default: "Suggested: {tone}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-suggested"
+msgstr ""
+
+#. Default: "Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-blocks"
+msgstr ""
+
+#. Default: "Colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-colors"
+msgstr ""
+
+#. Default: "Block themes"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes"
+msgstr ""
+
+#. Default: "The Volto Light Theme background options (Styling > Background color) offered by VLT's own blocks, such as Grid, Teaser, Text and Listing. Juizi blocks use the colour list above instead. Each part picks a colour from that list, optionally faded."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-help"
+msgstr ""
+
+#. Default: "Themes per block"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block"
+msgstr ""
+
+#. Default: "Tick the themes each theme-aware block offers. With nothing ticked, the block offers every theme."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-themes-per-block-help"
+msgstr ""
+
+#. Default: "Juizi Blocks"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-title"
+msgstr ""
+
+#. Default: "dark"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-dark"
+msgstr ""
+
+#. Default: "light"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tone-light"
+msgstr ""
+
+#. Default: "You have unsaved changes."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-unsaved"
+msgstr ""
+
+#. Default: "Use suggestion"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-use-suggestion"
+msgstr ""
+
+#. Default: "Colour"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-value"
+msgstr ""
+
+#. Default: "Link"
+#: components/Blocks/Callout/schema
+msgid "juizi-link"
+msgstr ""
+
+#. Default: "Link text"
+#: components/Blocks/Callout/schema
+msgid "juizi-link-title"
+msgstr ""
+
+#. Default: "Text"
+#: components/Blocks/Callout/schema
+msgid "juizi-text"
+msgstr ""
+
+#. Default: "Title"
+#: components/Blocks/Callout/schema
+msgid "juizi-title"
+msgstr ""

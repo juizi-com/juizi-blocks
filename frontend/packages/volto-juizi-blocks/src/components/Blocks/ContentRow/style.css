@@ -1,0 +1,706 @@
+/* ==========================================================================
+   ContentRow — style.css
+
+   Colour approach:
+   - Block background always spans full width (overrides blocks-group-wrapper).
+   - Background colour from colors.js via inline style (CSS variable reference).
+   - .bg-dark / .bg-light drives text colour.
+   - Button colours handled globally in config/buttons.scss.
+   - Image card overlays use inline rgba (intentional exception, same as HeroBlock).
+
+   Mobile carousel:
+   - Embla carousel, no CSS scroll snap.
+   - Enabled via .content-row--mobile-scroll class.
+   - Items scroll horizontally on small screens.
+   ========================================================================== */
+
+/* ── Full-width background override ─────────────────────────────────────── */
+
+/* ── Visually hidden — accessible but not visible ────────────────────────── */
+/*
+   Used for screen-reader-only text such as the final stat value in the
+   statistics variation. Do not use display:none — that removes the element
+   from the accessibility tree entirely.
+*/
+
+/* ── Base block ──────────────────────────────────────────────────────────── */
+
+.content-row {
+  width: 100%;
+}
+
+/* ── Padding, width, preheader/heading/description sizes ────────────────── */
+/* Shared with the other Juizi blocks: see src/theme/juizi-common.scss. */
+
+.content-row__inner {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 2.5rem;
+}
+
+.content-row__items {
+  min-width: 0;
+}
+
+/* ── Side-by-side layout ─────────────────────────────────────────────────── */
+/* Header (heading/description/image) sits next to the items as two columns
+   on desktop. Falls back to the normal stacked column layout on mobile. */
+
+@media (min-width: 769px) {
+  .content-row__inner--side-by-side {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5rem;
+  }
+
+  /* Column width ratio — driven by the --content-row-header-ratio /
+     --content-row-items-ratio custom properties set inline by View.jsx.
+     They default to an even 50/50 split when not present (e.g. if the
+     block predates this option). */
+  .content-row__inner--side-by-side .content-row__header {
+    max-width: none;
+    flex: var(--content-row-header-ratio, 1) 1 0;
+  }
+
+  .content-row__inner--side-by-side .content-row__items {
+    flex: var(--content-row-items-ratio, 1) 1 0;
+  }
+
+  /* Vertical alignment of the header column against the items column when
+     they end up different heights. Top is the default (no modifier class
+     needed — flex-start is the base value above). */
+  .content-row__inner--side-by-side.content-row__inner--align-middle {
+    align-items: center;
+  }
+
+  .content-row__inner--side-by-side.content-row__inner--align-bottom {
+    align-items: flex-end;
+  }
+}
+
+/* ── Colour-driven text ──────────────────────────────────────────────────── */
+
+.content-row.bg-dark {
+  color: #fff;
+}
+
+.content-row.bg-dark .content-row__preheader,
+.content-row.bg-dark .content-row__description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.content-row.bg-light {
+  color: var(--dark, #111);
+}
+
+.content-row:not(.bg-dark):not(.bg-light) {
+  color: inherit;
+}
+
+/* ── Header section ──────────────────────────────────────────────────────── */
+
+.content-row__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.content-row__header.align-center {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.content-row__header.align-right {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.content-row__header-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content-row__header-text-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Block image (header) ────────────────────────────────────────────────── */
+
+.content-row__block-image {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.content-row__block-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Below (default): full-width, stacked under the text inside header-text. */
+.content-row__block-image--below {
+  margin-top: 0.5rem;
+}
+
+/* Side: header-text becomes a row — text column + image column. */
+.content-row__header-text--image-side {
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.content-row__header-text--image-side .content-row__header-text-inner {
+  flex: 1;
+}
+
+.content-row__header-text--image-side .content-row__block-image--side {
+  max-width: 360px;
+  flex: 0 0 38%;
+}
+
+@media (max-width: 768px) {
+  .content-row__header-text--image-side {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .content-row__header-text--image-side .content-row__block-image--side {
+    max-width: 100%;
+    flex: none;
+  }
+}
+
+.content-row__preheader {
+  opacity: 0.75;
+}
+
+.content-row__heading {
+  margin: 0;
+  color: inherit;
+}
+
+.content-row__description {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* ── View All button — below items ───────────────────────────────────────── */
+
+.content-row__view-all-bottom {
+  display: flex;
+}
+
+.content-row__view-all-bottom.align-left {
+  justify-content: flex-start;
+}
+.content-row__view-all-bottom.align-center {
+  justify-content: center;
+}
+.content-row__view-all-bottom.align-right {
+  justify-content: flex-end;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.content-row__grid {
+  display: grid;
+  align-items: start;
+  gap: 1.2rem;
+}
+
+.content-row__grid.columns-1 {
+  grid-template-columns: 1fr;
+}
+.content-row__grid.columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.content-row__grid.columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.content-row__grid.columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.content-row__grid.columns-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.content-row__grid.columns-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .content-row__grid.columns-5,
+  .content-row__grid.columns-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-row__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-row__grid.columns-1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-row__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Item alignment */
+.content-row__grid.align-center .content-row-item {
+  text-align: center;
+}
+.content-row__grid.align-right .content-row-item {
+  text-align: right;
+}
+
+/* ── Embla mobile carousel ───────────────────────────────────────────────── */
+/* Desktop: hidden, normal grid renders. Mobile: Embla takes over.           */
+
+.content-row__embla {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide normal grid when mobile carousel is active */
+  .content-row--mobile-scroll .content-row__grid {
+    display: none;
+  }
+
+  /* Show Embla carousel */
+  .content-row--mobile-scroll .content-row__embla {
+    display: block;
+    overflow: hidden;
+  }
+
+  .content-row--mobile-scroll .content-row__embla-viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .content-row--mobile-scroll .content-row__embla-container {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .content-row--mobile-scroll .content-row__embla-slide {
+    min-width: 0;
+    flex: 0 0 100%;
+  }
+
+  .content-row--mobile-scroll .content-row__embla-slide .content-row-item {
+    height: 100%;
+  }
+}
+
+/* ── Base item ───────────────────────────────────────────────────────────── */
+
+.content-row-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Link colour and underline: shared, see src/theme/juizi-common.scss
+   (Links). Rich-text links stay underlined there too. */
+.content-row-item a {
+  color: inherit;
+}
+
+/* When a Numbered, Icon or Statistic item has a link, the whole item content
+   gets wrapped in a plain <a>. An <a> is inline by default, so block-
+   level children inside it (the icon div, the content div) fall back to
+   stacked block flow instead of the item's own flex layout — the icon
+   reverts to sitting above the content regardless of iconPosition, spacing
+   shifts because block-level margins collapse instead of using the flex
+   gap, and the anchor's own underline can show through that fallback flow.
+   For a statistic, the value (a flex row) spans the full width with its
+   number at the left, so it ignores Items alignment while the label obeys.
+   Making the <a> a flex container that mirrors the item's own direction/
+   alignment/gap keeps it visually identical to the no-link case. */
+.content-row-item--numbered > a,
+.content-row-item--icon > a,
+.content-row-item--statistic > a {
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
+  flex-direction: inherit;
+  align-items: inherit;
+  color: inherit;
+  gap: inherit;
+  text-decoration: none;
+}
+
+.content-row-item__heading {
+  margin: 0 0 8px;
+  color: inherit;
+}
+
+.content-row-item__text {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.content-row-item__text p {
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+/* ── Numbered ────────────────────────────────────────────────────────────── */
+
+.content-row-item--numbered .content-row-item__number {
+  margin: 0 0 0.5rem;
+  color: inherit;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Optional coloured circle behind the number, same mechanism as the icon
+   variation's iconCircleColor. Background/text colour are set inline per
+   item; the full opacity and centred number override the plain number's
+   faded default so it reads clearly against the circle. */
+.content-row-item__number--circle {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  opacity: 1;
+}
+
+/* ── Statistics ──────────────────────────────────────────────────────────── */
+
+.content-row-item--statistic {
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.content-row__grid.align-center .content-row-item--statistic {
+  align-items: center;
+}
+.content-row__grid.align-right .content-row-item--statistic {
+  align-items: flex-end;
+}
+
+.content-row-item__stat-value {
+  display: flex;
+  align-items: baseline;
+  color: inherit;
+  font-size: 3rem;
+  font-weight: 700;
+  gap: 0.1em;
+  line-height: 1;
+}
+
+.content-row-item__stat-suffix {
+  font-size: 0.6em;
+  font-weight: 600;
+}
+.content-row-item__stat-label {
+  font-size: 1em;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.content-row-item__stat-extra {
+  font-size: 0.85em;
+  opacity: 0.65;
+}
+
+/* ── Icon ────────────────────────────────────────────────────────────────── */
+
+.content-row-item--icon {
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.content-row__grid.align-center .content-row-item--icon {
+  align-items: center;
+}
+.content-row__grid.align-right .content-row-item--icon {
+  align-items: flex-end;
+}
+
+.content-row-item__icon {
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+/* Optional coloured circle behind the icon. Background/text colour are set
+   inline per item (picked from the shared colour list), so only the shape
+   and sizing live here. */
+.content-row-item__icon--circle {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* ── Icon/number position ────────────────────────────────────────────────── */
+/* Default (no modifier class) stacks the icon/number above the content —
+   the base .content-row-item is already flex-direction: column. */
+
+.content-row-item--left {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.content-row-item--left .content-row-item__number,
+.content-row-item--left .content-row-item__icon {
+  flex-shrink: 0;
+}
+
+.content-row-item--left .content-row-item__content {
+  flex: 1;
+}
+
+/* Inline: icon/number sits after the content, to the right. DOM order is
+   icon/number first then content — row-reverse flips the visual order
+   without needing separate markup for each position. */
+.content-row-item--inline {
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1rem;
+}
+
+.content-row-item--inline .content-row-item__number,
+.content-row-item--inline .content-row-item__icon {
+  flex-shrink: 0;
+}
+
+.content-row-item--inline .content-row-item__content {
+  flex: 1;
+}
+
+/* ── Image above ─────────────────────────────────────────────────────────── */
+
+.content-row-item--image-top {
+  overflow: hidden;
+  border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  gap: 0;
+}
+
+.content-row-item__image-top {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.content-row-item__image-top img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content-row-item--image-top .content-row-item__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem 0;
+  gap: 0.5rem;
+}
+
+/* ── Image card ──────────────────────────────────────────────────────────── */
+
+.content-row-item--card {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+/* Whole-card link for the mouse (aria-hidden, out of the tab order); the
+   card's button stays the one real link and sits above it. */
+.content-row-item--card a.content-row-item__card-link {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+}
+
+.content-row-item--card .content-row-item__stretched-link {
+  position: relative;
+  z-index: 4;
+}
+
+.content-row-item--whole-card:focus-within {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.content-row-item__bg {
+  position: absolute;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  inset: 0;
+}
+
+.content-row-item__overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.content-row-item__overlay--gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+.content-row-item--card .content-row-item__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  gap: 0.5rem;
+}
+
+.content-row-item--card .content-row-item__heading,
+.content-row-item--card .content-row-item__text {
+  color: #fff;
+  opacity: 1;
+}
+
+/* ── Rich text ───────────────────────────────────────────────────────────── */
+
+.content-row-item__text p {
+  margin: 0 0 0.5em;
+}
+.content-row-item__text p:last-child {
+  margin-bottom: 0;
+}
+.content-row-item__text strong,
+.content-row-item__text b {
+  font-weight: 600;
+}
+.content-row-item__text a {
+  color: inherit;
+}
+
+/* ── Item tone ───────────────────────────────────────────────────────────── */
+
+.content-row-item.bg-dark {
+  color: #fff;
+}
+.content-row-item.bg-dark .content-row-item__heading,
+.content-row-item.bg-dark .content-row-item__text,
+.content-row-item.bg-dark .content-row-item__number,
+.content-row-item.bg-dark .content-row-item__icon {
+  color: #fff;
+}
+
+.content-row-item.bg-light {
+  color: var(--dark, #111);
+}
+.content-row-item.bg-light .content-row-item__heading,
+.content-row-item.bg-light .content-row-item__text,
+.content-row-item.bg-light .content-row-item__number,
+.content-row-item.bg-light .content-row-item__icon {
+  color: var(--dark, #111);
+}
+
+/* ── Card button alignment ───────────────────────────────────────────────── */
+
+.content-row-item__body .card-button {
+  margin-top: 16px;
+}
+
+/* Scoped to the grid's own align-* class: the block wrapper also carries
+   align-* for the Heading alignment, and a bare .align-right matched that
+   too, so the heading setting moved the item buttons. */
+.content-row__grid.align-left .content-row-item__body .card-button,
+.content-row__embla-slide .content-row-item__body .card-button {
+  align-self: flex-start;
+}
+
+.content-row__grid.align-center .content-row-item__body .card-button {
+  align-self: center;
+}
+
+.content-row__grid.align-right .content-row-item__body .card-button {
+  align-self: flex-end;
+}
+
+/* ── Item body padding when background colour is set ─────────────────────── */
+
+/* Non-image-top items: colour the whole item */
+.content-row-item:not(.content-row-item--image-top).bg-dark,
+.content-row-item:not(.content-row-item--image-top).bg-light {
+  padding: 1.25rem;
+  border-radius: 4px;
+}
+
+/* Image-top items: colour only the body, not the image */
+.content-row-item--image-top.bg-dark .content-row-item__body,
+.content-row-item--image-top.bg-light .content-row-item__body {
+  padding: 1.25rem;
+}
+
+.content-row-item--image-top.bg-dark,
+.content-row-item--image-top.bg-light {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+/* ── Mobile carousel dots ────────────────────────────────────────────────── */
+
+.content-row__embla-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.content-row__embla-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--light, #ddd);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.content-row__embla-dot.is-selected {
+  background: currentColor;
+}
+
+/* ── Item preheader ──────────────────────────────────────────────────────── */
+
+.content-row-item__preheader {
+  margin: 0;
+  opacity: 0.7;
+}

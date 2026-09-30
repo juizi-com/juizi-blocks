@@ -1,0 +1,413 @@
+// =============================================================================
+// juizi-common.scss — Shared styling for elements every Juizi block has
+// src/theme/juizi-common.scss
+//
+// The counterpart of config/buttons.scss for everything that isn't a button:
+// preheaders, block titles, descriptions, item headings, spacing, full width
+// and cards. Each block keeps its own class names; the lists below say which
+// class is "the preheader" (etc.) in each block, and every rule reads a
+// --juizi-* token. To restyle all blocks at once, override tokens in your
+// theme, e.g. in a project's _main.scss:
+//
+//   :root {
+//     --juizi-preheader-font-size: 16px;
+//     --juizi-preheader-font-weight: 400;
+//     --juizi-title-font-size: 68px;
+//     --juizi-title-line-height: 64px;
+//     --juizi-card-radius: 24px;
+//     --juizi-content-width: 1200px; // every block's content width
+//     --juizi-card-shadow: 0 3px 6px -4px #000;
+//   }
+//
+// Defaults follow Volto Light Theme's own sizes (h2 30/36px, h3 24/30px,
+// page title 48/56px), so nothing jumps when this file is added.
+//
+// Adding a block: add its classes to the lists below instead of styling
+// these elements in the block's own stylesheet. Its links follow its text
+// colour once its outer class is in $juizi-layers (see Links below).
+// =============================================================================
+
+@use 'sass:list';
+
+:root {
+  // ── Typography ──────────────────────────────────────────────────────────
+  --juizi-heading-font-family: inherit;
+
+  // Small label above a block title
+  --juizi-preheader-font-size: 0.9em;
+  --juizi-preheader-font-weight: 600;
+  --juizi-preheader-line-height: 1.4;
+  --juizi-preheader-letter-spacing: 0.05em;
+  --juizi-preheader-text-transform: uppercase;
+  --juizi-preheader-margin: 0 0 0.5rem;
+
+  // Block title (h2): Content Row, Carousel, Gallery, Hero in section mode
+  --juizi-title-font-size: 30px;
+  --juizi-title-line-height: 36px;
+  --juizi-title-font-weight: 700;
+  --juizi-title-margin: 0 0 1rem;
+
+  // Hero title in hero mode (usually the page's h1)
+  --juizi-hero-title-font-size: 48px;
+  --juizi-hero-title-line-height: 56px;
+  --juizi-hero-title-font-weight: 700;
+
+  // Text under a block title
+  --juizi-description-font-size: 1.1em;
+  --juizi-description-line-height: 1.55;
+  --juizi-description-max-width: 65ch;
+
+  // Items inside a block (cards, icons, steps, slides)
+  --juizi-item-preheader-font-size: 0.75em;
+  --juizi-item-title-font-size: 1.1em;
+  --juizi-item-title-line-height: 1.3;
+  --juizi-item-title-font-weight: 700;
+
+  // ── Spacing ─────────────────────────────────────────────────────────────
+  // Top/bottom padding options offered by blocks (paddingTop/paddingBottom)
+  --juizi-pad-compact: 2rem;
+  --juizi-pad-default: 4rem;
+  --juizi-pad-spacious: 8rem;
+  --juizi-pad-extra-spacious: 12rem;
+  --juizi-pad-spacious-mobile: 5rem;
+  --juizi-pad-extra-spacious-mobile: 8rem;
+
+  // ── Width ───────────────────────────────────────────────────────────────
+  // Every block has two layers (see "Width" below). The outer layer is
+  // always full width, carries the background, and keeps this side padding
+  // so content never touches the window edge. The inner layer is held to the
+  // block's width below, or spans the outer layer when "Full width" is on.
+  --juizi-gutter: 20px;
+  // The one content width every block's inner layer uses. Set it once.
+  --juizi-content-width: var(--layout-container-width, 1440px);
+  // Optional per-block overrides; by default they all follow
+  // --juizi-content-width. Only set one to make that block differ.
+  --juizi-hero-content-width: var(--juizi-content-width);
+  --juizi-content-row-width: var(--juizi-content-width);
+  --juizi-carousel-content-width: var(--juizi-content-width);
+  --juizi-gallery-content-width: var(--juizi-content-width);
+  --juizi-callout-width: var(--juizi-content-width);
+  --juizi-redirect-width: var(--juizi-content-width);
+  // Space inside a Callout that has a background colour, on the sides
+  // (top and bottom use the Callout's own padding, juizi-blocks.scss).
+  --juizi-callout-padding: 1.5rem;
+  // Space inside the Redirect's message box, on the sides
+  --juizi-redirect-padding: 1.25rem;
+
+  // ── Cards ───────────────────────────────────────────────────────────────
+  --juizi-card-radius: 4px;
+  --juizi-card-shadow: none;
+
+  // ── Buttons ─────────────────────────────────────────────────────────────
+  // Shape of every button (config/buttons.scss) and of the carousel's
+  // controls (arrows, "More" button), so they match out of the box.
+  --juizi-button-radius: 4px;
+  --juizi-button-border-width: 2px;
+}
+
+// ── Which class is which, per block ───────────────────────────────────────
+
+$juizi-preheaders: '.hero-preheader', '.content-row__preheader';
+$juizi-titles: '.hero-block--section .hero-title',
+  '.hero-block--snapshot .hero-title', '.content-row__heading', '.embla__title',
+  '.gallery__title';
+$juizi-hero-titles: '.hero-block--hero .hero-title';
+$juizi-descriptions: '.hero-subtitle', '.content-row__description',
+  '.embla__description', '.gallery__description';
+$juizi-item-preheaders: '.content-row-item__preheader';
+$juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
+  '.embla .slide__body h3';
+// Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
+$juizi-padded-blocks: 'hero-block', 'content-row';
+// Two layers per block: outer (full width, background, side padding) →
+// inner (block width, or full width when toggled) → its width token.
+$juizi-layers: (
+  '.hero-block': (
+    '.hero-block__inner',
+    --juizi-hero-content-width,
+  ),
+  '.content-row': (
+    '.content-row__inner',
+    --juizi-content-row-width,
+  ),
+  '.embla': (
+    '.embla__inner',
+    --juizi-carousel-content-width,
+  ),
+  '.gallery': (
+    '.gallery__inner',
+    --juizi-gallery-content-width,
+  ),
+  '.juizi-callout-wrapper': (
+    '.juizi-callout',
+    --juizi-callout-width,
+  ),
+  '.redirect-block-wrapper': (
+    '.redirect-block',
+    --juizi-redirect-width,
+  ),
+);
+// "Full width" option (on the outer layer): the inner layer spans too
+$juizi-full-width: '.hero-block--full-width', '.embla.full-width',
+  '.gallery.full-width';
+// Links that stand alone (a whole item, a breadcrumb), not in running text:
+// no underline. `<class>: <link selector inside it>`. Buttons style
+// themselves (config/buttons.scss), so leave them out.
+$juizi-plain-links: (
+  '.hero-breadcrumbs': 'a',
+  '.content-row-item': 'a:not(.btn-unified)',
+  // Carousel card heading that is the card's link (button hidden)
+  '.carousel-slide-inner': 'h3 > .embla__stretched-link',
+);
+// Links in running text inside a plain-link element: underlined again, so
+// they read as links. Same shape as above; comes after it, so it wins.
+$juizi-underlined-links: (
+  '.content-row-item': '.content-row-item__text a',
+);
+// Cards and card-like slides
+$juizi-cards: '.content-row__grid > .content-row-item',
+  '.content-row__embla-slide', '.embla .carousel-slide-inner.image-top .card';
+
+// ── Typography ────────────────────────────────────────────────────────────
+
+#{$juizi-preheaders} {
+  margin: var(--juizi-preheader-margin);
+  font-size: var(--juizi-preheader-font-size);
+  font-weight: var(--juizi-preheader-font-weight);
+  letter-spacing: var(--juizi-preheader-letter-spacing);
+  line-height: var(--juizi-preheader-line-height);
+  text-transform: var(--juizi-preheader-text-transform);
+}
+
+#{$juizi-titles} {
+  margin: var(--juizi-title-margin);
+  font-family: var(--juizi-heading-font-family);
+  font-size: var(--juizi-title-font-size);
+  font-weight: var(--juizi-title-font-weight);
+  line-height: var(--juizi-title-line-height);
+}
+
+#{$juizi-hero-titles} {
+  font-family: var(--juizi-heading-font-family);
+  font-size: var(--juizi-hero-title-font-size);
+  font-weight: var(--juizi-hero-title-font-weight);
+  line-height: var(--juizi-hero-title-line-height);
+}
+
+#{$juizi-descriptions} {
+  max-width: var(--juizi-description-max-width);
+  font-size: var(--juizi-description-font-size);
+  line-height: var(--juizi-description-line-height);
+}
+
+// Centred and right-aligned headers use the full width for their text.
+.hero-block__inner--align-center .hero-subtitle,
+.hero-block__inner--align-right .hero-subtitle,
+.content-row__header.align-center .content-row__description,
+.content-row__header.align-right .content-row__description,
+.embla.align-center .embla__description,
+.gallery.align-center .gallery__description {
+  max-width: none;
+}
+
+#{$juizi-item-preheaders} {
+  font-size: var(--juizi-item-preheader-font-size);
+  font-weight: var(--juizi-preheader-font-weight);
+  letter-spacing: var(--juizi-preheader-letter-spacing);
+  text-transform: var(--juizi-preheader-text-transform);
+}
+
+#{$juizi-item-titles} {
+  font-family: var(--juizi-heading-font-family);
+  font-size: var(--juizi-item-title-font-size);
+  font-weight: var(--juizi-item-title-font-weight);
+  line-height: var(--juizi-item-title-line-height);
+}
+
+// Old CustomHero blocks set to "dark text" (converted by legacy/blocks.js).
+.hero-block--foreground-dark {
+  color: var(--dark, #111);
+}
+
+// ── Spacing ───────────────────────────────────────────────────────────────
+
+$juizi-pad-sizes: (
+  none: 0,
+  compact: var(--juizi-pad-compact),
+  default: var(--juizi-pad-default),
+  spacious: var(--juizi-pad-spacious),
+  extra-spacious: var(--juizi-pad-extra-spacious),
+);
+
+@each $block in $juizi-padded-blocks {
+  @each $size, $value in $juizi-pad-sizes {
+    .#{$block}--pad-top-#{$size} {
+      padding-top: $value;
+    }
+
+    .#{$block}--pad-bottom-#{$size} {
+      padding-bottom: $value;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .#{$block}--pad-top-spacious {
+      padding-top: var(--juizi-pad-spacious-mobile);
+    }
+
+    .#{$block}--pad-top-extra-spacious {
+      padding-top: var(--juizi-pad-extra-spacious-mobile);
+    }
+
+    .#{$block}--pad-bottom-spacious {
+      padding-bottom: var(--juizi-pad-spacious-mobile);
+    }
+
+    .#{$block}--pad-bottom-extra-spacious {
+      padding-bottom: var(--juizi-pad-extra-spacious-mobile);
+    }
+  }
+}
+
+// ── Width ─────────────────────────────────────────────────────────────────
+// Outer layer: full width, background colour/image, side padding. (The
+// Callout keeps its background on the inner layer: the callout box itself
+// isn't full width.)
+
+// Every Juizi view renders inside BlockWrapper (_shared/BlockWrapper), a
+// `div.block.{@type}` that is the direct child of the blocks layout. VLT gives
+// every direct child the narrow container width (.blocks-group-wrapper > *),
+// so the wrapper spans the full width and the block's own outer layer below
+// sets the gutter and the width, as before. The wrapper is found by what it
+// contains, so any block type listed in $juizi-layers is covered.
+@each $outer, $layer in $juizi-layers {
+  #page-document .blocks-group-wrapper > .block:has(> #{$outer}) {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+@each $outer, $layer in $juizi-layers {
+  $inner: list.nth($layer, 1);
+  $width: list.nth($layer, 2);
+
+  // Directly in the layout (older markup), or inside BlockWrapper.
+  #page-document .blocks-group-wrapper > #{$outer},
+  #page-document .blocks-group-wrapper > .block > #{$outer} {
+    right: 0;
+    left: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding-right: var(--juizi-gutter);
+    padding-left: var(--juizi-gutter);
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  // Inner layer: the block's width, centred. Side padding lives on the outer
+  // layer, so it stays equal whatever the window width.
+  #{$outer} > #{$inner} {
+    max-width: var(#{$width});
+    box-sizing: border-box;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+:is(#{$juizi-full-width})
+  > :is(.hero-block__inner, .embla__inner, .gallery__inner) {
+  max-width: 100%;
+}
+
+// The Callout's and the Redirect's inner layer is a box with its own
+// background, so the rule above that clears the inner layer's side padding
+// left their content flush against the box's edge. They keep side padding.
+// A Callout without a background colour has no box: it stays in line with
+// the other blocks.
+.juizi-callout-wrapper > .juizi-callout:is(.bg-dark, .bg-light) {
+  padding-right: var(--juizi-callout-padding);
+  padding-left: var(--juizi-callout-padding);
+}
+
+.redirect-block-wrapper > .redirect-block {
+  padding-right: var(--juizi-redirect-padding);
+  padding-left: var(--juizi-redirect-padding);
+}
+
+// The Carousel and Gallery mark "Full width" with a `full-width` class, which
+// Volto's own theme also uses to break out of the page column (left: 50% and
+// margin-left: -50vw !important). The published page overrides that above,
+// but the editor doesn't, and the block landed half off screen. Full width
+// is handled by the layers above, so undo Volto's version everywhere.
+:is(.embla, .gallery).full-width {
+  position: relative;
+  right: auto;
+  left: auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+// ── Cards ─────────────────────────────────────────────────────────────────
+
+#{$juizi-cards} {
+  border-radius: var(--juizi-card-radius);
+  box-shadow: var(--juizi-card-shadow);
+}
+
+// ── Links ─────────────────────────────────────────────────────────────────
+// VLT colours and underlines every link in a blocks layout with
+//   .blocks-group-wrapper :not(.teaser-item) > a:not(.item):not(:has(…))
+//   { color: var(--link-foreground-color); text-decoration: underline; }
+// Colour: every block's outer layer sets the variable to currentColor, which
+// the browser resolves on the link itself, so links follow the text colour
+// the block (or item) sets, whichever rule wins. A link or button that sets
+// its own --link-foreground-color (buttons, Callout's link colour) keeps it.
+// Underline: VLT's selector is (0,4,1); repeating the class four times only
+// raises specificity past it (same trick as config/buttons.scss).
+
+@function juizi-outrank-vlt($class) {
+  @return '#{$class}#{$class}#{$class}#{$class}';
+}
+
+@each $outer, $layer in $juizi-layers {
+  #{$outer} {
+    --link-foreground-color: currentColor;
+  }
+}
+
+@each $class, $link in $juizi-plain-links {
+  #{juizi-outrank-vlt($class)} #{$link} {
+    text-decoration: none;
+  }
+}
+
+@each $class, $link in $juizi-underlined-links {
+  #{juizi-outrank-vlt($class)} #{$link} {
+    text-decoration: underline;
+  }
+}
+
+// ── Utilities ─────────────────────────────────────────────────────────────
+
+// Hidden on screen, still read by screen readers.
+:is(.hero-block, .content-row, .embla, .gallery, .juizi-block)
+  .visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}

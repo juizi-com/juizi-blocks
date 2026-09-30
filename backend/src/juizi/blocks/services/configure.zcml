@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <!-- Public read access: Volto needs the palette and toggles to render -->
+  <plone:service
+      method="GET"
+      factory=".settings.SettingsGet"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="zope2.View"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-blocks-settings"
+      />
+
+  <plone:service
+      method="PATCH"
+      factory=".settings.SettingsPatch"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="cmf.ManagePortal"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-blocks-settings"
+      />
+
+</configure>

@@ -1,0 +1,84 @@
+{
+  "name": "volto-juizi-blocks",
+  "version": "1.0.0-alpha.0",
+  "description": "Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react"
+  ],
+  "author": "Juizi",
+  "homepage": "https://github.com/juizi-com/juizi-blocks#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:juizi-com/juizi-blocks"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
+    "dry-release": "release-it --dry-run",
+    "release": "release-it",
+    "release-major-alpha": "release-it major --preRelease=alpha",
+    "release-alpha": "release-it --preRelease=alpha"
+  },
+  "addons": [
+    "@plonegovbr/volto-social-media",
+    "@eeacms/volto-accordion-block",
+    "@kitconcept/volto-banner-block",
+    "@kitconcept/volto-button-block",
+    "@kitconcept/volto-carousel-block",
+    "@kitconcept/volto-heading-block",
+    "@kitconcept/volto-highlight-block",
+    "@kitconcept/volto-introduction-block",
+    "@kitconcept/volto-logos-block",
+    "@kitconcept/volto-separator-block",
+    "@kitconcept/volto-slider-block",
+    "@kitconcept/volto-light-theme"
+  ],
+  "theme": "@kitconcept/volto-light-theme",
+  "dependencies": {
+    "@eeacms/volto-accordion-block": "^10.4.6",
+    "@kitconcept/volto-banner-block": "^1.2.1",
+    "@kitconcept/volto-bm3-compat": "^1.0.0-alpha.1",
+    "@kitconcept/volto-button-block": "^4.0.0",
+    "@kitconcept/volto-carousel-block": "^2.0.0",
+    "@kitconcept/volto-dsgvo-banner": "^3.0.1",
+    "@kitconcept/volto-heading-block": "^2.5.0",
+    "@kitconcept/volto-highlight-block": "^4.5.1",
+    "@kitconcept/volto-introduction-block": "^1.4.1",
+    "@kitconcept/volto-light-theme": "7.8.6",
+    "@kitconcept/volto-logos-block": "^3.0.0",
+    "@kitconcept/volto-separator-block": "^4.2.1",
+    "@kitconcept/volto-slider-block": "^6.4.1",
+    "@plonegovbr/volto-social-media": "^2.0.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^1.48.0"
+  },
+  "peerDependencies": {
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^3.12.1",
+    "react-redux": "8.1.2",
+    "react-router-dom": "^5.2.0",
+    "react-toastify": "^5.4.1",
+    "semantic-ui-react": "^2.1.5"
+  },
+  "devDependencies": {
+    "@plone/registry": "workspace:*",
+    "@plone/scripts": "workspace:*",
+    "@plone/types": "workspace:*",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.7.3",
+    "release-it": "^19.0.5",
+    "react-redux": "8.1.2"
+  }
+}

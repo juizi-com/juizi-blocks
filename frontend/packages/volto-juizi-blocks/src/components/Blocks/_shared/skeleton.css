@@ -1,0 +1,48 @@
+/* Loading skeletons (Gallery, Carousel content queries). Decorative: the
+   markup is aria-hidden and the block carries aria-busy while loading. */
+.block-skeleton {
+  display: grid;
+  gap: var(--block-skeleton-gap, 12px);
+  grid-template-columns: repeat(var(--block-skeleton-cols, 3), 1fr);
+}
+
+.block-skeleton__tile {
+  min-height: var(--block-skeleton-height, 160px);
+  border-radius: 4px;
+  animation: block-skeleton-pulse 1.4s ease-in-out infinite;
+  background: var(--light, #ddd);
+}
+
+/* Natural grid: tiles of mixed heights. */
+.block-skeleton--mixed .block-skeleton__tile:nth-child(3n + 2) {
+  min-height: calc(var(--block-skeleton-height, 160px) * 1.4);
+}
+
+.block-skeleton--mixed .block-skeleton__tile:nth-child(3n) {
+  min-height: calc(var(--block-skeleton-height, 160px) * 0.7);
+}
+
+.block-skeleton__large {
+  min-height: 320px;
+  border-radius: 4px;
+  animation: block-skeleton-pulse 1.4s ease-in-out infinite;
+  background: var(--light, #ddd);
+}
+
+@keyframes block-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block-skeleton__tile,
+  .block-skeleton__large {
+    animation: none;
+  }
+}

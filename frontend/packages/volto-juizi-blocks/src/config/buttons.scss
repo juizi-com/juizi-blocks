@@ -1,0 +1,153 @@
+// =============================================================================
+// buttons.scss — Global unified button system
+// src/config/buttons.scss
+//
+// This is the CSS counterpart to colors.js. All colour and text rules for
+// buttons that use getButtonClasses() live here and nowhere else.
+//
+// getButtonClasses() sets two CSS custom properties on each button element:
+//   --btn-color:      the button's own colour (a CSS variable from MASTER_COLOR_LIST)
+//   --btn-foreground: light or dark text, derived from the colour's lightness
+//                     value in MASTER_COLOR_LIST ('light' → dark text, 'dark' → white)
+//
+// Selectors include both .public-ui (view) and .cms-ui (edit) contexts so
+// buttons render correctly in both modes.
+//
+// Import in _main.scss after VLT styles:
+//   @import '../../config/buttons';
+// =============================================================================
+
+// ── Context mixin ─────────────────────────────────────────────────────────
+// Outputs rules for both public (view) and cms (edit) contexts.
+// Specificity: .public-ui a.btn-unified.btn-solid.hero-button = (0, 3, 1)
+// which beats VLT's (0, 2, 1) unambiguously in both view and edit.
+
+@mixin btn-context {
+  .public-ui &,
+  .cms-ui & {
+    @content;
+  }
+}
+
+// ── Base — shared across all unified buttons ──────────────────────────────
+
+a.btn-unified {
+  @include btn-context {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65em 1.4em;
+    // Tokens in src/theme/juizi-common.scss (also used by carousel controls)
+    border: var(--juizi-button-border-width, 2px) solid transparent;
+    border-radius: var(--juizi-button-radius, 4px);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      filter 0.15s ease;
+    white-space: nowrap;
+  }
+}
+
+// ── Volto Light Theme link colour ─────────────────────────────────────────
+// VLT colours every link inside a blocks layout with
+//   .blocks-group-wrapper :not(.teaser-item) > a:not(.item):not(:has(…))
+//   { color: var(--link-foreground-color); text-decoration: underline; }
+// which is at least as specific as the rules below and wins on source order.
+// Rather than out-specify it for colour, each variant sets
+// --link-foreground-color on the button itself, so whichever rule wins, the
+// text gets the button's colour. The underline is removed with a selector
+// that outranks VLT's (0,4,1): the repeated class only raises specificity.
+
+a.btn-unified.btn-unified.btn-unified.btn-unified {
+  @include btn-context {
+    text-decoration: none;
+  }
+}
+
+// ── Solid variant ─────────────────────────────────────────────────────────
+
+a.btn-unified.btn-solid {
+  @include btn-context {
+    --link-foreground-color: var(--btn-foreground, #fff);
+
+    border-color: var(--btn-color);
+    background-color: var(--btn-color);
+    color: var(--btn-foreground, #fff);
+  }
+
+  &:hover {
+    @include btn-context {
+      color: var(--btn-foreground, #fff);
+      filter: brightness(0.88);
+    }
+  }
+}
+
+// ── Outline variant ───────────────────────────────────────────────────────
+
+a.btn-unified.btn-outline {
+  @include btn-context {
+    --link-foreground-color: var(--btn-color);
+
+    border-color: var(--btn-color);
+    background-color: transparent;
+    color: var(--btn-color);
+  }
+
+  &:hover {
+    @include btn-context {
+      --link-foreground-color: var(--btn-foreground, #fff);
+
+      border-color: var(--btn-color);
+      background-color: var(--btn-color);
+      color: var(--btn-foreground, #fff);
+    }
+  }
+}
+
+// ── Block-specific anchors ────────────────────────────────────────────────
+// Adds the block base class as a third class → specificity (0, 3, 1).
+// Add new block base class names here as new blocks are built.
+
+$block-btn-classes: 'hero-button', 'row-button', 'card-button', 'button';
+
+@each $class in $block-btn-classes {
+  a.btn-unified.btn-solid.#{$class} {
+    @include btn-context {
+      color: var(--btn-foreground, #fff);
+    }
+
+    &:hover {
+      @include btn-context {
+        color: var(--btn-foreground, #fff);
+      }
+    }
+  }
+
+  a.btn-unified.btn-outline.#{$class} {
+    @include btn-context {
+      color: var(--btn-color);
+    }
+
+    &:hover {
+      @include btn-context {
+        color: var(--btn-foreground, #fff);
+      }
+    }
+  }
+}
+
+// ── Small modifier ────────────────────────────────────────────────────────
+
+a.btn-unified.btn-small {
+  @include btn-context {
+    padding: 0.45em 1em;
+    font-size: 0.85rem;
+  }
+}

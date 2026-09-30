@@ -1,0 +1,478 @@
+/* ==========================================================================
+   HeroBlock — style.css
+
+   Colour approach:
+   - Hero mode: background is an image/video with an overlay. Text is white
+     by default (.hero-block--has-bg). No background colour picker.
+   - Section mode: background colour comes from colors.js via MASTER_COLOR_LIST.
+     The View applies it as an inline style (CSS variable reference).
+     .bg-dark or .bg-light class drives text colour.
+   - Button colours are handled globally in config/buttons.scss.
+     No button colour rules in this file.
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Base block ──────────────────────────────────────────────────────────── */
+
+.hero-block {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: var(--block-spacing, 0);
+}
+
+/* Edge-to-edge band and full width: see src/theme/juizi-common.scss. */
+
+/* ── Section mode — colour-driven text ───────────────────────────────── */
+/* View.jsx also sets the colour's own text colour (from the dashboard)
+   inline; these rules cover secondary text. */
+
+.hero-block--section.bg-dark {
+  color: #fff;
+}
+
+.hero-block--section.bg-dark .hero-preheader,
+.hero-block--section.bg-dark .hero-breadcrumbs {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.hero-block--section.bg-light {
+  color: var(--dark, #111);
+}
+
+.hero-block--section.bg-light .hero-preheader {
+  color: inherit;
+  opacity: 0.7;
+}
+
+.hero-block--section:not(.bg-dark):not(.bg-light) {
+  color: inherit;
+}
+
+/* ── Padding, width, preheader/title/subtitle sizes ─────────────────────── */
+/* Shared with the other Juizi blocks: see src/theme/juizi-common.scss. */
+
+/* ── Background layers (hero mode) ───────────────────────────────────────── */
+
+.hero-block__image-bg {
+  position: absolute;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  inset: 0;
+}
+
+.hero-block__video-bg {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+}
+
+/* Pause background video for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-block__video-bg[data-reducemotion='pause'] {
+    animation-play-state: paused;
+  }
+}
+
+/* Overlay — intentional inline style exception (rgba compositing over image) */
+.hero-block__overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-block__overlay--gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+/* Hero with background image/video — always white text */
+.hero-block--has-bg {
+  color: #fff;
+}
+
+.hero-block--has-bg .hero-preheader,
+.hero-block--has-bg .hero-breadcrumbs {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Inner content wrapper ───────────────────────────────────────────────── */
+
+.hero-block__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+.hero-block__inner--align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+.hero-block__inner--align-center {
+  align-items: center;
+  text-align: center;
+}
+.hero-block__inner--align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Horizontal layout: title full-width on top, description and buttons side by side below */
+.hero-block__inner--horizontal {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-inner__horizontal-right {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.hero-inner__horizontal-right .hero-subtitle {
+  flex: 1;
+}
+
+.hero-inner__horizontal-right .hero-buttons {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-inner__horizontal-right {
+    flex-direction: column;
+  }
+}
+
+/* ── Content block ───────────────────────────────────────────────────────── */
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-block--horizontal .hero-content {
+  flex: 1;
+}
+
+/* ── Beside-logo layout ──────────────────────────────────────────────────── */
+
+.hero-inner__beside-logo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-inner__beside-logo-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero-inner__beside-logo {
+    flex-direction: column;
+  }
+}
+
+/* ── Side image (both modes) ─────────────────────────────────────────────── */
+/*
+   A larger, editor-uploaded content image shown beside the text — distinct
+   from the Logo (small brand mark, .hero-logo above). Available in Hero and
+   Section modes. Takes over the "beside content" slot; when active, the
+   Logo (if present) is locked to "Above title" instead — see logoPosition
+   in schema.js.
+*/
+
+.hero-inner__side-layout {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+/* Alignment lives on the row, not on .hero-side-image directly. A flex
+   row's cross-axis size is set by its tallest child, so align-self on the
+   image alone only has room to move when the image happens to be the
+   shorter column — which in practice is rare (images are usually the
+   tallest element). Putting align-items on the row instead means whichever
+   column ends up shorter — image or text — is the one that visibly moves. */
+.hero-inner__side-layout--align-top {
+  align-items: flex-start;
+}
+.hero-inner__side-layout--align-middle {
+  align-items: center;
+}
+.hero-inner__side-layout--align-bottom {
+  align-items: flex-end;
+}
+
+.hero-inner__side-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-side-image {
+  max-width: 42%;
+  flex: 0 0 42%;
+}
+
+.hero-side-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .hero-inner__side-layout {
+    flex-direction: column;
+  }
+
+  .hero-side-image {
+    max-width: none;
+    flex-basis: auto;
+  }
+
+  /* Default DOM order is content-then-image, i.e. "below" — no override
+     needed for that case. --mobile-above reorders the image before the
+     content; --mobile-hidden drops it from the layout on small screens
+     without needing conditional rendering in JS. */
+  .hero-side-image--mobile-above {
+    order: -1;
+  }
+  .hero-side-image--mobile-hidden {
+    display: none;
+  }
+}
+
+/* ── Breadcrumbs ─────────────────────────────────────────────────────────── */
+
+.hero-breadcrumbs {
+  margin-bottom: 0.25rem;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+/* Colour and "no underline" come from the shared link rules in
+   src/theme/juizi-common.scss; this only brings the underline back on hover,
+   with the same repeated class so it outranks them. */
+.hero-breadcrumbs a {
+  color: inherit;
+}
+
+.hero-breadcrumbs.hero-breadcrumbs.hero-breadcrumbs.hero-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* Hide the current page item (last crumb).
+   It is always present in the markup for screen readers (aria-current="page")
+   but adds visual noise on most designs since the page title already shows it.
+   Override in your theme: .hero-breadcrumbs [aria-current="page"] { display: inline; } */
+.hero-breadcrumbs [aria-current='page'],
+.hero-breadcrumbs [aria-current='page'] + span[aria-hidden] {
+  display: none;
+}
+
+/* Hide the entire breadcrumb nav when only one level deep (Home + current page).
+   data-depth="2" means the only trail is Home → here, which adds no navigation
+   value. Override in your theme: .hero-breadcrumbs[data-depth="2"] { display: flex; } */
+.hero-breadcrumbs[data-depth='2'] {
+  display: none;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────── */
+
+.hero-logo img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-logo--small img {
+  max-height: 3rem;
+}
+.hero-logo--medium img {
+  max-height: 5rem;
+}
+.hero-logo--large img {
+  max-height: 8rem;
+}
+.hero-logo--beside img {
+  max-height: 8rem;
+}
+
+/* ── Visually hidden — accessible but not visible ────────────────────────── */
+/*
+   Used when hideTitle is true: the heading stays in the document outline
+   and labels the section landmark for screen readers, but is not shown on
+   screen. Do not use display:none or visibility:hidden — those remove the
+   element from the accessibility tree entirely.
+*/
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+
+.hero-block h1,
+.hero-block h2 {
+  margin: 0;
+  color: inherit;
+  line-height: 1.15;
+}
+
+.hero-preheader {
+  opacity: 0.8;
+}
+
+.hero-subtitle {
+  opacity: 0.9;
+}
+
+/* ── Buttons layout ──────────────────────────────────────────────────────── */
+/*
+   Button colours and text are handled globally in config/buttons.scss.
+   This section covers layout and spacing only.
+*/
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-block__inner--align-center .hero-buttons {
+  justify-content: center;
+}
+.hero-block__inner--align-right .hero-buttons {
+  justify-content: flex-end;
+}
+
+.hero-buttons--list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+}
+
+.hero-buttons--list a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Hero button sizing — colours come from config/buttons.scss */
+.hero-button {
+  padding: 0.65em 1.4em;
+  font-size: 0.95rem;
+}
+
+/* ── Arrow icon (buttons + inline link list) ─────────────────────────────── */
+/*
+   Layout/motion only — colour comes free via currentColor, since the icon
+   sits inside an element whose text colour is already set (button colours
+   in config/buttons.scss, list links via `color: inherit` above).
+*/
+
+.hero-button__arrow {
+  display: inline-block;
+  margin-left: 0.4em;
+  transition: transform 0.15s ease;
+  vertical-align: -0.125em;
+}
+
+.hero-button:hover .hero-button__arrow,
+.hero-button:focus-visible .hero-button__arrow,
+.hero-buttons--list a:hover .hero-button__arrow,
+.hero-buttons--list a:focus-visible .hero-button__arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-button__arrow {
+    transition: none;
+  }
+}
+
+/* ── TOC empty state — shown in edit mode only ───────────────────────────── */
+/* The message itself is a shared EditHint (_shared/edit-hint.css).          */
+
+.hero-buttons--toc-empty {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border: 1px dashed var(--light, #ddd);
+  border-radius: 4px;
+}
+
+/* ── Hide page breadcrumbs when a Hero shows its own ─────────────────────── */
+/* :has() on the Hero's own modifier, not a <body> class set during render:  */
+/* right in server-rendered HTML, for any number of Hero blocks, and it      */
+/* cleans up when the block is removed. Adjust the selectors to match your   */
+/* theme's breadcrumb container.                                             */
+
+body:has(.hero-block--has-breadcrumbs) .plone-breadcrumb,
+body:has(.hero-block--has-breadcrumbs) nav[aria-label='breadcrumb'],
+body:has(.hero-block--has-breadcrumbs) .breadcrumbs {
+  display: none;
+}
+
+/* ── Hide page title & publication date when a Hero is the primary heading ─ */
+/* The block already renders the page's h1 (and, with Show publication date  */
+/* on, the date too) — the theme's own title/byline would just duplicate it. */
+
+body:has(.hero-block--primary-heading) #page-document .documentFirstHeading,
+body:has(.hero-block--primary-heading) .documentFirstHeading {
+  display: none;
+}
+
+body:has(.hero-block--primary-heading) #page-document .dates {
+  display: none;
+}
+
+/* In the editor, hiding the Title block's text left what looked like an     */
+/* empty block. Show the title faded instead, with a note saying why, so     */
+/* editors know it is hidden on the page and how to bring it back.           */
+
+body:has(.hero-block--primary-heading)
+  :is(#page-edit, #page-add)
+  .documentFirstHeading {
+  display: block;
+  opacity: 0.4;
+}
+
+body:has(.hero-block--primary-heading)
+  :is(#page-edit, #page-add)
+  .block.title::before {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--dark, #111);
+  margin-bottom: 0.5rem;
+  background: var(--lightest, #f9f9f9);
+  color: var(--dark, #111);
+  content: 'This title is hidden on the page because a Hero block is set as the primary page heading. To show it again, untick "This is the primary page heading" in the Hero block\'s Advanced settings.';
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+}

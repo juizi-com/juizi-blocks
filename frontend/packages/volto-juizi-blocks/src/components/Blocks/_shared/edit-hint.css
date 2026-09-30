@@ -1,0 +1,29 @@
+/* Edit-only hints inside a block's frame (see EditHint.jsx). */
+.block__edit-hint {
+  margin: 0.5rem 0;
+  color: var(--grey, #888);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* On a coloured background the hint follows the block's text colour. */
+.bg-dark .block__edit-hint,
+.tone-light .block__edit-hint {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.block__edit-hint--warning {
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--dark, #111);
+  background: var(--lightest, #f9f9f9);
+  color: var(--dark, #111);
+  font-style: normal;
+}
+
+/* Unfinished items (a button without a link, a slide without a picture):
+   shown to editors only, dashed so they read as "not done yet". */
+.block__unfinished {
+  border: 2px dashed var(--grey, #888) !important;
+  opacity: 0.75;
+}
