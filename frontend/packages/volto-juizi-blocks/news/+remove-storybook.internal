@@ -1,0 +1,1 @@
+Removed Storybook: the add-on has no stories, so its configuration, scripts and make targets are gone.
