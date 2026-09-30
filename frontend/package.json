@@ -28,9 +28,7 @@
     "dry-release": "pnpm --filter volto-juizi-blocks dry-release",
     "release": "pnpm --filter volto-juizi-blocks release",
     "release-major-alpha": "pnpm --filter volto-juizi-blocks release-major-alpha",
-    "release-alpha": "pnpm --filter volto-juizi-blocks release-alpha",
-    "storybook": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto storybook dev -p 6006 -c $(pwd)/.storybook",
-    "storybook-build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build-storybook -c $(pwd)/.storybook"
+    "release-alpha": "pnpm --filter volto-juizi-blocks release-alpha"
   },
   "dependencies": {
     "@plone/volto": "workspace:*",

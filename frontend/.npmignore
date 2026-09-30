@@ -13,4 +13,3 @@ acceptance
 build
 dist
 yarn.lock
-.storybook
