@@ -7,6 +7,8 @@
 Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles
 
 - Six blocks: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
+  Reviews with star ratings and scrolling logo strips are display styles of
+  the Carousel (see [Blocks](#blocks)).
 - A dashboard to switch any block on or off and to manage the colours and
   themes the blocks share.
 - Available in English, French, Portuguese, Brazilian Portuguese, Spanish and
@@ -60,6 +62,18 @@ The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").
 A block definition can set its own `group` to go elsewhere. The decisions
 from the September 2026 block audit are summarised in each block's README.
+
+Some things that were blocks of their own in earlier add-ons are a **display
+style** of one of these blocks, chosen as the block's first option:
+
+| Looking for | Use | Display style |
+| --- | --- | --- |
+| Reviews, testimonials, star ratings | Carousel | Reviews |
+| A scrolling strip of partner or sponsor logos | Carousel | Scrolling logo strip |
+| Cards with a picture above the text | Carousel | Image above content |
+| Numbered steps, icon links, statistics, image cards | Content Row | Numbered, Icon, Statistics, Image card |
+| A slideshow or a grid of pictures | Gallery | Slideshow, Even grid, Natural grid |
+| A page header, or a coloured band with a heading and buttons | Hero | Hero (page header), Section (content band) |
 
 #### Overlapping blocks
 
@@ -455,7 +469,19 @@ Content from earlier Juizi block add-ons (`customHero`, `buttonRow`,
 blocks as it loads. See [COMPATIBILITY.md](COMPATIBILITY.md) for what maps
 where and what's only partly supported.
 
+Not converted: the standalone `EmblaRatings` block. Its job is now the
+Carousel's Reviews style, and reviews saved with the old block have to be
+added again in a Carousel.
+
 ## Adding a block
+
+Before adding one, check whether the job fits an existing block as a new
+display style. A second block that does nearly the same thing leaves editors
+choosing between two look-alikes in the chooser, and repeats everything the
+first block already handles (scrolling, colours, empty states, translations).
+Reviews were added to the Carousel this way instead of porting the old
+ratings block; see `EmblaCarousel/README.md`, "Reviews", for how one style
+gives the slide fields its own labels and hides the options that don't apply.
 
 1. Put it in `src/components/Blocks/<Name>/`, with a README covering only
    what the block does (see the existing ones), linking back here for shared

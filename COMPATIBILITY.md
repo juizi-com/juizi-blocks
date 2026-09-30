@@ -55,6 +55,14 @@ These use an older block generation with different block types:
 | `redirectBlock` | unchanged | Full (same block). |
 | `Events` (nithecs) | not converted | No equivalent in the set: renders as an unknown block. Porting it is a separate job. |
 
+### Not converted: `EmblaRatings`
+
+The standalone ratings carousel (`volto-EmblaRatings`, block type
+`EmblaRatings`) is not converted. None of the setups compared here use it.
+A page that still has one shows it as an unknown block; add the reviews again
+in a Carousel with the **Reviews** display style, which has the same fields
+(review text, star rating, name, organisation, picture, link).
+
 ### Partly supported (kept in `legacyData`)
 
 - **customHero with multiple heroes / carousel mode**: only one hero is
