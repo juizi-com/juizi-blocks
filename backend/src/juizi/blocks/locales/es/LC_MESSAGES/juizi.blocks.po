@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: juizi.blocks\n"
-"POT-Creation-Date: 2026-09-30 08:48+0000\n"
+"POT-Creation-Date: 2026-10-05 06:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: juizi.blocks\n"
 
+#: juizi/blocks/interfaces.py:46
+msgid "Block groups"
+msgstr "Grupos por bloque"
+
 #: juizi/blocks/interfaces.py:23
 msgid "Block type ids switched off in the dashboard: editors can no longer add them. Existing blocks of these types keep rendering."
 msgstr "Identificadores de los tipos de bloque desactivados en el panel: los editores ya no pueden añadirlos. Los bloques existentes de esos tipos se siguen mostrando."
@@ -22,11 +26,11 @@ msgstr "Identificadores de los tipos de bloque desactivados en el panel: los edi
 msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
 msgstr "Identificadores de los tipos de bloque activados en el panel aunque su propia configuración los mantiene fuera del selector de bloques."
 
-#: juizi/blocks/interfaces.py:46
+#: juizi/blocks/interfaces.py:57
 msgid "Colour configuration"
 msgstr "Configuración de colores"
 
-#: juizi/blocks/profiles.zcml:22
+#: juizi/blocks/profiles.zcml:23
 msgid "Create example content to showcase the new website"
 msgstr "Crea contenido de ejemplo para mostrar el nuevo sitio"
 
@@ -38,11 +42,15 @@ msgstr "Bloques desactivados"
 msgid "Enabled blocks"
 msgstr "Bloques activados"
 
-#: juizi/blocks/interfaces.py:47
+#: juizi/blocks/interfaces.py:58
 msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
 msgstr "Documento JSON con la lista principal de colores, los temas de bloques creados a partir de ella y las listas permitidas por bloque."
 
-#: juizi/blocks/profiles.zcml:22
+#: juizi/blocks/interfaces.py:47
+msgid "JSON object mapping block type ids to the user groups that may add them. Blocks without an entry are offered to everybody."
+msgstr "Objeto JSON que asocia los identificadores de tipos de bloque con los grupos de usuarios que pueden añadirlos. Los bloques sin entrada se ofrecen a todos."
+
+#: juizi/blocks/profiles.zcml:23
 msgid "Juizi Blocks: Example content"
 msgstr "Juizi Blocks: contenido de ejemplo"
 

@@ -100,6 +100,7 @@ HEX_COLOR = re.compile(
 # Colour names become CSS variable names, theme names VLT theme ids.
 NAME = re.compile(r"^[a-z][a-z0-9-]{0,39}$")
 BLOCK_ID = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]{0,79}$")
+GROUP_ID = re.compile(r"^[^\x00-\x1f\x7f]{1,100}$")
 MAX_ENTRIES = 50
 MAX_LABEL_LENGTH = 80
 
@@ -118,6 +119,43 @@ def validate_block_ids(value, key: str = "disabled_blocks") -> list[str]:
         if block_id not in result:
             result.append(block_id)
     return result
+
+
+def validate_block_groups(value) -> dict[str, list[str]]:
+    """{block id: [group id, ...]}: the groups a block is offered to.
+    Blocks with no groups are offered to everybody, so they are dropped."""
+    if not isinstance(value, dict):
+        raise SettingsValidationError("block_groups must be an object")
+    result = {}
+    for block_id, groups in value.items():
+        if not isinstance(block_id, str) or not BLOCK_ID.match(block_id):
+            raise SettingsValidationError(f"Invalid block id: {block_id!r}")
+        if not isinstance(groups, list):
+            raise SettingsValidationError(f"Groups for {block_id!r} must be a list")
+        clean = []
+        for group_id in groups:
+            # Plone group ids may contain spaces ("Site Administrators").
+            if not isinstance(group_id, str) or not GROUP_ID.match(group_id):
+                raise SettingsValidationError(f"Invalid group id: {group_id!r}")
+            if group_id not in clean:
+                clean.append(group_id)
+        if len(clean) > MAX_ENTRIES:
+            raise SettingsValidationError(
+                f"At most {MAX_ENTRIES} groups per block are allowed"
+            )
+        if clean:
+            result[block_id] = clean
+    return result
+
+
+def load_block_groups(raw: str | None) -> dict[str, list[str]]:
+    """Parse the stored JSON; anything unusable counts as no restrictions."""
+    if raw:
+        try:
+            return validate_block_groups(json.loads(raw))
+        except (ValueError, TypeError):
+            pass
+    return {}
 
 
 def _hex(value, what: str) -> str:

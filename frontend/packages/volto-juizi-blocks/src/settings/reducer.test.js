@@ -16,6 +16,7 @@ describe('juiziBlocksSettings reducer', () => {
     const result = {
       disabled_blocks: ['juiziCallout'],
       enabled_blocks: ['hero'],
+      block_groups: { teaser: ['editors'] },
       color_config: { palette: [], blocks: {} },
     };
     const state = reducer(undefined, {

@@ -1716,6 +1716,31 @@ msgstr "Tekskleur"
 msgid "juizi-dashboard-group-count"
 msgstr "{on} van {total} aan"
 
+#. Default: "Offer to everybody"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-allow-everybody"
+msgstr "Bied aan almal aan"
+
+#. Default: "Everybody"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-everybody"
+msgstr "Almal"
+
+#. Default: "Only members of the ticked groups are offered {title}. Tick none to offer it to everybody."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-help"
+msgstr "Slegs lede van die gemerkte groepe kry {title} aangebied. Merk geen om dit aan almal aan te bied nie."
+
+#. Default: "This site has no user groups yet."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-none"
+msgstr "Hierdie werf het nog geen gebruikersgroepe nie."
+
+#. Default: "Who can add it: {groups}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-summary"
+msgstr "Wie kan dit byvoeg: {groups}"
+
 #. Default: "Switch blocks on or off, manage the colours every block shares, and build the block themes from them."
 #: components/Dashboard/messages
 msgid "juizi-dashboard-intro"

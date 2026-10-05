@@ -14,7 +14,7 @@ class TestSetupInstall:
 
     def test_latest_version(self, profile_last_version):
         """Test latest version of default profile."""
-        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1001"
+        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1002"
 
     def test_volto_light_theme_installed(self, installer):
         assert installer.is_product_installed("kitconcept.voltolighttheme") is True
@@ -39,6 +39,7 @@ class TestSetupInstall:
         )
         assert records.disabled_blocks == []
         assert records.enabled_blocks == []
+        assert records.block_groups == "{}"
         assert records.color_config
 
 
@@ -59,5 +60,25 @@ class TestUpgrade1001:
         # Existing values survive the registry re-import.
         assert registry["juizi.blocks.disabled_blocks"] == ["toc"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1001",
+            "1002",
+        )
+
+
+class TestUpgrade1002:
+    def test_adds_block_groups_record(self, portal, setup_tool):
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        registry = getUtility(IRegistry)
+        key = "juizi.blocks.block_groups"
+        registry.records["juizi.blocks.enabled_blocks"].value = ["hero"]
+        del registry.records[key]
+        setup_tool.setLastVersionForProfile(f"{PACKAGE_NAME}:default", "1001")
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert registry[key] == "{}"
+        assert registry["juizi.blocks.enabled_blocks"] == ["hero"]
+        assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
+            "1002",
         )

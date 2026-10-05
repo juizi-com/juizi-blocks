@@ -6,7 +6,7 @@
  */
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { Button } from 'semantic-ui-react';
@@ -19,6 +19,7 @@ import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Toast from '@plone/volto/components/manage/Toast/Toast';
 import { useClient } from '@plone/volto/hooks/client/useClient';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
+import { listGroups } from '@plone/volto/actions/groups/groups';
 import backSVG from '@plone/volto/icons/back.svg';
 import saveSVG from '@plone/volto/icons/save.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
@@ -53,6 +54,7 @@ const Section = ({ title, help, children }) => (
 const toDraft = (data) => ({
   disabled_blocks: data.disabled_blocks || [],
   enabled_blocks: data.enabled_blocks || [],
+  block_groups: data.block_groups || {},
   color_config: data.color_config,
 });
 
@@ -102,8 +104,12 @@ const Dashboard = () => {
     [],
   );
 
+  // The site's user groups, for limiting blocks to some of them.
+  const userGroups = useSelector((state) => state.groups?.groups) || [];
+
   useEffect(() => {
     dispatch(getJuiziBlocksSettings());
+    dispatch(listGroups());
   }, [dispatch]);
 
   // Reset the draft whenever fresh settings arrive from the backend.
@@ -214,6 +220,7 @@ const Dashboard = () => {
           <BlockToggles
             groups={blockGroups}
             lists={draft}
+            userGroups={userGroups}
             onChange={(lists) =>
               setDraft((current) => ({ ...current, ...lists }))
             }

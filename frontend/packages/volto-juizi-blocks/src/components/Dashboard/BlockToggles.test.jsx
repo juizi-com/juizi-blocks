@@ -25,10 +25,20 @@ const groups = [
   },
 ];
 
+const userGroups = [
+  { id: 'Site Administrators', title: 'Site Administrators' },
+  { id: 'editors', title: 'Editors' },
+];
+
 const renderToggles = (lists, onChange = jest.fn()) =>
   render(
     <IntlProvider locale="en">
-      <BlockToggles groups={groups} lists={lists} onChange={onChange} />
+      <BlockToggles
+        groups={groups}
+        lists={lists}
+        userGroups={userGroups}
+        onChange={onChange}
+      />
     </IntlProvider>,
   );
 
@@ -113,13 +123,47 @@ describe('BlockToggles', () => {
   it('resets only registered blocks', () => {
     const onChange = jest.fn();
     renderToggles(
-      { disabled_blocks: ['juiziHero', 'gone'], enabled_blocks: ['hero'] },
+      {
+        disabled_blocks: ['juiziHero', 'gone'],
+        enabled_blocks: ['hero'],
+        block_groups: { eventMetadata: ['editors'], gone: ['editors'] },
+      },
       onChange,
     );
     fireEvent.click(screen.getByText('Reset all to their defaults'));
     expect(onChange).toHaveBeenCalledWith({
       disabled_blocks: ['gone'],
       enabled_blocks: [],
+      block_groups: { gone: ['editors'] },
     });
+  });
+
+  it('offers switched-on blocks to everybody until groups are picked', () => {
+    const onChange = jest.fn();
+    renderToggles(none, onChange);
+    // Juizi Hero and Event metadata; not the locked Image or the off hero.
+    expect(screen.getAllByText('Who can add it: Everybody')).toHaveLength(2);
+    fireEvent.click(screen.getAllByLabelText('Editors')[0]);
+    expect(onChange).toHaveBeenCalledWith({
+      ...none,
+      block_groups: { juiziHero: ['editors'] },
+    });
+  });
+
+  it('shows the chosen groups when collapsed and can reset to everybody', () => {
+    const onChange = jest.fn();
+    renderToggles(
+      { ...none, block_groups: { juiziHero: ['editors', 'removed'] } },
+      onChange,
+    );
+    expect(screen.getByText('Who can add it: Editors, removed')).toBeTruthy();
+    // A group that no longer exists stays listed so it can be unticked.
+    fireEvent.click(screen.getByLabelText('removed'));
+    expect(onChange).toHaveBeenLastCalledWith({
+      ...none,
+      block_groups: { juiziHero: ['editors'] },
+    });
+    fireEvent.click(screen.getByText('Offer to everybody'));
+    expect(onChange).toHaveBeenLastCalledWith({ ...none, block_groups: {} });
   });
 });

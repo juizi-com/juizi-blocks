@@ -80,6 +80,7 @@ class TestSettingsGet:
         data = response.json()
         assert data["disabled_blocks"] == []
         assert data["enabled_blocks"] == []
+        assert data["block_groups"] == {}
         color_config = data["color_config"]
         assert [c["name"] for c in color_config["colors"]][:2] == ["white", "green"]
         assert [t["name"] for t in color_config["themes"]] == [
@@ -100,6 +101,16 @@ class TestSettingsBeforeUpgrade:
         response = anonymous.get(ENDPOINT)
         assert response.status_code == 200
         assert response.json()["enabled_blocks"] == []
+
+    def test_get_works_without_block_groups_record(self, functional, anonymous):
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        del getUtility(IRegistry).records["juizi.blocks.block_groups"]
+        transaction.commit()
+        response = anonymous.get(ENDPOINT)
+        assert response.status_code == 200
+        assert response.json()["block_groups"] == {}
 
 
 class TestSettingsPatch:
@@ -143,6 +154,21 @@ class TestSettingsPatch:
         assert data["enabled_blocks"] == ["hero"]
         assert data["disabled_blocks"] == ["toc"]
 
+    def test_manager_limits_blocks_to_groups(self, manager, anonymous):
+        response = manager.patch(
+            ENDPOINT,
+            json={
+                "block_groups": {
+                    "emblaCarousel": ["Site Administrators", "editors", "editors"],
+                    "teaser": [],
+                }
+            },
+        )
+        assert response.status_code == 200
+        expected = {"emblaCarousel": ["Site Administrators", "editors"]}
+        assert response.json()["block_groups"] == expected
+        assert anonymous.get(ENDPOINT).json()["block_groups"] == expected
+
     def test_partial_patch_keeps_other_keys(self, manager):
         manager.patch(ENDPOINT, json={"disabled_blocks": ["juiziCallout"]})
         response = manager.patch(ENDPOINT, json={"color_config": VALID_CONFIG})
@@ -153,6 +179,10 @@ class TestSettingsPatch:
         [
             {"disabled_blocks": "emblaCarousel"},
             {"disabled_blocks": ["bad id!"]},
+            {"block_groups": ["editors"]},
+            {"block_groups": {"teaser": "editors"}},
+            {"block_groups": {"bad id!": ["editors"]}},
+            {"block_groups": {"teaser": ["bad\ngroup"]}},
             {"color_config": {"colors": [], "themes": []}},
             {
                 "color_config": {

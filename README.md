@@ -9,8 +9,8 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 - Six blocks: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
   Reviews with star ratings and scrolling logo strips are display styles of
   the Carousel (see [Blocks](#blocks)).
-- A dashboard to switch any block on or off and to manage the colours and
-  themes the blocks share.
+- A dashboard to switch any block on or off, limit it to some user groups,
+  and manage the colours and themes the blocks share.
 - Available in English, French, Portuguese, Brazilian Portuguese, Spanish and
   Afrikaans (see [Languages](#languages-)).
 
@@ -33,6 +33,7 @@ backend  juizi.blocks                        frontend  volto-juizi-blocks
 ─────────────────────────────                ───────────────────────────────────────────
 registry  juizi.blocks.disabled_blocks       blocks/index.ts        the block manifest
           juizi.blocks.enabled_blocks        components/Blocks/*    the blocks
+          juizi.blocks.block_groups (JSON)
           juizi.blocks.color_config (JSON)   config/colors.js       colour API used by blocks
 GET   /@juizi-blocks-settings   (public) ─►  settings/runtime.ts    applies settings to the app
 PATCH /@juizi-blocks-settings   (Manager) ◄─ components/Dashboard   /controlpanel/juizi-blocks
@@ -128,6 +129,17 @@ grouped as in the block chooser with the Juizi group first.
   allowed blocks (e.g. Grid) use that list.
 - Stored as `disabled_blocks` / `enabled_blocks`: only the departures from
   each block's default.
+- **Who can add it** — every switched-on block that isn't locked has a
+  collapsed line under its name, "Who can add it: Everybody". Open it and tick
+  user groups to offer the block only to their members; the collapsed line
+  then lists those groups. Tick none (or *Offer to everybody*) to go back.
+  Like the switch, this only affects the block chooser and the `/` menu:
+  existing blocks keep rendering and other people can still edit them. The
+  check uses the groups Volto loads for the current user (`@users/<id>`),
+  and there's no exception for Managers, so include your own group if you
+  still want to add the block. Stored as `block_groups`
+  (`{block id: [group id, ...]}`); groups deleted later stay listed so they
+  can be unticked.
 
 **Colours tab:**
 

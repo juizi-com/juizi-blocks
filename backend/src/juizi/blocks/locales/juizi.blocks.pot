@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-30 08:48+0000\n"
+"POT-Creation-Date: 2026-10-05 06:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: juizi.blocks\n"
 
+#: juizi/blocks/interfaces.py:46
+msgid "Block groups"
+msgstr ""
+
 #: juizi/blocks/interfaces.py:23
 msgid "Block type ids switched off in the dashboard: editors can no longer add them. Existing blocks of these types keep rendering."
 msgstr ""
@@ -25,11 +29,11 @@ msgstr ""
 msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
 msgstr ""
 
-#: juizi/blocks/interfaces.py:46
+#: juizi/blocks/interfaces.py:57
 msgid "Colour configuration"
 msgstr ""
 
-#: juizi/blocks/profiles.zcml:22
+#: juizi/blocks/profiles.zcml:23
 msgid "Create example content to showcase the new website"
 msgstr ""
 
@@ -41,11 +45,15 @@ msgstr ""
 msgid "Enabled blocks"
 msgstr ""
 
-#: juizi/blocks/interfaces.py:47
+#: juizi/blocks/interfaces.py:58
 msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
 msgstr ""
 
-#: juizi/blocks/profiles.zcml:22
+#: juizi/blocks/interfaces.py:47
+msgid "JSON object mapping block type ids to the user groups that may add them. Blocks without an entry are offered to everybody."
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:23
 msgid "Juizi Blocks: Example content"
 msgstr ""
 

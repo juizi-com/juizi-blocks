@@ -60,5 +60,7 @@ export type JuiziBlocksSettings = {
   disabled_blocks: string[];
   /** Switched on although the block's own config keeps it off. */
   enabled_blocks: string[];
+  /** Block id -> the user groups it is offered to. No entry = everybody. */
+  block_groups: Record<string, string[]>;
   color_config: ColorConfig;
 };

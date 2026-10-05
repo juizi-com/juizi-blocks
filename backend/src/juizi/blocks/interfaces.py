@@ -42,6 +42,17 @@ class IJuiziBlocksSettings(Interface):
         missing_value=[],
     )
 
+    block_groups = schema.Text(
+        title=_("Block groups"),
+        description=_(
+            "JSON object mapping block type ids to the user groups that may "
+            "add them. Blocks without an entry are offered to everybody."
+        ),
+        required=False,
+        default="{}",
+        missing_value="{}",
+    )
+
     color_config = schema.Text(
         title=_("Colour configuration"),
         description=_(
