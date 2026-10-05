@@ -1,7 +1,9 @@
 from copy import deepcopy
 from juizi.blocks.settings import DEFAULT_COLOR_CONFIG
+from juizi.blocks.settings import load_block_groups
 from juizi.blocks.settings import load_color_config
 from juizi.blocks.settings import SettingsValidationError
+from juizi.blocks.settings import validate_block_groups
 from juizi.blocks.settings import validate_color_config
 
 import json
@@ -139,3 +141,14 @@ def test_callout_type_colours_are_kept_and_cleaned():
 def test_invalid_configs(bad):
     with pytest.raises(SettingsValidationError):
         validate_color_config(bad)
+
+
+def test_block_groups_drop_empty_and_duplicate_entries():
+    assert validate_block_groups({"teaser": ["editors", "editors"], "hero": []}) == {
+        "teaser": ["editors"]
+    }
+
+
+@pytest.mark.parametrize("raw", [None, "", "not json", "[]", '{"x": "y"}'])
+def test_load_block_groups_falls_back_to_everybody(raw):
+    assert load_block_groups(raw) == {}

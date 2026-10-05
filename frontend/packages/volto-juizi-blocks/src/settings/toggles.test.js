@@ -3,6 +3,7 @@ import {
   blockToggleState,
   groupBlocks,
   isRestricted,
+  setBlockGroups,
   setBlockToggle,
   wrapBlocksRestricted,
 } from './toggles';
@@ -66,6 +67,13 @@ describe('setBlockToggle', () => {
     expect(lists).toEqual(none);
   });
 
+  it('keeps the group limits', () => {
+    const lists = { ...none, block_groups: { teaser: ['editors'] } };
+    expect(setBlockToggle(lists, 'teaser', false, true).block_groups).toEqual({
+      teaser: ['editors'],
+    });
+  });
+
   it('leaves other entries alone, including unregistered blocks', () => {
     const lists = { disabled_blocks: ['gone'], enabled_blocks: ['old'] };
     expect(setBlockToggle(lists, 'teaser', false, true)).toEqual({
@@ -115,6 +123,61 @@ describe('isRestricted', () => {
         args,
       ),
     ).toBe(false);
+  });
+});
+
+describe('setBlockGroups', () => {
+  it('stores groups and drops the entry for everybody', () => {
+    let lists = setBlockGroups(none, 'teaser', ['editors']);
+    expect(lists.block_groups).toEqual({ teaser: ['editors'] });
+    lists = setBlockGroups(lists, 'hero', ['marketing']);
+    lists = setBlockGroups(lists, 'teaser', []);
+    expect(lists).toEqual({ ...none, block_groups: { hero: ['marketing'] } });
+  });
+});
+
+describe('isRestricted with groups', () => {
+  const lists = {
+    ...none,
+    enabled_blocks: ['hero'],
+    block_groups: {
+      teaser: ['editors', 'Site Administrators'],
+      hero: ['editors'],
+      title: ['editors'],
+    },
+  };
+  const member = (...ids) => ({
+    user: { groups: { items: ids.map((id) => ({ id, title: id })) } },
+  });
+
+  it('offers a limited block only to members of its groups', () => {
+    expect(isRestricted('teaser', false, lists, member('editors'))).toBe(false);
+    expect(
+      isRestricted('teaser', false, lists, member('Site Administrators')),
+    ).toBe(false);
+    expect(isRestricted('teaser', false, lists, member('marketing'))).toBe(
+      true,
+    );
+    expect(isRestricted('hero', true, lists, member('editors'))).toBe(false);
+    expect(isRestricted('hero', true, lists, member())).toBe(true);
+  });
+
+  it('hides a limited block until the user has loaded', () => {
+    expect(isRestricted('teaser', false, lists, {})).toBe(true);
+    expect(isRestricted('teaser', false, lists, undefined)).toBe(true);
+  });
+
+  it('offers blocks without groups to everybody', () => {
+    expect(isRestricted('image', false, lists, {})).toBe(false);
+    expect(isRestricted('other', false, lists, member('marketing'))).toBe(
+      false,
+    );
+  });
+
+  it('ignores groups on locked blocks', () => {
+    expect(isRestricted('title', () => false, lists, member('marketing'))).toBe(
+      false,
+    );
   });
 });
 

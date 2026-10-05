@@ -20,6 +20,7 @@ const VALUES = {
   count: 2,
   current: 2,
   date: '13 November 2024',
+  groups: 'Editors',
   destination: '/news',
   label: 'Gold',
   name: 'gold',

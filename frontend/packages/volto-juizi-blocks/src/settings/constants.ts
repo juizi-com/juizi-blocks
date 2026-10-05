@@ -67,5 +67,6 @@ export const LOCKED_BLOCKS = ['slate', 'description', 'image', 'title'];
 export const DEFAULT_SETTINGS: JuiziBlocksSettings = {
   disabled_blocks: [],
   enabled_blocks: [],
+  block_groups: {},
   color_config: DEFAULT_COLOR_CONFIG,
 };

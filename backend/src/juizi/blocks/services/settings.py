@@ -1,18 +1,23 @@
 """REST API endpoint for the Juizi Blocks dashboard.
 
 GET   /@juizi-blocks-settings
-      -> {"disabled_blocks": [...], "enabled_blocks": [...], "color_config": {...}}
+      -> {"disabled_blocks": [...], "enabled_blocks": [...],
+          "block_groups": {...}, "color_config": {...}}
 PATCH /@juizi-blocks-settings  with any subset of those keys
 
 disabled_blocks: switched off in the dashboard.
 enabled_blocks:  switched on although the block's own config keeps it off.
 A block id in both lists counts as disabled.
+block_groups:    {block id: [group id, ...]}, the user groups a switched-on
+                 block is offered to; blocks without an entry: everybody.
 """
 
 from juizi.blocks.interfaces import IJuiziBlocksSettings
+from juizi.blocks.settings import load_block_groups
 from juizi.blocks.settings import load_color_config
 from juizi.blocks.settings import SettingsValidationError
 from juizi.blocks.settings import validate_color_config
+from juizi.blocks.settings import validate_block_groups
 from juizi.blocks.settings import validate_block_ids
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
@@ -38,6 +43,7 @@ def serialize_settings(context, records) -> dict:
         "@id": f"{context.absolute_url()}/@juizi-blocks-settings",
         "disabled_blocks": list(records.disabled_blocks or []),
         "enabled_blocks": list(records.enabled_blocks or []),
+        "block_groups": load_block_groups(records.block_groups),
         "color_config": load_color_config(records.color_config),
     }
 
@@ -63,6 +69,11 @@ class SettingsPatch(Service):
                 for key in ("disabled_blocks", "enabled_blocks")
                 if key in data
             }
+            block_groups = (
+                validate_block_groups(data["block_groups"])
+                if "block_groups" in data
+                else None
+            )
             color_config = (
                 validate_color_config(data["color_config"])
                 if "color_config" in data
@@ -80,6 +91,8 @@ class SettingsPatch(Service):
             for block_id in records.enabled_blocks or []
             if block_id not in disabled
         ]
+        if block_groups is not None:
+            records.block_groups = json.dumps(block_groups)
         if color_config is not None:
             records.color_config = json.dumps(color_config, indent=2)
 

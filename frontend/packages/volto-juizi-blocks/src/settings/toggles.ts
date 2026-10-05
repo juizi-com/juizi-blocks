@@ -9,6 +9,10 @@
  * The dashboard stores only departures from that default: `disabled_blocks`
  * (switched off) and `enabled_blocks` (switched on although off by default).
  * LOCKED_BLOCKS can't be switched off.
+ *
+ * A switched-on block can also be limited to some user groups
+ * (`block_groups`, block id -> group ids); without an entry it is offered to
+ * everybody. Like the switch, this only affects adding blocks.
  */
 import { LOCKED_BLOCKS } from './constants';
 
@@ -18,9 +22,12 @@ const WRAPPER_FLAG = '__juiziToggle';
 
 type Restricted = boolean | undefined | ((args: any) => boolean);
 
+export type BlockGroups = Record<string, string[]>;
+
 export type BlockLists = {
   disabled_blocks: string[];
   enabled_blocks: string[];
+  block_groups?: BlockGroups;
 };
 
 export const getOwnRestricted = (blockConfig: any): Restricted =>
@@ -56,6 +63,7 @@ export function setBlockToggle(
   const without = (list: string[] = []) =>
     list.filter((id) => id !== blockType);
   return {
+    ...lists,
     disabled_blocks:
       !on && defaultOn
         ? [...without(lists.disabled_blocks), blockType]
@@ -67,7 +75,27 @@ export function setBlockToggle(
   };
 }
 
-/** The `restricted` value Volto sees for a block. */
+/** Limits a block to some groups; an empty list means everybody. Other
+ * blocks' entries are left alone. */
+export function setBlockGroups(
+  lists: BlockLists,
+  blockType: string,
+  groups: string[],
+): BlockLists {
+  const others = { ...lists.block_groups };
+  delete others[blockType];
+  return {
+    ...lists,
+    block_groups: groups.length ? { ...others, [blockType]: groups } : others,
+  };
+}
+
+/** Group ids of a user as Volto loads it (`@users/<id>`). */
+const userGroupIds = (user: any): string[] =>
+  (user?.groups?.items || []).map((group: any) => group.id);
+
+/** The `restricted` value Volto sees for a block. Volto's block chooser and
+ * the Slate slash menu pass the current user in `args.user`. */
 export function isRestricted(
   blockType: string,
   own: Restricted,
@@ -76,6 +104,12 @@ export function isRestricted(
 ) {
   const locked = LOCKED_BLOCKS.includes(blockType);
   if (!locked && lists.disabled_blocks?.includes(blockType)) return true;
+  const groups = lists.block_groups?.[blockType];
+  if (!locked && groups?.length) {
+    // Until the user has loaded, a group-limited block stays hidden.
+    const mine = userGroupIds(args?.user);
+    if (!groups.some((group) => mine.includes(group))) return true;
+  }
   if (typeof own === 'function') return own(args);
   if (own === true && !locked && lists.enabled_blocks?.includes(blockType)) {
     return false;

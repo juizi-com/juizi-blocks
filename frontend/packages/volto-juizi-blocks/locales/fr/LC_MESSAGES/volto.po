@@ -1716,6 +1716,31 @@ msgstr "Couleur du texte"
 msgid "juizi-dashboard-group-count"
 msgstr "{on} sur {total} activés"
 
+#. Default: "Offer to everybody"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-allow-everybody"
+msgstr "Proposer à tout le monde"
+
+#. Default: "Everybody"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-everybody"
+msgstr "Tout le monde"
+
+#. Default: "Only members of the ticked groups are offered {title}. Tick none to offer it to everybody."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-help"
+msgstr "Seuls les membres des groupes cochés se voient proposer {title}. Ne cochez rien pour le proposer à tout le monde."
+
+#. Default: "This site has no user groups yet."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-none"
+msgstr "Ce site n’a pas encore de groupes d’utilisateurs."
+
+#. Default: "Who can add it: {groups}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-groups-summary"
+msgstr "Qui peut l’ajouter : {groups}"
+
 #. Default: "Switch blocks on or off, manage the colours every block shares, and build the block themes from them."
 #: components/Dashboard/messages
 msgid "juizi-dashboard-intro"

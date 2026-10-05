@@ -4,7 +4,7 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 
 ## Features
 
-- Stores the Juizi Blocks settings (which blocks are switched off or on, the shared colours and block themes) in the Plone registry.
+- Stores the Juizi Blocks settings (which blocks are switched off or on and for which user groups, the shared colours and block themes) in the Plone registry.
 - Serves them to Volto through the `@juizi-blocks-settings` REST API service; only Managers can change them.
 - Translated into French, Portuguese (`pt` and `pt_BR`), Spanish and Afrikaans, next to the English source.
 

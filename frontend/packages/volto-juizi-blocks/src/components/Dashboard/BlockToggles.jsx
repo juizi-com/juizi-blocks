@@ -2,14 +2,83 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { Lock } from 'lucide-react';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import { blockToggleState, setBlockToggle } from '../../settings';
+import {
+  blockToggleState,
+  setBlockGroups,
+  setBlockToggle,
+} from '../../settings';
 import messages from './messages';
 
 /**
- * On/off switches for every registered block, one table per chooser group.
- * `lists` is { disabled_blocks, enabled_blocks }.
+ * Who may add a switched-on block: a collapsed summary ("Everybody" or the
+ * chosen groups) that opens to a checkbox per site group. Stored groups that
+ * no longer exist stay listed so they can be unticked.
  */
-const BlockToggles = ({ groups, lists, onChange }) => {
+const GroupPicker = ({ blockTitle, selected, userGroups, onChange }) => {
+  const intl = useIntl();
+  const known = userGroups.map((group) => group.id);
+  const options = [
+    ...userGroups,
+    ...selected
+      .filter((id) => !known.includes(id))
+      .map((id) => ({ id, title: id })),
+  ];
+  const titleOf = (id) => options.find((group) => group.id === id)?.title || id;
+  const toggle = (id, checked) =>
+    onChange(
+      checked
+        ? [...selected, id]
+        : selected.filter((selectedId) => selectedId !== id),
+    );
+
+  return (
+    <details className="juizi-dashboard__groups">
+      <summary>
+        {intl.formatMessage(messages.groupsSummary, {
+          groups: selected.length
+            ? selected.map(titleOf).join(', ')
+            : intl.formatMessage(messages.everybody),
+        })}
+      </summary>
+      <fieldset>
+        <legend className="juizi-dashboard__muted">
+          {intl.formatMessage(messages.groupsHelp, { title: blockTitle })}
+        </legend>
+        {options.length === 0 && (
+          <div className="juizi-dashboard__muted">
+            {intl.formatMessage(messages.noGroups)}
+          </div>
+        )}
+        {options.map((group) => (
+          <label key={group.id} className="juizi-dashboard__group-option">
+            <input
+              type="checkbox"
+              checked={selected.includes(group.id)}
+              onChange={(e) => toggle(group.id, e.target.checked)}
+            />{' '}
+            {group.title || group.id}
+          </label>
+        ))}
+        {selected.length > 0 && (
+          <button
+            type="button"
+            className="juizi-dashboard__btn juizi-dashboard__btn--secondary"
+            onClick={() => onChange([])}
+          >
+            {intl.formatMessage(messages.allowEverybody)}
+          </button>
+        )}
+      </fieldset>
+    </details>
+  );
+};
+
+/**
+ * On/off switches for every registered block, one table per chooser group.
+ * `lists` is { disabled_blocks, enabled_blocks, block_groups }; `userGroups`
+ * are the site's user groups ({ id, title }).
+ */
+const BlockToggles = ({ groups, lists, userGroups = [], onChange }) => {
   const intl = useIntl();
   // Volto's block chooser looks titles up as message ids; so do we, for
   // titles, descriptions and group names.
@@ -24,10 +93,17 @@ const BlockToggles = ({ groups, lists, onChange }) => {
     onChange({
       disabled_blocks: lists.disabled_blocks.filter((id) => !ids.includes(id)),
       enabled_blocks: lists.enabled_blocks.filter((id) => !ids.includes(id)),
+      block_groups: Object.fromEntries(
+        Object.entries(lists.block_groups || {}).filter(
+          ([id]) => !ids.includes(id),
+        ),
+      ),
     });
   };
-  const hasChanges = registered.some(({ id }) =>
-    [...lists.disabled_blocks, ...lists.enabled_blocks].includes(id),
+  const hasChanges = registered.some(
+    ({ id }) =>
+      [...lists.disabled_blocks, ...lists.enabled_blocks].includes(id) ||
+      lists.block_groups?.[id]?.length,
   );
 
   return (
@@ -89,6 +165,18 @@ const BlockToggles = ({ groups, lists, onChange }) => {
                           <div className="juizi-dashboard__hint">
                             {intl.formatMessage(messages.offByDefault)}
                           </div>
+                        )}
+                        {state.on && !state.locked && (
+                          <GroupPicker
+                            blockTitle={title}
+                            selected={lists.block_groups?.[block.id] || []}
+                            userGroups={userGroups}
+                            onChange={(selected) =>
+                              onChange(
+                                setBlockGroups(lists, block.id, selected),
+                              )
+                            }
+                          />
                         )}
                       </td>
                       <td className="juizi-dashboard__cell--fit">

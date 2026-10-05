@@ -39,6 +39,27 @@ export default defineMessages({
     id: 'juizi-dashboard-off-by-default',
     defaultMessage: 'Off by default in its own settings',
   },
+  groupsSummary: {
+    id: 'juizi-dashboard-groups-summary',
+    defaultMessage: 'Who can add it: {groups}',
+  },
+  everybody: {
+    id: 'juizi-dashboard-groups-everybody',
+    defaultMessage: 'Everybody',
+  },
+  groupsHelp: {
+    id: 'juizi-dashboard-groups-help',
+    defaultMessage:
+      'Only members of the ticked groups are offered {title}. Tick none to offer it to everybody.',
+  },
+  noGroups: {
+    id: 'juizi-dashboard-groups-none',
+    defaultMessage: 'This site has no user groups yet.',
+  },
+  allowEverybody: {
+    id: 'juizi-dashboard-groups-allow-everybody',
+    defaultMessage: 'Offer to everybody',
+  },
   // Colours
   colors: { id: 'juizi-dashboard-colors', defaultMessage: 'Colours' },
   colorsHelp: {

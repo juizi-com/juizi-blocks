@@ -346,6 +346,41 @@
     gap: 8px;
   }
 
+  // "Who can add it": collapsed summary, opens to group checkboxes.
+  &__groups {
+    margin-top: 6px;
+    font-size: 13px;
+
+    summary {
+      color: #1a73e8;
+      cursor: pointer;
+    }
+
+    fieldset {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      margin: 6px 0 0;
+      background: #fff;
+      gap: 6px;
+    }
+
+    legend {
+      padding: 0;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__group-option {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+  }
+
   // A control with its label attached on the left: [Label|input].
   &__inline-field {
     display: flex;

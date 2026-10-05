@@ -29,7 +29,11 @@ import type { ColorConfig, JuiziBlocksSettings } from './types';
 
 type ColorTuple = [string, string, 'dark' | 'light'];
 
-let blockLists: BlockLists = { disabled_blocks: [], enabled_blocks: [] };
+let blockLists: BlockLists = {
+  disabled_blocks: [],
+  enabled_blocks: [],
+  block_groups: {},
+};
 let colorConfig: ColorConfig = DEFAULT_COLOR_CONFIG;
 let themedBlocks: string[] = [];
 
@@ -53,6 +57,7 @@ export function setRuntimeSettings(settings?: Partial<JuiziBlocksSettings>) {
   blockLists = {
     disabled_blocks: settings.disabled_blocks || [],
     enabled_blocks: settings.enabled_blocks || [],
+    block_groups: settings.block_groups || {},
   };
   // Every registered block gets the dashboard switch. Repeated on each call
   // so blocks registered by add-ons loaded after this one are covered too.

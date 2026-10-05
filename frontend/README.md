@@ -9,7 +9,7 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 ## Features
 
 - A consolidated block set: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
-- A dashboard (Site Setup → Juizi Blocks) to switch blocks on or off and manage the colours and themes they share.
+- A dashboard (Site Setup → Juizi Blocks) to switch blocks on or off, limit them to some user groups, and manage the colours and themes they share.
 - Available in English, French, Portuguese (`pt` and `pt_BR`), Spanish and Afrikaans; German is scaffolded and falls back to English.
 
 ## Languages
