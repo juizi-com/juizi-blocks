@@ -97,8 +97,11 @@ DEFAULT_COLOR_CONFIG_JSON = json.dumps(DEFAULT_COLOR_CONFIG, indent=2)
 HEX_COLOR = re.compile(
     r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
 )
-# Colour names become CSS variable names, theme names VLT theme ids.
+# Colour names become CSS variable names, theme names VLT theme ids. Theme
+# names may use capitals: sites moving to juizi-blocks keep the names their
+# saved blocks already use (plone.org: "Blue", "MedBlue").
 NAME = re.compile(r"^[a-z][a-z0-9-]{0,39}$")
+THEME_NAME = re.compile(r"^[A-Za-z][A-Za-z0-9-]{0,39}$")
 BLOCK_ID = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]{0,79}$")
 GROUP_ID = re.compile(r"^[^\x00-\x1f\x7f]{1,100}$")
 MAX_ENTRIES = 50
@@ -164,13 +167,14 @@ def _hex(value, what: str) -> str:
     return value.lower()
 
 
-def _name_and_label(entry, kind: str) -> tuple[str, str]:
+def _name_and_label(entry, kind: str, pattern=NAME) -> tuple[str, str]:
     if not isinstance(entry, dict):
         raise SettingsValidationError(f"{kind} entries must be objects")
     name = entry.get("name")
-    if not isinstance(name, str) or not NAME.match(name):
+    if not isinstance(name, str) or not pattern.match(name):
+        letters = "letters" if pattern is THEME_NAME else "lowercase letters"
         raise SettingsValidationError(
-            f"Invalid {kind} name {name!r}: use lowercase letters, digits and "
+            f"Invalid {kind} name {name!r}: use {letters}, digits and "
             "dashes, starting with a letter"
         )
     label = entry.get("label") or name
@@ -228,7 +232,7 @@ def _validate_slot(slot, theme: str, slot_name: str, colors: list[str]) -> dict:
 
 
 def _validate_theme(entry, colors: list[str]) -> dict:
-    name, label = _name_and_label(entry, "theme")
+    name, label = _name_and_label(entry, "theme", THEME_NAME)
     result = {"name": name, "label": label}
     for slot_name in THEME_SLOTS:
         slot = entry.get(slot_name)

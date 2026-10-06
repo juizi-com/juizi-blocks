@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { Plus } from 'lucide-react';
 import {
   THEME_SLOTS,
-  isValidName,
+  isValidThemeName,
   removeTheme,
   renameTheme,
   slugifyName,
@@ -165,7 +165,7 @@ const ThemesEditor = ({ colorConfig, onChange }) => {
                   className="juizi-dashboard__input"
                   value={theme.name}
                   aria-invalid={
-                    !isValidName(theme.name) ||
+                    !isValidThemeName(theme.name) ||
                     names.filter((n) => n === theme.name).length > 1
                   }
                   onChange={(e) => rename(index, e.target.value)}

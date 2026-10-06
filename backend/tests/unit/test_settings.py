@@ -112,6 +112,18 @@ def test_callout_type_colours_are_kept_and_cleaned():
     assert "calloutTypes" not in result["blocks"]["contentRow"]
 
 
+def test_theme_names_may_use_capitals():
+    """A site keeps the theme names its saved blocks use (plone.org)."""
+    theme = {
+        "name": "MedBlue",
+        "label": "Medium Blue",
+        "background": {"color": "darkblue"},
+        "foreground": {"color": "white"},
+    }
+    result = validate_color_config(config(themes=[theme]))
+    assert result["themes"][0]["name"] == "MedBlue"
+
+
 @pytest.mark.parametrize(
     "bad",
     [
@@ -119,6 +131,17 @@ def test_callout_type_colours_are_kept_and_cleaned():
         config(themes=[]),
         config(colors=[{"name": "x", "value": "red;}body{"}]),
         config(colors=[{"name": "Bad Name", "value": "#fff"}]),
+        # Colour names become CSS variables: lowercase only.
+        config(colors=[{"name": "Blue", "value": "#fff"}]),
+        config(
+            themes=[
+                {
+                    "name": "Bad Name",
+                    "background": {"color": "white"},
+                    "foreground": {"color": "darkblue"},
+                }
+            ]
+        ),
         config(
             colors=DEFAULT_COLOR_CONFIG["colors"] + [DEFAULT_COLOR_CONFIG["colors"][0]]
         ),

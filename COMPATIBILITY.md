@@ -69,7 +69,8 @@ Blocks before its own copies are removed:
 - **Block themes:** once installed, the dashboard's themes replace the
   site's own (`default`, `Blue`, `MedBlue`, `BlueGrey`, `LightGrey`), for
   every block with a theme, not only Juizi's. Recreate them in the dashboard
-  under the same names first, or saved blocks lose their theme colours.
+  under the same names first (theme names may use capitals for this), or
+  saved blocks lose their theme colours.
 
 ## doi, jet, nithecs
 
