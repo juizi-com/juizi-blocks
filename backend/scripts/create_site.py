@@ -63,7 +63,7 @@ if site_id not in app.objectIds():
     transaction.commit()
 
     portal_setup: SetupTool = site.portal_setup
-    portal_setup.runAllImportStepsFromProfile("profile-juizi.blocks:default")
+    portal_setup.runAllImportStepsFromProfile("profile-juizi.blocks:devsite")
     transaction.commit()
 
     if EXAMPLE_CONTENT:

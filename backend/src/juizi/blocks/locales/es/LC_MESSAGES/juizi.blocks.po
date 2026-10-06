@@ -55,9 +55,9 @@ msgid "Juizi Blocks: Example content"
 msgstr "Juizi Blocks: contenido de ejemplo"
 
 #: juizi/blocks/profiles.zcml:13
-msgid "Juizi Blocks: Install"
-msgstr "Juizi Blocks: instalación"
+msgid "Juizi Blocks"
+msgstr "Juizi Blocks"
 
 #: juizi/blocks/profiles.zcml:13
-msgid "Package to configure a new Juizi Blocks site"
-msgstr "Paquete para configurar un nuevo sitio Juizi Blocks"
+msgid "Juizi's block set (Hero, Content Row, Carousel, Gallery, Callout, Redirect) with a dashboard for colours and block switches. Needs the volto-juizi-blocks frontend add-on."
+msgstr "El conjunto de bloques de Juizi (Hero, Content Row, Carousel, Gallery, Callout, Redirect), con un panel para los colores y para activar o desactivar bloques. Requiere el complemento de frontend volto-juizi-blocks."

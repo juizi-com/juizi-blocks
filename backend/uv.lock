@@ -92,6 +92,7 @@ constraints = [
     { name = "jsonschema", specifier = "==4.26.0" },
     { name = "jsonschema-specifications", specifier = "==2025.9.1" },
     { name = "keyring", specifier = "==25.7.0" },
+    { name = "kitconcept-voltolighttheme", specifier = "==7.8.6" },
     { name = "legacy-cgi", specifier = "==2.6.4" },
     { name = "lockfile", specifier = "==0.12.2" },
     { name = "lxml", specifier = "==5.4.0" },
@@ -1228,7 +1229,6 @@ wheels = [
 name = "juizi-blocks"
 source = { editable = "." }
 dependencies = [
-    { name = "kitconcept-voltolighttheme" },
     { name = "plone-api" },
     { name = "plone-restapi" },
     { name = "plone-volto" },
@@ -1237,6 +1237,7 @@ dependencies = [
 
 [package.dev-dependencies]
 container = [
+    { name = "kitconcept-voltolighttheme" },
     { name = "plone-app-upgrade" },
     { name = "psycopg2" },
     { name = "relstorage" },
@@ -1244,6 +1245,7 @@ container = [
 ]
 test = [
     { name = "horse-with-no-namespace" },
+    { name = "kitconcept-voltolighttheme" },
     { name = "plone-app-testing" },
     { name = "plone-restapi", extra = ["test"] },
     { name = "pytest" },
@@ -1253,7 +1255,6 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "kitconcept-voltolighttheme", specifier = "==7.8.6" },
     { name = "plone-api" },
     { name = "plone-restapi" },
     { name = "plone-volto" },
@@ -1262,6 +1263,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 container = [
+    { name = "kitconcept-voltolighttheme" },
     { name = "plone-app-upgrade" },
     { name = "psycopg2", specifier = "==2.9.11" },
     { name = "relstorage", specifier = "==4.2.0" },
@@ -1269,6 +1271,7 @@ container = [
 ]
 test = [
     { name = "horse-with-no-namespace" },
+    { name = "kitconcept-voltolighttheme" },
     { name = "plone-app-testing" },
     { name = "plone-restapi", extras = ["test"] },
     { name = "pytest" },

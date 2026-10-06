@@ -6,10 +6,18 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Juizi Blocks: Install"
-      description="Package to configure a new Juizi Blocks site"
+      title="Juizi Blocks"
+      description="Juizi's block set (Hero, Content Row, Carousel, Gallery, Callout, Redirect) with a dashboard for colours and block switches. Needs the volto-juizi-blocks frontend add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/default"
+      />
+
+  <genericsetup:registerProfile
+      name="devsite"
+      title="Juizi Blocks: Development site"
+      description="Set up this add-on's own development site: Volto Light Theme, its site settings, and the site title and email sender name"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/devsite"
       />
 
   <genericsetup:registerProfile
