@@ -31,8 +31,21 @@
     "release-alpha": "pnpm --filter volto-juizi-blocks release-alpha"
   },
   "dependencies": {
-    "@plone/volto": "workspace:*",
+    "@eeacms/volto-accordion-block": "^10.4.6",
+    "@kitconcept/volto-banner-block": "^1.2.1",
+    "@kitconcept/volto-button-block": "^4.0.0",
+    "@kitconcept/volto-carousel-block": "^2.0.0",
+    "@kitconcept/volto-dsgvo-banner": "^3.0.1",
+    "@kitconcept/volto-heading-block": "^2.5.0",
+    "@kitconcept/volto-highlight-block": "^4.5.1",
+    "@kitconcept/volto-introduction-block": "^1.4.1",
+    "@kitconcept/volto-light-theme": "7.8.6",
+    "@kitconcept/volto-logos-block": "^3.0.0",
+    "@kitconcept/volto-separator-block": "^4.2.1",
+    "@kitconcept/volto-slider-block": "^6.4.1",
     "@plone/registry": "workspace:*",
+    "@plone/volto": "workspace:*",
+    "@plonegovbr/volto-social-media": "^2.0.0",
     "volto-juizi-blocks": "workspace:*"
   },
   "devDependencies": {

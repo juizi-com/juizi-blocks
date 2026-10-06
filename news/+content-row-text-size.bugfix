@@ -1,0 +1,1 @@
+Content Row: an item description keeps the same size after it is edited. The size was set only on paragraphs, so plain-text descriptions (as in generated content) were larger until saved through the rich-text field.

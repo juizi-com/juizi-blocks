@@ -1,12 +1,31 @@
 import { convertLegacyBlock, repairCurrentBlock } from './blocks';
 import { normalizeButtonStyle, normalizeColorValue } from './colors';
 import { migrateLegacyBlocks } from './index';
+import { setInstalled } from '../settings/runtime';
 import {
   colorKeyToCssVar,
   getButtonClasses,
   getColorTextStyle,
   isColorDark,
 } from '../config/colors';
+
+// The conversion only runs on sites where juizi.blocks is installed.
+beforeAll(() => setInstalled(true));
+afterAll(() => setInstalled(false));
+
+describe('before juizi.blocks is installed', () => {
+  it('leaves content as saved', () => {
+    setInstalled(false);
+    const content = {
+      blocks: { a: { '@type': 'buttonRow', title: 'Old' } },
+    };
+    expect(migrateLegacyBlocks(content).blocks.a).toEqual({
+      '@type': 'buttonRow',
+      title: 'Old',
+    });
+    setInstalled(true);
+  });
+});
 
 describe('legacy colour values', () => {
   it('closes an unclosed var()', () => {

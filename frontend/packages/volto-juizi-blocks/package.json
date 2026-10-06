@@ -1,7 +1,7 @@
 {
   "name": "volto-juizi-blocks",
   "version": "1.0.0-alpha.0",
-  "description": "Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles",
+  "description": "Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles. Works with or without Volto Light Theme, and adds its theme support when the site switches it on.",
   "main": "src/index.ts",
   "license": "MIT",
   "keywords": [
@@ -27,35 +27,10 @@
     "release-alpha": "release-it --preRelease=alpha"
   },
   "addons": [
-    "@plonegovbr/volto-social-media",
-    "@eeacms/volto-accordion-block",
-    "@kitconcept/volto-banner-block",
-    "@kitconcept/volto-button-block",
-    "@kitconcept/volto-carousel-block",
-    "@kitconcept/volto-heading-block",
-    "@kitconcept/volto-highlight-block",
-    "@kitconcept/volto-introduction-block",
-    "@kitconcept/volto-logos-block",
-    "@kitconcept/volto-separator-block",
-    "@kitconcept/volto-slider-block",
-    "@kitconcept/volto-light-theme"
+    "@kitconcept/volto-bm3-compat"
   ],
-  "theme": "@kitconcept/volto-light-theme",
   "dependencies": {
-    "@eeacms/volto-accordion-block": "^10.4.6",
-    "@kitconcept/volto-banner-block": "^1.2.1",
     "@kitconcept/volto-bm3-compat": "^1.0.0-alpha.1",
-    "@kitconcept/volto-button-block": "^4.0.0",
-    "@kitconcept/volto-carousel-block": "^2.0.0",
-    "@kitconcept/volto-dsgvo-banner": "^3.0.1",
-    "@kitconcept/volto-heading-block": "^2.5.0",
-    "@kitconcept/volto-highlight-block": "^4.5.1",
-    "@kitconcept/volto-introduction-block": "^1.4.1",
-    "@kitconcept/volto-light-theme": "7.8.6",
-    "@kitconcept/volto-logos-block": "^3.0.0",
-    "@kitconcept/volto-separator-block": "^4.2.1",
-    "@kitconcept/volto-slider-block": "^6.4.1",
-    "@plonegovbr/volto-social-media": "^2.0.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^1.48.0"

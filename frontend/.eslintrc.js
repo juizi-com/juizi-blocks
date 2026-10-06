@@ -21,6 +21,30 @@ module.exports = {
   rules: {
     'import/no-unresolved': 1,
   },
+  overrides: [
+    {
+      // juizi-blocks works without Volto Light Theme: it may only check
+      // whether a site has it (src/config/vlt.ts), never import from it.
+      files: ['packages/volto-juizi-blocks/src/**'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: [
+                  '@kitconcept/volto-light-theme',
+                  '@kitconcept/volto-light-theme/*',
+                ],
+                message:
+                  'juizi-blocks must work without Volto Light Theme: check hasVLT() (src/config/vlt.ts) instead of importing from it.',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
   settings: {
     'import/resolver': {
       alias: {
@@ -28,10 +52,7 @@ module.exports = {
           ['@plone/volto', `${coreLocation}/packages/volto/src`],
           ['@plone/volto-slate', `${coreLocation}/packages/volto-slate/src`],
           ['@plone/registry', `${coreLocation}/packages/registry/src`],
-          [
-            'volto-juizi-blocks',
-            './packages/volto-juizi-blocks/src',
-          ],
+          ['volto-juizi-blocks', './packages/volto-juizi-blocks/src'],
           ...addonAliases,
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

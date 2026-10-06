@@ -7,12 +7,14 @@
  *
  * The settings are fetched during SSR by an asyncPropsExtender (see
  * config/settings.ts), so the colours are in the first HTML response.
+ * Until the backend says juizi.blocks is installed, it outputs nothing.
  */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   buildColorCss,
   getJuiziBlocksSettings,
+  setInstalled,
   setRuntimeSettings,
   useJuiziBlocksSettings,
   useJuiziBlocksSettingsState,
@@ -30,9 +32,15 @@ const SettingsLoader = () => {
     }
   }, [dispatch, loaded, loading, error]);
 
+  const installed = state?.installed === true;
+
   useEffect(() => {
-    setRuntimeSettings(settings);
-  }, [settings]);
+    setInstalled(installed);
+    if (installed) setRuntimeSettings(settings);
+  }, [installed, settings]);
+
+  // Nothing of the add-on's on the site until it is installed.
+  if (!installed) return null;
 
   return (
     <style

@@ -46,4 +46,38 @@ describe('juiziBlocksSettings reducer', () => {
     // A failed save keeps the previous data.
     expect(state.data).toEqual(DEFAULT_SETTINGS);
   });
+
+  it('knows the add-on is installed once the settings load', () => {
+    expect(reducer(undefined, { type: '@@INIT' }).installed).toBe(null);
+    const state = reducer(undefined, {
+      type: `${GET_JUIZI_BLOCKS_SETTINGS}_SUCCESS`,
+      result: {},
+    });
+    expect(state.installed).toBe(true);
+  });
+
+  it('knows the add-on is not installed when the service is missing', () => {
+    const state = reducer(undefined, {
+      type: `${GET_JUIZI_BLOCKS_SETTINGS}_FAIL`,
+      error: { status: 404 },
+    });
+    expect(state.installed).toBe(false);
+  });
+
+  it('stays unsure after other errors', () => {
+    const state = reducer(undefined, {
+      type: `${GET_JUIZI_BLOCKS_SETTINGS}_FAIL`,
+      error: { status: 500 },
+    });
+    expect(state.installed).toBe(null);
+  });
+
+  it('loads the settings again after an add-on is installed', () => {
+    let state = reducer(undefined, {
+      type: `${GET_JUIZI_BLOCKS_SETTINGS}_FAIL`,
+      error: { status: 404 },
+    });
+    state = reducer(state, { type: 'INSTALL_ADDON_SUCCESS' });
+    expect(state.get).toEqual({ loading: false, loaded: false, error: null });
+  });
 });

@@ -1,0 +1,1 @@
+Hero: "Jump to a section" buttons no longer show CSS in their labels for logged-in users. Volto adds a copy-link anchor (with a style element) to headings in view mode; the button label now leaves it out.

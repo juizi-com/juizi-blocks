@@ -1791,6 +1791,11 @@ msgstr ""
 msgid "juizi-dashboard-none"
 msgstr ""
 
+#. Default: "Juizi Blocks is not installed on this site. Install it in Site Setup → Add-ons to add its blocks to pages and use this dashboard."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-not-installed"
+msgstr ""
+
 #. Default: "Off by default in its own settings"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-off-by-default"
@@ -2031,7 +2036,7 @@ msgstr ""
 msgid "juizi-gallery-enable-lightbox"
 msgstr ""
 
-#. Default: "When off, clicking a picture opens its own page."
+#. Default: "When off, clicking a picture opens its own page in a new tab."
 #: components/Blocks/EmblaGallery/messages
 msgid "juizi-gallery-enable-lightbox-help"
 msgstr ""
@@ -3104,6 +3109,11 @@ msgstr ""
 #. Default: "Text alignment"
 #: components/Blocks/_shared/messages
 msgid "juizi-text-alignment"
+msgstr ""
+
+#. Default: "Background color"
+#: config/vlt
+msgid "juizi-theme-background-color"
 msgstr ""
 
 #. Default: "Title"

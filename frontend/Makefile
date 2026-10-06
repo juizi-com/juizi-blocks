@@ -63,6 +63,10 @@ start: ## Starts Volto, allowing reloading of the add-on during development
 build: ## Build a production bundle for distribution of the project with the add-on
 	pnpm build
 
+.PHONY: build-without-vlt
+build-without-vlt: ## Build a production bundle for a site without Volto Light Theme
+	VOLTOCONFIG=$(CURRENT_DIR)/volto.config.no-vlt.js pnpm --filter @plone/volto build
+
 core/packages/registry/dist: $(shell find core/packages/registry/src -type f)
 	pnpm --filter @plone/registry build
 

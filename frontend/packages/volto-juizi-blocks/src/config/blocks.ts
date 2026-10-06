@@ -1,8 +1,8 @@
 import type { ConfigType } from '@plone/registry';
 import { composeSchema } from '@plone/volto/helpers/Extensions';
-import { defaultStylingSchema } from './vlt';
+import { themeStylingSchema } from './vlt';
 import { juiziBlocks } from '../blocks';
-import { registerThemedBlocks } from '../settings/runtime';
+import { registerJuiziBlocks, registerThemedBlocks } from '../settings/runtime';
 
 /** First-Time Editor Test: no Styling tab until the first choice is made. */
 const hideStylingUntilConfigured =
@@ -36,7 +36,7 @@ export default function install(config: ConfigType) {
       definition;
     // The block's own enhancer runs last so it has the final say.
     const enhancers = [
-      usesThemes ? defaultStylingSchema : undefined,
+      usesThemes ? themeStylingSchema : undefined,
       schemaEnhancer,
       isConfigured ? hideStylingUntilConfigured(isConfigured) : undefined,
     ].filter(Boolean);
@@ -53,6 +53,7 @@ export default function install(config: ConfigType) {
     };
   });
 
+  registerJuiziBlocks(juiziBlocks.map((block) => block.id));
   registerThemedBlocks(
     juiziBlocks.filter((block) => block.usesThemes).map((block) => block.id),
   );

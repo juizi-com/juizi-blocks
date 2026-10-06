@@ -243,18 +243,29 @@
   }
 }
 
+/* The narrower layouts name the column classes, so they are as specific as
+   the `.columns-<n>` rules above and, coming later, win. A bare
+   `.content-row__grid` lost to them, and items never stacked on phones. */
 @media (max-width: 768px) {
-  .content-row__grid {
+  .content-row__grid:is(
+      .columns-2,
+      .columns-3,
+      .columns-4,
+      .columns-5,
+      .columns-6
+    ) {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .content-row__grid.columns-1 {
-    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .content-row__grid {
+  .content-row__grid:is(
+      .columns-2,
+      .columns-3,
+      .columns-4,
+      .columns-5,
+      .columns-6
+    ) {
     grid-template-columns: 1fr;
   }
 }
@@ -350,14 +361,19 @@
   color: inherit;
 }
 
+/* The size is on the container, not its paragraphs: a description saved
+   through the rich-text field is HTML (`<p>…</p>`), while older or generated
+   content can be plain text straight in the div. Both look the same. */
 .content-row-item__text {
   margin: 0;
+  font-size: 0.8em;
+  line-height: 1.4;
   opacity: 0.85;
 }
 
 .content-row-item__text p {
-  font-size: 0.8em;
-  line-height: 1.4;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 /* ── Numbered ────────────────────────────────────────────────────────────── */

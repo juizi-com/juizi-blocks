@@ -1,19 +1,7 @@
+import registry from '@plone/volto/registry';
 import installBlocks from './blocks';
 import { setRuntimeSettings } from '../settings/runtime';
 import { DEFAULT_SETTINGS } from '../settings/constants';
-
-// Resolved through the add-on alias at build time; not resolvable by Jest.
-jest.mock(
-  '@kitconcept/volto-light-theme/components/Blocks/schema',
-  () => ({
-    defaultStylingSchema: ({ schema }) => ({
-      ...schema,
-      fieldsets: [...schema.fieldsets, { id: 'styling', fields: ['theme'] }],
-      properties: { ...schema.properties, theme: { widget: 'color_picker' } },
-    }),
-  }),
-  { virtual: true },
-);
 
 // A light manifest: the real one imports every block component (and with it
 // most of Volto). The registration logic is what is tested here.
@@ -47,8 +35,22 @@ const makeConfig = () => ({
   },
 });
 
+const intl = { formatMessage: (message) => message.defaultMessage };
+
+// Volto's list of the add-ons a site switches on.
+const withAddons = (names) => {
+  registry.settings = {
+    ...registry.settings,
+    addonsInfo: names.map((name) => ({ name, isRegisteredAddon: true })),
+  };
+};
+
 describe('Juizi block registration', () => {
-  afterEach(() => setRuntimeSettings(DEFAULT_SETTINGS));
+  beforeEach(() => withAddons(['@kitconcept/volto-light-theme']));
+  afterEach(() => {
+    withAddons([]);
+    setRuntimeSettings(DEFAULT_SETTINGS);
+  });
 
   it('registers every block under its id, keeping its own config', () => {
     const config = installBlocks(makeConfig());
@@ -88,12 +90,41 @@ describe('Juizi block registration', () => {
     const config = installBlocks(makeConfig());
     const { juiziCallout, emblaCarousel } = config.blocks.blocksConfig;
     const result = juiziCallout.schemaEnhancer({
-      schema: { fieldsets: [], properties: {} },
-      formData: {},
+      schema: { fieldsets: [{ id: 'default', fields: [] }], properties: {} },
+      formData: { calloutType: 'tip' },
+      intl,
     });
     expect(result.enhanced).toBe(true);
-    expect(result.properties.theme).toEqual({ widget: 'color_picker' });
+    expect(result.properties.theme.widget).toBe('color_picker');
     expect(emblaCarousel.schemaEnhancer).toBeUndefined();
+  });
+
+  it('adds no theme picker on a site without Volto Light Theme', () => {
+    withAddons(['volto-juizi-blocks']);
+    const config = installBlocks(makeConfig());
+    const result = config.blocks.blocksConfig.juiziCallout.schemaEnhancer({
+      schema: { fieldsets: [{ id: 'default', fields: [] }], properties: {} },
+      formData: { calloutType: 'tip' },
+      intl,
+    });
+    expect(result.properties.theme).toBeUndefined();
+    expect(result.fieldsets.map((f) => f.id)).toEqual(['default']);
+  });
+
+  it('only counts Volto Light Theme when the site switches it on', () => {
+    registry.settings = {
+      ...registry.settings,
+      addonsInfo: [
+        { name: '@kitconcept/volto-light-theme', isRegisteredAddon: false },
+      ],
+    };
+    const config = installBlocks(makeConfig());
+    const result = config.blocks.blocksConfig.juiziCallout.schemaEnhancer({
+      schema: { fieldsets: [{ id: 'default', fields: [] }], properties: {} },
+      formData: { calloutType: 'tip' },
+      intl,
+    });
+    expect(result.properties.theme).toBeUndefined();
   });
 
   it('hides the Styling tab until the block is configured', () => {
@@ -101,9 +132,16 @@ describe('Juizi block registration', () => {
     const { juiziCallout } = config.blocks.blocksConfig;
     const tabs = (formData) =>
       juiziCallout
-        .schemaEnhancer({ schema: { fieldsets: [], properties: {} }, formData })
+        .schemaEnhancer({
+          schema: {
+            fieldsets: [{ id: 'default', fields: [] }],
+            properties: {},
+          },
+          formData,
+          intl,
+        })
         .fieldsets.map((f) => f.id);
-    expect(tabs({})).toEqual([]);
-    expect(tabs({ calloutType: 'tip' })).toEqual(['styling']);
+    expect(tabs({})).toEqual(['default']);
+    expect(tabs({ calloutType: 'tip' })).toEqual(['default', 'styling']);
   });
 });

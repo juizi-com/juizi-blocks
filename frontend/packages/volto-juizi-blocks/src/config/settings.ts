@@ -1,9 +1,11 @@
 import type { ConfigType } from '@plone/registry';
 import juiziBlocksSettings from '../settings/reducer';
+import juiziAddons from './addons';
 import {
-  DEFAULT_SETTINGS,
+  CONTROLPANEL_ID,
   getJuiziBlocksSettings,
   GET_JUIZI_BLOCKS_SETTINGS,
+  setInstalled,
   setRuntimeSettings,
 } from '../settings';
 import SettingsLoader from '../components/SettingsLoader';
@@ -11,7 +13,32 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import paletteSVG from '@plone/volto/icons/paint.svg';
 import voltoLanguages from '@plone/volto/constants/Languages.cjs';
 
-export const CONTROLPANEL_ID = 'juizi-blocks';
+export { CONTROLPANEL_ID };
+
+/**
+ * The settings request of one SSR render. It also says whether juizi.blocks
+ * is installed, which the content transforms need (see legacy/), so the
+ * content request waits for it. Keyed by the request's store.
+ */
+const settingsRequests = new WeakMap<object, Promise<unknown>>();
+
+function loadSettings(store: any) {
+  if (!settingsRequests.has(store)) {
+    settingsRequests.set(
+      store,
+      store
+        .dispatch(getJuiziBlocksSettings())
+        .then((result: any) => {
+          setInstalled(true);
+          setRuntimeSettings(result);
+        })
+        // Not installed (404) or unavailable: the add-on stays inactive.
+        // Never fail the whole page render because of this request.
+        .catch(() => setInstalled(false)),
+    );
+  }
+  return settingsRequests.get(store);
+}
 
 /**
  * Interface languages this add-on is translated into that Volto doesn't list
@@ -29,10 +56,12 @@ export default function install(config: ConfigType) {
     if (!voltoLanguages[code]) voltoLanguages[code] = name;
   });
 
-  // Settings store
+  // Settings store, and Site Setup → Add-ons offering juizi.blocks
+  // (config/addons.ts).
   config.addonReducers = {
     ...config.addonReducers,
     juiziBlocksSettings,
+    addons: juiziAddons,
   };
 
   // Fetch the settings during SSR and apply them before rendering, so
@@ -44,21 +73,31 @@ export default function install(config: ConfigType) {
       path: '/',
       extend: (dispatchActions: any[]) => {
         if (
-          !dispatchActions.some(
+          dispatchActions.some(
             (action) => action.key === GET_JUIZI_BLOCKS_SETTINGS,
           )
         ) {
-          dispatchActions.push({
-            key: GET_JUIZI_BLOCKS_SETTINGS,
-            // Never fail the whole page render because of this request.
-            promise: ({ store: { dispatch } }: any) =>
-              __SERVER__ &&
-              dispatch(getJuiziBlocksSettings())
-                .then((result: any) => setRuntimeSettings(result))
-                .catch(() => null),
-          });
+          return dispatchActions;
         }
-        return dispatchActions;
+        return [
+          ...dispatchActions.map((action) =>
+            action.key === 'content'
+              ? {
+                  ...action,
+                  promise: (args: any) =>
+                    __SERVER__
+                      ? loadSettings(args.store).then(() =>
+                          action.promise(args),
+                        )
+                      : action.promise(args),
+                }
+              : action,
+          ),
+          {
+            key: GET_JUIZI_BLOCKS_SETTINGS,
+            promise: ({ store }: any) => __SERVER__ && loadSettings(store),
+          },
+        ];
       },
     },
   ];
@@ -68,18 +107,11 @@ export default function install(config: ConfigType) {
     { match: '', component: SettingsLoader, props: {} },
   ];
 
-  // Dashboard
+  // Dashboard. Listed in Site Setup once the add-on is installed
+  // (settings/runtime.ts, setInstalled).
   config.addonRoutes = [
     ...(config.addonRoutes || []),
     { path: `/controlpanel/${CONTROLPANEL_ID}`, component: Dashboard },
-  ];
-  config.settings.controlpanels = [
-    ...(config.settings.controlpanels || []),
-    {
-      '@id': `/${CONTROLPANEL_ID}`,
-      group: 'Add-on Configuration',
-      title: 'Juizi Blocks',
-    },
   ];
   config.settings.controlPanelsIcons = {
     ...config.settings.controlPanelsIcons,
@@ -90,10 +122,14 @@ export default function install(config: ConfigType) {
 }
 
 /** Applies the settings the app starts with. Call after the blocks are
- * registered. In the browser that is the state the server rendered with. */
+ * registered. In the browser that is the state the server rendered with;
+ * otherwise the add-on starts inactive until the backend says it is
+ * installed. */
 export function applyInitialSettings() {
-  setRuntimeSettings(DEFAULT_SETTINGS);
-  if (typeof window !== 'undefined') {
-    setRuntimeSettings((window as any).__data?.juiziBlocksSettings?.data);
-  }
+  const state =
+    typeof window !== 'undefined'
+      ? (window as any).__data?.juiziBlocksSettings
+      : undefined;
+  setInstalled(state?.installed === true);
+  if (state?.installed === true) setRuntimeSettings(state.data);
 }

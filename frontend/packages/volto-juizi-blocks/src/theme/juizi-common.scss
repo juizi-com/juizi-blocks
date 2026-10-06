@@ -363,6 +363,51 @@ $juizi-pad-sizes: (
   margin-left: 0 !important;
 }
 
+// Full width on a site without Volto Light Theme. Volto's own layout puts the
+// blocks straight into #page-document, inside its centred page column (there
+// is no .blocks-group-wrapper, so the layer rules above don't apply). A
+// full-width block's outer layer (its background) breaks out of the column to
+// the window edges the way Volto's own `.full-width` does, while its content
+// stays in line with the page column: the side padding is half the window
+// minus half the column (a percentage padding is measured against the
+// column), so the inner layer is exactly the column's width at every screen
+// size. Other blocks stay in the column, like Volto's own blocks. On a Volto
+// Light Theme site the blocks sit in .blocks-group-wrapper, so these
+// selectors never match there.
+#page-document > .block > :is(#{$juizi-full-width}),
+#page-document > :is(#{$juizi-full-width}) {
+  position: relative;
+  right: auto;
+  left: 50%;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
+  padding-right: calc(50vw - 50%);
+  padding-left: calc(50vw - 50%);
+  margin-right: 0 !important;
+  margin-left: -50vw !important;
+}
+
+// The other blocks stay in the page column; like on a Volto Light Theme site
+// (the layer rules above), their outer layer keeps the side gutter, so their
+// content doesn't touch the edges of their background. The Callout and the
+// Redirect pad their own box (above).
+#page-document
+  > .block
+  > :is(.hero-block, .content-row, .embla, .gallery):not(
+    .hero-block--full-width,
+    .full-width
+  ),
+#page-document
+  > :is(.hero-block, .content-row, .embla, .gallery):not(
+    .hero-block--full-width,
+    .full-width
+  ) {
+  box-sizing: border-box;
+  padding-right: var(--juizi-gutter);
+  padding-left: var(--juizi-gutter);
+}
+
 // ── Cards ─────────────────────────────────────────────────────────────────
 
 #{$juizi-cards} {

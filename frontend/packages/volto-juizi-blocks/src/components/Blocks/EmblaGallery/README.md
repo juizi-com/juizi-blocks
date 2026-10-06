@@ -108,8 +108,8 @@ mounted once per gallery block and rendered via `ReactDOM.createPortal` to
 - Background scroll is locked while open (`document.body.style.overflow`)
 
 `enableLightbox` (default on) can be switched off, in which case clicking an
-image navigates to its own page instead — the same fallback shape as
-EmblaCarousel's `clickableSlides`.
+image opens its own page in a new tab instead (a link with
+`target="_blank"`; the thumbnail strip opens it with `window.open`).
 
 `showCaptionOnItem` and `showCaptionInLightbox` are separate toggles —
 one for the caption shown on the thumbnail/grid item itself, one for the

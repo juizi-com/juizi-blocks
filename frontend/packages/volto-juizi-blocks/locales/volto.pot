@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-05T06:39:16.964Z\n"
+"POT-Creation-Date: 2026-10-06T05:31:26.733Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1793,6 +1793,11 @@ msgstr ""
 msgid "juizi-dashboard-none"
 msgstr ""
 
+#. Default: "Juizi Blocks is not installed on this site. Install it in Site Setup → Add-ons to add its blocks to pages and use this dashboard."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-not-installed"
+msgstr ""
+
 #. Default: "Off by default in its own settings"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-off-by-default"
@@ -2033,7 +2038,7 @@ msgstr ""
 msgid "juizi-gallery-enable-lightbox"
 msgstr ""
 
-#. Default: "When off, clicking a picture opens its own page."
+#. Default: "When off, clicking a picture opens its own page in a new tab."
 #: components/Blocks/EmblaGallery/messages
 msgid "juizi-gallery-enable-lightbox-help"
 msgstr ""
@@ -3106,6 +3111,11 @@ msgstr ""
 #. Default: "Text alignment"
 #: components/Blocks/_shared/messages
 msgid "juizi-text-alignment"
+msgstr ""
+
+#. Default: "Background color"
+#: config/vlt
+msgid "juizi-theme-background-color"
 msgstr ""
 
 #. Default: "Title"

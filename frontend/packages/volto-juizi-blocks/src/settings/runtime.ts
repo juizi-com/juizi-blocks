@@ -13,6 +13,13 @@
  *
  * The settings are site-wide, so sharing this state between concurrent SSR
  * requests is fine.
+ *
+ * Nothing here takes effect until the backend says juizi.blocks is installed
+ * on the site (`setInstalled`): the frontend add-on can be deployed before
+ * the add-on is installed in Site Setup → Add-ons. Until then the Juizi
+ * blocks are left out of the block chooser, the dashboard is not listed, the
+ * site's own themes are kept and older blocks are not converted. Blocks
+ * already on pages keep rendering.
  */
 import config from '@plone/volto/registry';
 import { DEFAULT_COLOR_CONFIG } from './constants';
@@ -36,6 +43,10 @@ let blockLists: BlockLists = {
 };
 let colorConfig: ColorConfig = DEFAULT_COLOR_CONFIG;
 let themedBlocks: string[] = [];
+let juiziBlockIds: string[] = [];
+let installed = false;
+// The site's own VLT themes, from before the settings replaced them.
+let siteThemes: any[] | undefined;
 
 /**
  * The master colour list as `[value, label, lightness]` tuples. This array is
@@ -52,6 +63,60 @@ export function registerThemedBlocks(blockTypes: string[]) {
   themedBlocks = blockTypes;
 }
 
+/** Called once by the add-on config with the add-on's own block types, which
+ * are kept out of the block chooser until the add-on is installed. */
+export function registerJuiziBlocks(blockTypes: string[]) {
+  juiziBlockIds = blockTypes;
+}
+
+/** The switches in effect: the dashboard's once installed; before that,
+ * only the Juizi blocks switched off. */
+const activeBlockLists = (): BlockLists =>
+  installed
+    ? blockLists
+    : { disabled_blocks: juiziBlockIds, enabled_blocks: [], block_groups: {} };
+
+// Every registered block gets the switch. Repeated on each call so blocks
+// registered by add-ons loaded after this one are covered too.
+const wrapBlocks = () =>
+  wrapBlocksRestricted(config.blocks?.blocksConfig, activeBlockLists);
+
+/** Whether juizi.blocks is installed on the site, as the backend last said. */
+export const isInstalled = () => installed;
+
+/** The dashboard's entry in Site Setup: listed once juizi.blocks is
+ * installed on the site. Before that the add-on is offered in Site Setup →
+ * Add-ons (config/addons.ts). */
+export const CONTROLPANEL_ID = 'juizi-blocks';
+const CONTROLPANEL = {
+  '@id': `/${CONTROLPANEL_ID}`,
+  group: 'Add-on Configuration',
+  title: 'Juizi Blocks',
+};
+
+export function setInstalled(value: boolean) {
+  const was = installed;
+  installed = value;
+  // The site's own themes are read again when the settings are next applied.
+  if (value && !was) siteThemes = undefined;
+  wrapBlocks();
+  const panels = (config.settings.controlpanels || []).filter(
+    (panel: any) => panel['@id'] !== CONTROLPANEL['@id'],
+  );
+  config.settings.controlpanels = value ? [...panels, CONTROLPANEL] : panels;
+  if (!value && was) {
+    // Back to the site's own state: the add-on was uninstalled.
+    if (siteThemes !== undefined) config.blocks.themes = siteThemes;
+    siteThemes = undefined;
+    colorConfig = DEFAULT_COLOR_CONFIG;
+    MASTER_COLOR_LIST.splice(
+      0,
+      MASTER_COLOR_LIST.length,
+      ...toColorTuples(DEFAULT_COLOR_CONFIG.colors),
+    );
+  }
+}
+
 export function setRuntimeSettings(settings?: Partial<JuiziBlocksSettings>) {
   if (!settings) return;
   blockLists = {
@@ -59,9 +124,7 @@ export function setRuntimeSettings(settings?: Partial<JuiziBlocksSettings>) {
     enabled_blocks: settings.enabled_blocks || [],
     block_groups: settings.block_groups || {},
   };
-  // Every registered block gets the dashboard switch. Repeated on each call
-  // so blocks registered by add-ons loaded after this one are covered too.
-  wrapBlocksRestricted(config.blocks?.blocksConfig, () => blockLists);
+  wrapBlocks();
   if (!settings.color_config) return;
   colorConfig = settings.color_config;
 
@@ -71,6 +134,7 @@ export function setRuntimeSettings(settings?: Partial<JuiziBlocksSettings>) {
     ...toColorTuples(colorConfig.colors),
   );
 
+  if (siteThemes === undefined) siteThemes = config.blocks.themes;
   config.blocks.themes = colorConfig.themes.map(toVltTheme);
   const blocksConfig = config.blocks.blocksConfig as Record<string, any>;
   themedBlocks.forEach((blockType) => {
