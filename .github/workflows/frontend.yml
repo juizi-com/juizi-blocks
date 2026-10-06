@@ -45,6 +45,31 @@ jobs:
       node-version: ${{ inputs.node-version }}
       working-directory: ${{ inputs.working-directory }}
 
+  build-without-vlt:
+    name: "Frontend: Build without Volto Light Theme"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Use Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Enable corepack
+        run: npm i -g corepack@latest && corepack enable
+
+      - name: Install
+        run: make install
+
+      # juizi-blocks must build on a site that doesn't switch on Volto Light
+      # Theme (volto.config.no-vlt.js).
+      - name: Build without Volto Light Theme
+        run: make build-without-vlt
+
   release:
     name: "Frontend: Build and publish container image"
     uses: plone/meta/.github/workflows/container-image-build-push.yml@2.x
@@ -52,6 +77,7 @@ jobs:
       - code-analysis
       - i18n
       - unit
+      - build-without-vlt
     permissions:
       contents: read
       packages: write
@@ -75,6 +101,7 @@ jobs:
       - code-analysis
       - i18n
       - unit
+      - build-without-vlt
       - release
     steps:
       - name: Write report
@@ -85,4 +112,5 @@ jobs:
           echo '| code-analysis | ${{ needs.code-analysis.result }} |' >> $GITHUB_STEP_SUMMARY
           echo '| i18n | ${{ needs.i18n.result }} |' >> $GITHUB_STEP_SUMMARY
           echo '| unit | ${{ needs.unit.result }} |' >> $GITHUB_STEP_SUMMARY
+          echo '| build-without-vlt | ${{ needs.build-without-vlt.result }} |' >> $GITHUB_STEP_SUMMARY
           echo '| release | ${{ needs.release.result }} |' >> $GITHUB_STEP_SUMMARY

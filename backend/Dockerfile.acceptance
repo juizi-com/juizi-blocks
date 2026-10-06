@@ -30,7 +30,7 @@ LABEL maintainer="Juizi <karel@juizi.com>" \
       org.label-schema.vendor="Juizi"
 
 ENV CONFIGURE_PACKAGES="plone.restapi,plone.volto,plone.volto.cors,juizi.blocks"
-ENV APPLY_PROFILES="juizi.blocks:default"
+ENV APPLY_PROFILES="juizi.blocks:devsite"
 
 # Copy /app from builder
 COPY --from=builder /app /app

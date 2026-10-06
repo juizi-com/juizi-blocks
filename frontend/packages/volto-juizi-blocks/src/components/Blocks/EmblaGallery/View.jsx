@@ -270,8 +270,10 @@ const EmblaGallery = (blockProps) => {
       setActiveIndex(index);
       return;
     }
+    // With the enlarged view off, the picture's page opens in a new tab.
     const href = getHref(items[index]);
-    if (href) window.location.href = href;
+    if (href)
+      window.open(flattenToAppURL(href), '_blank', 'noopener,noreferrer');
   };
   const closeLightbox = () => setActiveIndex(null);
   const showPrev = () =>
@@ -424,7 +426,8 @@ const EmblaGallery = (blockProps) => {
   const showNamesInLightbox = !!data.showCaptionInLightbox;
 
   // A picture opens the enlarged view through a real button; with the
-  // enlarged view off, it's a real link to the picture's page.
+  // enlarged view off, it's a real link to the picture's page, opening in a
+  // new tab.
   const enlarge = data.enableLightbox ?? true;
   const renderTrigger = (index, item, className, renderImage) => {
     if (enlarge) {
@@ -451,7 +454,12 @@ const EmblaGallery = (blockProps) => {
     }
     const href = getHref(item);
     return href ? (
-      <UniversalLink href={href} className={`gallery__trigger ${className}`}>
+      <UniversalLink
+        href={href}
+        className={`gallery__trigger ${className}`}
+        openLinkInNewTab
+        rel="noopener noreferrer"
+      >
         {renderImage(item.heading || '')}
       </UniversalLink>
     ) : (

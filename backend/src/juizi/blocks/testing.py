@@ -16,9 +16,12 @@ class Layer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import kitconcept.voltolighttheme
         import plone.restapi
 
         self.loadZCML(package=plone.restapi)
+        # For the devsite profile; sites install Volto Light Theme themselves.
+        self.loadZCML(package=kitconcept.voltolighttheme)
         self.loadZCML(package=juizi.blocks)
 
     def setUpPloneSite(self, portal):

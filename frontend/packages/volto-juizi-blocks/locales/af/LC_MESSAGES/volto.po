@@ -1796,6 +1796,11 @@ msgstr "Nuwe tema"
 msgid "juizi-dashboard-none"
 msgstr "— Geen —"
 
+#. Default: "Juizi Blocks is not installed on this site. Install it in Site Setup → Add-ons to add its blocks to pages and use this dashboard."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-not-installed"
+msgstr "Juizi Blocks is nie op hierdie werf geïnstalleer nie. Installeer dit in Werfinstellings → Byvoegings om sy blokke by bladsye te voeg en hierdie paneelbord te gebruik."
+
 #. Default: "Off by default in its own settings"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-off-by-default"
@@ -2036,10 +2041,10 @@ msgstr "{current} van {total}"
 msgid "juizi-gallery-enable-lightbox"
 msgstr "Vergroot prente wanneer daarop geklik word"
 
-#. Default: "When off, clicking a picture opens its own page."
+#. Default: "When off, clicking a picture opens its own page in a new tab."
 #: components/Blocks/EmblaGallery/messages
 msgid "juizi-gallery-enable-lightbox-help"
-msgstr "Wanneer dit af is, maak ’n klik op ’n prent sy eie bladsy oop."
+msgstr "Wanneer dit af is, maak ’n klik op ’n prent sy eie bladsy in ’n nuwe oortjie oop."
 
 #. Default: "Enlarge: {title}"
 #: components/Blocks/EmblaGallery/messages
@@ -3110,6 +3115,11 @@ msgstr "Teks bo die opskrif"
 #: components/Blocks/_shared/messages
 msgid "juizi-text-alignment"
 msgstr "Teksbelyning"
+
+#. Default: "Background color"
+#: config/vlt
+msgid "juizi-theme-background-color"
+msgstr "Agtergrondkleur"
 
 #. Default: "Title"
 #: components/Blocks/_shared/messages

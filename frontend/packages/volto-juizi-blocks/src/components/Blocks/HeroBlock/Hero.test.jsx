@@ -5,7 +5,7 @@ import {
 } from '../_shared/testUtils';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import View from './View';
+import View, { headingText } from './View';
 import schema from './schema';
 
 jest.mock('../_shared/BlockWrapper');
@@ -181,5 +181,18 @@ describe('Hero', () => {
       properties: { title: 'T', effective: '2024-11-13T10:00:00' },
     });
     expect(container.textContent).toContain('13 November 2024');
+  });
+});
+
+describe('Hero TOC button labels', () => {
+  it("leave out Volto's copy-link anchor in a heading", () => {
+    // Volto adds this to headings for logged-in users in view mode.
+    const heading = document.createElement('h2');
+    heading.innerHTML =
+      'Our programmes<a class="anchor" aria-hidden="true" href="#our-programmes">' +
+      '<style>a.anchor svg { height: 24px; }</style><svg><title>Link</title></svg></a>';
+    expect(headingText(heading)).toBe('Our programmes');
+    // The page's heading itself is left as it was.
+    expect(heading.querySelector('style')).not.toBeNull();
   });
 });

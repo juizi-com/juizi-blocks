@@ -175,7 +175,8 @@ export default defineMessages({
   },
   enableLightboxHelp: {
     id: 'juizi-gallery-enable-lightbox-help',
-    defaultMessage: 'When off, clicking a picture opens its own page.',
+    defaultMessage:
+      'When off, clicking a picture opens its own page in a new tab.',
   },
   captionInLightbox: {
     id: 'juizi-gallery-caption-in-lightbox',

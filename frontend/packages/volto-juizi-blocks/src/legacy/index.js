@@ -2,8 +2,10 @@
  * Backward compatibility for content saved by earlier Juizi block add-ons.
  * Registered as a Volto content transform: it runs on every content load
  * (view and edit), converting legacy blocks in memory. See blocks.js.
+ * Only once juizi.blocks is installed on the site (settings/runtime.ts).
  */
 import { convertLegacyBlock, repairCurrentBlock } from './blocks';
+import { isInstalled } from '../settings/runtime';
 
 /** Every blocks container in the content, including nested ones (grids). */
 function* blockContainers(node) {
@@ -16,7 +18,8 @@ function* blockContainers(node) {
 }
 
 export function migrateLegacyBlocks(content) {
-  if (!content) return content;
+  // Content is left as saved until juizi.blocks is installed on the site.
+  if (!content || !isInstalled()) return content;
   for (const blocks of blockContainers(content)) {
     Object.keys(blocks).forEach((id) => {
       const block = blocks[id];

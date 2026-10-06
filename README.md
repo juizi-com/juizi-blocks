@@ -1,5 +1,8 @@
 # Juizi Blocks 🚀
 
+> Works on any Volto 18 site. On a site that also switches on Volto Light Theme
+> (7.x, from 7.8.1), it adds the theme's hooks as well.
+
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![CI](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml/badge.svg)](https://github.com/juizi-com/juizi-blocks/actions/workflows/main.yml)
@@ -19,12 +22,150 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 | Part | Version |
 | --- | --- |
 | Plone (`Products.CMFPlone`) | 6.1.5 |
-| Volto | 18.32.1 |
-| Volto Light Theme (`@kitconcept/volto-light-theme` / `kitconcept.voltolighttheme`) | 7.8.6 (the 7.x line is the one for Volto 18; 8.x needs Volto 19) |
+| Volto | 18 (this repository's site: 18.32.1; also tested on 18.35.0) |
+| Volto Light Theme (`@kitconcept/volto-light-theme` / `kitconcept.voltolighttheme`) | optional, the site's choice: any 7.x from 7.8.1 (the 7.x line is the one for Volto 18; 8.x needs Volto 19). This repository's site uses 7.8.6 |
 | `embla-carousel-react` | ^8.6.0 |
 | `lucide-react` | ^1.48.0 |
 
-The backend runs on Python 3.12 (`backend/.python-version`).
+The backend runs on Python 3.12 or later (this repository: 3.12,
+`backend/.python-version`; also tested on 3.13).
+
+**Volto Light Theme is optional.** juizi-blocks never imports from it,
+installs it or switches it on; a site switches it on itself (in its own
+`package.json` and `volto.config.js`). juizi-blocks checks at runtime whether
+the site has it (`hasVLT()` in `src/config/vlt.ts`, from Volto's list of the
+site's add-ons) and only then adds the theme's hooks, such as the block theme
+picker for blocks marked `usesThemes`. The backend package doesn't need it
+either. juizi-blocks adds only its own blocks (and switches on
+`@kitconcept/volto-bm3-compat`, which its block wrapper uses); other block
+add-ons are the site's choice. This repository's development site switches on
+Volto Light Theme and the block add-ons it works with, in
+`frontend/package.json` and `frontend/volto.config.js`.
+
+## Installing on a site
+
+juizi-blocks has two halves, installed separately:
+
+- the backend package **`juizi.blocks`**, on the site's Plone backend, stores
+  the settings (block switches, colours) and serves them;
+- the Volto add-on **`volto-juizi-blocks`**, in the site's frontend, has the
+  blocks, the dashboard and the styling.
+
+A backend can serve several Plone sites, each with its own frontend. Add the
+backend package once; add the frontend add-on to each site that should have
+the blocks.
+
+### Requirements
+
+- Plone 6.1 (`juizi.blocks` requires `Products.CMFPlone` 6.1.5), Python 3.12
+  or later
+- Volto 18, Node.js 22, pnpm
+- Volto Light Theme is optional (7.x, from 7.8.1); see below
+
+### 1. Backend
+
+With mxdev (as in Juizi's projects), add a section to the backend's
+`mx.ini`:
+
+```ini
+[juizi.blocks]
+url = git@github.com:juizi-com/juizi-blocks.git
+pushurl = git@github.com:juizi-com/juizi-blocks.git
+branch = main
+subdirectory = backend
+```
+
+and `juizi.blocks` to the dependencies in the backend's `pyproject.toml`.
+Without mxdev, depend on the git URL directly (uv or pip):
+
+```text
+juizi.blocks @ git+https://github.com/juizi-com/juizi-blocks.git@main#subdirectory=backend
+```
+
+Run the backend's install (`make install`) and restart it. This only adds
+the package: it installs nothing on any site, and doesn't bring Volto Light
+Theme. The package loads itself (`plone.autoinclude`); no ZCML to add.
+
+### 2. Frontend
+
+Check the repository out into the frontend's `packages/` with
+mrs-developer: add to the frontend's `mrs.developer.json`:
+
+```json
+"juizi-blocks": {
+  "output": "./packages",
+  "package": "volto-juizi-blocks",
+  "url": "git@github.com:juizi-com/juizi-blocks.git",
+  "https": "https://github.com/juizi-com/juizi-blocks.git",
+  "path": "frontend/packages/volto-juizi-blocks",
+  "branch": "main"
+}
+```
+
+mrs-developer clones the whole repository into `packages/juizi-blocks`; the
+add-on is at `packages/juizi-blocks/frontend/packages/volto-juizi-blocks`,
+which pnpm finds through the workspace pattern `packages/**/packages/*` (in
+`pnpm-workspace.yaml`; Cookieplone projects have it).
+
+add it to the frontend's `package.json` dependencies:
+
+```json
+"volto-juizi-blocks": "workspace:*"
+```
+
+and switch it on in `volto.config.js`:
+
+```js
+const addons = ['volto-juizi-blocks', 'volto-<site>'];
+```
+
+Then `make install` (it runs mrs-developer and `pnpm install`) and rebuild or
+restart the frontend. The site's own add-on comes last, so it can override.
+
+**With Volto Light Theme:** juizi-blocks doesn't install or switch it on. A
+site that wants it adds it (and the block add-ons it works with) itself, and
+lists it before `volto-juizi-blocks` (after the block add-ons it adjusts):
+
+```js
+const addons = [
+  // ...the kitconcept / eeacms block add-ons the site uses...
+  '@kitconcept/volto-light-theme',
+  'volto-juizi-blocks',
+  'volto-<site>',
+];
+const theme = '@kitconcept/volto-light-theme';
+```
+
+Volto Light Theme's logos block asks for its own copy of the theme (7.6.0);
+add a pnpm override in the frontend's `package.json` so there is one:
+`"pnpm": { "overrides": { "@kitconcept/volto-light-theme": "<version>" } }`.
+Without the theme, juizi-blocks styles its blocks for Volto's own layout
+(see "Two layers: width and full width").
+
+**A site with its own copies of these blocks:** if the site's add-on registers
+blocks with the same ids (`juiziHero`, `contentRow`, `emblaCarousel`,
+`emblaGallery`, `redirectBlock`, `juiziCallout`), remove them, so
+juizi-blocks' are used. Saved pages keep their blocks; older block types are
+converted as they load (see "Older content").
+
+### 3. Install on the site
+
+In the site's frontend, go to **Site Setup → Add-ons** and install **Juizi
+Blocks**. It is only listed on a frontend that includes `volto-juizi-blocks`
+(see "Installing" under "How the block set works"). Installing adds the add-on's own settings and
+nothing else: the site's title, settings and content are left alone. The
+Juizi blocks then appear in the block chooser, and **Site Setup → Juizi
+Blocks** opens the dashboard.
+
+Until it is installed, a frontend with the add-on shows none of it (see
+above), so the frontend can be deployed first.
+
+### Updating
+
+Pull the new version (mxdev / mrs-developer, `make install`), restart the
+backend and rebuild the frontend. If the backend's install profile changed,
+Site Setup → Add-ons offers the upgrade. See "Versions" for how releases are
+numbered.
 
 ## How the block set works
 
@@ -40,6 +181,22 @@ PATCH /@juizi-blocks-settings   (Manager) ◄─ components/Dashboard   /control
 ```
 
 Paths below starting with `src/` are in `frontend/packages/volto-juizi-blocks/src/`.
+
+**Installing.** Install Juizi Blocks in Site Setup → Add-ons. One backend
+can serve several sites, and only the ones whose frontend includes
+`volto-juizi-blocks` can use the add-on, so it is only offered there: the
+backend leaves it out of its add-ons list until it is installed on the site,
+and this frontend add-on adds it back (`src/config/addons.ts`); Volto's usual
+Install button installs `juizi.blocks:default`, which adds only the add-on's
+own settings. Once installed, the backend lists it as usual.
+
+The frontend add-on stays inactive on a site until juizi.blocks is installed
+there, so it can be deployed first. The backend's settings service only exists
+once the add-on is installed; until it answers, the Juizi blocks are left out
+of the block chooser, the dashboard is not listed in Site Setup, no colours
+are output, the site's own themes are kept and older blocks are not
+converted. Blocks already on pages keep rendering. See
+`src/settings/runtime.ts` (`setInstalled`).
 
 This README is the home for **everything the blocks share**: the dashboard,
 colours and buttons, shared styling, links, the shared block toolkit and the
@@ -78,10 +235,11 @@ style** of one of these blocks, chosen as the block's first option:
 
 #### Overlapping blocks
 
-The add-on also brings kitconcept and eeacms blocks, some of which do the
-same job as a Juizi block. An editor with no context sees both in the
-chooser. Decide per site which to keep, and switch the others off in
-Site Setup → Juizi Blocks → Blocks:
+A site that also loads kitconcept or eeacms block add-ons (as this
+repository's development site does) has blocks that do the same job as a
+Juizi block. An editor with no context sees both in the chooser. Decide per
+site which to keep, and switch the others off in Site Setup → Juizi Blocks →
+Blocks:
 
 | Juizi block | Overlaps with |
 | --- | --- |
@@ -152,7 +310,7 @@ grouped as in the block chooser with the Juizi group first.
   *Styling → Background color* swatches) built from the colours: background,
   text, cards/surfaces and muted text, each optionally faded. They're used by
   VLT's own blocks (Grid, Teaser, Text, Listing, …). The Juizi blocks use the
-  colour list instead.
+  colour list instead. Shown only on sites that switch on Volto Light Theme.
 - **Colours per block** — narrow the colours each Juizi block offers.
   Nothing ticked means everything.
 - **Callout types** — the starting background and icon colour for each
@@ -160,7 +318,7 @@ grouped as in the block chooser with the Juizi group first.
   registered; stored under `color_config.blocks.juiziCallout.calloutTypes`.
   See `Callout/README.md`.
 - A "Themes per block" table appears for any Juizi block defined with
-  `usesThemes`; none are right now.
+  `usesThemes` (none are right now), on sites with Volto Light Theme.
 
 Blocks store a colour as `var(--<name>)` (the same format as before), so
 changing a colour's value updates every block that uses it. Renaming a colour
@@ -295,6 +453,14 @@ Blocks with top/bottom padding options (Hero, Content Row) share one scale:
 | `extra-spacious` | 12rem | 8rem |
 
 ### Two layers: width and full width
+
+On a site with Volto Light Theme, the blocks sit in its
+`.blocks-group-wrapper` and use the two layers below. On a site without it,
+the blocks stay in Volto's page column (`#page-document`): a block with
+"Full width" on has its outer layer (background) run to the window edges
+while its content stays in line with the page column, and the other blocks
+keep the side gutter inside the column (`juizi-common.scss`, "Full width on a
+site without Volto Light Theme").
 
 - The **outer layer** is always full width, carries the block's background
   colour or image, and has `--juizi-gutter` side padding, so the content
@@ -500,7 +666,9 @@ gives the slide fields its own labels and hides the options that don't apply.
    parts.
 2. For colour pickers use `getBlockColorList('<id>')` inside the schema
    function, and `isColorDark()` / `getButtonClasses()` / `getColorTextStyle()`
-   in the view. Or set `usesThemes: true` to get VLT's theme picker instead.
+   in the view. Or set `usesThemes: true` to get VLT's theme picker instead
+   (only offered on sites with Volto Light Theme; plan for the block without
+   it).
 3. Add a definition to `src/blocks/index.ts` with `usesColors` / `usesThemes`
    so it shows up in the dashboard tables. Its `edit` is
    `makeBlockEdit(View, { … })` and its schema goes in `juiziSchema`.
@@ -603,6 +771,25 @@ This monorepo consists of the following distinct sections:
 - Simplifies the creation of Docker images for each codebase.
 - Demonstrates Plone installation/setup without buildout.
 
+## Versions
+
+One release has one version, kept in four places. Bump them together:
+
+| File | Format | Shown in |
+| --- | --- | --- |
+| `version.txt` | `1.0.0b1` | the repository's release |
+| `backend/src/juizi/blocks/__init__.py` (`__version__`) | `1.0.0b1` | the backend package, Site Setup → Add-ons once installed |
+| `frontend/packages/volto-juizi-blocks/package.json` | `1.0.0-beta.1` | Site Setup → Add-ons before it's installed, the dashboard's footer |
+| `frontend/package.json` | `1.0.0-beta.1` | the development workspace |
+
+npm writes a pre-release as `1.0.0-beta.1`, Python as `1.0.0b1`. A test on
+each side (`backend/tests/unit/test_versions.py`,
+`frontend/packages/volto-juizi-blocks/src/versions.test.js`) fails when they
+disagree, naming the file that's out of step.
+
+The backend's install profile has its own number (`metadata.xml`, `1002`):
+raise it only with an upgrade step, not for every release.
+
 ## Code quality assurance 🧐
 
 To check your code against quality standards, run the following shell command.
@@ -628,6 +815,20 @@ make format
 | frontend | Stylelint | Format Styles (css, less, sass)  | [`frontend/.stylelintrc`](./frontend/.stylelintrc) |
 
 Formatters can also be run within the `backend` or `frontend` folders.
+
+### Without Volto Light Theme
+
+juizi-blocks must build and work on a site that doesn't switch on Volto Light
+Theme. Code checks `hasVLT()` (`src/config/vlt.ts`) instead of importing from
+the theme; ESLint rejects imports from `@kitconcept/volto-light-theme` in the
+add-on. To build as such a site would (CI does this too):
+
+```shell
+make build-without-vlt
+```
+
+It uses `frontend/volto.config.no-vlt.js`, which switches on only
+`volto-juizi-blocks`.
 
 ### Linting the codebase
 or `lint`:

@@ -111,6 +111,17 @@ const slugifyHeadingText = (text, seen) => {
 const isListingOrSearchHeading = (el) =>
   !!el.closest('.block.listing, .block.search');
 
+// A heading's visible text. Volto adds a "copy link" anchor to headings for
+// logged-in users in view mode, holding a <style> element and an icon; their
+// text would otherwise end up in the button label. Read from a copy with
+// such helper elements removed.
+const HEADING_HELPERS = 'style, script, svg, .anchor, [aria-hidden="true"]';
+export const headingText = (el) => {
+  const copy = el.cloneNode(true);
+  copy.querySelectorAll(HEADING_HELPERS).forEach((node) => node.remove());
+  return (copy.textContent || '').replace(/\s+/g, ' ').trim();
+};
+
 function useBlockLayoutHeadingTOC({
   enabled,
   selfBlockId,
@@ -170,7 +181,7 @@ function useBlockLayoutHeadingTOC({
             !isListingOrSearchHeading(el),
         )
         .map((el) => {
-          const text = (el.textContent || '').trim();
+          const text = headingText(el);
           if (!text) return null;
           if (!el.id) el.id = slugifyHeadingText(text, seen);
           return { id: el.id, title: text };

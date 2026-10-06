@@ -1,0 +1,1 @@
+Volto Light Theme is now optional: volto-juizi-blocks no longer installs it, switches it on or imports from it, and no longer installs or switches on the kitconcept, eeacms and plonegovbr block add-ons. Sites that relied on it for any of them must add them themselves. On sites with the theme, it adds the theme's hooks (block theme picker, the dashboard's Block themes).

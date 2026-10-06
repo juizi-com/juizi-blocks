@@ -197,6 +197,11 @@ export default defineMessages({
     defaultMessage:
       'Could not load the Juizi Blocks settings. Is juizi.blocks installed on the site?',
   },
+  notInstalled: {
+    id: 'juizi-dashboard-not-installed',
+    defaultMessage:
+      'Juizi Blocks is not installed on this site. Install it in Site Setup → Add-ons to add its blocks to pages and use this dashboard.',
+  },
   unsaved: {
     id: 'juizi-dashboard-unsaved',
     defaultMessage: 'You have unsaved changes.',

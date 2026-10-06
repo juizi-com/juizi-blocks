@@ -1798,6 +1798,11 @@ msgstr "Nuevo tema"
 msgid "juizi-dashboard-none"
 msgstr "— Ninguno —"
 
+#. Default: "Juizi Blocks is not installed on this site. Install it in Site Setup → Add-ons to add its blocks to pages and use this dashboard."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-not-installed"
+msgstr "Juizi Blocks no está instalado en este sitio. Instálelo en Configuración del sitio → Complementos para añadir sus bloques a las páginas y usar este panel."
+
 #. Default: "Off by default in its own settings"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-off-by-default"
@@ -2038,10 +2043,10 @@ msgstr "{current} de {total}"
 msgid "juizi-gallery-enable-lightbox"
 msgstr "Ampliar las imágenes al pulsarlas"
 
-#. Default: "When off, clicking a picture opens its own page."
+#. Default: "When off, clicking a picture opens its own page in a new tab."
 #: components/Blocks/EmblaGallery/messages
 msgid "juizi-gallery-enable-lightbox-help"
-msgstr "Si está desactivado, al pulsar una imagen se abre su propia página."
+msgstr "Si está desactivado, al pulsar una imagen se abre su propia página en una pestaña nueva."
 
 #. Default: "Enlarge: {title}"
 #: components/Blocks/EmblaGallery/messages
@@ -3112,6 +3117,11 @@ msgstr "Texto encima del encabezado"
 #: components/Blocks/_shared/messages
 msgid "juizi-text-alignment"
 msgstr "Alineación del texto"
+
+#. Default: "Background color"
+#: config/vlt
+msgid "juizi-theme-background-color"
+msgstr "Color de fondo"
 
 #. Default: "Title"
 #: components/Blocks/_shared/messages

@@ -23,8 +23,16 @@ jest.mock('@plone/volto/registry', () => ({
   blocks: { blocksConfig: {} },
 }));
 jest.mock('@plone/volto/components/manage/UniversalLink/UniversalLink', () =>
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
-  ({ href, ...props }) => <a href={href} {...props} />,
+  // Like Volto's: `openLinkInNewTab` becomes target="_blank" (the caller
+  // passes rel, and the children come in through props).
+  ({ href, openLinkInNewTab, ...props }) => (
+    // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-no-target-blank
+    <a
+      href={href}
+      target={openLinkInNewTab ? '_blank' : undefined}
+      {...props}
+    />
+  ),
 );
 jest.mock('@plone/volto/actions', () => ({
   searchContent: () => ({ type: 'SEARCH_CONTENT' }),
@@ -93,6 +101,27 @@ describe('Gallery', () => {
     const trigger = container.querySelector('button.gallery__trigger');
     expect(trigger.getAttribute('aria-label')).toBe('Enlarge: A');
     expect(container.querySelector('[role="button"]')).toBeNull();
+  });
+
+  it("opens a picture's page in a new tab when not enlarging", () => {
+    const { container } = renderGallery(
+      { displayMode: 'blocks', sourceMode: 'context', enableLightbox: false },
+      {
+        search: {
+          subrequests: {
+            'gal123-context': {
+              loaded: true,
+              items: [{ '@id': '/page/a.jpg', '@type': 'Image', title: 'A' }],
+            },
+          },
+        },
+      },
+    );
+    const link = container.querySelector('a.gallery__trigger');
+    expect(link.getAttribute('href')).toBe('/page/a.jpg');
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(container.querySelector('button.gallery__trigger')).toBeNull();
   });
 
   it('hides phone columns for the Natural grid (G4)', () => {

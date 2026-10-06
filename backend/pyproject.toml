@@ -25,14 +25,18 @@ classifiers = [
 ]
 dependencies = [
     "Products.CMFPlone==6.1.5",
-    "kitconcept.voltolighttheme==7.8.6",
     "plone.api",
     "plone.restapi",
     "plone.volto",
 ]
 
 [dependency-groups]
+# Volto Light Theme is required on a site using these blocks, but is the
+# site's to install: it is only here for this repository's development site
+# (the devsite profile) and tests. The version is pinned in
+# constraint-dependencies.
 test = [
+    "kitconcept.voltolighttheme",
     "horse-with-no-namespace",
     "plone.app.testing",
     "plone.restapi[test]",
@@ -42,6 +46,7 @@ test = [
 ]
 
 container = [
+    "kitconcept.voltolighttheme",
     "plone.app.upgrade",
     "psycopg2==2.9.11",
     "relstorage==4.2.0",
@@ -62,6 +67,7 @@ target = "plone"
 managed = true
 default-groups = ["test"]
 constraint-dependencies = [
+    "kitconcept.voltolighttheme==7.8.6",
     "AccessControl==7.3",
     "Acquisition==6.2",
     "AuthEncoding==6.0",

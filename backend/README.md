@@ -31,10 +31,17 @@ Install juizi.blocks with uv.
 uv add juizi.blocks
 ```
 
-Then install **Juizi Blocks** on the site (Site Setup → Add-ons). That
-registers the settings and their REST service and installs `plone.volto` and
-Volto Light Theme's backend package. It doesn't change the site's languages.
-The frontend needs the Volto add-on `volto-juizi-blocks`.
+The frontend needs the Volto add-on `volto-juizi-blocks`. Install **Juizi
+Blocks** on a site in Site Setup → Add-ons, in a frontend that includes that
+add-on. The backend leaves it out of its add-ons list until it is installed
+(`setuphandlers.HiddenProfiles`): one backend can serve several sites, and
+only the ones whose frontend includes `volto-juizi-blocks` can use it, so
+that frontend adds it to the list itself, and Volto's usual Install button
+installs it. Once installed it is listed as usual, for upgrades.
+
+Installing registers the add-on's settings and their REST service (and
+`plone.volto`, if the site doesn't have it). It doesn't install Volto Light
+Theme, and doesn't change the site's title, settings, languages or content.
 
 ## Development site
 
@@ -44,7 +51,14 @@ Create this repository's own Plone site.
 make create-site
 ```
 
-Besides the add-on, that applies the example content profile
+That applies the development site profile (`juizi.blocks:devsite`): the
+add-on, Volto Light Theme with its site settings, and the site title and email
+sender name "Juizi Blocks". Installing the add-on on another site
+(`juizi.blocks:default`, Site Setup → Add-ons) does none of that: it adds only
+the add-on's own settings, and leaves the site's title, settings and content
+alone.
+
+It also applies the example content profile
 (`juizi.blocks:initial`), which makes the site multilingual (English, French,
 Portuguese, Brazilian Portuguese, Spanish, Afrikaans) and adds a page with one
 of each block in every language, at `/<language>/juizi-blocks`. To add the

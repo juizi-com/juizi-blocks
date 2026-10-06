@@ -5,6 +5,10 @@ import {
 } from './constants';
 import type { JuiziBlocksSettings } from './types';
 
+// Volto's add-ons control panel.
+const INSTALL_ADDON = 'INSTALL_ADDON';
+const UNINSTALL_ADDON = 'UNINSTALL_ADDON';
+
 type RequestState = {
   loading: boolean;
   loaded: boolean;
@@ -13,6 +17,10 @@ type RequestState = {
 
 export type JuiziBlocksSettingsState = {
   data: JuiziBlocksSettings;
+  /** Whether juizi.blocks is installed on the site: true once the settings
+   * load, false when the backend has no settings service (404), null until
+   * known. */
+  installed: boolean | null;
   get: RequestState;
   update: RequestState;
 };
@@ -21,6 +29,7 @@ const idle: RequestState = { loading: false, loaded: false, error: null };
 
 const initialState: JuiziBlocksSettingsState = {
   data: DEFAULT_SETTINGS,
+  installed: null,
   get: idle,
   update: idle,
 };
@@ -55,6 +64,7 @@ export default function juiziBlocksSettings(
           color_config:
             action.result?.color_config ?? DEFAULT_SETTINGS.color_config,
         },
+        installed: true,
         [requestKey(action.type)]: {
           loading: false,
           loaded: true,
@@ -65,12 +75,22 @@ export default function juiziBlocksSettings(
     case `${UPDATE_JUIZI_BLOCKS_SETTINGS}_FAIL`:
       return {
         ...state,
+        installed:
+          (action.error as any)?.status === 404 &&
+          requestKey(action.type) === 'get'
+            ? false
+            : state.installed,
         [requestKey(action.type)]: {
           loading: false,
           loaded: false,
           error: action.error,
         },
       };
+    // Installing or uninstalling an add-on may change whether this one is
+    // installed: load the settings again.
+    case `${INSTALL_ADDON}_SUCCESS`:
+    case `${UNINSTALL_ADDON}_SUCCESS`:
+      return { ...state, get: idle };
     default:
       return state;
   }

@@ -35,6 +35,7 @@ import {
 import BlockToggles from './BlockToggles';
 import ColorsEditor from './ColorsEditor';
 import ThemesEditor from './ThemesEditor';
+import { hasVLT } from '../../config/vlt';
 import BlockMatrix from './BlockMatrix';
 import CalloutTypesEditor from './CalloutTypesEditor';
 import messages from './messages';
@@ -86,6 +87,8 @@ const Dashboard = () => {
   const location = useLocation();
   const isClient = useClient();
   const state = useJuiziBlocksSettingsState();
+  // Whether the site switches on Volto Light Theme (config/vlt.ts).
+  const withVLT = hasVLT();
   const saved = useMemo(() => toDraft(state.data), [state.data]);
   const [draft, setDraft] = useState(saved);
   // The tab is kept in the URL hash (#colors) so it can be linked to.
@@ -142,6 +145,18 @@ const Dashboard = () => {
 
   const setColorConfig = (color_config) =>
     setDraft((current) => ({ ...current, color_config }));
+
+  if (state.installed === false) {
+    return (
+      <div className="juizi-dashboard controlpanel-juizi-blocks">
+        <Helmet title={intl.formatMessage(messages.title)} />
+        <h1>{intl.formatMessage(messages.title)}</h1>
+        <div className="juizi-dashboard__error" role="alert">
+          {intl.formatMessage(messages.notInstalled)}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="juizi-dashboard controlpanel-juizi-blocks">
@@ -240,15 +255,18 @@ const Dashboard = () => {
             />
           </Section>
 
-          <Section
-            title={intl.formatMessage(messages.themes)}
-            help={intl.formatMessage(messages.themesHelp)}
-          >
-            <ThemesEditor
-              colorConfig={draft.color_config}
-              onChange={setColorConfig}
-            />
-          </Section>
+          {/* Themes are Volto Light Theme's: only offered on sites with it. */}
+          {withVLT && (
+            <Section
+              title={intl.formatMessage(messages.themes)}
+              help={intl.formatMessage(messages.themesHelp)}
+            >
+              <ThemesEditor
+                colorConfig={draft.color_config}
+                onChange={setColorConfig}
+              />
+            </Section>
+          )}
 
           {colorBlocks.length > 0 && (
             <Section
@@ -276,7 +294,7 @@ const Dashboard = () => {
             </Section>
           )}
 
-          {themeBlocks.length > 0 && (
+          {withVLT && themeBlocks.length > 0 && (
             <Section
               title={intl.formatMessage(messages.themesPerBlock)}
               help={intl.formatMessage(messages.themesPerBlockHelp)}
