@@ -1,0 +1,1 @@
+Installing juizi.blocks (juizi.blocks:default) adds only the add-on's own settings: it no longer changes the site title or email sender name, installs Volto Light Theme or adds its site-root behaviors. Those moved to a new juizi.blocks:devsite profile for this repository's development site.

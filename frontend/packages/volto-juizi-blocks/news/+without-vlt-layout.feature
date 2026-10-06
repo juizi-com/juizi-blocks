@@ -1,0 +1,1 @@
+On sites without Volto Light Theme, full-width Hero, Carousel and Gallery blocks run their background to the window edges with their content in line with the page column, and the other blocks keep side padding.

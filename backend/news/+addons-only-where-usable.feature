@@ -1,0 +1,1 @@
+juizi.blocks is left out of the add-ons list until it is installed on the site, as several sites can share one backend and only the ones whose frontend includes volto-juizi-blocks can use it; that frontend offers it. The install profile is now titled "Juizi Blocks" with a description of what it adds.

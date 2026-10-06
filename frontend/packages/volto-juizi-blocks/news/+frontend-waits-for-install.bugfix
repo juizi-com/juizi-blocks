@@ -1,0 +1,1 @@
+The add-on does nothing on a site until juizi.blocks is installed there: no Juizi blocks in the block chooser, no Juizi Blocks entry in Site Setup, no colour styles, the site's own themes kept and older blocks left as saved. Blocks already on pages keep rendering. Installing switches it on without reloading the page.

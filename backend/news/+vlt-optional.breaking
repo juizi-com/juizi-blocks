@@ -1,0 +1,1 @@
+Volto Light Theme (kitconcept.voltolighttheme) is no longer a dependency of juizi.blocks; a site that wants it adds it itself. This repository's development site and tests still use it.

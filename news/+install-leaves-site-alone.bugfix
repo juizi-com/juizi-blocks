@@ -1,1 +1,0 @@
-Installing the add-on on a site no longer changes the site title or email sender name, or installs Volto Light Theme and its site settings. Those belong to the add-on's own development site and moved to a new `juizi.blocks:devsite` profile, which `make create-site` applies.
