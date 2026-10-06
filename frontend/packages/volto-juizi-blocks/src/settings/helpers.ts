@@ -16,12 +16,18 @@ import type {
 
 const HEX_COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
 const NAME = /^[a-z][a-z0-9-]{0,39}$/;
+// Theme names may use capitals, so a site keeps the names its saved blocks
+// use (plone.org: "Blue", "MedBlue"). Colour names become CSS variables.
+const THEME_NAME = /^[A-Za-z][A-Za-z0-9-]{0,39}$/;
 
 export const isHexColor = (value: unknown): value is string =>
   typeof value === 'string' && HEX_COLOR.test(value);
 
 export const isValidName = (value: unknown): value is string =>
   typeof value === 'string' && NAME.test(value);
+
+export const isValidThemeName = (value: unknown): value is string =>
+  typeof value === 'string' && THEME_NAME.test(value);
 
 // ─── Colours ───────────────────────────────────────────────────────────────
 
@@ -338,7 +344,8 @@ export function validateColorConfig(config: ColorConfig): ColorConfigIssue[] {
     const seen = new Set<string>();
     entries.forEach((e, index) => {
       const entry = { label: e.label || '', index };
-      if (!isValidName(e.name)) {
+      const valid = kind === 'theme' ? isValidThemeName : isValidName;
+      if (!valid(e.name)) {
         issues.push({ code: `${kind}Name`, ...entry });
       } else if (seen.has(e.name)) {
         issues.push({ code: `${kind}Duplicate`, ...entry, name: e.name });

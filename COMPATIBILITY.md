@@ -25,6 +25,10 @@ Current blocks saved before a field was renamed are repaired the same way
   CSS hides the fourth option of any field called `variation`, which made
   "Image card" impossible to choose). The converters below now write
   `displayMode` directly.
+- Content Row saved with `iconLeft: true` (plone.org's copy) →
+  `iconPosition: 'left'`. A saved `iconPosition` wins.
+
+A block that needs more than one repair gets them all.
 
 Link fields saved as a plain URL string (older Redirect blocks) are read as
 well as the link picker's format (`_shared/links.js`).
@@ -40,6 +44,33 @@ blocks read in acqf is read by the current blocks too. **Compatible.**
   still render as a section band, but without the framework/status/
   institution bar and flag.
 - **FooterConfigBlock**: not part of the set (out of scope by request).
+
+## plone.org (next.plone.org)
+
+Compared against `ploneorg-core` in github.com/plone/next.plone.org (October
+2026). Its Hero, Content Row and Carousel were copied from the same code as
+the current blocks and changed in places.
+
+| plone.org block | Handling |
+|---|---|
+| `hero` | Converted to `juiziHero`. Same fields, stored values and fallbacks for unset fields, so the data is copied unchanged (and kept under `legacyData`). Only blocks with `blockMode` are converted: other add-ons (e.g. `@kitconcept/volto-hero-block`) also have a block called `hero`. |
+| `contentRow` | Same block type. `variation` → `displayMode` and `iconLeft` → `iconPosition` are repaired as pages load (see above). |
+| `emblaCarousel` | Same block type and fields, except `centeredPeek` ("Centre active card"), which is dropped (never used on plone.org): such a carousel would show its slides from the left. |
+| `footerConfig` | Not part of the set; stays in the site's own add-on. |
+
+Colours and block themes are the site's to set up in Site Setup → Juizi
+Blocks before its own copies are removed:
+
+- **Colours:** plone.org stores `var(--blue)`, `var(--med-blue)`,
+  `var(--blue-grey)`, `var(--light-grey)` and `var(--dark)`. They keep
+  rendering through the site theme's CSS variables; add `blue`, `med-blue`,
+  `blue-grey`, `light-grey` and `dark` to the dashboard colours so text
+  colours are worked out from them.
+- **Block themes:** once installed, the dashboard's themes replace the
+  site's own (`default`, `Blue`, `MedBlue`, `BlueGrey`, `LightGrey`), for
+  every block with a theme, not only Juizi's. Recreate them in the dashboard
+  under the same names first (theme names may use capitals for this), or
+  saved blocks lose their theme colours.
 
 ## doi, jet, nithecs
 

@@ -23,6 +23,22 @@ describe('getHref', () => {
     expect(getHref('/contact')).toBe('/contact');
   });
 
+  it('keeps a link to the home page', () => {
+    // The site root flattens to '', which read as "no link": buttons to the
+    // home page were hidden from visitors and flagged as unfinished.
+    expect(getHref([{ '@id': 'https://www.example.org' }])).toBe('/');
+    expect(getHref({ '@id': '/' })).toBe('/');
+    expect(getHref('https://www.example.org')).toBe('/');
+    expect(
+      getHref({
+        '@id': '/l',
+        '@type': 'Link',
+        // eslint-disable-next-line no-template-curly-in-string
+        remoteUrl: '${portal_url}',
+      }),
+    ).toBe('/');
+  });
+
   it("returns '' when there is no usable link", () => {
     [undefined, null, '', '   ', [], [{}], {}, 42].forEach((value) =>
       expect(getHref(value)).toBe(''),

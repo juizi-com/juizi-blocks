@@ -298,6 +298,54 @@ describe('legacy block conversion', () => {
     const ok = { '@type': 'contentRow', displayMode: 'icon' };
     expect(repairCurrentBlock(ok)).toBe(ok);
   });
+
+  it('plone.org hero → juiziHero, data unchanged', () => {
+    const saved = {
+      '@type': 'hero',
+      blockMode: 'section',
+      usePageTitle: false,
+      title: 'Get involved',
+      backgroundColor: 'var(--blue)',
+      paddingTop: 'spacious',
+      buttons: [{ '@id': 'b1', label: 'Join', buttonStyle: 'solid__white' }],
+      styles: { theme: 'Blue' },
+    };
+    const converted = convertLegacyBlock(saved);
+    const { '@type': _old, ...fields } = saved;
+    expect(converted).toEqual({
+      ...fields,
+      '@type': 'juiziHero',
+      legacyData: { '@type': 'hero', data: saved },
+    });
+    // The block and its legacyData don't share objects.
+    expect(converted.buttons).not.toBe(converted.legacyData.data.buttons);
+  });
+
+  it("leaves other add-ons' hero blocks alone", () => {
+    // e.g. @kitconcept/volto-hero-block, which has no blockMode.
+    const other = { '@type': 'hero', title: 'Hi', buttonText: 'Go' };
+    expect(convertLegacyBlock(other)).toBe(other);
+    const unset = { '@type': 'hero' };
+    expect(convertLegacyBlock(unset)).toBe(unset);
+  });
+
+  it('repairs Content Rows saved with `iconLeft` (now iconPosition)', () => {
+    // plone.org's copy: `variation` and `iconLeft`; both repairs apply.
+    const saved = { '@type': 'contentRow', variation: 'icon', iconLeft: true };
+    expect(repairCurrentBlock(saved)).toEqual({
+      ...saved,
+      displayMode: 'icon',
+      iconPosition: 'left',
+    });
+    const chosen = {
+      '@type': 'contentRow',
+      iconLeft: true,
+      iconPosition: 'inline',
+    };
+    expect(repairCurrentBlock(chosen)).toBe(chosen);
+    const off = { '@type': 'contentRow', displayMode: 'icon', iconLeft: false };
+    expect(repairCurrentBlock(off)).toBe(off);
+  });
 });
 
 describe('migrateLegacyBlocks (content transform)', () => {
@@ -311,6 +359,7 @@ describe('migrateLegacyBlocks (content transform)', () => {
         },
         c: { '@type': 'slate' },
         d: { '@type': 'contentRow', variation: 'statistics', items: [] },
+        e: { '@type': 'hero', blockMode: 'hero' },
       },
     };
     migrateLegacyBlocks(content);
@@ -320,6 +369,7 @@ describe('migrateLegacyBlocks (content transform)', () => {
     expect(content.blocks.c).toEqual({ '@type': 'slate' });
     // A Content Row saved before the rename keeps rendering its style.
     expect(content.blocks.d.displayMode).toBe('statistics');
+    expect(content.blocks.e['@type']).toBe('juiziHero');
   });
 
   it('ignores content without blocks', () => {

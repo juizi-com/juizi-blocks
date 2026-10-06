@@ -228,7 +228,7 @@ export default defineMessages({
   errorThemeName: {
     id: 'juizi-dashboard-error-theme-name',
     defaultMessage:
-      'Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes.',
+      'Theme “{label}”: the name must start with a letter and only use letters, digits and dashes.',
   },
   errorColorDuplicate: {
     id: 'juizi-dashboard-error-color-duplicate',

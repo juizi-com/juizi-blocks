@@ -1681,7 +1681,7 @@ msgstr ""
 msgid "juizi-dashboard-error-theme-duplicate"
 msgstr ""
 
-#. Default: "Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#. Default: "Theme “{label}”: the name must start with a letter and only use letters, digits and dashes."
 #: components/Dashboard/messages
 msgid "juizi-dashboard-error-theme-name"
 msgstr ""

@@ -1686,10 +1686,10 @@ msgstr "Voeg ten minste een tema by."
 msgid "juizi-dashboard-error-theme-duplicate"
 msgstr "Tema “{label}”: die naam “{name}” word twee keer gebruik."
 
-#. Default: "Theme “{label}”: the name must start with a letter and only use lowercase letters, digits and dashes."
+#. Default: "Theme “{label}”: the name must start with a letter and only use letters, digits and dashes."
 #: components/Dashboard/messages
 msgid "juizi-dashboard-error-theme-name"
-msgstr "Tema “{label}”: die naam moet met ’n letter begin en net kleinletters, syfers en koppeltekens gebruik."
+msgstr "Tema “{label}”: die naam moet met ’n letter begin en net letters, syfers en koppeltekens gebruik."
 
 #. Default: "Theme “{label}”: the colour chosen for “{slot}” no longer exists."
 #: components/Dashboard/messages

@@ -187,4 +187,25 @@ describe('validateColorConfig', () => {
       'colorForeground',
     ]);
   });
+
+  it('accepts theme names with capitals, not colour names', () => {
+    // A site keeps the theme names its saved blocks use (plone.org).
+    const [theme] = DEFAULT_COLOR_CONFIG.themes;
+    const [color] = DEFAULT_COLOR_CONFIG.colors;
+    expect(
+      validateColorConfig({
+        ...DEFAULT_COLOR_CONFIG,
+        themes: [{ ...theme, name: 'MedBlue' }],
+      }),
+    ).toEqual([]);
+    const errors = validateColorConfig({
+      ...DEFAULT_COLOR_CONFIG,
+      colors: [...DEFAULT_COLOR_CONFIG.colors, { ...color, name: 'MedBlue' }],
+      themes: [{ ...theme, name: 'Med Blue' }],
+    });
+    expect(errors.map((error) => error.code)).toEqual([
+      'colorName',
+      'themeName',
+    ]);
+  });
 });

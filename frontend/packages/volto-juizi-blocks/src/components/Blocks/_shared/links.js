@@ -19,20 +19,23 @@ const PORTAL_URL = /\$\{portal_url\}/g;
  * - File items link to their download.
  * - Link items (from the object browser or a query) follow their remoteUrl.
  */
+/** The site root flattens to '': keep it as a link to the home page. */
+const appHref = (url) => flattenToAppURL(url) || '/';
+
 export const getHref = (link) => {
   const item = Array.isArray(link) ? link[0] : link;
   if (!item) return '';
   if (typeof item === 'string') {
     const url = item.trim();
-    return url ? flattenToAppURL(url) : '';
+    return url ? appHref(url) : '';
   }
   if (typeof item !== 'object') return '';
   if (item['@type'] === 'Link' && item.remoteUrl) {
-    return flattenToAppURL(item.remoteUrl.replace(PORTAL_URL, ''));
+    return appHref(item.remoteUrl.replace(PORTAL_URL, ''));
   }
   const id = item['@id'];
   if (!id || typeof id !== 'string') return '';
-  const url = flattenToAppURL(id);
+  const url = appHref(id);
   return item['@type'] === 'File' ? `${url}/@@download/file` : url;
 };
 

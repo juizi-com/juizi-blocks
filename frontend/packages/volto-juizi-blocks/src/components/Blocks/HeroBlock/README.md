@@ -1,6 +1,6 @@
 # Hero block (`juiziHero`)
 
-A page header or a themed content band, in one block. It replaces the older `customHero` and `buttonRow` blocks, which the legacy content transform converts as pages load (`src/legacy/`, keeping their original data under `legacyData`; see `COMPATIBILITY.md`).
+A page header or a themed content band, in one block. It replaces the older `customHero` and `buttonRow` blocks and plone.org's copy of this block (`hero`), which the legacy content transform converts as pages load (`src/legacy/`, keeping their original data under `legacyData`; see `COMPATIBILITY.md`).
 
 Shared parts (dashboard, colours and buttons, shared styling and tokens, links, the block toolkit and the conventions every block follows) are in the repository's root `README.md`.
 

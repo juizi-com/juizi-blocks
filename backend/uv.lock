@@ -1258,7 +1258,7 @@ requires-dist = [
     { name = "plone-api" },
     { name = "plone-restapi" },
     { name = "plone-volto" },
-    { name = "products-cmfplone", specifier = "==6.1.5" },
+    { name = "products-cmfplone", specifier = ">=6.1.5" },
 ]
 
 [package.metadata.requires-dev]
