@@ -21,7 +21,7 @@ Registered through the block list in `src/blocks/index.ts` (`view: ContentRowVie
 
 ## First choice
 
-The style field is `displayMode`. It was `variation` until it turned out VLT's CSS hides the fourth option of any select whose field id is `variation` (it's meant to hide Event Calendar in Listing blocks), which made "Image card" impossible to choose. Saved blocks with only `variation` are repaired as they load (`repairCurrentBlock` in `src/legacy/blocks.js`).
+The style field is `displayMode`. It was `variation` until it turned out VLT's CSS hides the fourth option of any select whose field id is `variation` (it's meant to hide Event Calendar in Listing blocks), which made "Image card" impossible to choose. Saved blocks with only `variation` are repaired as they load (`repairCurrentBlock` in `src/legacy/blocks.js`), as are plone.org's blocks saved with `iconLeft: true` (now `iconPosition: 'left'`).
 
 Nothing else shows in the sidebar until a style is chosen; the canvas shows the shared start screen with a description of each style.
 

@@ -21,7 +21,7 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 
 | Part | Version |
 | --- | --- |
-| Plone (`Products.CMFPlone`) | 6.1.5 |
+| Plone (`Products.CMFPlone`) | 6.1.5 or later (this repository's site: 6.1.5; also installed on 6.2.0) |
 | Volto | 18 (this repository's site: 18.32.1; also tested on 18.35.0) |
 | Volto Light Theme (`@kitconcept/volto-light-theme` / `kitconcept.voltolighttheme`) | optional, the site's choice: any 7.x from 7.8.1 (the 7.x line is the one for Volto 18; 8.x needs Volto 19). This repository's site uses 7.8.6 |
 | `embla-carousel-react` | ^8.6.0 |
@@ -57,7 +57,7 @@ the blocks.
 
 ### Requirements
 
-- Plone 6.1 (`juizi.blocks` requires `Products.CMFPlone` 6.1.5), Python 3.12
+- Plone 6.1 or 6.2 (`juizi.blocks` requires `Products.CMFPlone` 6.1.5 or later), Python 3.12
   or later
 - Volto 18, Node.js 22, pnpm
 - Volto Light Theme is optional (7.x, from 7.8.1); see below
@@ -146,7 +146,9 @@ Without the theme, juizi-blocks styles its blocks for Volto's own layout
 blocks with the same ids (`juiziHero`, `contentRow`, `emblaCarousel`,
 `emblaGallery`, `redirectBlock`, `juiziCallout`), remove them, so
 juizi-blocks' are used. Saved pages keep their blocks; older block types are
-converted as they load (see "Older content").
+converted as they load (see "Older content"). A site with plone.org's copy
+of the Hero (block type `hero`) removes it too: its blocks are converted to
+`juiziHero`.
 
 ### 3. Install on the site
 
@@ -643,7 +645,7 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 ## Older content
 
 Content from earlier Juizi block add-ons (`customHero`, `buttonRow`,
-`multiCard`, `iconLinkRow`, `EmblaCarousel`) is converted to the current
+`multiCard`, `iconLinkRow`, `EmblaCarousel`, and plone.org's `hero`) is converted to the current
 blocks as it loads. See [COMPATIBILITY.md](COMPATIBILITY.md) for what maps
 where and what's only partly supported.
 

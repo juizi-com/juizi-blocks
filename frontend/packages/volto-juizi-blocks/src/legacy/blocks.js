@@ -18,6 +18,9 @@
  * | buttonRow        | juiziHero       | section mode with buttons / TOC / list  |
  * | multiCard        | contentRow      | card or statistics display style        |
  * | iconLinkRow      | contentRow      | icon display style                      |
+ * | hero (plone.org) | juiziHero       | same lineage, same fields; only blocks  |
+ * |                  |                 | with `blockMode` (another add-on's      |
+ * |                  |                 | `hero` block is left alone)             |
  */
 import { normalizeButtonStyle, normalizeColorValue } from './colors';
 
@@ -287,18 +290,34 @@ function fromIconLinkRow(old) {
   };
 }
 
+/** plone.org's Hero (block type `hero`): copied from the same code as the
+ * Juizi Hero, with the same field names, stored values and fallbacks for
+ * unset fields, so the data carries over unchanged. A separate copy, so the
+ * block and its legacyData share no objects. */
+const fromPloneOrgHero = (old) => clone(old);
+
+/** Only plone.org's Hero has `blockMode`; other add-ons also register a
+ * block called `hero` (e.g. @kitconcept/volto-hero-block). */
+const isPloneOrgHero = (block) =>
+  block.blockMode === 'hero' || block.blockMode === 'section';
+
 export const LEGACY_BLOCKS = {
   EmblaCarousel: { type: 'emblaCarousel', convert: fromEmblaCarousel },
   customHero: { type: 'juiziHero', convert: fromCustomHero },
   buttonRow: { type: 'juiziHero', convert: fromButtonRow },
   multiCard: { type: 'contentRow', convert: fromMultiCard },
   iconLinkRow: { type: 'contentRow', convert: fromIconLinkRow },
+  hero: {
+    type: 'juiziHero',
+    convert: fromPloneOrgHero,
+    matches: isPloneOrgHero,
+  },
 };
 
 /** Converts one block's data, or returns it unchanged if it isn't legacy. */
 export function convertLegacyBlock(block) {
   const legacy = block && LEGACY_BLOCKS[block['@type']];
-  if (!legacy) return block;
+  if (!legacy || (legacy.matches && !legacy.matches(block))) return block;
   const original = clone(block);
   const converted = legacy.convert(original);
   return {
@@ -312,26 +331,36 @@ export function convertLegacyBlock(block) {
 
 /**
  * Current blocks saved before a field was renamed or became required. The
- * old key is kept, so nothing is lost.
+ * old key is kept, so nothing is lost. Every rule is applied, in order, so a
+ * block that needs more than one repair gets them all.
  * - Carousel: only renders once `displayMode` is set; older saves only had
  *   `mode`.
  * - Content Row: its style field was `variation` until VLT's CSS turned out
  *   to hide the fourth option of any field with that id ("Image card").
+ * - Content Row: plone.org's copy stored "icon or number to the left" as
+ *   `iconLeft: true`; the current block has `iconPosition`.
  */
+const REPAIRS = [
+  (block) =>
+    block['@type'] === 'emblaCarousel' && !block.displayMode && block.mode
+      ? { displayMode: block.mode }
+      : null,
+  (block) =>
+    block['@type'] === 'contentRow' && !block.displayMode && block.variation
+      ? { displayMode: block.variation }
+      : null,
+  (block) =>
+    block['@type'] === 'contentRow' &&
+    !block.iconPosition &&
+    block.iconLeft === true
+      ? { iconPosition: 'left' }
+      : null,
+];
+
 export function repairCurrentBlock(block) {
-  if (
-    block?.['@type'] === 'emblaCarousel' &&
-    !block.displayMode &&
-    block.mode
-  ) {
-    return { ...block, displayMode: block.mode };
-  }
-  if (
-    block?.['@type'] === 'contentRow' &&
-    !block.displayMode &&
-    block.variation
-  ) {
-    return { ...block, displayMode: block.variation };
-  }
-  return block;
+  if (!block) return block;
+  return REPAIRS.reduce((current, repair) => {
+    const changes = repair(current);
+    return changes ? { ...current, ...changes } : current;
+  }, block);
 }

@@ -1,0 +1,1 @@
+plone.org's Hero (block type `hero`) is converted to the Juizi Hero as pages load, and Content Rows saved with `iconLeft` keep their icons on the left (`iconPosition`). A block needing several repairs now gets all of them.
