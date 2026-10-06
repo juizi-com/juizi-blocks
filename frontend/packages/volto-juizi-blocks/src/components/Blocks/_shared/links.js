@@ -16,7 +16,8 @@ const PORTAL_URL = /\$\{portal_url\}/g;
 /**
  * The URL a link points to, ready for an `href`, or '' when there is no
  * usable link (so callers can tell "no link" apart from a real one).
- * - File items link to their download.
+ * - File items link to their download (once: visitors may already be
+ *   given the download address).
  * - Link items (from the object browser or a query) follow their remoteUrl.
  */
 /** The site root flattens to '': keep it as a link to the home page. */
@@ -36,7 +37,11 @@ export const getHref = (link) => {
   const id = item['@id'];
   if (!id || typeof id !== 'string') return '';
   const url = appHref(id);
-  return item['@type'] === 'File' ? `${url}/@@download/file` : url;
+  // plone.restapi already gives visitors who can't edit the file its
+  // download address (IObjectPrimaryFieldTarget); editors get the item.
+  return item['@type'] === 'File' && !url.includes('/@@download/')
+    ? `${url}/@@download/file`
+    : url;
 };
 
 /** True for http(s) URLs that leave this site. Relative paths, anchors,

@@ -45,6 +45,20 @@ blocks read in acqf is read by the current blocks too. **Compatible.**
   institution bar and flag.
 - **FooterConfigBlock**: not part of the set (out of scope by request).
 
+## juizi-volto-audio-block
+
+The standalone audio add-on (github.com/juizi-com/juizi-volto-audio-block)
+registered `audioBlock`, which is now the Audio block here, under the same
+id. **Compatible**, without conversion: its blocks saved only `url` (a path
+to the file's download), which the Audio block still plays and shows in the
+sidebar. Picking a new file replaces `url` with the link picker's `audio`.
+See `Audio/README.md`, "Older blocks".
+
+- The player now uses the shared block width instead of the text column, so
+  it is wider on wide screens.
+- Remove the old add-on: it also switched every site to English only
+  (`isMultilingual: false`), which juizi-blocks doesn't do.
+
 ## plone.org (next.plone.org)
 
 Compared against `ploneorg-core` in github.com/plone/next.plone.org (October

@@ -36,6 +36,7 @@ import {
   redirectSchema,
 } from '../components/Blocks/Redirect';
 import callout from '../components/Blocks/Callout';
+import audio from '../components/Blocks/Audio';
 
 export type JuiziBlockDefinition = {
   id: string;
@@ -142,4 +143,5 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
     },
   },
   callout,
+  audio,
 ];

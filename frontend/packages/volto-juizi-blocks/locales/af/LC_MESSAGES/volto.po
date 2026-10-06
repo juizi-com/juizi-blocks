@@ -16,6 +16,16 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 
+#. Default: "A sound recording with a player, title, description and transcript."
+#: blocks/messages
+msgid "A sound recording with a player, title, description and transcript."
+msgstr "’n Klankopname met ’n speler, titel, beskrywing en transkripsie."
+
+#. Default: "Audio"
+#: blocks/messages
+msgid "Audio"
+msgstr "Klank"
+
 #. Default: "Callout"
 #: blocks/messages
 msgid "Callout"
@@ -110,6 +120,86 @@ msgstr "Posisie van pyltjies"
 #: components/Blocks/_shared/messages
 msgid "juizi-arrow-style"
 msgstr "Pyltjiestyl"
+
+#. Default: "Optional: add a transcript in the sidebar, so visitors who can’t hear the recording can read it."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-add-transcript"
+msgstr "Opsioneel: voeg ’n transkripsie in die sybalk by, sodat besoekers wat nie die opname kan hoor nie, dit kan lees."
+
+#. Default: "The title and text colour follow the background automatically."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-background-help"
+msgstr "Die titel- en tekskleur volg die agtergrond outomaties."
+
+#. Default: "This file can’t be played. Check that it’s an audio file (such as an MP3), or choose a different one under “Audio file” in the sidebar."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-cannot-play"
+msgstr "Hierdie lêer kan nie gespeel word nie. Maak seker dit is ’n klanklêer (soos ’n MP3), of kies ’n ander een onder “Klanklêer” in die sybalk."
+
+#. Default: "Colours"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-colors"
+msgstr "Kleure"
+
+#. Default: "Description"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-description"
+msgstr "Beskrywing"
+
+#. Default: "A sentence or two about what visitors will hear, shown above the player."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-description-help"
+msgstr "’n Sin of twee oor wat besoekers gaan hoor, bo die speler gewys."
+
+#. Default: "Download the audio file"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-download"
+msgstr "Laai die klanklêer af"
+
+#. Default: "Audio file"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-file"
+msgstr "Klanklêer"
+
+#. Default: "Choose an audio file on this site, or paste the web address of one (for example an MP3). If the file isn’t on the site yet, upload it first: save this page, add it as a File with the Add (+) button in the toolbar, then come back and choose it here."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-file-help"
+msgstr "Kies ’n klanklêer op hierdie werf, of plak die webadres van een (byvoorbeeld ’n MP3). As die lêer nog nie op die werf is nie, laai dit eers op: stoor hierdie bladsy, voeg dit as ’n lêer by met die Voeg by-knoppie (+) in die nutsbalk, en kom dan terug en kies dit hier."
+
+#. Default: "Your browser can’t play this audio."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-no-player"
+msgstr "Jou blaaier kan nie hierdie klank speel nie."
+
+#. Default: "Audio"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-player-label"
+msgstr "Klank"
+
+#. Default: "Read the transcript"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-show-transcript"
+msgstr "Lees die transkripsie"
+
+#. Default: "Link to an audio file under “Audio file” in the sidebar. No audio file on the site yet? Upload it first: save this page, add it as a File with the Add (+) button in the toolbar, then come back and choose it."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-start"
+msgstr "Koppel ’n klanklêer onder “Klanklêer” in die sybalk. Nog geen klanklêer op die werf nie? Laai dit eers op: stoor hierdie bladsy, voeg dit as ’n lêer by met die Voeg by-knoppie (+) in die nutsbalk, en kom dan terug en kies dit."
+
+#. Default: "Shown above the player, and read out by screen readers as the player’s name."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-title-help"
+msgstr "Word bo die speler gewys, en deur skermlesers as die speler se naam voorgelees."
+
+#. Default: "Transcript"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-transcript"
+msgstr "Transkripsie"
+
+#. Default: "The words spoken in the recording. Visitors who can’t hear it can open and read it under the player."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-transcript-help"
+msgstr "Die woorde wat in die opname gesê word. Besoekers wat dit nie kan hoor nie, kan dit onder die speler oopmaak en lees."
 
 #. Default: "Autoplay"
 #: components/Blocks/_shared/messages

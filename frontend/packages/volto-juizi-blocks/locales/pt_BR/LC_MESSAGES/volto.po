@@ -16,6 +16,16 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 
+#. Default: "A sound recording with a player, title, description and transcript."
+#: blocks/messages
+msgid "A sound recording with a player, title, description and transcript."
+msgstr "Uma gravação de áudio com player, título, descrição e transcrição."
+
+#. Default: "Audio"
+#: blocks/messages
+msgid "Audio"
+msgstr "Áudio"
+
 #. Default: "Callout"
 #: blocks/messages
 msgid "Callout"
@@ -110,6 +120,86 @@ msgstr "Posição das setas"
 #: components/Blocks/_shared/messages
 msgid "juizi-arrow-style"
 msgstr "Estilo das setas"
+
+#. Default: "Optional: add a transcript in the sidebar, so visitors who can’t hear the recording can read it."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-add-transcript"
+msgstr "Opcional: adicione uma transcrição na barra lateral, para que os visitantes que não conseguem ouvir a gravação possam lê-la."
+
+#. Default: "The title and text colour follow the background automatically."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-background-help"
+msgstr "A cor do título e do texto acompanha automaticamente o fundo."
+
+#. Default: "This file can’t be played. Check that it’s an audio file (such as an MP3), or choose a different one under “Audio file” in the sidebar."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-cannot-play"
+msgstr "Não é possível reproduzir este arquivo. Verifique se é um arquivo de áudio (como um MP3) ou escolha outro em “Arquivo de áudio” na barra lateral."
+
+#. Default: "Colours"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-colors"
+msgstr "Cores"
+
+#. Default: "Description"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-description"
+msgstr "Descrição"
+
+#. Default: "A sentence or two about what visitors will hear, shown above the player."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-description-help"
+msgstr "Uma ou duas frases sobre o que os visitantes vão ouvir, exibidas acima do player."
+
+#. Default: "Download the audio file"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-download"
+msgstr "Baixar o arquivo de áudio"
+
+#. Default: "Audio file"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-file"
+msgstr "Arquivo de áudio"
+
+#. Default: "Choose an audio file on this site, or paste the web address of one (for example an MP3). If the file isn’t on the site yet, upload it first: save this page, add it as a File with the Add (+) button in the toolbar, then come back and choose it here."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-file-help"
+msgstr "Escolha um arquivo de áudio deste site ou cole o endereço web de um (por exemplo, um MP3). Se o arquivo ainda não estiver no site, envie-o primeiro: salve esta página, adicione-o como arquivo com o botão Adicionar (+) na barra de ferramentas e depois volte para escolhê-lo aqui."
+
+#. Default: "Your browser can’t play this audio."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-no-player"
+msgstr "Seu navegador não consegue reproduzir este áudio."
+
+#. Default: "Audio"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-player-label"
+msgstr "Áudio"
+
+#. Default: "Read the transcript"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-show-transcript"
+msgstr "Ler a transcrição"
+
+#. Default: "Link to an audio file under “Audio file” in the sidebar. No audio file on the site yet? Upload it first: save this page, add it as a File with the Add (+) button in the toolbar, then come back and choose it."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-start"
+msgstr "Vincule um arquivo de áudio em “Arquivo de áudio”, na barra lateral. Ainda não há nenhum arquivo de áudio no site? Envie-o primeiro: salve esta página, adicione-o como arquivo com o botão Adicionar (+) na barra de ferramentas e depois volte para escolhê-lo."
+
+#. Default: "Shown above the player, and read out by screen readers as the player’s name."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-title-help"
+msgstr "Aparece acima do player e é lido pelos leitores de tela como o nome do player."
+
+#. Default: "Transcript"
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-transcript"
+msgstr "Transcrição"
+
+#. Default: "The words spoken in the recording. Visitors who can’t hear it can open and read it under the player."
+#: components/Blocks/Audio/messages
+msgid "juizi-audio-transcript-help"
+msgstr "As palavras ditas na gravação. Os visitantes que não conseguem ouvi-la podem abri-la e lê-la abaixo do player."
 
 #. Default: "Autoplay"
 #: components/Blocks/_shared/messages

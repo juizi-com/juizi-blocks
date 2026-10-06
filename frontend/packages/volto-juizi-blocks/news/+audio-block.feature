@@ -1,0 +1,1 @@
+New Audio block: a sound recording with a player, title, description, transcript and a background colour from the site's colour list. It keeps the block id of the older juizi-volto-audio-block (`audioBlock`), so those blocks keep playing.

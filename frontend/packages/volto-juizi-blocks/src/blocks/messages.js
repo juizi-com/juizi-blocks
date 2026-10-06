@@ -39,4 +39,10 @@ export default defineMessages({
     id: 'Highlighted message with an icon and an optional link.',
     defaultMessage: 'Highlighted message with an icon and an optional link.',
   },
+  audio: { id: 'Audio', defaultMessage: 'Audio' },
+  audioDescription: {
+    id: 'A sound recording with a player, title, description and transcript.',
+    defaultMessage:
+      'A sound recording with a player, title, description and transcript.',
+  },
 });
