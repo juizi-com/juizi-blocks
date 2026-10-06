@@ -1,0 +1,45 @@
+/* Audio block. The box (.juizi-block: padding, rounded corners) takes the
+   background colour; its text colour is set inline from the colour list.
+   Title and description sizes come from juizi-common.scss. Everything else
+   follows currentColor, so it suits light and dark backgrounds. */
+
+.juizi-audio__player {
+  display: block;
+  width: 100%;
+  margin: 0.75rem 0 0;
+}
+
+.juizi-audio__player-frame {
+  margin: 0.75rem 0 0;
+}
+
+.juizi-audio__player-frame .juizi-audio__player {
+  margin: 0;
+}
+
+.juizi-audio__transcript {
+  margin: 1rem 0 0;
+}
+
+.juizi-audio__transcript summary {
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.juizi-audio__transcript summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.juizi-audio__transcript-text {
+  padding: 0.75rem 0 0;
+}
+
+.juizi-audio__transcript-text p:last-child {
+  margin-bottom: 0;
+}
+
+.block-placeholder.juizi-audio--placeholder {
+  margin: 0.75rem 0 0;
+}

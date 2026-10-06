@@ -1,0 +1,1 @@
+Links to a file no longer break for visitors: plone.restapi already gives visitors who can't edit a file its download address, and the blocks added `/@@download/file` a second time.

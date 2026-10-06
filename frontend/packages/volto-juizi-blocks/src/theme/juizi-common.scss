@@ -88,9 +88,12 @@
   --juizi-gallery-content-width: var(--juizi-content-width);
   --juizi-callout-width: var(--juizi-content-width);
   --juizi-redirect-width: var(--juizi-content-width);
+  --juizi-audio-width: var(--juizi-content-width);
   // Space inside a Callout that has a background colour, on the sides
   // (top and bottom use the Callout's own padding, juizi-blocks.scss).
   --juizi-callout-padding: 1.5rem;
+  // Space inside an Audio block that has a background colour, on the sides
+  --juizi-audio-padding: 1.5rem;
   // Space inside the Redirect's message box, on the sides
   --juizi-redirect-padding: 1.25rem;
 
@@ -116,10 +119,10 @@
 $juizi-preheaders: '.hero-preheader', '.content-row__preheader';
 $juizi-titles: '.hero-block--section .hero-title',
   '.hero-block--snapshot .hero-title', '.content-row__heading', '.embla__title',
-  '.gallery__title';
+  '.gallery__title', '.juizi-audio__title';
 $juizi-hero-titles: '.hero-block--hero .hero-title';
 $juizi-descriptions: '.hero-subtitle', '.content-row__description',
-  '.embla__description', '.gallery__description';
+  '.embla__description', '.gallery__description', '.juizi-audio__description';
 $juizi-item-preheaders: '.content-row-item__preheader';
 $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
   '.embla .slide__body h3';
@@ -147,6 +150,10 @@ $juizi-layers: (
   '.juizi-callout-wrapper': (
     '.juizi-callout',
     --juizi-callout-width,
+  ),
+  '.juizi-audio-wrapper': (
+    '.juizi-audio',
+    --juizi-audio-width,
   ),
   '.redirect-block-wrapper': (
     '.redirect-block',
@@ -333,14 +340,19 @@ $juizi-pad-sizes: (
   max-width: 100%;
 }
 
-// The Callout's and the Redirect's inner layer is a box with its own
-// background, so the rule above that clears the inner layer's side padding
-// left their content flush against the box's edge. They keep side padding.
-// A Callout without a background colour has no box: it stays in line with
-// the other blocks.
+// The Callout's, the Audio block's and the Redirect's inner layer is a box
+// with its own background, so the rule above that clears the inner layer's
+// side padding left their content flush against the box's edge. They keep
+// side padding. A Callout or Audio block without a background colour has no
+// box: it stays in line with the other blocks.
 .juizi-callout-wrapper > .juizi-callout:is(.bg-dark, .bg-light) {
   padding-right: var(--juizi-callout-padding);
   padding-left: var(--juizi-callout-padding);
+}
+
+.juizi-audio-wrapper > .juizi-audio:is(.bg-dark, .bg-light) {
+  padding-right: var(--juizi-audio-padding);
+  padding-left: var(--juizi-audio-padding);
 }
 
 .redirect-block-wrapper > .redirect-block {
@@ -390,8 +402,8 @@ $juizi-pad-sizes: (
 
 // The other blocks stay in the page column; like on a Volto Light Theme site
 // (the layer rules above), their outer layer keeps the side gutter, so their
-// content doesn't touch the edges of their background. The Callout and the
-// Redirect pad their own box (above).
+// content doesn't touch the edges of their background. The Callout, the
+// Audio block and the Redirect pad their own box (above).
 #page-document
   > .block
   > :is(.hero-block, .content-row, .embla, .gallery):not(

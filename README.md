@@ -9,7 +9,8 @@
 
 Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles
 
-- Six blocks: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
+- Seven blocks: Hero, Content Row, Carousel, Gallery, Callout, Audio and
+  Redirect.
   Reviews with star ratings and scrolling logo strips are display styles of
   the Carousel (see [Blocks](#blocks)).
 - A dashboard to switch any block on or off, limit it to some user groups,
@@ -144,7 +145,7 @@ Without the theme, juizi-blocks styles its blocks for Volto's own layout
 
 **A site with its own copies of these blocks:** if the site's add-on registers
 blocks with the same ids (`juiziHero`, `contentRow`, `emblaCarousel`,
-`emblaGallery`, `redirectBlock`, `juiziCallout`), remove them, so
+`emblaGallery`, `redirectBlock`, `juiziCallout`, `audioBlock`), remove them, so
 juizi-blocks' are used. Saved pages keep their blocks; older block types are
 converted as they load (see "Older content"). A site with plone.org's copy
 of the Hero (block type `hero`) removes it too: its blocks are converted to
@@ -217,6 +218,7 @@ point here too.
 | Gallery | `emblaGallery` | yes | | `EmblaGallery/README.md` |
 | Redirect | `redirectBlock` | | | `Redirect/README.md` |
 | Callout | `juiziCallout` | yes | | `Callout/README.md` |
+| Audio | `audioBlock` | yes | | `Audio/README.md` |
 
 The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").

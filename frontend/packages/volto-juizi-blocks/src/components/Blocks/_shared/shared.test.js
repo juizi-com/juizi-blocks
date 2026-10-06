@@ -49,6 +49,15 @@ describe('getHref', () => {
     expect(getHref([{ '@id': '/doc.pdf', '@type': 'File' }])).toBe(
       '/doc.pdf/@@download/file',
     );
+    // Visitors are given the download address already: don't add it twice.
+    expect(
+      getHref([
+        {
+          '@id': 'https://www.example.org/doc.pdf/@@download/file',
+          '@type': 'File',
+        },
+      ]),
+    ).toBe('/doc.pdf/@@download/file');
     expect(
       getHref({ '@id': '/l', '@type': 'Link', remoteUrl: 'https://a.org' }),
     ).toBe('https://a.org');
