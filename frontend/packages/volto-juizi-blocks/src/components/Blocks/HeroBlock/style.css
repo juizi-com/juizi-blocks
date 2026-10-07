@@ -90,14 +90,6 @@ html {
   pointer-events: none;
 }
 
-.hero-block__overlay--gradient {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
-}
-
 /* Hero with background image/video — always white text */
 .hero-block--has-bg {
   color: #fff;
@@ -245,6 +237,14 @@ html {
   width: 100%;
   height: auto;
   border-radius: 4px;
+}
+
+/* Image on the left: the text stays first in the page, for screen readers
+   and on small screens, and only swaps sides on wide screens. */
+@media (min-width: 769px) {
+  .hero-inner__side-layout--image-left {
+    flex-direction: row-reverse;
+  }
 }
 
 @media (max-width: 768px) {

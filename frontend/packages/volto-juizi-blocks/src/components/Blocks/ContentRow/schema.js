@@ -16,7 +16,7 @@ import {
 } from '../_shared/choices';
 import { translator } from '../_shared/i18n';
 import shared from '../_shared/messages';
-import { getOverlayChoices } from '../_shared/overlays';
+import { getOverlayChoices } from '../../../config/gradients';
 import messages from './messages';
 
 // Colours this block offers — set per block in the Juizi Blocks dashboard.
@@ -229,6 +229,7 @@ const schema = (args) => {
   const bgColorList = [['transparent', t(shared.none), 'light'], ...colors];
   const variationItemSchemas = itemSchemas(colors, t);
   const showViewAll = data.showViewAll || false;
+  const hasBgImage = !!data.backgroundImage?.[0];
   const itemsTitle = t(
     displayMode === 'statistics' ? messages.statistics : messages.items,
   );
@@ -302,7 +303,15 @@ const schema = (args) => {
           {
             id: 'background',
             title: t(messages.backgroundSpacing),
-            fields: ['backgroundColor', 'paddingTop', 'paddingBottom'],
+            fields: [
+              'backgroundColor',
+              'backgroundImage',
+              ...(hasBgImage
+                ? ['backgroundPosition', 'backgroundOverlay']
+                : []),
+              'paddingTop',
+              'paddingBottom',
+            ],
           },
           {
             id: 'mobile',
@@ -344,6 +353,28 @@ const schema = (args) => {
         widget: 'select',
         choices: getColorChoices(bgColorList),
         default: 'transparent',
+      },
+      backgroundImage: {
+        title: t(shared.backgroundImage),
+        widget: 'object_browser',
+        mode: 'image',
+        allowExternals: false,
+        description: t(messages.backgroundImageHelp),
+      },
+      backgroundPosition: {
+        title: t(messages.backgroundPosition),
+        choices: [
+          ['top', t(shared.top)],
+          ['center', t(shared.center)],
+          ['bottom', t(shared.bottom)],
+        ],
+        default: 'center',
+      },
+      backgroundOverlay: {
+        title: t(messages.backgroundOverlay),
+        description: t(messages.backgroundOverlayHelp),
+        choices: getOverlayChoices(t, data.backgroundOverlay),
+        default: 'gradient',
       },
       customClass: {
         title: t(shared.customClass),
@@ -482,7 +513,7 @@ const schema = (args) => {
       overlayStyle: {
         title: t(messages.cardOverlay),
         description: t(messages.cardOverlayHelp),
-        choices: getOverlayChoices(t),
+        choices: getOverlayChoices(t, data.overlayStyle),
         default: 'gradient',
       },
 

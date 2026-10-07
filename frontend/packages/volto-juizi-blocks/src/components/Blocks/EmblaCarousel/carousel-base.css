@@ -176,29 +176,73 @@
   }
 }
 
-/* Standard arrows in the header or in the row below: in the flow, outlined
-   in the text colour like an outline button. A colour picked under Arrow
-   style overrides this (.embla__arrow--solid / --outline below). */
-.embla__header-controls .embla__prev,
-.embla__header-controls .embla__next,
-.embla__controls .embla__prev,
-.embla__controls .embla__next {
+/* Arrows in the header or in the row below: in the flow, squares exactly as
+   tall as the "More" button and the other buttons (config/buttons.scss: the
+   same font size, line height, padding and border; the icon is one line
+   high). A colour picked under Arrow style gives them that button's colours
+   and hover (btn-unified); "Standard" is outlined in the text colour (the
+   standard look below). The .embla prefix outranks the unified buttons'
+   padding, which is meant for words. */
+.embla
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next) {
   position: static;
-  width: var(--arrow-size, 2.5rem);
-  height: var(--arrow-size, 2.5rem);
+  width: auto;
+  height: auto;
+  padding: 0.65em;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transform: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    filter 0.15s ease;
+}
+
+.embla
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next)
+  .embla__nav-arrow-icon {
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* "Standard" arrows and "More" button (no colour picked): outlined in the
+   text colour; on hover they fill with it and the arrow or words take the
+   opposite colour (the block's tone says which). */
+.embla
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next):not(.btn-unified),
+.embla__header-link:not(.btn-unified) {
   border-color: currentColor;
   background: transparent;
   color: inherit;
-  font-size: 1.1rem;
-  transform: none;
-  transition: background-color 0.15s ease;
 }
 
-.embla__header-controls .embla__prev:hover,
-.embla__header-controls .embla__next:hover,
-.embla__controls .embla__prev:hover,
-.embla__controls .embla__next:hover {
-  background-color: rgba(127, 127, 127, 0.15);
+.embla
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next):not(.btn-unified):hover,
+.embla .embla__header-link:not(.btn-unified):hover {
+  border-color: currentColor;
+  background-color: currentColor;
+}
+
+.embla.tone-dark
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next):not(.btn-unified):hover
+  .embla__nav-arrow-icon,
+.embla.tone-dark .embla__header-link:not(.btn-unified):hover > * {
+  color: #fff;
+}
+
+.embla.tone-light
+  :is(.embla__header-controls, .embla__controls)
+  :is(.embla__prev, .embla__next):not(.btn-unified):hover
+  .embla__nav-arrow-icon,
+.embla.tone-light .embla__header-link:not(.btn-unified):hover > * {
+  color: #111;
 }
 
 /* Larger screens: "On each side" arrows overlay the carousel, vertically
@@ -246,70 +290,30 @@
   }
 }
 
-/* "More" button: same shape as the other buttons */
+/* "More" button: the same size and shape as every other button. With a
+   colour picked it is a unified button (config/buttons.scss: colours and
+   hover); "Standard" is outlined in the text colour (above). */
 .embla__header-link {
-  display: inline-block;
-  padding: 0.3rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65em 1.4em;
+  border: var(--juizi-button-border-width, 2px) solid transparent;
   border-radius: var(--juizi-button-radius, 4px);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
   text-decoration: none !important;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    filter 0.15s ease;
   white-space: nowrap;
-  --btn-color: currentColor;
 }
 
-/* Default (no variant class) — context-coloured outline */
-.embla__header-link:not(.embla__header-link--solid):not(
-    .embla__header-link--outline
-  ) {
-  border: var(--juizi-button-border-width, 2px) solid currentColor;
-  background: transparent;
-  color: inherit !important;
-  opacity: 0.7;
-}
-.embla__header-link:not(.embla__header-link--solid):not(
-    .embla__header-link--outline
-  ):hover {
-  opacity: 1;
-}
-
-/* Explicit outlined variant */
-.embla__header-link--outline {
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color);
-  background: transparent;
-  color: var(--btn-color) !important;
-  opacity: 0.7;
-}
-.embla__header-link--outline:hover {
-  opacity: 1;
-}
-
-/* Solid variant — text colour from --btn-text (set in View.jsx via
-   isColorDark()) instead of a hardcoded white, so a light swatch doesn't
-   render invisible white-on-white text. */
-.embla__header-link--solid {
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color);
-  background-color: var(--btn-color);
-  color: var(--btn-text, #fff) !important;
-}
-.embla__header-link--solid:hover {
-  opacity: 0.85;
-}
-
-/* Arrow colour variants — applied via parseButtonStyle(arrowStyle, 'embla__arrow') */
-/* Default arrows keep existing background style */
-.embla__arrow--outline {
-  --btn-color: #fff;
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color) !important;
-  background: transparent !important;
-  color: var(--btn-color) !important;
-}
-.embla__arrow--solid {
-  --btn-color: #fff;
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color) !important;
-  background: var(--btn-color) !important;
-  color: var(--btn-text, #000) !important;
+.embla__header-link:not(.btn-unified) > * {
+  transition: color 0.15s ease;
 }
 
 /* Description sits below the header-top row */

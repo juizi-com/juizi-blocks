@@ -1198,6 +1198,26 @@ msgstr "Encima de los elementos (con el encabezado)"
 msgid "juizi-content-row-background-color-help"
 msgstr "El fondo del bloque ocupa siempre todo el ancho. El color del texto se actualiza automáticamente."
 
+#. Default: "Shown behind the whole block, on top of the background colour. Decorative, so it needs no alt text. The text colour still follows the background colour: under a dark photo, pick a dark colour so the text turns light."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-image-help"
+msgstr "Se muestra detrás de todo el bloque, sobre el color de fondo. Es decorativa, así que no necesita texto alternativo. El color del texto sigue al color de fondo: bajo una foto oscura, elige un color oscuro para que el texto se vuelva claro."
+
+#. Default: "Image overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay"
+msgstr "Capa sobre la imagen"
+
+#. Default: "A tint over the background image to keep text readable. Choose \"None\" for patterns and textures that already sit well behind text."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay-help"
+msgstr "Un tinte sobre la imagen de fondo para que el texto se lea bien. Elige «Ninguno» para patrones y texturas que ya quedan bien detrás del texto."
+
+#. Default: "Background position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-position"
+msgstr "Posición del fondo"
+
 #. Default: "Background & spacing"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-background-spacing"
@@ -2592,6 +2612,16 @@ msgstr "Una imagen más grande que se muestra junto al texto, distinta del logot
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-side-image-mobile-help"
 msgstr "Dónde aparece la imagen en pantallas pequeñas, donde ya no cabe junto al texto."
+
+#. Default: "Image side"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position"
+msgstr "Lado de la imagen"
+
+#. Default: "Which side of the text the image sits on. On small screens it goes above or below the text instead (see \"On mobile\")."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position-help"
+msgstr "A qué lado del texto va la imagen. En pantallas pequeñas pasa encima o debajo del texto (ver «En móviles»)."
 
 #. Default: "Use smaller buttons"
 #: components/Blocks/HeroBlock/messages

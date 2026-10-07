@@ -119,6 +119,24 @@ export default defineMessages({
     defaultMessage:
       'The block background is always full width. Text colour updates automatically.',
   },
+  backgroundImageHelp: {
+    id: 'juizi-content-row-background-image-help',
+    defaultMessage:
+      'Shown behind the whole block, on top of the background colour. Decorative, so it needs no alt text. The text colour still follows the background colour: under a dark photo, pick a dark colour so the text turns light.',
+  },
+  backgroundPosition: {
+    id: 'juizi-content-row-background-position',
+    defaultMessage: 'Background position',
+  },
+  backgroundOverlay: {
+    id: 'juizi-content-row-background-overlay',
+    defaultMessage: 'Image overlay',
+  },
+  backgroundOverlayHelp: {
+    id: 'juizi-content-row-background-overlay-help',
+    defaultMessage:
+      'A tint over the background image to keep text readable. Choose "None" for patterns and textures that already sit well behind text.',
+  },
   preheaderHelp: {
     id: 'juizi-content-row-preheader-help',
     defaultMessage: 'Small text above the main heading.',

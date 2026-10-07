@@ -17,7 +17,7 @@ import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';
 import { isEditing } from '../_shared/editMode';
 import { externalLinkProps, getHref } from '../_shared/links';
-import { overlayStyleToRgba } from '../_shared/overlays';
+import { DEFAULT_OVERLAY, overlayBackground } from '../../../config/gradients';
 import { blockAnchorId } from '../_shared/anchors';
 import { getPickedImageUrl } from '../_shared/images';
 import { formatNumber } from '../_shared/format';
@@ -201,25 +201,23 @@ const CountUp = ({ end = 0, duration = 2000, formatK = false }) => {
 };
 
 // ─── Card background style ────────────────────────────────────────────────
-const getCardBgStyle = (item, blockIsDark = null) => {
+// An item gets its own tone only when it has its own background: a colour
+// (its text follows that colour), or a picture behind the text (light text).
+// Otherwise it has no background of its own, and its text follows the
+// block's, like the block's heading. (A picture above the text isn't a
+// background: the text sits on the block's colour.)
+const getCardBgStyle = (item, { pictureBehind = false } = {}) => {
   const imageUrl = getImageUrl(item.image);
   const bg = item.backgroundColor;
-  const style = {};
-  if (imageUrl) style.backgroundImage = `url(${imageUrl})`;
-  if (bg && bg !== 'transparent') style.backgroundColor = bg;
-  // backgroundColor always wins if set; image-only fallback is bg-dark
-  const toneClass =
-    bg && bg !== 'transparent'
-      ? isColorDark(bg)
-        ? 'bg-dark'
-        : 'bg-light'
-      : imageUrl
-        ? 'bg-dark'
-        : blockIsDark !== null
-          ? blockIsDark
-            ? 'bg-dark'
-            : 'bg-light'
-          : '';
+  const hasColor = !!bg && bg !== 'transparent';
+  const style = hasColor ? { backgroundColor: bg } : {};
+  const toneClass = hasColor
+    ? isColorDark(bg)
+      ? 'bg-dark'
+      : 'bg-light'
+    : imageUrl && pictureBehind
+      ? 'bg-dark'
+      : '';
   return { style, imageUrl, toneClass };
 };
 
@@ -325,7 +323,7 @@ const ItemsWrapper = ({ mobileCarousel, autoplay, showDots, children }) => {
 
 // ─── Variation renderers ───────────────────────────────────────────────────
 
-const NumberedItem = ({ item, blockIsDark = null, index, iconPosition }) => {
+const NumberedItem = ({ item, index, iconPosition }) => {
   const href = getHref(item.link);
   const hasLink = !!href;
 
@@ -370,10 +368,7 @@ const NumberedItem = ({ item, blockIsDark = null, index, iconPosition }) => {
     </>
   );
 
-  const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(
-    item,
-    blockIsDark,
-  );
+  const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(item);
   const positionClass =
     iconPosition === 'left'
       ? ' content-row-item--left'
@@ -404,7 +399,7 @@ const NumberedItem = ({ item, blockIsDark = null, index, iconPosition }) => {
   );
 };
 
-const StatisticItem = ({ item, formatK, animationMs, blockIsDark = null }) => {
+const StatisticItem = ({ item, formatK, animationMs }) => {
   const { locale } = useIntl();
   const href = getHref(item.link);
   const hasLink = !!href;
@@ -476,7 +471,7 @@ const CustomIcon = ({ icon }) =>
     <VoltoIcon name={icon} size="32px" />
   );
 
-const IconItem = ({ item, blockIsDark = null, iconPosition }) => {
+const IconItem = ({ item, iconPosition }) => {
   const LucideIcon = lucideIconMap[item.icon];
   const CustomSvg = !LucideIcon ? customSvgMap[item.icon] : null;
   const href = getHref(item.link);
@@ -525,10 +520,7 @@ const IconItem = ({ item, blockIsDark = null, iconPosition }) => {
     </>
   );
 
-  const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(
-    item,
-    blockIsDark,
-  );
+  const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(item);
   const positionClass =
     iconPosition === 'left'
       ? ' content-row-item--left'
@@ -592,12 +584,12 @@ const CardButton = ({ item, href, isEditMode, stretched = false }) => {
   );
 };
 
-const ImageAboveItem = ({ item, blockIsDark = null, isEditMode }) => {
+const ImageAboveItem = ({ item, isEditMode }) => {
   const {
     style: bgStyle,
     imageUrl,
     toneClass: itemToneClass,
-  } = getCardBgStyle(item, blockIsDark);
+  } = getCardBgStyle(item);
   const href = getHref(item.link);
 
   return (
@@ -641,22 +633,17 @@ const ImageAboveItem = ({ item, blockIsDark = null, isEditMode }) => {
   );
 };
 
-const ImageCardItem = ({
-  item,
-  blockIsDark = null,
-  overlayStyle,
-  isEditMode,
-}) => {
+const ImageCardItem = ({ item, overlayStyle, isEditMode }) => {
   const {
     style: bgStyle,
     imageUrl,
     toneClass: itemToneClass,
-  } = getCardBgStyle(item, blockIsDark);
+  } = getCardBgStyle(item, { pictureBehind: true });
   const href = getHref(item.link);
   // No button style = the whole card is the link (older "arrow" cards).
   const wholeCard = !!href && !item.buttonStyle;
-  const overlayRgba = overlayStyleToRgba(overlayStyle);
-  const showGradient = overlayStyle === 'gradient' || !overlayStyle;
+  const overlayId = overlayStyle || DEFAULT_OVERLAY;
+  const overlayCss = overlayBackground(overlayId);
 
   const cardStyle = {};
   if (bgStyle.backgroundColor) {
@@ -674,17 +661,11 @@ const ImageCardItem = ({
           style={{ backgroundImage: `url(${imageUrl})` }}
         />
       )}
-      {imageUrl && showGradient && (
+      {imageUrl && overlayCss && (
         <div
-          className="content-row-item__overlay content-row-item__overlay--gradient"
+          className={`content-row-item__overlay content-row-item__overlay--${overlayId}`}
           aria-hidden="true"
-        />
-      )}
-      {imageUrl && overlayRgba && (
-        <div
-          className="content-row-item__overlay"
-          aria-hidden="true"
-          style={{ backgroundColor: overlayRgba }}
+          style={overlayCss}
         />
       )}
       <div className="content-row-item__body">
@@ -774,10 +755,14 @@ const View = (props) => {
     );
   }
 
-  // Background
+  // Background: a colour, and optionally an image over it (a photo, or a
+  // pattern). The text follows the colour, as in a Hero's Section style.
   const backgroundColor = data.backgroundColor || 'transparent';
   const bgKey = colorValueToKey(backgroundColor);
+  const bgImageUrl = getPickedImageUrl(data.backgroundImage);
   const isDark = isColorDark(backgroundColor);
+  const bgOverlay = data.backgroundOverlay || DEFAULT_OVERLAY;
+  const bgOverlayCss = overlayBackground(bgOverlay);
   const wrapperStyle =
     backgroundColor && backgroundColor !== 'transparent'
       ? { backgroundColor, ...getColorTextStyle(backgroundColor) }
@@ -825,6 +810,7 @@ const View = (props) => {
     `content-row--${displayMode}`,
     bgKey && bgKey !== 'transparent' ? `bg-${bgKey}` : '',
     isDark ? 'bg-dark' : backgroundColor !== 'transparent' ? 'bg-light' : '',
+    bgImageUrl ? 'content-row--has-bg' : '',
     data.mobileCarousel ? 'content-row--mobile-scroll' : '',
     `content-row--pad-top-${paddingTop}`,
     `content-row--pad-bottom-${paddingBottom}`,
@@ -879,7 +865,6 @@ const View = (props) => {
             item={item}
             index={index}
             iconPosition={data.iconPosition}
-            blockIsDark={isDark}
           />
         );
       case 'statistics':
@@ -889,33 +874,21 @@ const View = (props) => {
             item={item}
             formatK={data.statsFormatK}
             animationMs={parseInt(data.statAnimationMs, 10) || undefined}
-            blockIsDark={isDark}
           />
         );
       case 'icon':
         return (
-          <IconItem
-            key={index}
-            item={item}
-            iconPosition={data.iconPosition}
-            blockIsDark={isDark}
-          />
+          <IconItem key={index} item={item} iconPosition={data.iconPosition} />
         );
 
       case 'card':
         return data.imageCardStyle === 'above' ? (
-          <ImageAboveItem
-            key={index}
-            item={item}
-            blockIsDark={isDark}
-            isEditMode={isEditMode}
-          />
+          <ImageAboveItem key={index} item={item} isEditMode={isEditMode} />
         ) : (
           <ImageCardItem
             key={index}
             item={item}
             overlayStyle={data.overlayStyle}
-            blockIsDark={isDark}
             isEditMode={isEditMode}
           />
         );
@@ -978,6 +951,26 @@ const View = (props) => {
         style={wrapperStyle}
         {...(headingId ? { 'aria-labelledby': headingId } : {})}
       >
+        {bgImageUrl && (
+          <>
+            {/* aria-hidden: purely decorative background image. */}
+            <div
+              className="content-row__bg"
+              aria-hidden="true"
+              style={{
+                backgroundImage: `url(${bgImageUrl})`,
+                backgroundPosition: data.backgroundPosition || 'center',
+              }}
+            />
+            {bgOverlayCss && (
+              <div
+                className={`content-row__overlay content-row__overlay--${bgOverlay}`}
+                aria-hidden="true"
+                style={bgOverlayCss}
+              />
+            )}
+          </>
+        )}
         <div className={innerClasses} style={innerStyle}>
           {/* Header section */}
           {hasHeader && (

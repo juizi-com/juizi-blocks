@@ -138,6 +138,15 @@ export default defineMessages({
     defaultMessage:
       'Describes the image for screen reader users. Leave empty only if the image is purely decorative and adds no information beyond the text.',
   },
+  sideImagePosition: {
+    id: 'juizi-hero-side-image-position',
+    defaultMessage: 'Image side',
+  },
+  sideImagePositionHelp: {
+    id: 'juizi-hero-side-image-position-help',
+    defaultMessage:
+      'Which side of the text the image sits on. On small screens it goes above or below the text instead (see "On mobile").',
+  },
   verticalAlignment: {
     id: 'juizi-hero-vertical-alignment',
     defaultMessage: 'Vertical alignment',

@@ -13,7 +13,7 @@ import {
 } from '../_shared/choices';
 import { translator } from '../_shared/i18n';
 import shared from '../_shared/messages';
-import { getOverlayChoices } from '../_shared/overlays';
+import { getOverlayChoices } from '../../../config/gradients';
 import messages from './messages';
 
 // Colours this block offers — set per block in the Juizi Blocks dashboard.
@@ -139,7 +139,12 @@ const schema = (args) => {
             fields: [
               'sideImage',
               ...(hasSideImage
-                ? ['sideImageAlt', 'sideImageAlignment', 'sideImageMobile']
+                ? [
+                    'sideImageAlt',
+                    'sideImagePosition',
+                    'sideImageAlignment',
+                    'sideImageMobile',
+                  ]
                 : []),
             ],
           },
@@ -282,6 +287,15 @@ const schema = (args) => {
         type: 'string',
         description: t(messages.altTextHelp),
       },
+      sideImagePosition: {
+        title: t(messages.sideImagePosition),
+        description: t(messages.sideImagePositionHelp),
+        choices: [
+          ['right', t(shared.right)],
+          ['left', t(shared.left)],
+        ],
+        default: 'right',
+      },
       sideImageAlignment: {
         title: t(messages.verticalAlignment),
         description: t(messages.verticalAlignmentHelp),
@@ -359,7 +373,7 @@ const schema = (args) => {
       overlayStyle: {
         title: t(messages.imageOverlay),
         description: t(messages.imageOverlayHelp),
-        choices: getOverlayChoices(t),
+        choices: getOverlayChoices(t, data.overlayStyle),
         default: 'gradient',
       },
       backgroundColor: {

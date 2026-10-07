@@ -30,6 +30,10 @@
 }
 
 // ── Base — shared across all unified buttons ──────────────────────────────
+// The size is for buttons with words (links). The colour variants below also
+// cover real <button>s (the carousel and gallery arrows, the enlarged view's
+// buttons), which keep their own square size but get the same colours and
+// hover. :is(a, button) is as specific as `a`, so nothing else changes.
 
 a.btn-unified {
   @include btn-context {
@@ -72,7 +76,7 @@ a.btn-unified.btn-unified.btn-unified.btn-unified {
 
 // ── Solid variant ─────────────────────────────────────────────────────────
 
-a.btn-unified.btn-solid {
+:is(a, button).btn-unified.btn-solid {
   @include btn-context {
     --link-foreground-color: var(--btn-foreground, #fff);
 
@@ -91,7 +95,7 @@ a.btn-unified.btn-solid {
 
 // ── Outline variant ───────────────────────────────────────────────────────
 
-a.btn-unified.btn-outline {
+:is(a, button).btn-unified.btn-outline {
   @include btn-context {
     --link-foreground-color: var(--btn-color);
 

@@ -40,6 +40,16 @@ Choosing a style adds **no items**: the canvas says "No items yet. Add your firs
 
 Options (display style) → Heading → **Items** → a panel named for the style (Number position / Icon position / Counting / Card look) → Layout → Background & spacing → On mobile → Advanced.
 
+**Background & spacing:** background colour, background image, and once an image is picked its position and **Image overlay**, then top and bottom padding.
+
+## Background image
+
+A picture or pattern behind the whole block (`backgroundImage`, `backgroundPosition`, `backgroundOverlay`), drawn like a Hero's: an `aria-hidden` layer over the background colour and an overlay layer above it, both under the content (`content-row--has-bg`, `isolation: isolate`). The overlay choices are the shared list (`config/gradients.ts`, which a site can replace); unset means Gradient, as on a Hero. Choose None for patterns and textures.
+
+The text colour follows the background colour, as in a Hero's Section style, so a pattern over a light colour keeps dark text. Under a dark photo the editor picks a dark colour (the help text says so). With no colour the text keeps the page's colour.
+
+The block overlay is stored as `backgroundOverlay` because `overlayStyle` is already the image-card overlay (Card look).
+
 Items are named in the sidebar list after their heading (statistics: their label). There's no separate "item label" field: VLT's list widget shows `item.title`, which `index.js` fills in from the heading whenever the list changes.
 
 ---
