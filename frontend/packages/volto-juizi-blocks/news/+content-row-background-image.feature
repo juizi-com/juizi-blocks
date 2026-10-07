@@ -1,0 +1,1 @@
+Content Row: a background image behind the whole block, with its position and an image overlay, for photos and for patterns over the background colour. The text colour follows the background colour, as in a Hero's Section style.

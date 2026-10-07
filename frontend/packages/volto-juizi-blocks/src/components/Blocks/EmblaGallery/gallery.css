@@ -187,21 +187,10 @@
   white-space: nowrap;
 }
 
-/* Arrow/lightbox-control colour variants — same pattern as EmblaCarousel's
-   .embla__arrow--outline / --solid, so a themed site looks consistent
-   between the two blocks rather than the gallery inventing its own palette. */
-.gallery__arrow-btn--outline {
-  --btn-color: #fff;
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color) !important;
-  background: transparent !important;
-  color: var(--btn-color) !important;
-}
-.gallery__arrow-btn--solid {
-  --btn-color: #fff;
-  border: var(--juizi-button-border-width, 2px) solid var(--btn-color) !important;
-  background: var(--btn-color) !important;
-  color: var(--btn-text, #000) !important;
-}
+/* Arrow/lightbox-control colours: a colour picked under Arrow style makes
+   them unified buttons (btn-unified, config/buttons.scss), with the same
+   colours and hover as every other button, as in the Carousel. They keep
+   their own square size (above). */
 
 /* ── Hover: a slight zoom inside the picture's frame ─────────────────────── */
 /* A cue that the picture can be clicked. Mouse/trackpad on larger screens

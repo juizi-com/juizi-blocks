@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-06T12:41:48.570Z\n"
+"POT-Creation-Date: 2026-10-07T10:56:35.360Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1191,6 +1191,26 @@ msgstr ""
 #. Default: "The block background is always full width. Text colour updates automatically."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-background-color-help"
+msgstr ""
+
+#. Default: "Shown behind the whole block, on top of the background colour. Decorative, so it needs no alt text. The text colour still follows the background colour: under a dark photo, pick a dark colour so the text turns light."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-image-help"
+msgstr ""
+
+#. Default: "Image overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay"
+msgstr ""
+
+#. Default: "A tint over the background image to keep text readable. Choose \"None\" for patterns and textures that already sit well behind text."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay-help"
+msgstr ""
+
+#. Default: "Background position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-position"
 msgstr ""
 
 #. Default: "Background & spacing"
@@ -2586,6 +2606,16 @@ msgstr ""
 #. Default: "Where the image appears on small screens, where it can no longer sit beside the text."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-side-image-mobile-help"
+msgstr ""
+
+#. Default: "Image side"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position"
+msgstr ""
+
+#. Default: "Which side of the text the image sits on. On small screens it goes above or below the text instead (see \"On mobile\")."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position-help"
 msgstr ""
 
 #. Default: "Use smaller buttons"

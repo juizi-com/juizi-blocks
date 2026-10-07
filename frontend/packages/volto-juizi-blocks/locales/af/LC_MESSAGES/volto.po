@@ -1196,6 +1196,26 @@ msgstr "Bo die items (by die opskrif)"
 msgid "juizi-content-row-background-color-help"
 msgstr "Die blok se agtergrond is altyd volle breedte. Die tekskleur pas outomaties aan."
 
+#. Default: "Shown behind the whole block, on top of the background colour. Decorative, so it needs no alt text. The text colour still follows the background colour: under a dark photo, pick a dark colour so the text turns light."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-image-help"
+msgstr "Word agter die hele blok gewys, bo-oor die agtergrondkleur. Dekoratief, so dit het geen alt-teks nodig nie. Die tekskleur volg steeds die agtergrondkleur: kies onder 'n donker foto 'n donker kleur sodat die teks lig word."
+
+#. Default: "Image overlay"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay"
+msgstr "Beeldoorleg"
+
+#. Default: "A tint over the background image to keep text readable. Choose \"None\" for patterns and textures that already sit well behind text."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-overlay-help"
+msgstr "'n Tint oor die agtergrondbeeld om teks leesbaar te hou. Kies "Geen" vir patrone en teksture wat reeds goed agter teks werk."
+
+#. Default: "Background position"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-background-position"
+msgstr "Agtergrondposisie"
+
 #. Default: "Background & spacing"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-background-spacing"
@@ -2590,6 +2610,16 @@ msgstr "’n Groter beeld wat langs jou teks vertoon word; nie die logo hierbo n
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-side-image-mobile-help"
 msgstr "Waar die beeld op klein skerms verskyn, waar dit nie meer langs die teks kan sit nie."
+
+#. Default: "Image side"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position"
+msgstr "Beeldkant"
+
+#. Default: "Which side of the text the image sits on. On small screens it goes above or below the text instead (see \"On mobile\")."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-side-image-position-help"
+msgstr "Aan watter kant van die teks die beeld staan. Op klein skerms gaan dit eerder bo of onder die teks (sien "Op selfone")."
 
 #. Default: "Use smaller buttons"
 #: components/Blocks/HeroBlock/messages

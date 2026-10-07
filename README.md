@@ -358,6 +358,122 @@ colour lists at module level), so the dashboard's "Colours per block" applies.
 | `colorValueToKey(value)` | `var(--brand-primary-blue)` → `brand-primary-blue` |
 | `colorKeyToCssVar(key, list)` | Reverses `colorValueToKey` |
 
+### Image overlays: `src/config/gradients.ts`
+
+An **overlay** is the layer drawn between a background picture and the text
+on it, so the text stays readable: a gradient that darkens one side, or a flat
+tint. Editors choose it in the **Image overlay** field of a Hero or a Content
+Row background, and in **Card image overlay** for Content Row picture cards.
+Every one of those fields offers the same list, and every block draws the
+choice the same way (inline, from the list; no overlay colours in the blocks'
+stylesheets).
+
+The file is called `gradients.ts` because most custom overlays are gradients,
+but it holds every overlay, tints and "None" included.
+
+#### The built-in list
+
+A site that doesn't set its own list gets `DEFAULT_OVERLAYS`:
+
+| Id | Editors see | What it draws |
+|---|---|---|
+| `gradient` | Gradient (default) | Dark from the bottom: black 10% at the top to 60% at the foot. Also what blocks with no overlay saved get |
+| `none` | None | Nothing. Use for patterns and textures, which already sit well behind text |
+| `black-30`, `-50`, `-70` | Black — Light / Medium / Dark | Flat black at 30, 50 or 70% |
+| `white-30`, `-50`, `-70` | White — … | Flat white (for dark text on a picture) |
+| `primary-30`, `-50`, `-70` | Brand colour — … | Meant as a flat tint in the brand colour, but `--accent-color-rgb` isn't defined, so these currently draw nothing (known issue) |
+
+#### Giving a site its own overlays
+
+A site's list **replaces** the built-in one, so editors see one list made for
+that site. Keep it short: a handful of overlays an editor can tell apart by
+name.
+
+1. In the site's add-on, add `src/config/gradients.ts` with the full list, and
+   install it from the add-on's `index.ts` (the site's add-on loads after
+   juizi-blocks, so its list wins):
+
+   ```ts
+   import type { ConfigType } from '@plone/registry';
+   import {
+     overlayById,
+     type Overlay,
+   } from 'volto-juizi-blocks/config/gradients';
+
+   const SITE_OVERLAYS: Overlay[] = [
+     overlayById('none')!,
+     overlayById('gradient')!, // the default for blocks with none saved
+     {
+       id: 'brand-side',
+       label: 'Brand blue, from the left',
+       background:
+         'linear-gradient(90deg, rgba(2, 62, 138, 0.94) 0%, rgba(2, 62, 138, 0.74) 48%, rgba(2, 62, 138, 0.2) 100%)',
+     },
+   ];
+
+   export default function install(config: ConfigType) {
+     config.settings.juiziBlocks = {
+       ...config.settings.juiziBlocks,
+       overlays: SITE_OVERLAYS,
+     };
+     return config;
+   }
+   ```
+
+2. **Keep `none` and `gradient`.** "None" is what editors need for patterns;
+   `gradient` is what every block without a saved overlay draws, so leaving it
+   out takes it off the list while those blocks still use it.
+
+3. **Ids are stored in the pages.** Pick a short, lower-case id per overlay and
+   never change it once editors have used it; to retire one, remove it and the
+   blocks that used it lose their overlay (their field shows the bare id).
+   Labels can change at any time.
+
+4. **Labels describe the look, in the editor's words**: the colour and where
+   it's strongest ("Brand blue, from the left", "Navy, from the bottom"), not
+   the CSS ("90deg gradient"). Site labels are shown as written, so write them
+   in the site's language.
+
+5. **`background` is any CSS background**, drawn over the whole picture:
+   - A gradient fades from strong where the text sits to light or clear
+     elsewhere, so the picture still shows. Direction: `90deg` strong on the
+     left, `270deg` on the right, `180deg` at the foot, `0deg` at the top,
+     `135deg` / `160deg` diagonal.
+   - Write colours as `rgba()` with an opacity (or `transparent`); a solid
+     colour hides the picture.
+   - Where text sits, aim for 0.7 or more, and check the contrast of the
+     text against the overlay on a light picture (at least 4.5:1 for body
+     text, 3:1 for large headings). Bright photos need stronger overlays.
+   - To follow the dashboard's colours instead of fixing them, use the
+     `--<name>-rgb` variable it outputs for each colour (see **Colours tab**):
+     `rgba(var(--liberty-blue-rgb), 0.8)`. Changing that colour in the
+     dashboard then changes the overlay too.
+   - Layered backgrounds work too:
+     `'linear-gradient(...), linear-gradient(...)'`.
+
+6. **Text colour doesn't follow the overlay.** In a Hero's Hero style, text on
+   a picture is white, so overlays there should be dark. In a Section or a
+   Content Row the text follows the background colour, so pick that to match
+   (a dark overlay over a light colour gives dark text on a dark overlay).
+
+7. Check each overlay on a light and a dark picture, on a wide and a narrow
+   screen, before handing it to editors.
+
+Saved blocks keep their look when the list changes: a built-in overlay the
+site left out is still drawn, and stays in that block's list as a choice so
+the field isn't blank. An overlay removed altogether draws nothing.
+
+IRR's list (`volto-irr-test/src/config/gradients.ts` in the IRR project) is a
+worked example: None, Gradient and six brand gradients.
+
+| Function | Purpose |
+|---|---|
+| `getOverlays()` | The current list: the site's, else `DEFAULT_OVERLAYS` |
+| `getOverlayChoices(t, saved)` | `[id, label]` choices for a schema; `saved` keeps the block's saved value listed |
+| `overlayBackground(id)` | `{ background }` for the overlay layer, or `null` |
+| `overlayById(id)` | A built-in overlay, to reuse in a site's list |
+| `DEFAULT_OVERLAY` | `'gradient'`, for blocks with none saved |
+
 ### Text colour follows the background
 
 Blocks never ask editors for a text colour. It follows the background:
@@ -515,7 +631,10 @@ The two Embla blocks share these decisions, each in its own stylesheet:
 
 - Arrows have the button shape above. "Arrow style" starts with **Standard**
   (dark arrows over the pictures on the sides, outlined in the text colour
-  elsewhere); the other choices are the button colours.
+  elsewhere); the other choices are the button colours, and make the arrows
+  unified buttons with those colours and their hover (`config/buttons.scss`
+  covers `<button>` as well as links for colours; links alone get the
+  words-sized padding).
 - **On phones (768px and below) the arrows always sit in a row below**,
   whatever "Arrow position" says; the field's help text tells editors.
 - Arrows only show when there's somewhere to go: not when every slide is in
@@ -614,7 +733,6 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 | `i18n.js`, `messages.js` | `translator(intl)` gives schemas and choice lists their `t(message, values)`; `messages.js` holds the text several blocks share. See [Languages](#languages-) |
 | `format.js` | `formatDate(value, options, language)`, `formatNumber(value, language)`: in the site's language (pass `intl.locale`), British English for English ("13 November 2024", "1,000"), so the server and every browser agree |
 | `anchors.js` | `slugify`, `blockAnchorId(heading, blockId, fallback)` |
-| `overlays.js` | `getOverlayChoices(t)` and `overlayStyleToRgba` |
 | `items.js` | `withItemTitles(items, ...fields)` names list items in the sidebar after their own heading (VLT's list widget shows `item.title`); `ensureIds(items)` |
 | `skeleton.css` | Loading skeleton tiles (`block-skeleton`, `block-skeleton__tile`, `--mixed`) |
 

@@ -29,6 +29,27 @@
   width: 100%;
 }
 
+/* ── Background image and overlay ────────────────────────────────────────── */
+/* Layers under the content, over the background colour (View.jsx). */
+
+.content-row--has-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.content-row__bg,
+.content-row__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.content-row__bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* ── Padding, width, preheader/heading/description sizes ────────────────── */
 /* Shared with the other Juizi blocks: see src/theme/juizi-common.scss. */
 
@@ -247,18 +268,6 @@
    the `.columns-<n>` rules above and, coming later, win. A bare
    `.content-row__grid` lost to them, and items never stacked on phones. */
 @media (max-width: 768px) {
-  .content-row__grid:is(
-      .columns-2,
-      .columns-3,
-      .columns-4,
-      .columns-5,
-      .columns-6
-    ) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
   .content-row__grid:is(
       .columns-2,
       .columns-3,
@@ -548,7 +557,6 @@
   border-radius: 4px;
   background-position: center;
   background-size: cover;
-  color: #fff;
 }
 
 /* Whole-card link for the mouse (aria-hidden, out of the tab order); the
@@ -584,14 +592,6 @@
   pointer-events: none;
 }
 
-.content-row-item__overlay--gradient {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-}
-
 .content-row-item--card .content-row-item__body {
   position: relative;
   z-index: 2;
@@ -603,9 +603,11 @@
   gap: 0.5rem;
 }
 
+/* Text colour: white over a picture (the item is .bg-dark, see View.jsx
+   getCardBgStyle), the item's own colour's text colour, or with neither,
+   the block's, like any other item. */
 .content-row-item--card .content-row-item__heading,
 .content-row-item--card .content-row-item__text {
-  color: #fff;
   opacity: 1;
 }
 

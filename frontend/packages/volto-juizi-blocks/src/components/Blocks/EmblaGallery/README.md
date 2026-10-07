@@ -60,7 +60,7 @@ thumbnail matches the large image currently shown.
 
 Arrows follow the shared carousel-style controls (root README). Gallery specifics:
 
-- **Arrow position** (`arrowPosition`, Slideshow behaviour): `sides` (default, over the large picture or the ends of the row) or `below`. **Arrow style** (`arrowStyle`) sits beside it and also styles the enlarged view's buttons; both are hidden while "Hide arrows" is on.
+- **Arrow position** (`arrowPosition`, Slideshow behaviour): `sides` (default, over the large picture or the ends of the row) or `below`. **Arrow style** (`arrowStyle`) sits beside it and also styles the enlarged view's buttons; both are hidden while "Hide arrows" is on. A picked colour makes them unified buttons (`btn-unified`): the same colours and hover as every other button, at their own square size.
 - One `renderArrows(api)` in `View.jsx` draws them for the large picture (`embla`) and for the `strip` row (`thumbEmbla`), inside that part's own wrapper so "sides" centres on it.
 - `View.jsx` measures whether the row of small pictures is wider than the block (`thumbsOverflow`, again as each small picture loads and on resize). In `strip` style the arrows only show when it is.
 - While the row fits, **Small pictures alignment** (`rowAlignment`: left (default), centre, right) places it.

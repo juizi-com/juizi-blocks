@@ -184,6 +184,50 @@ describe('Hero', () => {
   });
 });
 
+describe('Hero backgrounds and side image', () => {
+  const image = [{ '@id': 'http://localhost:3000/images/pattern' }];
+
+  it('puts the side image on the left only when asked', () => {
+    const data = {
+      blockMode: 'section',
+      usePageTitle: false,
+      title: 'Our history',
+      sideImage: image,
+    };
+    const row = (extra) =>
+      renderHero({ data: { ...data, ...extra } }).container.querySelector(
+        '.hero-inner__side-layout',
+      );
+    expect(row({}).classList).not.toContain(
+      'hero-inner__side-layout--image-left',
+    );
+    const left = row({ sideImagePosition: 'left' });
+    expect(left.classList).toContain('hero-inner__side-layout--image-left');
+    // The text stays first in the page.
+    expect(left.firstChild.className).toBe('hero-inner__side-content');
+  });
+
+  it("draws a site's own overlay over the background image", () => {
+    const config = jest.requireMock('@plone/volto/registry');
+    config.settings.juiziBlocks = {
+      overlays: [{ id: 'brand-side', background: 'rgb(2, 62, 138)' }],
+    };
+    const { container } = renderHero({
+      data: {
+        blockMode: 'hero',
+        usePageTitle: false,
+        title: 'Liberty',
+        backgroundImage: image,
+        overlayStyle: 'brand-side',
+      },
+    });
+    delete config.settings.juiziBlocks;
+    const overlays = container.querySelectorAll('.hero-block__overlay');
+    expect(overlays).toHaveLength(1);
+    expect(overlays[0].style.background).toBe('rgb(2, 62, 138)');
+  });
+});
+
 describe('Hero TOC button labels', () => {
   it("leave out Volto's copy-link anchor in a heading", () => {
     // Volto adds this to headings for logged-in users in view mode.

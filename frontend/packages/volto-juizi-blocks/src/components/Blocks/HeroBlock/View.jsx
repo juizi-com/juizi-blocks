@@ -13,7 +13,7 @@ import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';
 import { isEditing } from '../_shared/editMode';
 import { externalLinkProps, getHref } from '../_shared/links';
-import { overlayStyleToRgba } from '../_shared/overlays';
+import { DEFAULT_OVERLAY, overlayBackground } from '../../../config/gradients';
 import { blockAnchorId } from '../_shared/anchors';
 import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
@@ -468,6 +468,7 @@ const HeroContent = ({
   sideImageAlt,
   sideImageAlignment,
   sideImageMobile,
+  sideImagePosition,
   isEditMode,
   hideTitle,
   otherPrimaryHeading,
@@ -561,6 +562,7 @@ const HeroContent = ({
     const sideLayoutClasses = [
       'hero-inner__side-layout',
       `hero-inner__side-layout--align-${sideImageAlignment}`,
+      sideImagePosition === 'left' ? 'hero-inner__side-layout--image-left' : '',
     ]
       .filter(Boolean)
       .join(' ');
@@ -731,9 +733,8 @@ const View = (props) => {
     }
   }
 
-  const overlayStyle = data.overlayStyle || 'gradient';
-  const overlayRgba = overlayStyleToRgba(overlayStyle);
-  const showGradient = overlayStyle === 'gradient' && (imageUrl || videoUrl);
+  const overlayId = data.overlayStyle || DEFAULT_OVERLAY;
+  const overlayCss = overlayBackground(overlayId);
   const backgroundPosition = data.backgroundPosition || 'center';
 
   // ── Background color (section mode) ───────────────────────────────────
@@ -891,18 +892,13 @@ const View = (props) => {
               />
             ) : null}
 
-            {/* Image overlay — intentional inline style (compositing, not theming) */}
-            {showGradient && (
+            {/* Image overlay — intentional inline style (compositing, not
+                theming), from the overlay list (config/gradients.ts) */}
+            {overlayCss && (
               <div
-                className="hero-block__overlay hero-block__overlay--gradient"
+                className={`hero-block__overlay hero-block__overlay--${overlayId}`}
                 aria-hidden="true"
-              />
-            )}
-            {overlayRgba && (
-              <div
-                className="hero-block__overlay"
-                aria-hidden="true"
-                style={{ backgroundColor: overlayRgba }}
+                style={overlayCss}
               />
             )}
           </>
@@ -926,6 +922,7 @@ const View = (props) => {
             sideImageAlt={data.sideImageAlt}
             sideImageAlignment={data.sideImageAlignment || 'middle'}
             sideImageMobile={data.sideImageMobile || 'below'}
+            sideImagePosition={data.sideImagePosition || 'right'}
             isEditMode={isEditMode}
             hideTitle={hideTitle}
             otherPrimaryHeading={otherPrimaryHeading}

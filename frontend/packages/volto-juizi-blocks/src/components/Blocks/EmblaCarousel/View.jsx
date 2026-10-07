@@ -840,7 +840,9 @@ const EmblaCarousel = (blockProps) => {
       className={linkStyleParsed.className}
       style={linkStyleParsed.style}
     >
-      {data.headerLinkText}
+      {/* In its own element so the "Standard" look can recolour the words
+          on hover (carousel-base.css). */}
+      <span>{data.headerLinkText}</span>
     </UniversalLink>
   ) : (
     <span

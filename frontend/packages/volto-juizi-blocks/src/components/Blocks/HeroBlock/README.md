@@ -31,7 +31,7 @@ Saved Section bands without `usePageTitle` keep showing the page title (unset st
 | Options | Display style |
 | Content | Use page title → Title, Use page description → Description, Text above the title, Show publication date, Show event details, Logo (Hero only), Show breadcrumbs |
 | Background | Hero: Use page preview image, image, video, position, overlay. Section: colour, image, position, overlay |
-| Side image | Image, and once set: alt text, vertical alignment, on mobile |
+| Side image | Image, and once set: alt text, image side (right / left), vertical alignment, on mobile |
 | Buttons | Buttons display, then buttons (or heading options), Use smaller buttons |
 | Layout | Text alignment, side-by-side, top/bottom padding (shared padding scale), full width |
 | Advanced | Primary page heading, hide title visually, extra style name |
@@ -60,7 +60,7 @@ Both work in every mode and do nothing on an item without the underlying field. 
 
 ## Background
 
-**Hero style:** image or video at `z-index: 0`, an overlay at `z-index: 1` (the one intentional inline colour: `overlayStyle` maps to an `rgba()` over the image). Overlays: Gradient (default), None, Black/White/Brand colour at 30/50/70%. Text is white over an image or video (`hero-block--has-bg`). The gradient gives roughly 3:1 where text usually sits, depending on the image; a 50% or 70% black overlay is safer. Background video is Hero-only; background image works in both styles.
+**Hero style:** image or video at `z-index: 0`, an overlay at `z-index: 1` (the one intentional inline colour: `overlayStyle` is an id from the overlay list, `config/gradients.ts`, drawn as an inline `background`). Built-in overlays: Gradient (default), None, Black/White/Brand colour at 30/50/70%; a site can replace the list (see the root README). Text is white over an image or video (`hero-block--has-bg`). The gradient gives roughly 3:1 where text usually sits, depending on the image; a 50% or 70% black overlay is safer. Background video is Hero-only; background image works in both styles.
 
 **Section style:** `backgroundColor` from the colour list, applied inline with its text colour, plus `.bg-dark` / `.bg-light`. The background colour still sets the text colour when a background image is added on top, and the field's help text says so once there's an image: a dark colour gives light text, a light colour dark text. With "None", text stays dark over the image.
 
@@ -119,3 +119,7 @@ For a band further down the page: add a Hero, choose **Section (content band)**,
 ## Known issues
 
 - The TOC mode finds headings by climbing the DOM from the block (`useBlockLayoutHeadingTOC`); in unusual layouts it can fall back to the whole page.
+
+## Side image on the left
+
+**Image side** (`sideImagePosition`: `right`, the default and what saved blocks without the field get, or `left`) swaps the image and the text on wide screens only (`hero-inner__side-layout--image-left`, `row-reverse` from 769px). The text stays first in the page, so screen readers and the stacked small-screen layout are unchanged; **On mobile** still decides whether the image goes above or below.
