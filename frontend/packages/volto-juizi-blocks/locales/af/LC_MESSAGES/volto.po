@@ -2071,6 +2071,56 @@ msgstr "Beskrywing"
 msgid "juizi-display-style"
 msgstr "Vertoonstyl"
 
+#. Default: "Back button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-back-button"
+msgstr "Terug-knoppie"
+
+#. Default: "Background"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-background"
+msgstr "Agtergrond"
+
+#. Default: "Form colours"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours"
+msgstr "Vormkleure"
+
+#. Default: "Leave a field empty to keep the site's usual look."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours-help"
+msgstr "Laat ’n veld leeg om die webwerf se gewone voorkoms te behou."
+
+#. Default: "Chosen amount"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color"
+msgstr "Gekose bedrag"
+
+#. Default: "The border around the amount the donor picks, and around the other amount field while they use it."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color-help"
+msgstr "Die rand om die bedrag wat die skenker kies, en om die ander-bedrag-veld terwyl hulle dit gebruik."
+
+#. Default: "Main button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button"
+msgstr "Hoofknoppie"
+
+#. Default: "The button that takes the donor forward, such as Continue or Donate."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button-help"
+msgstr "Die knoppie wat die skenker vorentoe neem, soos Gaan voort of Skenk."
+
+#. Default: "Current step"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color"
+msgstr "Huidige stap"
+
+#. Default: "The circle with the number of the step the donor is on, at the top of the form."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color-help"
+msgstr "Die sirkel met die nommer van die stap waarby die skenker is, bo-aan die vorm."
+
 #. Default: "Extra spacious"
 #: components/Blocks/_shared/messages
 msgid "juizi-extra-spacious"

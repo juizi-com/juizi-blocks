@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-07T10:56:35.360Z\n"
+"POT-Creation-Date: 2026-10-08T14:23:49.031Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2066,6 +2066,56 @@ msgstr ""
 #. Default: "Display style"
 #: components/Blocks/_shared/messages
 msgid "juizi-display-style"
+msgstr ""
+
+#. Default: "Back button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-back-button"
+msgstr ""
+
+#. Default: "Background"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-background"
+msgstr ""
+
+#. Default: "Form colours"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours"
+msgstr ""
+
+#. Default: "Leave a field empty to keep the site's usual look."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours-help"
+msgstr ""
+
+#. Default: "Chosen amount"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color"
+msgstr ""
+
+#. Default: "The border around the amount the donor picks, and around the other amount field while they use it."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color-help"
+msgstr ""
+
+#. Default: "Main button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button"
+msgstr ""
+
+#. Default: "The button that takes the donor forward, such as Continue or Donate."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button-help"
+msgstr ""
+
+#. Default: "Current step"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color"
+msgstr ""
+
+#. Default: "The circle with the number of the step the donor is on, at the top of the form."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color-help"
 msgstr ""
 
 #. Default: "Extra spacious"

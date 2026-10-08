@@ -499,7 +499,7 @@ const HeroContent = ({
         </div>
       )}
       {displayPreheader && (
-        <div className="hero-preheader">
+        <div className="hero-preheader juizi-preheader">
           {wrapWordsInSpans(displayPreheader)}
         </div>
       )}

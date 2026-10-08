@@ -2071,6 +2071,56 @@ msgstr "Description"
 msgid "juizi-display-style"
 msgstr "Style d’affichage"
 
+#. Default: "Back button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-back-button"
+msgstr "Bouton Retour"
+
+#. Default: "Background"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-background"
+msgstr "Arrière-plan"
+
+#. Default: "Form colours"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours"
+msgstr "Couleurs du formulaire"
+
+#. Default: "Leave a field empty to keep the site's usual look."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-form-colours-help"
+msgstr "Laissez un champ vide pour garder l'apparence habituelle du site."
+
+#. Default: "Chosen amount"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color"
+msgstr "Montant choisi"
+
+#. Default: "The border around the amount the donor picks, and around the other amount field while they use it."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-highlight-color-help"
+msgstr "La bordure autour du montant choisi par le donateur, et autour du champ « autre montant » pendant qu'il l'utilise."
+
+#. Default: "Main button"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button"
+msgstr "Bouton principal"
+
+#. Default: "The button that takes the donor forward, such as Continue or Donate."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-next-button-help"
+msgstr "Le bouton qui fait avancer le donateur, comme Continuer ou Faire un don."
+
+#. Default: "Current step"
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color"
+msgstr "Étape en cours"
+
+#. Default: "The circle with the number of the step the donor is on, at the top of the form."
+#: extensions/donationBlock/messages
+msgid "juizi-donation-step-color-help"
+msgstr "Le cercle avec le numéro de l'étape où se trouve le donateur, en haut du formulaire."
+
 #. Default: "Extra spacious"
 #: components/Blocks/_shared/messages
 msgid "juizi-extra-spacious"

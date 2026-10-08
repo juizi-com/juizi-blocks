@@ -3,6 +3,7 @@ import type { BlockConfigBase } from '@plone/types';
 import installSettings, { applyInitialSettings } from './config/settings';
 import installBlocks from './config/blocks';
 import installLegacy from './legacy';
+import installDonationExtension from './extensions/donationBlock';
 
 import './theme/juizi-blocks.scss';
 import './config/buttons.scss';
@@ -33,6 +34,8 @@ function applyConfig(config: ConfigType) {
   installBlocks(config);
   // Converts blocks saved by earlier Juizi add-ons as content loads.
   installLegacy(config);
+  // Background settings for the donation block, when a site has it.
+  installDonationExtension(config);
   applyInitialSettings();
   return config;
 }

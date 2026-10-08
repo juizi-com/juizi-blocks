@@ -1,0 +1,27 @@
+/* Background around the donation block (Frame.jsx). Width and side padding
+   come from $juizi-layers in theme/juizi-common.scss. */
+
+/* Only with a background: Form colours alone change nothing here */
+.juizi-donation-frame--has-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.juizi-donation-frame__bg,
+.juizi-donation-frame__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.juizi-donation-frame__bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* More room above and below the content once it sits on a background */
+.juizi-donation-frame--has-bg > .donation-block-wrapper {
+  padding-top: clamp(3rem, 8vw, 6rem);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}

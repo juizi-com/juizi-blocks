@@ -1,0 +1,1 @@
+Donation block extension: when a site has the donation block, its sidebar gets a Background panel (colour, image, overlay, as in the Content Row) and a Form colours panel (current step, chosen amount, main and back buttons).
