@@ -22,6 +22,10 @@
 // Defaults follow Volto Light Theme's own sizes (h2 30/36px, h3 24/30px,
 // page title 48/56px), so nothing jumps when this file is added.
 //
+// Every preheader also carries the shared class `juizi-preheader` (items:
+// `juizi-preheader juizi-preheader--item`), so a theme can style them all
+// with one selector. The donation block's text above the heading has it too.
+//
 // Adding a block: add its classes to the lists below instead of styling
 // these elements in the block's own stylesheet. Its links follow its text
 // colour once its outer class is in $juizi-layers (see Links below).
@@ -89,6 +93,7 @@
   --juizi-callout-width: var(--juizi-content-width);
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
+  --juizi-donation-width: var(--juizi-content-width);
   // Space inside a Callout that has a background colour, on the sides
   // (top and bottom use the Callout's own padding, juizi-blocks.scss).
   --juizi-callout-padding: 1.5rem;
@@ -158,6 +163,11 @@ $juizi-layers: (
   '.redirect-block-wrapper': (
     '.redirect-block',
     --juizi-redirect-width,
+  ),
+  // Only while it has a background (extensions/donationBlock)
+  '.juizi-donation-frame--has-bg': (
+    '.donation-block-wrapper',
+    --juizi-donation-width,
   ),
 );
 // "Full width" option (on the outer layer): the inner layer spans too

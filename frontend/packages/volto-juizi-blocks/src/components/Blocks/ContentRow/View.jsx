@@ -352,7 +352,7 @@ const NumberedItem = ({ item, index, iconPosition }) => {
       </div>
       <div className="content-row-item__content">
         {item.preheader && (
-          <p className="content-row-item__preheader">
+          <p className="content-row-item__preheader juizi-preheader juizi-preheader--item">
             {safeString(item.preheader)}
           </p>
         )}
@@ -504,7 +504,7 @@ const IconItem = ({ item, iconPosition }) => {
       </div>
       <div className="content-row-item__content">
         {item.preheader && (
-          <p className="content-row-item__preheader">
+          <p className="content-row-item__preheader juizi-preheader juizi-preheader--item">
             {safeString(item.preheader)}
           </p>
         )}
@@ -615,7 +615,7 @@ const ImageAboveItem = ({ item, isEditMode }) => {
       )}
       <div className="content-row-item__body">
         {item.preheader && (
-          <p className="content-row-item__preheader">
+          <p className="content-row-item__preheader juizi-preheader juizi-preheader--item">
             {safeString(item.preheader)}
           </p>
         )}
@@ -670,7 +670,7 @@ const ImageCardItem = ({ item, overlayStyle, isEditMode }) => {
       )}
       <div className="content-row-item__body">
         {item.preheader && (
-          <p className="content-row-item__preheader">
+          <p className="content-row-item__preheader juizi-preheader juizi-preheader--item">
             {safeString(item.preheader)}
           </p>
         )}
@@ -980,7 +980,7 @@ const View = (props) => {
               >
                 <div className="content-row__header-text-inner">
                   {data.preheaderText && (
-                    <div className="content-row__preheader">
+                    <div className="content-row__preheader juizi-preheader">
                       {safeString(data.preheaderText)}
                     </div>
                   )}
