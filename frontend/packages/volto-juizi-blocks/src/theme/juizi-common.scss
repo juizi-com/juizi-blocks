@@ -24,7 +24,8 @@
 //
 // Every preheader also carries the shared class `juizi-preheader` (items:
 // `juizi-preheader juizi-preheader--item`), so a theme can style them all
-// with one selector. The donation block's text above the heading has it too.
+// with one selector. The donation and membership sign-up blocks' text above
+// the heading has it too.
 //
 // Adding a block: add its classes to the lists below instead of styling
 // these elements in the block's own stylesheet. Its links follow its text
@@ -94,6 +95,7 @@
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
+  --juizi-membership-width: var(--juizi-content-width);
   // Space inside a Callout that has a background colour, on the sides
   // (top and bottom use the Callout's own padding, juizi-blocks.scss).
   --juizi-callout-padding: 1.5rem;
@@ -165,10 +167,17 @@ $juizi-layers: (
     --juizi-redirect-width,
   ),
   // Only while it has a background (extensions/donationBlock)
-  '.juizi-donation-frame--has-bg': (
-    '.donation-block-wrapper',
-    --juizi-donation-width,
-  ),
+  '.juizi-donation-frame--has-bg':
+    (
+      '.donation-block-wrapper',
+      --juizi-donation-width,
+    ),
+  // The same for the membership sign-up block (extensions/membershipSignup)
+  '.juizi-membership-frame--has-bg':
+    (
+      '.membership-signup-wrapper',
+      --juizi-membership-width,
+    ),
 );
 // "Full width" option (on the outer layer): the inner layer spans too
 $juizi-full-width: '.hero-block--full-width', '.embla.full-width',

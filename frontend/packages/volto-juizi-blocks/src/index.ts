@@ -4,6 +4,7 @@ import installSettings, { applyInitialSettings } from './config/settings';
 import installBlocks from './config/blocks';
 import installLegacy from './legacy';
 import installDonationExtension from './extensions/donationBlock';
+import installMembershipSignupExtension from './extensions/membershipSignup';
 
 import './theme/juizi-blocks.scss';
 import './config/buttons.scss';
@@ -36,6 +37,8 @@ function applyConfig(config: ConfigType) {
   installLegacy(config);
   // Background settings for the donation block, when a site has it.
   installDonationExtension(config);
+  // The same for the membership sign-up block.
+  installMembershipSignupExtension(config);
   applyInitialSettings();
   return config;
 }
