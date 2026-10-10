@@ -3,11 +3,12 @@ import {
   getButtonChoices,
   getColorChoices,
 } from '../../config/colors';
-import { getOverlayChoices } from '../../config/gradients';
 import { translator } from '../../components/Blocks/_shared/i18n';
-import shared from '../../components/Blocks/_shared/messages';
-// Same fields and wording as the Content Row's background
-import contentRowMessages from '../../components/Blocks/ContentRow/messages';
+import {
+  backgroundFieldset,
+  backgroundProperties,
+  panelPosition,
+} from '../_shared/background';
 import messages from './messages';
 
 /**
@@ -19,21 +20,7 @@ import messages from './messages';
 const schemaEnhancer = ({ schema, formData = {}, intl }) => {
   const t = translator(intl);
   const colors = getBlockColorList('donationBlock');
-  const hasBgImage = !!formData.backgroundImage?.[0];
-
-  const background = {
-    id: 'juizi_background',
-    title: t(messages.background),
-    fields: [
-      'backgroundColor',
-      'backgroundImage',
-      ...(hasBgImage ? ['backgroundPosition', 'backgroundOverlay'] : []),
-    ],
-  };
   const fieldsets = [...schema.fieldsets];
-  const after = fieldsets.findIndex((f) => f.id === 'side_text');
-  const at =
-    (after >= 0 ? after : fieldsets.findIndex((f) => f.id === 'default')) + 1;
   const formColours = {
     id: 'juizi_form_colours',
     title: t(messages.formColours),
@@ -45,7 +32,12 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
       'backButtonStyle',
     ],
   };
-  fieldsets.splice(at, 0, background, formColours);
+  fieldsets.splice(
+    panelPosition(fieldsets),
+    0,
+    backgroundFieldset(t(messages.background), formData),
+    formColours,
+  );
   const colorChoices = getColorChoices(colors);
   const buttonChoices = getColorChoices(getButtonChoices(colors, t));
 
@@ -54,38 +46,7 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
     fieldsets,
     properties: {
       ...schema.properties,
-      backgroundColor: {
-        title: t(shared.backgroundColor),
-        description: t(contentRowMessages.backgroundColorHelp),
-        widget: 'select',
-        choices: getColorChoices([
-          ['transparent', t(shared.none), 'light'],
-          ...colors,
-        ]),
-        default: 'transparent',
-      },
-      backgroundImage: {
-        title: t(shared.backgroundImage),
-        widget: 'object_browser',
-        mode: 'image',
-        allowExternals: false,
-        description: t(contentRowMessages.backgroundImageHelp),
-      },
-      backgroundPosition: {
-        title: t(contentRowMessages.backgroundPosition),
-        choices: [
-          ['top', t(shared.top)],
-          ['center', t(shared.center)],
-          ['bottom', t(shared.bottom)],
-        ],
-        default: 'center',
-      },
-      backgroundOverlay: {
-        title: t(contentRowMessages.backgroundOverlay),
-        description: t(contentRowMessages.backgroundOverlayHelp),
-        choices: getOverlayChoices(t, formData.backgroundOverlay),
-        default: 'gradient',
-      },
+      ...backgroundProperties(t, formData, colors),
       stepColor: {
         title: t(messages.stepColor),
         description: t(messages.stepColorHelp),
