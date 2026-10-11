@@ -1,6 +1,7 @@
 # Donation block extension
 
-Juizi additions to the donation block from `volto-donations-block`. The
+Juizi additions to the donation block from `collective.donations` (its
+Volto add-on, `volto-collective-donations`, registers the block). The
 donation block doesn't depend on this add-on: it looks up a registry utility
 (`type: 'blockExtension'`, `name: 'donationBlock'`) when it renders and works
 without it. On a site without the donation block, the utility is never used.
