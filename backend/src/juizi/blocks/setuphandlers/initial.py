@@ -1,5 +1,4 @@
 from juizi.blocks import logger
-from juizi.blocks.setuphandlers.language_demo import setup_language_demo
 from pathlib import Path
 from plone import api
 from plone.exportimport import importers
@@ -20,4 +19,8 @@ def create_example_content(portal_setup: SetupTool):
 def create_language_demo(portal_setup: SetupTool):
     """Make the example site multilingual, with a block showcase page in
     every language."""
+    # Imported here: the demo needs plone.app.multilingual, and a site using
+    # the blocks doesn't, so loading juizi.blocks mustn't import it.
+    from juizi.blocks.setuphandlers.language_demo import setup_language_demo
+
     setup_language_demo(api.portal.get())

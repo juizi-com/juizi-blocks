@@ -1,0 +1,1 @@
+juizi.blocks no longer needs plone.app.multilingual: only the language demo (the Example content profile) uses it, and it's now imported when that runs instead of when juizi.blocks loads. Before, Zope wouldn't start on an install without the package, such as one built from Products.CMFPlone alone.
