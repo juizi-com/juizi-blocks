@@ -135,6 +135,17 @@ $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
   '.embla .slide__body h3';
 // Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
 $juizi-padded-blocks: 'hero-block', 'content-row';
+// Text block types (`@type`) that keep the gap below a padded block above
+// them. VLT marks a block with `next--is--{@type}` of the block below.
+$juizi-text-blocks: 'slate', 'slateTable', 'title', 'description', 'accordion';
+$juizi-next-is-text: ();
+@each $type in $juizi-text-blocks {
+  $juizi-next-is-text: list.append(
+    $juizi-next-is-text,
+    '.next--is--#{$type}',
+    comma
+  );
+}
 // Two layers per block: outer (full width, background, side padding) →
 // inner (block width, or full width when toggled) → its width token.
 $juizi-layers: (
@@ -304,11 +315,12 @@ $juizi-pad-sizes: (
   // The space above and below is the editor's choice above, so these blocks
   // don't also get the gap every block gets below it (VLT's 25px, Volto's
   // 1em): with "None", two of them touch. VLT does the same for its grids.
-  // Text right below keeps the gap, so it never sits against the block.
-  // Blocks without these options keep the gap.
+  // Text right below (the block types in $juizi-text-blocks) keeps the gap,
+  // so it never sits against the block. Blocks without these options keep
+  // the gap.
   #page-document
     .blocks-group-wrapper
-    > .block:has(> .#{$block}):not(.next--is--slate) {
+    > .block:has(> .#{$block}):not(#{$juizi-next-is-text}) {
     margin-bottom: 0;
   }
 }
