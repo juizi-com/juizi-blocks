@@ -212,3 +212,14 @@ describe('Audio block', () => {
     ]);
   });
 });
+
+describe('Audio wrapper', () => {
+  it("keeps Volto's classes for the block", () => {
+    const { container } = renderView({
+      data: { '@type': 'audioBlock', audio: file },
+      className: 'next--is--slate previous--has--same--backgroundColor',
+    });
+    const wrapper = container.querySelector('.block.audioBlock');
+    expect(wrapper.classList).toContain('next--is--slate');
+  });
+});

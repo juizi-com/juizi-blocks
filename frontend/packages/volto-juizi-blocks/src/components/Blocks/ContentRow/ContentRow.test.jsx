@@ -213,3 +213,21 @@ describe('Content Row', () => {
     });
   });
 });
+
+describe('Content Row wrapper', () => {
+  it("keeps Volto's classes for the block beside its own", () => {
+    const { container } = render(
+      <View
+        data={{
+          '@type': 'contentRow',
+          displayMode: 'statistics',
+          items: [{ '@id': 'a', value: 1000, label: 'People' }],
+        }}
+        className="next--is--slate previous--has--same--backgroundColor"
+      />,
+    );
+    const wrapper = container.querySelector('.block.contentRow');
+    expect(wrapper.classList).toContain('next--is--slate');
+    expect(wrapper.classList).toContain('type-statistics');
+  });
+});

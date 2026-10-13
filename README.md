@@ -711,7 +711,11 @@ their language), visitors see nothing, and the error is logged. Pass `resetKey` 
 `<div class="block {@type} {className}">`; under block model 3 it renders
 nothing and VLT draws the containers. Every Juizi view renders inside it
 (placeholders too), with its modifiers in `className`: `type-{style}`,
-`align-{x}`, `tone-{light|dark}`. The block's own element keeps its BEM class
+`align-{x}`, `tone-{light|dark}`. Add them to Volto's own classes, never in
+their place: `className={cx(props.className, 'type-…')}`. Volto passes the
+block's style classes and VLT's neighbour classes (`next--is--slate`,
+`previous--has--same--backgroundColor`, …) in `props.className`, and VLT's
+spacing between blocks depends on them. The block's own element keeps its BEM class
 but **not** `block`. Before a site switches to block model 3, set
 `blockModel: 3` and a `category` on every Juizi block **and** the global
 `config.settings.blockModel = 3` in the same release; the `className`

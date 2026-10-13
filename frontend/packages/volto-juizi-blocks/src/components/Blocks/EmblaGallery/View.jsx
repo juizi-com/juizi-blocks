@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { searchContent } from '@plone/volto/actions';
@@ -527,7 +528,12 @@ const EmblaGallery = (blockProps) => {
   return (
     <BlockWrapper
       {...blockProps}
-      className={`type-${displayMode} align-${data.alignment || 'left'} ${toneClass}`}
+      className={cx(
+        blockProps.className,
+        `type-${displayMode}`,
+        `align-${data.alignment || 'left'}`,
+        toneClass,
+      )}
     >
       <section
         id={blockId}
