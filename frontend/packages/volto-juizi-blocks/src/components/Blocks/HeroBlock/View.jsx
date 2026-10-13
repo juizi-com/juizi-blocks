@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import cx from 'classnames';
 import { useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { flattenToAppURL } from '@plone/volto/helpers';
@@ -847,11 +848,12 @@ const View = (props) => {
     // falls back to a plain section without a label when no title renders.
     <BlockWrapper
       {...props}
-      className={[
+      className={cx(
+        props.className,
         `type-${blockMode}`,
         `align-${alignment}`,
         `tone-${!isHeroMode ? (isDark ? 'light' : 'dark') : 'light'}`,
-      ].join(' ')}
+      )}
     >
       {isEditMode && isPrimaryHeading && <TitleHiddenNote />}
       <section

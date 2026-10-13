@@ -246,3 +246,15 @@ describe('Callout initial state', () => {
     expect(callout.usesThemes).toBeUndefined();
   });
 });
+
+describe('Callout wrapper', () => {
+  it("keeps Volto's classes for the block beside its own", () => {
+    const { container } = renderView({
+      data: { '@type': 'juiziCallout', calloutType: 'tip', icon: 'lightbulb' },
+      className: 'next--is--slate previous--has--same--backgroundColor',
+    });
+    const wrapper = container.querySelector('.block.juiziCallout');
+    expect(wrapper.classList).toContain('next--is--slate');
+    expect(wrapper.classList).toContain('type-tip');
+  });
+});

@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { ArrowRight } from 'lucide-react';
 import { useIntl } from 'react-intl';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
@@ -82,12 +83,11 @@ const CalloutView = (props) => {
   return (
     <BlockWrapper
       {...props}
-      className={[
+      className={cx(
+        props.className,
         data.calloutType && `type-${data.calloutType}`,
         hasBackground && `tone-${tone}`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
     >
       {/* Outer layer: full width, no background (the callout itself isn't
           full width). Inner layer: the callout box, with its background. */}

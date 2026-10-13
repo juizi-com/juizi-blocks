@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react';
+import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { searchContent } from '@plone/volto/actions';
@@ -861,11 +862,14 @@ const EmblaCarousel = (blockProps) => {
     (tag) => !tagsWithSlides.includes(tag),
   );
 
-  const wrapperClassName = [
+  // Volto's own classes for the block (VLT's spacing between neighbouring
+  // blocks reads them) come first, then the block's modifiers.
+  const wrapperClassName = cx(
+    blockProps.className,
     `type-${_displayMode}`,
     `align-${data.alignment || 'left'}`,
     toneClass,
-  ].join(' ');
+  );
   // Picture shape (image-only and image-above-content styles): a stored
   // "16:9" becomes the CSS aspect-ratio "16 / 9".
   const imageRatio =

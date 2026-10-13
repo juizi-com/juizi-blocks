@@ -264,3 +264,25 @@ describe('Carousel Reviews style', () => {
     expect(section.className).toContain('type-reviews');
   });
 });
+
+describe('Carousel wrapper', () => {
+  it("keeps Volto's classes for the block beside its own", () => {
+    const store = configureStore()({ search: { subrequests: {} } });
+    const { container } = render(
+      <Provider store={store}>
+        <View
+          id="abcdef123"
+          className="next--is--slate previous--has--same--backgroundColor"
+          data={{
+            '@type': 'emblaCarousel',
+            displayMode: 'full',
+            slides: [{ '@id': 's1', heading: 'Visit us' }],
+          }}
+        />
+      </Provider>,
+    );
+    const wrapper = container.querySelector('.block.emblaCarousel');
+    expect(wrapper.classList).toContain('next--is--slate');
+    expect(wrapper.classList).toContain('type-full');
+  });
+});

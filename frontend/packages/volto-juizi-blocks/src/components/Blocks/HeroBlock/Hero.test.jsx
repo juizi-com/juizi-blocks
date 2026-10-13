@@ -240,3 +240,16 @@ describe('Hero TOC button labels', () => {
     expect(heading.querySelector('style')).not.toBeNull();
   });
 });
+
+describe('Hero wrapper', () => {
+  it("keeps Volto's classes for the block beside its own", () => {
+    const { container } = renderHero({
+      data: { '@type': 'juiziHero', blockMode: 'hero', title: 'Welcome' },
+      className: 'next--is--slate previous--has--same--backgroundColor',
+    });
+    const wrapper = container.querySelector('.block.juiziHero');
+    expect(wrapper.classList).toContain('next--is--slate');
+    expect(wrapper.classList).toContain('previous--has--same--backgroundColor');
+    expect(wrapper.classList).toContain('type-hero');
+  });
+});

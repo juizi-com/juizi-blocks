@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { useIntl } from 'react-intl';
 import {
   customSvgMap,
@@ -933,15 +934,13 @@ const View = (props) => {
   return (
     <BlockWrapper
       {...props}
-      className={[
+      className={cx(
+        props.className,
         `type-${displayMode}`,
         `align-${headerAlignment}`,
-        backgroundColor !== 'transparent'
-          ? `tone-${isDark ? 'light' : 'dark'}`
-          : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        backgroundColor !== 'transparent' &&
+          `tone-${isDark ? 'light' : 'dark'}`,
+      )}
     >
       {/* section + aria-labelledby gives screen reader users a named
           landmark. Only applied when a heading is present. */}

@@ -137,3 +137,25 @@ describe('Gallery', () => {
     expect(fieldsets.flatMap((f) => f.fields)).not.toContain('textTone');
   });
 });
+
+describe('Gallery wrapper', () => {
+  it("keeps Volto's classes for the block beside its own", () => {
+    const { container } = renderGallery(
+      { displayMode: 'blocks', sourceMode: 'context' },
+      {
+        search: {
+          subrequests: {
+            'gal123-context': {
+              loaded: true,
+              items: [{ '@id': '/page/a.jpg', '@type': 'Image', title: 'A' }],
+            },
+          },
+        },
+      },
+      { className: 'next--is--slate previous--has--same--backgroundColor' },
+    );
+    const wrapper = container.querySelector('.block.emblaGallery');
+    expect(wrapper.classList).toContain('next--is--slate');
+    expect(wrapper.classList).toContain('type-blocks');
+  });
+});

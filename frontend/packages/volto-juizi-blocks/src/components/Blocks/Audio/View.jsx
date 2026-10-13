@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import cx from 'classnames';
 import { useIntl } from 'react-intl';
 import {
   colorValueToKey,
@@ -102,7 +103,10 @@ const Audio = (props) => {
   return (
     <BlockWrapper
       {...props}
-      className={hasBackground ? `tone-${isDark ? 'light' : 'dark'}` : ''}
+      className={cx(
+        props.className,
+        hasBackground && `tone-${isDark ? 'light' : 'dark'}`,
+      )}
     >
       {/* Outer layer: full width, no background. Inner layer: the box with
           the background colour. */}
