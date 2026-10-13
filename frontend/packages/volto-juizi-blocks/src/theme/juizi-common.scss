@@ -304,8 +304,11 @@ $juizi-pad-sizes: (
   // The space above and below is the editor's choice above, so these blocks
   // don't also get the gap every block gets below it (VLT's 25px, Volto's
   // 1em): with "None", two of them touch. VLT does the same for its grids.
+  // Text right below keeps the gap, so it never sits against the block.
   // Blocks without these options keep the gap.
-  #page-document .blocks-group-wrapper > .block:has(> .#{$block}) {
+  #page-document
+    .blocks-group-wrapper
+    > .block:has(> .#{$block}):not(.next--is--slate) {
     margin-bottom: 0;
   }
 }
