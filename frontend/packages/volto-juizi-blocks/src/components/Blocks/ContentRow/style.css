@@ -366,8 +366,13 @@
 }
 
 .content-row-item__heading {
-  margin: 0 0 8px;
+  margin: 0 0 8px !important;
   color: inherit;
+}
+
+/* No description below it: no space below the heading either. */
+.content-row-item__heading:last-child {
+  margin-bottom: 0 !important;
 }
 
 /* The size is on the container, not its paragraphs: a description saved
@@ -488,6 +493,13 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 1rem;
+}
+.content-row-item--left:has(.content-row-item__heading:only-child) {
+  align-items: center;
+}
+.content-row-item--left:has(.content-row-item__heading:only-child)
+  .content-row-item__number--circle {
+  margin-bottom: 0;
 }
 
 .content-row-item--left .content-row-item__number,

@@ -5,7 +5,7 @@ import {
   readTranslations,
   renderWithIntl as render,
 } from '../_shared/testUtils';
-import View from './View';
+import View, { hasRichText } from './View';
 import schema from './schema';
 
 jest.mock('../_shared/BlockWrapper');
@@ -229,5 +229,39 @@ describe('Content Row wrapper', () => {
     const wrapper = container.querySelector('.block.contentRow');
     expect(wrapper.classList).toContain('next--is--slate');
     expect(wrapper.classList).toContain('type-statistics');
+  });
+});
+
+describe('Content Row empty description', () => {
+  const html = (data) => ({ 'content-type': 'text/html', data });
+
+  it('treats a touched but empty description as no description', () => {
+    expect(hasRichText(html('<p></p>'))).toBe(false);
+    expect(hasRichText(html('<p><br></p>'))).toBe(false);
+    expect(hasRichText(html('<p>&nbsp;</p>'))).toBe(false);
+    expect(hasRichText([{ type: 'p', children: [{ text: ' ' }] }])).toBe(false);
+    expect(hasRichText(html('<p>Text</p>'))).toBe(true);
+    expect(hasRichText([{ type: 'p', children: [{ text: 'Text' }] }])).toBe(
+      true,
+    );
+    expect(hasRichText('Plain text')).toBe(true);
+  });
+
+  it('leaves the text out of an item whose description is empty', () => {
+    const { container } = render(
+      <View
+        data={{
+          '@type': 'contentRow',
+          displayMode: 'icon',
+          items: [
+            { '@id': 'a', heading: 'Empty', text: html('<p><br></p>') },
+            { '@id': 'b', heading: 'Filled', text: html('<p>Words</p>') },
+          ],
+        }}
+      />,
+    );
+    const texts = container.querySelectorAll('.content-row-item__text');
+    expect(texts).toHaveLength(1);
+    expect(texts[0].textContent).toBe('Words');
   });
 });

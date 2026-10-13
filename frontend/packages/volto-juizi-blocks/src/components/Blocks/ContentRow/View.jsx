@@ -82,8 +82,35 @@ const SlateNode = ({ node }) => {
   }
 };
 
+// A description an editor has touched but left empty is still saved: as
+// HTML ("<p></p>", "<p><br></p>") or as Slate nodes without text. It counts
+// as no description, so the item doesn't get an empty paragraph (and the
+// spacing that comes with it).
+const htmlHasContent = (html) =>
+  /<(img|iframe|video|audio|embed|object|hr)\b/i.test(html) ||
+  html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;|&#160;|\u00a0/gi, '')
+    .trim() !== '';
+
+const slateHasContent = (nodes) =>
+  nodes.some((node) =>
+    typeof node?.text === 'string'
+      ? node.text.trim() !== ''
+      : Array.isArray(node?.children) && slateHasContent(node.children),
+  );
+
+export const hasRichText = (data) => {
+  if (!data) return false;
+  if (typeof data === 'string') return htmlHasContent(data);
+  if (Array.isArray(data)) return slateHasContent(data);
+  if (typeof data.data === 'string') return htmlHasContent(data.data);
+  if (Array.isArray(data.data)) return slateHasContent(data.data);
+  return false;
+};
+
 const RichText = ({ data, className }) => {
-  if (!data) return null;
+  if (!hasRichText(data)) return null;
   // Draftjs format: { data: "<p>html string</p>" }
   if (data?.data !== undefined) {
     if (typeof data.data === 'string') {
