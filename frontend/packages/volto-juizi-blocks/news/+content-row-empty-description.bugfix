@@ -1,0 +1,1 @@
+Content Row: an item's description that an editor touched but left empty (saved as `<p></p>` or `<p><br></p>`) no longer renders an empty paragraph, and a heading with no description below it has no space below it.

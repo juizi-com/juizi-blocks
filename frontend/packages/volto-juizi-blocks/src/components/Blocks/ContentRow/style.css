@@ -370,6 +370,11 @@
   color: inherit;
 }
 
+/* No description below it: no space below the heading either. */
+.content-row-item__heading:last-child {
+  margin-bottom: 0;
+}
+
 /* The size is on the container, not its paragraphs: a description saved
    through the rich-text field is HTML (`<p>…</p>`), while older or generated
    content can be plain text straight in the div. Both look the same. */
