@@ -18,6 +18,7 @@ import { DEFAULT_OVERLAY, overlayBackground } from '../../../config/gradients';
 import { blockAnchorId } from '../_shared/anchors';
 import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
+import { cssString } from '../_shared/i18n';
 import messages from './messages';
 import './style.css';
 
@@ -435,8 +436,6 @@ const HeroButtons = ({
 // while this Hero is the primary heading. The note itself is drawn by
 // style.css (`.block.title::before`), which can't be translated, so its text
 // is handed over as a CSS variable, in the editor's language.
-const cssString = (text) =>
-  `"${text.replace(/[\\"]/g, '\\$&').replace(/</g, '\\3c ')}"`;
 
 const TitleHiddenNote = () => {
   const intl = useIntl();

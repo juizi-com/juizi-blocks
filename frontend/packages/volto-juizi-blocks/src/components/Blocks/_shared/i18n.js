@@ -22,3 +22,10 @@ const formatDefault = (message, values = {}) =>
 
 export const translator = (intl) => (message, values) =>
   intl ? intl.formatMessage(message, values) : formatDefault(message, values);
+
+/**
+ * A translated message as a CSS string, for `content:` in a stylesheet
+ * (which can't be translated): `:root{--my-note:${cssString(text)}}`.
+ */
+export const cssString = (text) =>
+  `"${text.replace(/[\\"]/g, '\\$&').replace(/</g, '\\3c ')}"`;

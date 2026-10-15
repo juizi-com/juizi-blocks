@@ -15,6 +15,11 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
   the Carousel (see [Blocks](#blocks)).
 - A dashboard to switch any block on or off, limit it to some user groups,
   and manage the colours and themes the blocks share.
+- Extras for blocks from other add-ons, when a site has them: the Form block
+  (`volto-form-block`) gets a cleaner look, text beside the form, label and
+  help text options, the site's button styles and a background; the donation
+  and membership sign-up blocks get a background and form colours (see
+  [Other add-ons' blocks](#other-add-ons-blocks)).
 - Available in English, French, Portuguese, Brazilian Portuguese, Spanish and
   Afrikaans (see [Languages](#languages-)).
 
@@ -122,6 +127,14 @@ const addons = ['volto-juizi-blocks', 'volto-<site>'];
 
 Then `make install` (it runs mrs-developer and `pnpm install`) and rebuild or
 restart the frontend. The site's own add-on comes last, so it can override.
+
+**With the Form block:** list `volto-juizi-blocks` after `volto-form-block`
+(and after any add-on that replaces the form's sidebar schema), or its form
+options aren't added (see [Other add-ons' blocks](#other-add-ons-blocks)):
+
+```js
+const addons = ['volto-subblocks', 'volto-form-block', 'volto-juizi-blocks', 'volto-<site>'];
+```
 
 **With Volto Light Theme:** juizi-blocks doesn't install or switch it on. A
 site that wants it adds it (and the block add-ons it works with) itself, and
@@ -255,6 +268,56 @@ Switching a block off only hides it from the chooser: pages that already
 use it keep rendering. Add this check to each site's launch checklist.
 The Hero's Snapshot summary mode was removed: it depended on the NQF
 `Snapshot` content type and utilities that are not part of this project.
+
+### Other add-ons' blocks
+
+juizi-blocks also adds to some blocks that come from other add-ons. Each
+extension does nothing on a site without that block, and the block works
+without juizi-blocks: removing juizi-blocks leaves saved pages rendering,
+with the extra settings ignored.
+
+| Block | From | What juizi-blocks adds | README |
+| --- | --- | --- | --- |
+| Form (`form`) | `volto-form-block` (collective.volto.formsupport) | A cleaner look for every form; text beside the form; labels and help text placement; help text colour; Send and Cancel button styles; background and padding | `extensions/formBlock/README.md` |
+| Donation (`donationBlock`) | `volto-collective-donations` (collective.donations) | Background, form colours | `extensions/donationBlock/README.md` |
+| Membership sign-up (`membershipSignup`) | `volto-collective-membership` (collective.membership) | Background, form colours | `extensions/membershipSignup/README.md` |
+
+The donation and membership blocks look up a `blockExtension` utility that
+juizi-blocks registers. volto-form-block has no such hook, so juizi-blocks
+wraps the form's view, edit and sidebar schema in its block config instead of
+shadowing its files (the collective.formsupport add-ons already shadow some,
+and only one shadow of a file wins). That is why `volto-juizi-blocks` must be
+listed after `volto-form-block`.
+
+**The Form block**, in more detail:
+
+- **Every form** gets the Juizi look, with no setting to change: a light box
+  with a soft shadow, bordered fields with a focus ring, labels in the text
+  colour, help text in a readable grey without a line under it, errors as a
+  red border and message, "errors in the form" / sending error / "Sent!" as
+  boxes with a coloured edge, Juizi-shaped buttons, and the side gutter on
+  narrow screens. Adjust it with the `--juizi-form-*` tokens (see
+  [Tokens](#tokens)).
+- **Layout:** "Form with text beside it" adds a text column (text above the
+  heading, heading, introduction, more text) on the left or right; on phones
+  the text comes first. Same fields and wording as the donation and
+  membership blocks. "This is the primary page heading" makes its heading
+  the page's h1.
+- **Appearance:** labels beside or above the fields (always above on
+  phones); help text below the field or under the label, in a colour from
+  the site list (a light colour gets an edit-mode warning); Send and
+  Cancel/back buttons solid or outlined in a site colour.
+- **Background & spacing:** colour, image (with position and overlay) and
+  top and bottom padding, as in the Content Row. The form keeps its white
+  box on any background, so labels, errors and messages stay legible.
+- **In the editor** the canvas shows the same layout, label and help text
+  position as the published page. With the form's Data tab open, the form
+  takes the full width and the text moves above it, so the saved answers
+  have room.
+- Saved forms don't change until an option is chosen; only the shared look
+  applies to them.
+- Not yet: the text beside the form isn't in the site search (no
+  searchable-text adapter for `form` blocks yet).
 
 ## The dashboard (Site Setup → Juizi Blocks)
 
@@ -556,6 +619,7 @@ override on a narrower selector wouldn't reach them.
 | Cards | `--juizi-card-radius`, `--juizi-card-shadow` |
 | Reviews | `--juizi-review-star-color`, `--juizi-review-star-color-on-dark` (the Carousel's Reviews style; keep each at 3:1 or more against its background) |
 | Buttons | `--juizi-button-radius`, `--juizi-button-border-width` |
+| Form block | `--juizi-form-box-background` / `-foreground` / `-border` / `-radius` / `-shadow` / `-padding`, `--juizi-form-field-background` / `-border` / `-radius`, `--juizi-form-accent` (focus), `--juizi-form-error`, `--juizi-form-success` |
 
 Defaults follow Volto Light Theme's sizes, and the blocks' own stylesheets
 don't set these values themselves.
