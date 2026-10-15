@@ -81,6 +81,7 @@ class TestSettingsGet:
         assert data["disabled_blocks"] == []
         assert data["enabled_blocks"] == []
         assert data["block_groups"] == {}
+        assert data["editor_language"] == ""
         color_config = data["color_config"]
         assert [c["name"] for c in color_config["colors"]][:2] == ["white", "green"]
         assert [t["name"] for t in color_config["themes"]] == [
@@ -111,6 +112,16 @@ class TestSettingsBeforeUpgrade:
         response = anonymous.get(ENDPOINT)
         assert response.status_code == 200
         assert response.json()["block_groups"] == {}
+
+    def test_get_works_without_editor_language_record(self, functional, anonymous):
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        del getUtility(IRegistry).records["juizi.blocks.editor_language"]
+        transaction.commit()
+        response = anonymous.get(ENDPOINT)
+        assert response.status_code == 200
+        assert response.json()["editor_language"] == ""
 
 
 class TestSettingsPatch:
@@ -210,3 +221,25 @@ class TestSettingsPatch:
         assert response.json()["error"]["type"] == "ValidationError"
         # Nothing was stored.
         assert manager.get(ENDPOINT).json()["disabled_blocks"] == []
+
+
+class TestEditorLanguage:
+    def test_manager_sets_and_clears_it(self, manager, anonymous):
+        response = manager.patch(ENDPOINT, json={"editor_language": "en"})
+        assert response.status_code == 200
+        assert response.json()["editor_language"] == "en"
+        assert anonymous.get(ENDPOINT).json()["editor_language"] == "en"
+
+        response = manager.patch(ENDPOINT, json={"editor_language": ""})
+        assert response.json()["editor_language"] == ""
+
+    def test_other_settings_are_kept(self, manager):
+        manager.patch(ENDPOINT, json={"disabled_blocks": ["emblaCarousel"]})
+        response = manager.patch(ENDPOINT, json={"editor_language": "pt-br"})
+        assert response.json()["disabled_blocks"] == ["emblaCarousel"]
+
+    @pytest.mark.parametrize("value", ["de", "PT", "english", 3, ["en"]])
+    def test_rejects_unsupported_languages(self, manager, value):
+        response = manager.patch(ENDPOINT, json={"editor_language": value})
+        assert response.status_code == 400
+        assert "editing language" in response.json()["error"]["message"]

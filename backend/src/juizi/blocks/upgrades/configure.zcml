@@ -38,6 +38,17 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      profile="juizi.blocks:default"
+      source="1002"
+      destination="1003"
+      >
+    <genericsetup:upgradeDepends
+        title="Add the juizi.blocks.editor_language registry record"
+        import_steps="plone.app.registry"
+        />
+  </genericsetup:upgradeSteps>
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>

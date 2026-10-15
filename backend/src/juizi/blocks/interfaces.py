@@ -53,6 +53,18 @@ class IJuiziBlocksSettings(Interface):
         missing_value="{}",
     )
 
+    editor_language = schema.TextLine(
+        title=_("Editing language"),
+        description=_(
+            "The language of the Juizi blocks' editing interface (sidebar, "
+            "hints), whatever the page's language. Empty: the page's "
+            "language. Visitors always see the page's language."
+        ),
+        required=False,
+        default="",
+        missing_value="",
+    )
+
     color_config = schema.Text(
         title=_("Colour configuration"),
         description=_(

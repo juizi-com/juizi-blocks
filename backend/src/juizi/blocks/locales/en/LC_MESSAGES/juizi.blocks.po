@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-05 06:36+0000\n"
+"POT-Creation-Date: 2026-10-15 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
 msgstr ""
 
-#: juizi/blocks/interfaces.py:57
+#: juizi/blocks/interfaces.py:69
 msgid "Colour configuration"
 msgstr ""
 
-#: juizi/blocks/profiles.zcml:23
+#: juizi/blocks/profiles.zcml:31
 msgid "Create example content to showcase the new website"
 msgstr ""
 
@@ -38,11 +38,15 @@ msgstr ""
 msgid "Disabled blocks"
 msgstr ""
 
+#: juizi/blocks/interfaces.py:57
+msgid "Editing language"
+msgstr ""
+
 #: juizi/blocks/interfaces.py:34
 msgid "Enabled blocks"
 msgstr ""
 
-#: juizi/blocks/interfaces.py:58
+#: juizi/blocks/interfaces.py:70
 msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
 msgstr ""
 
@@ -50,14 +54,26 @@ msgstr ""
 msgid "JSON object mapping block type ids to the user groups that may add them. Blocks without an entry are offered to everybody."
 msgstr ""
 
-#: juizi/blocks/profiles.zcml:23
-msgid "Juizi Blocks: Example content"
-msgstr ""
-
 #: juizi/blocks/profiles.zcml:13
 msgid "Juizi Blocks"
 msgstr ""
 
+#: juizi/blocks/profiles.zcml:21
+msgid "Juizi Blocks: Development site"
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:31
+msgid "Juizi Blocks: Example content"
+msgstr ""
+
 #: juizi/blocks/profiles.zcml:13
 msgid "Juizi's block set (Hero, Content Row, Carousel, Gallery, Callout, Redirect) with a dashboard for colours and block switches. Needs the volto-juizi-blocks frontend add-on."
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:21
+msgid "Set up this add-on's own development site: Volto Light Theme, its site settings, and the site title and email sender name"
+msgstr ""
+
+#: juizi/blocks/interfaces.py:58
+msgid "The language of the Juizi blocks' editing interface (sidebar, hints), whatever the page's language. Empty: the page's language. Visitors always see the page's language."
 msgstr ""

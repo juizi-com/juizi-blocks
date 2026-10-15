@@ -61,6 +61,7 @@ export default function juiziBlocksSettings(
           disabled_blocks: action.result?.disabled_blocks ?? [],
           enabled_blocks: action.result?.enabled_blocks ?? [],
           block_groups: action.result?.block_groups ?? {},
+          editor_language: action.result?.editor_language ?? '',
           color_config:
             action.result?.color_config ?? DEFAULT_SETTINGS.color_config,
         },

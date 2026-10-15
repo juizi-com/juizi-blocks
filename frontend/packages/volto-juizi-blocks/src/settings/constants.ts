@@ -68,5 +68,19 @@ export const DEFAULT_SETTINGS: JuiziBlocksSettings = {
   disabled_blocks: [],
   enabled_blocks: [],
   block_groups: {},
+  editor_language: '',
   color_config: DEFAULT_COLOR_CONFIG,
 };
+
+/** The languages the editing interface can be shown in: the ones the add-on
+ * ships translated (src/locales). Mirrors EDITOR_LANGUAGES in the backend's
+ * juizi.blocks.settings. Each name is in its own language, as language
+ * pickers usually are. */
+export const EDITOR_LANGUAGES: { code: string; name: string }[] = [
+  { code: 'en', name: 'English' },
+  { code: 'fr', name: 'Français' },
+  { code: 'pt', name: 'Português' },
+  { code: 'pt-br', name: 'Português (Brasil)' },
+  { code: 'es', name: 'Español' },
+  { code: 'af', name: 'Afrikaans' },
+];

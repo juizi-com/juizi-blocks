@@ -2,7 +2,7 @@
 
 GET   /@juizi-blocks-settings
       -> {"disabled_blocks": [...], "enabled_blocks": [...],
-          "block_groups": {...}, "color_config": {...}}
+          "block_groups": {...}, "editor_language": "", "color_config": {...}}
 PATCH /@juizi-blocks-settings  with any subset of those keys
 
 disabled_blocks: switched off in the dashboard.
@@ -10,6 +10,8 @@ enabled_blocks:  switched on although the block's own config keeps it off.
 A block id in both lists counts as disabled.
 block_groups:    {block id: [group id, ...]}, the user groups a switched-on
                  block is offered to; blocks without an entry: everybody.
+editor_language: the language of the Juizi blocks' editing interface
+                 ("en", "pt", ...); "" follows the page's language.
 """
 
 from juizi.blocks.interfaces import IJuiziBlocksSettings
@@ -19,6 +21,7 @@ from juizi.blocks.settings import SettingsValidationError
 from juizi.blocks.settings import validate_color_config
 from juizi.blocks.settings import validate_block_groups
 from juizi.blocks.settings import validate_block_ids
+from juizi.blocks.settings import validate_editor_language
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
 from plone.restapi.deserializer import json_body
@@ -44,8 +47,17 @@ def serialize_settings(context, records) -> dict:
         "disabled_blocks": list(records.disabled_blocks or []),
         "enabled_blocks": list(records.enabled_blocks or []),
         "block_groups": load_block_groups(records.block_groups),
+        # A value the frontend can't use (edited by hand) counts as unset.
+        "editor_language": _editor_language(records.editor_language),
         "color_config": load_color_config(records.color_config),
     }
+
+
+def _editor_language(value) -> str:
+    try:
+        return validate_editor_language(value)
+    except SettingsValidationError:
+        return ""
 
 
 class SettingsGet(Service):
@@ -74,6 +86,11 @@ class SettingsPatch(Service):
                 if "block_groups" in data
                 else None
             )
+            editor_language = (
+                validate_editor_language(data["editor_language"])
+                if "editor_language" in data
+                else None
+            )
             color_config = (
                 validate_color_config(data["color_config"])
                 if "color_config" in data
@@ -93,6 +110,8 @@ class SettingsPatch(Service):
         ]
         if block_groups is not None:
             records.block_groups = json.dumps(block_groups)
+        if editor_language is not None:
+            records.editor_language = editor_language
         if color_config is not None:
             records.color_config = json.dumps(color_config, indent=2)
 

@@ -151,6 +151,20 @@ def validate_block_groups(value) -> dict[str, list[str]]:
     return result
 
 
+# Languages the Juizi blocks' editing interface can be shown in: the ones
+# volto-juizi-blocks ships translated (frontend src/locales). Volto's codes.
+EDITOR_LANGUAGES = ("en", "fr", "pt", "pt-br", "es", "af")
+
+
+def validate_editor_language(value) -> str:
+    """'' (follow the page's language) or one of EDITOR_LANGUAGES."""
+    if value in (None, ""):
+        return ""
+    if not isinstance(value, str) or value not in EDITOR_LANGUAGES:
+        raise SettingsValidationError(f"Unsupported editing language: {value!r}")
+    return value
+
+
 def load_block_groups(raw: str | None) -> dict[str, list[str]]:
     """Parse the stored JSON; anything unusable counts as no restrictions."""
     if raw:
