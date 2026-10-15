@@ -1,0 +1,193 @@
+/* The form block with text beside it and/or a background (withSideText.jsx).
+   Width and side padding come from $juizi-layers in theme/juizi-common.scss;
+   heading, text above it and introduction share the Juizi type tokens. */
+
+.juizi-form-frame--has-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.juizi-form-frame__bg,
+.juizi-form-frame__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.juizi-form-frame__bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Space above and below. Chosen in "Background & spacing" (the
+   `--pad-top-*` / `--pad-bottom-*` classes, juizi-common.scss), else this:
+   more once the form sits on a background. The form's own box gives up its
+   space above and below, so the space is the same with or without text. */
+.juizi-form-wrapper--auto-pad-top {
+  padding-top: 2rem;
+}
+
+.juizi-form-wrapper--auto-pad-bottom {
+  padding-bottom: 2rem;
+}
+
+.juizi-form-frame--has-bg > .juizi-form-wrapper--auto-pad-top {
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.juizi-form-frame--has-bg > .juizi-form-wrapper--auto-pad-bottom {
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.juizi-form-wrapper__form .ui.segment {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Text and form side by side, as in the donation and membership sign-up
+   blocks. The text comes first in the page, so on phones it sits above the
+   form. */
+.juizi-form-wrapper--with-text {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  .juizi-form-wrapper--with-text {
+    gap: 4rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .juizi-form-wrapper--form-left .juizi-form-side {
+    order: 2;
+  }
+}
+
+/* "Buttons": the site's unified button styles (config/buttons.scss) on the
+   form's own buttons, from the properties the Frame sets
+   (buttonColorVars). Only for a chosen style; the editor's "Add field"
+   button keeps its look. Cancel covers the "back" button after sending. */
+.juizi-form-wrapper--submit-styled .ui.button.primary:not(.add-element),
+.juizi-form-wrapper--cancel-styled .ui.button.secondary:not(.add-element) {
+  border: var(--juizi-button-border-width, 2px) solid var(--btn-border);
+  border-radius: var(--juizi-button-radius, 4px);
+  background: var(--btn-background);
+  color: var(--btn-foreground);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.juizi-form-wrapper--submit-styled .ui.button.primary:not(.add-element) {
+  --btn-background: var(--juizi-form-submit-background);
+  --btn-foreground: var(--juizi-form-submit-foreground);
+  --btn-border: var(--juizi-form-submit-border);
+  --btn-hover-background: var(--juizi-form-submit-hover-background);
+  --btn-hover-foreground: var(--juizi-form-submit-hover-foreground);
+}
+
+.juizi-form-wrapper--cancel-styled .ui.button.secondary:not(.add-element) {
+  --btn-background: var(--juizi-form-cancel-background);
+  --btn-foreground: var(--juizi-form-cancel-foreground);
+  --btn-border: var(--juizi-form-cancel-border);
+  --btn-hover-background: var(--juizi-form-cancel-hover-background);
+  --btn-hover-foreground: var(--juizi-form-cancel-hover-foreground);
+}
+
+.juizi-form-wrapper--submit-styled
+  .ui.button.primary:not(.add-element):is(:hover, :focus-visible),
+.juizi-form-wrapper--cancel-styled
+  .ui.button.secondary:not(.add-element):is(:hover, :focus-visible) {
+  border-color: var(--btn-hover-background);
+  background: var(--btn-hover-background);
+  color: var(--btn-hover-foreground);
+}
+
+/* A form without any of these options still gets the side gutter every
+   Juizi block has, so it isn't edge to edge below the content width (as
+   $juizi-layers does, without changing its links' colour). */
+#page-document .blocks-group-wrapper > .block.form {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  padding-right: var(--juizi-gutter);
+  padding-left: var(--juizi-gutter);
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+#page-document .blocks-group-wrapper > .block.form > .public-ui {
+  max-width: var(--juizi-form-width);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* The side gutter on a background comes from $juizi-layers on the published
+   page only; give the editor's preview the same, so the text doesn't touch
+   the colour's edge. */
+:is(#page-edit, #page-add) .juizi-form-frame--has-bg {
+  padding-right: var(--juizi-gutter);
+  padding-left: var(--juizi-gutter);
+}
+
+/* In the editor, with the form's Data tab open (saved answers), the table
+   needs the room: one column, the text above the form whichever side it's
+   on. */
+.juizi-form-wrapper--with-text:has(
+    .ui.tabular.menu > .item.active:not(:first-child)
+  ) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.juizi-form-wrapper--with-text:has(
+    .ui.tabular.menu > .item.active:not(:first-child)
+  )
+  .juizi-form-side {
+  order: -1 !important;
+}
+
+.juizi-form-side__more {
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  margin-top: 1.5rem;
+}
+
+.juizi-form-side__more > :last-child {
+  margin-bottom: 0;
+}
+
+/* The heading beside the form is the page's main heading: the page's own
+   title would repeat it, so hide it. CSS rather than body classes, so it's
+   right in server-rendered HTML. */
+body:has(.juizi-form-side__heading--primary)
+  #page-document
+  .documentFirstHeading {
+  display: none;
+}
+
+/* In the editor the title stays, faded, with a note saying why (its words
+   come from TitleHiddenNote, in the editor's language) */
+body:has(.juizi-form-side__heading--primary)
+  :is(#page-edit, #page-add)
+  .documentFirstHeading {
+  opacity: 0.4;
+}
+
+body:has(.juizi-form-side__heading--primary)
+  :is(#page-edit, #page-add)
+  .block.title::before {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid #111;
+  margin-bottom: 0.5rem;
+  background: #f9f9f9;
+  color: #111;
+  content: var(--juizi-form-title-note);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+}

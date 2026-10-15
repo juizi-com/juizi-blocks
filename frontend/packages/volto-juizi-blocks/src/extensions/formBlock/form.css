@@ -1,0 +1,412 @@
+/* The look of every Form block (volto-form-block) on a site with
+   juizi-blocks, with or without the extension's options: a light box with
+   a soft shadow, bordered fields with a focus ring, and quieter messages.
+   Colours, radius, shadow and spacing are the --juizi-form-* tokens in
+   theme/juizi-common.scss, so a site theme can adjust them in one place.
+   volto-form-block and Volto's own form styles are specific, so several
+   rules need !important to apply at all. Field rules match both the
+   published form and the editor's canvas (no `.ui.form` there), so the
+   editor sees the same look and label position. */
+
+/* ── The box ────────────────────────────────────────────────────────────── */
+
+/* Inside the extension's wrapper the form block is no longer a direct child
+   of the blocks layout, and Volto Light Theme then paints every such
+   `.block` in the theme colour: a square white block behind the rounded
+   box, visible on a coloured background. */
+.juizi-form-wrapper__form > .block.form {
+  background: transparent;
+  color: inherit;
+}
+
+/* Light box and dark text whatever the block's background, so labels,
+   field errors and messages stay legible on any colour. */
+.block.form .public-ui > .ui.segment,
+.block.form .public-ui > .ui.segment.padded {
+  padding: var(--juizi-form-box-padding) !important;
+  border: 1px solid var(--juizi-form-box-border);
+  border-radius: var(--juizi-form-box-radius);
+  background: var(--juizi-form-box-background);
+  box-shadow: var(--juizi-form-box-shadow);
+  color: var(--juizi-form-box-foreground);
+}
+
+.block.form .public-ui > .ui.segment > h2 {
+  margin: 0 0 0.5rem;
+  color: inherit;
+  font-family: var(--juizi-heading-font-family);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  line-height: 1.2;
+}
+
+.block.form .public-ui > .ui.segment > .description {
+  margin: 0 0 1.5rem;
+  color: color-mix(in srgb, currentColor 75%, transparent);
+}
+
+/* ── Fields ─────────────────────────────────────────────────────────────── */
+
+/* One field per row, with even space between them */
+.block.form .ui.form > .ui.grid > .row {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.block.form .inline.field .ui.grid {
+  margin: 0 !important;
+}
+
+/* Fields line up with the title and description: no grid indent */
+.block.form .ui.form > .ui.grid {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.block.form .ui.form > .ui.grid > .row > .column {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.block.form .inline.field textarea {
+  margin-top: 0 !important;
+}
+
+.block.form .inline.field .ui.grid > .row {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* No underline below each label: the field itself has a border now */
+.block.form .inline.field .wrapper {
+  min-height: 0;
+  padding: 0;
+  border-bottom: 0 !important;
+}
+
+/* Volto colours required fields' labels red; the red dot already says
+   "required", so the label keeps the text colour */
+.block.form .inline.field label {
+  color: var(--juizi-form-box-foreground) !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.block.form .inline.field .ui.input > input,
+.block.form .inline.field textarea,
+.block.form .inline.field select {
+  box-sizing: border-box;
+  padding: 0.7em 0.9em !important;
+  border: 1px solid var(--juizi-form-field-border) !important;
+  border-radius: var(--juizi-form-field-radius, 4px) !important;
+  background: var(--juizi-form-field-background) !important;
+  box-shadow: none !important;
+  color: var(--juizi-form-box-foreground) !important;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.block.form .inline.field .ui.input > input:focus,
+.block.form .inline.field textarea:focus,
+.block.form .inline.field select:focus {
+  border-color: var(--juizi-form-accent) !important;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--juizi-form-accent) 20%, transparent) !important;
+  outline: none;
+}
+
+/* A field with a problem: red border, and its message in the same red */
+.block.form .inline.field.error .ui.input > input,
+.block.form .inline.field.error textarea,
+.block.form .inline.field.error select {
+  border-color: var(--juizi-form-error) !important;
+}
+
+.block.form .inline.field.error :is(.ui.label, p, span) {
+  color: var(--juizi-form-error) !important;
+}
+
+/* ── Label, field and help text ─────────────────────────────────────────── */
+
+/* Each field is a small grid: label | field, help text below the field.
+   Volto's rows are flattened (display: contents) so the help text can move
+   under the label ("Help text" in Appearance), and labels can go above the
+   fields ("Labels"; always on phones, where beside leaves the field too
+   narrow). Only fields built this way (label and field columns) change.
+   The base rules are kept low in specificity (:where) so the options
+   below always win. */
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column) {
+  display: grid !important;
+  width: 100% !important;
+  align-items: center;
+  column-gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  row-gap: 0.35rem;
+}
+
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row {
+  display: contents !important;
+}
+
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .four.wide.column {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .eight.wide.column {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+:where(.block.form)
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column:has(> .help) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Help text under the label, beside the field */
+.juizi-form-wrapper--help-label
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .four.wide.column {
+  align-self: end;
+}
+
+.juizi-form-wrapper--help-label
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column:has(> .help) {
+  align-self: start;
+  grid-column: 1;
+}
+
+.juizi-form-wrapper--help-label
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .eight.wide.column {
+  grid-row: 1 / span 2;
+}
+
+/* Labels above: one column, label, field, help text (or label, help text,
+   field) */
+.juizi-form-wrapper--labels-above
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.juizi-form-wrapper--labels-above
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column {
+  align-self: auto;
+  grid-column: 1 !important;
+}
+
+.juizi-form-wrapper--labels-above
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .eight.wide.column {
+  grid-row: 2;
+}
+
+.juizi-form-wrapper--labels-above
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column:has(> .help) {
+  grid-row: 3;
+}
+
+.juizi-form-wrapper--labels-above.juizi-form-wrapper--help-label
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .column:has(> .help) {
+  grid-row: 2;
+}
+
+.juizi-form-wrapper--labels-above.juizi-form-wrapper--help-label
+  .inline.field
+  > .ui.grid:has(> .stretched.row > .four.wide.column)
+  > .row
+  > .eight.wide.column {
+  grid-row: 3;
+}
+
+@media (max-width: 600px) {
+  :where(.block.form)
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :where(.block.form)
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column)
+    > .row
+    > .column {
+    align-self: auto !important;
+    grid-column: 1 !important;
+  }
+
+  :where(.block.form)
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column)
+    > .row
+    > .eight.wide.column {
+    grid-row: 2 !important;
+  }
+
+  :where(.block.form)
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column)
+    > .row
+    > .column:has(> .help) {
+    grid-row: 3 !important;
+  }
+
+  .juizi-form-wrapper--help-label
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column)
+    > .row
+    > .column:has(> .help) {
+    grid-row: 2 !important;
+  }
+
+  .juizi-form-wrapper--help-label
+    .inline.field
+    > .ui.grid:has(> .stretched.row > .four.wide.column)
+    > .row
+    > .eight.wide.column {
+    grid-row: 3 !important;
+  }
+}
+
+/* The help text: no line under it, a readable grey unless a colour is
+   chosen in Appearance (--juizi-form-help-color, set by the Frame) */
+.block.form .inline.field p.help {
+  padding: 0 !important;
+  border: 0 !important;
+  margin: 0 !important;
+  color: var(
+    --juizi-form-help-color,
+    color-mix(in srgb, var(--juizi-form-box-foreground) 72%, white)
+  ) !important;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* ── Messages ───────────────────────────────────────────────────────────── */
+
+/* "There are some errors", a sending error, and "Sent!": full width, with
+   a coloured edge instead of a solid block of colour. */
+.block.form .ui.form .ui.message,
+.block.form .public-ui .ui.message {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+  border-radius: var(--juizi-form-field-radius, 4px);
+  border-left: 4px solid currentColor;
+  margin: 1.5rem 0 0 !important;
+  box-shadow: none;
+  color: var(--juizi-form-box-foreground);
+  text-align: left;
+}
+
+.block.form .public-ui .ui.message.error {
+  border-left-color: var(--juizi-form-error);
+  background: color-mix(in srgb, var(--juizi-form-error) 8%, white);
+}
+
+.block.form .public-ui .ui.message.positive {
+  border-left-color: var(--juizi-form-success);
+  background: color-mix(in srgb, var(--juizi-form-success) 8%, white);
+}
+
+.block.form .ui.message .header {
+  margin-bottom: 0.25rem;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.block.form .ui.message.error .header {
+  color: color-mix(in srgb, var(--juizi-form-error) 80%, black);
+}
+
+.block.form .ui.message.positive .header {
+  color: color-mix(in srgb, var(--juizi-form-success) 80%, black);
+}
+
+.block.form .ui.message.positive .ui.button {
+  margin-top: 1rem;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+
+/* The second button (Cancel, and Clear after sending) is a quiet outline
+   until a style is chosen in Appearance */
+.block.form
+  .ui.button.secondary:not(.add-element):not(
+    .juizi-form-wrapper--cancel-styled *
+  ) {
+  border: var(--juizi-button-border-width, 2px) solid
+    var(--juizi-form-field-border);
+  background: transparent;
+  color: var(--juizi-form-box-foreground);
+}
+
+.block.form
+  .ui.button.secondary:not(.add-element):not(
+    .juizi-form-wrapper--cancel-styled *
+  ):is(:hover, :focus-visible) {
+  border-color: var(--juizi-form-box-foreground);
+  background: transparent;
+  color: var(--juizi-form-box-foreground);
+}
+
+/* The same shape as the other Juizi buttons (config/buttons.scss); their
+   colours stay the theme's unless chosen in Appearance (style.css). The
+   editor's "Add field" button keeps its own look. */
+.block.form .ui.form .row-padded-top {
+  padding-top: 1.75rem !important;
+}
+
+.block.form .ui.button:not(.add-element) {
+  padding: 0.65em 1.4em;
+  border-radius: var(--juizi-button-radius, 4px);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}

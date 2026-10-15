@@ -40,18 +40,20 @@ export const buttonVars = (prefix, value) => {
  * A Frame for a form block's extension: background colour, and optionally
  * an image over it (a photo, or a pattern), as in the Content Row; the text
  * follows the colour. It also sets the form colours (`colorVars(data)`).
- * With none of these set the block renders as it did before.
+ * With none of these set the block renders as it did before, unless
+ * `always` is set: then the frame is drawn anyway (without a background),
+ * for blocks whose layout needs the outer layer.
  * `baseClass` names the frame and its parts (`__bg`, `__overlay`,
  * `--has-bg`); its width comes from $juizi-layers.
  */
-const makeBackgroundFrame = (baseClass, colorVars) => {
+const makeBackgroundFrame = (baseClass, colorVars, { always = false } = {}) => {
   const BackgroundFrame = ({ data = {}, children }) => {
     const backgroundColor = data.backgroundColor || 'transparent';
     const hasColor = backgroundColor !== 'transparent';
     const bgImageUrl = getPickedImageUrl(data.backgroundImage);
     const hasBg = hasColor || !!bgImageUrl;
     const vars = colorVars(data);
-    if (!hasBg && !Object.keys(vars).length) return children;
+    if (!always && !hasBg && !Object.keys(vars).length) return children;
 
     const overlay = data.backgroundOverlay || DEFAULT_OVERLAY;
     const overlayCss = overlayBackground(overlay);

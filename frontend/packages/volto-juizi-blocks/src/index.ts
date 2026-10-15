@@ -5,6 +5,7 @@ import installBlocks from './config/blocks';
 import installLegacy from './legacy';
 import installDonationExtension from './extensions/donationBlock';
 import installMembershipSignupExtension from './extensions/membershipSignup';
+import installFormBlockExtension from './extensions/formBlock';
 
 import './theme/juizi-blocks.scss';
 import './config/buttons.scss';
@@ -39,6 +40,9 @@ function applyConfig(config: ConfigType) {
   installDonationExtension(config);
   // The same for the membership sign-up block.
   installMembershipSignupExtension(config);
+  // Text beside the form and a background for volto-form-block's Form
+  // block, when the site has it (listed before this add-on).
+  installFormBlockExtension(config);
   applyInitialSettings();
   return config;
 }

@@ -96,6 +96,7 @@
   --juizi-audio-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
   --juizi-membership-width: var(--juizi-content-width);
+  --juizi-form-width: var(--juizi-content-width);
   // Space inside a Callout that has a background colour, on the sides
   // (top and bottom use the Callout's own padding, juizi-blocks.scss).
   --juizi-callout-padding: 1.5rem;
@@ -119,22 +120,43 @@
   // controls (arrows, "More" button), so they match out of the box.
   --juizi-button-radius: 4px;
   --juizi-button-border-width: 2px;
+
+  // ── Form block (extensions/formBlock/form.css) ──────────────────────────
+  // The form's box, its fields and its messages. The box keeps a light
+  // background and dark text on any block background.
+  --juizi-form-box-background: #fff;
+  --juizi-form-box-foreground: #121923;
+  --juizi-form-box-border: rgb(18 25 35 / 10%);
+  --juizi-form-box-radius: 8px;
+  --juizi-form-box-shadow: 0 1px 2px rgb(18 25 35 / 4%),
+    0 12px 32px rgb(18 25 35 / 8%);
+  --juizi-form-box-padding: clamp(1.5rem, 4vw, 2.75rem);
+  --juizi-form-field-background: #fff;
+  --juizi-form-field-border: rgb(18 25 35 / 25%);
+  --juizi-form-field-radius: var(--juizi-button-radius);
+  // Focus ring and border of the field being filled in
+  --juizi-form-accent: #1769a6;
+  --juizi-form-error: #b3261e;
+  --juizi-form-success: #1e7a46;
 }
 
 // ── Which class is which, per block ───────────────────────────────────────
 
-$juizi-preheaders: '.hero-preheader', '.content-row__preheader';
+$juizi-preheaders: '.hero-preheader', '.content-row__preheader',
+  '.juizi-form-side__kicker';
 $juizi-titles: '.hero-block--section .hero-title',
   '.hero-block--snapshot .hero-title', '.content-row__heading', '.embla__title',
-  '.gallery__title', '.juizi-audio__title';
-$juizi-hero-titles: '.hero-block--hero .hero-title';
+  '.gallery__title', '.juizi-audio__title', '.juizi-form-side__heading';
+$juizi-hero-titles: '.hero-block--hero .hero-title',
+  '.juizi-form-side__heading--primary';
 $juizi-descriptions: '.hero-subtitle', '.content-row__description',
-  '.embla__description', '.gallery__description', '.juizi-audio__description';
+  '.embla__description', '.gallery__description', '.juizi-audio__description',
+  '.juizi-form-side__intro';
 $juizi-item-preheaders: '.content-row-item__preheader';
 $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
   '.embla .slide__body h3';
 // Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
-$juizi-padded-blocks: 'hero-block', 'content-row';
+$juizi-padded-blocks: 'hero-block', 'content-row', 'juizi-form-wrapper';
 // Text block types (`@type`) that keep the gap below a padded block above
 // them. VLT marks a block with `next--is--{@type}` of the block below.
 $juizi-text-blocks: 'slate', 'slateTable', 'title', 'description', 'accordion';
@@ -188,6 +210,13 @@ $juizi-layers: (
     (
       '.membership-signup-wrapper',
       --juizi-membership-width,
+    ),
+  // The form block, while it has text beside it or a background
+  // (extensions/formBlock)
+  '.juizi-form-frame':
+    (
+      '.juizi-form-wrapper',
+      --juizi-form-width,
     ),
 );
 // "Full width" option (on the outer layer): the inner layer spans too
