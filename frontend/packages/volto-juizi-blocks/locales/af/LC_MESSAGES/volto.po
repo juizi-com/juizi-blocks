@@ -1756,6 +1756,21 @@ msgstr "Verstek"
 msgid "juizi-dashboard-disabled"
 msgstr "Af"
 
+#. Default: "Editing language"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language"
+msgstr "Redigeertaal"
+
+#. Default: "Same as the page"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language-follow"
+msgstr "Dieselfde as die bladsy"
+
+#. Default: "The language of the Juizi blocks' sidebar and editing hints, whatever the page's language: handy when you build a site in a language you don't read. Visitors always see the page's language. Set it back to \"Same as the page\" when the site launches."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language-help"
+msgstr "Die taal van die Juizi-blokke se sybalk en redigeerwenke, wat ook al die bladsy se taal is: handig as jy ’n webwerf bou in ’n taal wat jy nie lees nie. Besoekers sien altyd die bladsy se taal. Stel dit terug na “Dieselfde as die bladsy” wanneer die webwerf bekendgestel word."
+
 #. Default: "Enabled"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-enabled"
@@ -2125,6 +2140,191 @@ msgstr "Die sirkel met die nommer van die stap waarby die skenker is, bo-aan die
 #: components/Blocks/_shared/messages
 msgid "juizi-extra-spacious"
 msgstr "Ekstra ruim"
+
+#. Default: "Add the text for this side in the sidebar, under \"Text beside the form\"."
+#: extensions/formBlock/messages
+msgid "juizi-form-add-text"
+msgstr "Voeg die teks vir hierdie kant in die sybalk by, onder “Teks langs die vorm”."
+
+#. Default: "Background & spacing"
+#: extensions/formBlock/messages
+msgid "juizi-form-background-spacing"
+msgstr "Agtergrond en spasiëring"
+
+#. Default: "Cancel and back buttons"
+#: extensions/formBlock/messages
+msgid "juizi-form-cancel-button"
+msgstr "Kanselleer- en terugknoppies"
+
+#. Default: "The Cancel button, if the form shows one, and the button that brings the form back after it's sent. Leave empty for the site's usual button."
+#: extensions/formBlock/messages
+msgid "juizi-form-cancel-button-help"
+msgstr "Die Kanselleer-knoppie, as die vorm een wys, en die knoppie wat die vorm terugbring nadat dit gestuur is. Laat leeg vir die webwerf se gewone knoppie."
+
+#. Default: "Below the field"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-below"
+msgstr "Onder die veld"
+
+#. Default: "Help text colour"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color"
+msgstr "Kleur van die hulpteks"
+
+#. Default: "Leave empty for a soft grey."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color-help"
+msgstr "Laat leeg vir ’n sagte grys."
+
+#. Default: "The help text colour is light and may be hard to read on the white form. A darker colour reads better."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color-light"
+msgstr "Die hulpteks se kleur is lig en kan moeilik wees om op die wit vorm te lees. ’n Donkerder kleur lees beter."
+
+#. Default: "Help text"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-position"
+msgstr "Hulpteks"
+
+#. Default: "The extra line some fields have, such as how you'll use an email address."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-position-help"
+msgstr "Die ekstra reël wat sommige velde het, soos hoe jy ’n e-posadres gaan gebruik."
+
+#. Default: "Under the label"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-under-label"
+msgstr "Onder die etiket"
+
+#. Default: "Labels"
+#: extensions/formBlock/messages
+msgid "juizi-form-label-position"
+msgstr "Etikette"
+
+#. Default: "Above the fields suits a form beside text. On phones labels are always above."
+#: extensions/formBlock/messages
+msgid "juizi-form-label-position-help"
+msgstr "Bo die velde pas by ’n vorm langs teks. Op fone is etikette altyd bo."
+
+#. Default: "Above the fields"
+#: extensions/formBlock/messages
+msgid "juizi-form-labels-above"
+msgstr "Bo die velde"
+
+#. Default: "Beside the fields"
+#: extensions/formBlock/messages
+msgid "juizi-form-labels-beside"
+msgstr "Langs die velde"
+
+#. Default: "Layout"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout"
+msgstr "Uitleg"
+
+#. Default: "Form only"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-form"
+msgstr "Slegs die vorm"
+
+#. Default: "Add text beside the form, such as what happens after someone sends it."
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-help"
+msgstr "Voeg teks langs die vorm by, soos wat gebeur nadat iemand dit gestuur het."
+
+#. Default: "Form with text beside it"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-text"
+msgstr "Vorm met teks langsaan"
+
+#. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
+#: extensions/formBlock/messages
+msgid "juizi-form-other-primary"
+msgstr "’n Ander blok is reeds die hoofopskrif van hierdie bladsy. Ontmerk “Dit is die hoofopskrif van die bladsy” by een van hulle."
+
+#. Default: "Optional. Leave empty for the usual space."
+#: extensions/formBlock/messages
+msgid "juizi-form-padding-help"
+msgstr "Opsioneel. Laat leeg vir die gewone spasie."
+
+#. Default: "Form position"
+#: extensions/formBlock/messages
+msgid "juizi-form-position"
+msgstr "Posisie van die vorm"
+
+#. Default: "On phones the text always comes first, above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-position-help"
+msgstr "Op fone kom die teks altyd eerste, bo die vorm."
+
+#. Default: "Left"
+#: extensions/formBlock/messages
+msgid "juizi-form-position-left"
+msgstr "Links"
+
+#. Default: "Right"
+#: extensions/formBlock/messages
+msgid "juizi-form-position-right"
+msgstr "Regs"
+
+#. Default: "This is the primary page heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-primary-heading"
+msgstr "Dit is die hoofopskrif van die bladsy"
+
+#. Default: "Makes the heading below the page's main heading and hides the page's own title. Use it when this form is the top of the page. Only one block per page should have this."
+#: extensions/formBlock/messages
+msgid "juizi-form-primary-heading-help"
+msgstr "Maak die opskrif hieronder die bladsy se hoofopskrif en versteek die bladsy se eie titel. Gebruik dit wanneer hierdie vorm bo-aan die bladsy is. Net een blok per bladsy behoort dit te hê."
+
+#. Default: "Heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-heading"
+msgstr "Opskrif"
+
+#. Default: "Introduction"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-intro"
+msgstr "Inleiding"
+
+#. Default: "Text above the heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-kicker"
+msgstr "Teks bo die opskrif"
+
+#. Default: "Optional. A short line, e.g. \"Get in touch\"."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-kicker-help"
+msgstr "Opsioneel. ’n Kort reël, bv. “Kontak ons”."
+
+#. Default: "More text"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-more"
+msgstr "Meer teks"
+
+#. Default: "Optional. Shown below a line, e.g. opening hours or other ways to reach you."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-more-help"
+msgstr "Opsioneel. Onder ’n lyn gewys, bv. besigheidsure of ander maniere om jou te bereik."
+
+#. Default: "Text beside the form"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-text"
+msgstr "Teks langs die vorm"
+
+#. Default: "Send button"
+#: extensions/formBlock/messages
+msgid "juizi-form-submit-button"
+msgstr "Stuurknoppie"
+
+#. Default: "The button that sends the form. Leave empty for the site's usual button."
+#: extensions/formBlock/messages
+msgid "juizi-form-submit-button-help"
+msgstr "Die knoppie wat die vorm stuur. Laat leeg vir die webwerf se gewone knoppie."
+
+#. Default: "This title is hidden on the page because a form is set as the primary page heading. To show it again, untick “This is the primary page heading” in the form’s Text beside the form settings."
+#: extensions/formBlock/messages
+msgid "juizi-form-title-hidden-note"
+msgstr "Hierdie titel is op die bladsy versteek omdat ’n vorm as die bladsy se hoofopskrif gestel is. Om dit weer te wys, ontmerk “Dit is die hoofopskrif van die bladsy” in die vorm se “Teks langs die vorm”-instellings."
 
 #. Default: "Full width"
 #: components/Blocks/_shared/messages
@@ -3060,6 +3260,41 @@ msgstr "Herhaal aanhoudend"
 #: components/Blocks/_shared/messages
 msgid "juizi-medium"
 msgstr "Medium"
+
+#. Default: "Background"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-background"
+msgstr "Agtergrond"
+
+#. Default: "Form colours"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-form-colours"
+msgstr "Vormkleure"
+
+#. Default: "Leave a field empty to keep the site's usual look."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-form-colours-help"
+msgstr "Laat ’n veld leeg om die webwerf se gewone voorkoms te behou."
+
+#. Default: "Chosen plan"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-highlight-color"
+msgstr "Gekose plan"
+
+#. Default: "The border around the plan (and the \"who is it for\" choice) the visitor picks."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-highlight-color-help"
+msgstr "Die rand om die plan (en die “vir wie is dit”-keuse) wat die besoeker kies."
+
+#. Default: "Main button"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-main-button"
+msgstr "Hoofknoppie"
+
+#. Default: "The button that sends the form, such as Sign up."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-main-button-help"
+msgstr "Die knoppie wat die vorm stuur, soos Sluit aan."
 
 #. Default: "Middle"
 #: components/Blocks/_shared/messages

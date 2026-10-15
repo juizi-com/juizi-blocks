@@ -62,5 +62,8 @@ export type JuiziBlocksSettings = {
   enabled_blocks: string[];
   /** Block id -> the user groups it is offered to. No entry = everybody. */
   block_groups: Record<string, string[]>;
+  /** Language of the Juizi blocks' editing interface ('en', 'pt-br', ...);
+   * '' follows the page's language. */
+  editor_language: string;
   color_config: ColorConfig;
 };

@@ -180,7 +180,8 @@ above), so the frontend can be deployed first.
 
 Pull the new version (mxdev / mrs-developer, `make install`), restart the
 backend and rebuild the frontend. If the backend's install profile changed,
-Site Setup → Add-ons offers the upgrade. See "Versions" for how releases are
+Site Setup → Add-ons offers the upgrade (for example 1003, which adds the
+Editing language setting). See "Versions" for how releases are
 numbered.
 
 ## How the block set works
@@ -335,6 +336,13 @@ badges for state. The rules are in `src/theme/juizi-blocks.scss`; new
 dashboard sections should reuse its classes (`juizi-dashboard__section`,
 `__btn`, `__badge`, `__table`, `__input`, …) rather than Semantic UI
 components.
+
+**Editing language** (top of the Blocks tab) — shows the Juizi blocks'
+editing interface in one chosen language, whatever the page's language:
+handy when building a multilingual site in a language you don't read. See
+[Editing in another language](#editing-in-another-language). "Same as the
+page" (the default) switches it off; set it back when the site launches.
+Stored as `editor_language` (`''`, `en`, `fr`, `pt`, `pt-br`, `es`, `af`).
 
 **Blocks tab** — a checkbox for every block registered in the site (Volto,
 Volto Light Theme, add-ons and Juizi), with an Enabled / Disabled badge,
@@ -1081,6 +1089,28 @@ render an Afrikaans site in English. The add-on adds it to that list
 also offered in Volto's personal preferences. Volto's own interface (toolbar,
 core blocks) has no Afrikaans translation yet and stays in English.
 
+### Editing in another language
+
+The dashboard's **Editing language** shows the Juizi blocks' editing
+interface in one of the languages above, whatever the page's language. It
+covers what a Juizi block shows while it's being edited: its sidebar
+(including the Volto widgets inside it), the hints and warnings on the
+canvas, and the block's preview. The Form block's editor is covered too,
+through the form extension. Visitors always get the page's language, and the
+rest of Volto's interface (toolbar, other blocks, the page's own fields)
+keeps following the page.
+
+- The messages are loaded in the browser when a Juizi block is edited:
+  Volto's own for that language (the site's `locales/<lang>.json`, when the
+  site builds it) with the add-on's on top (`src/locales/<lang>.json`,
+  generated from the `.po` files by `pnpm i18n`, so they're there on every
+  site).
+- Not covered: the donation and membership sign-up blocks' panels added by
+  juizi-blocks (those blocks build their own sidebars), and the dashboard
+  itself, which follows Volto's interface language.
+- Meant for building a site; set it back to "Same as the page" when the
+  site launches, so editors work in their own language.
+
 Not translated: the default colour and theme names the dashboard starts with
 (they are site data, renamed in the dashboard), text editors have already
 saved in a block, and the error messages the backend returns if a save is
@@ -1137,6 +1167,10 @@ language, copy a language folder, change the `Language` headers and translate
 (or leave `msgstr ""` to fall back to English), then add the code to
 `TRANSLATED` in `src/locales.test.js`, which checks that every listed language
 is complete, keeps every `{placeholder}` and is valid for react-intl.
+
+`src/locales/<code>.json` (used by the Editing language setting) is
+generated from the `.po` files by `scripts/locales-json.js`, which `pnpm
+i18n` runs; a test fails when it's out of date.
 
 After adding or changing text in the code, regenerate the translation files:
 

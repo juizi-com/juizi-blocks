@@ -23,7 +23,7 @@ describe('juiziBlocksSettings reducer', () => {
       type: `${GET_JUIZI_BLOCKS_SETTINGS}_SUCCESS`,
       result,
     });
-    expect(state.data).toEqual(result);
+    expect(state.data).toEqual({ ...result, editor_language: '' });
     expect(state.get.loaded).toBe(true);
     expect(state.update.loaded).toBe(false);
   });

@@ -26,6 +26,7 @@ import clearSVG from '@plone/volto/icons/clear.svg';
 import packageJson from '../../../package.json';
 import { juiziBlocks } from '../../blocks';
 import {
+  EDITOR_LANGUAGES,
   getJuiziBlocksSettings,
   groupBlocks,
   updateJuiziBlocksSettings,
@@ -56,6 +57,7 @@ const toDraft = (data) => ({
   disabled_blocks: data.disabled_blocks || [],
   enabled_blocks: data.enabled_blocks || [],
   block_groups: data.block_groups || {},
+  editor_language: data.editor_language || '',
   color_config: data.color_config,
 });
 
@@ -226,6 +228,34 @@ const Dashboard = () => {
           </button>
         ))}
       </div>
+
+      {tab === 'blocks' && (
+        <Section
+          title={intl.formatMessage(messages.editingLanguage)}
+          help={intl.formatMessage(messages.editingLanguageHelp)}
+        >
+          <select
+            className="juizi-dashboard__select juizi-dashboard__language"
+            aria-label={intl.formatMessage(messages.editingLanguage)}
+            value={draft.editor_language}
+            onChange={(e) =>
+              setDraft((current) => ({
+                ...current,
+                editor_language: e.target.value,
+              }))
+            }
+          >
+            <option value="">
+              {intl.formatMessage(messages.editingLanguageFollow)}
+            </option>
+            {EDITOR_LANGUAGES.map(({ code, name }) => (
+              <option key={code} value={code} lang={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </Section>
+      )}
 
       {tab === 'blocks' && (
         <Section

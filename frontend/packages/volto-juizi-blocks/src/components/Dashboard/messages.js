@@ -14,6 +14,19 @@ export default defineMessages({
     defaultMessage:
       'Every block registered in this site, grouped as in the block chooser. Switched-off blocks disappear from the chooser; blocks already on pages keep rendering. New blocks appear here automatically after a rebuild, switched on unless their own settings keep them off.',
   },
+  editingLanguage: {
+    id: 'juizi-dashboard-editing-language',
+    defaultMessage: 'Editing language',
+  },
+  editingLanguageHelp: {
+    id: 'juizi-dashboard-editing-language-help',
+    defaultMessage:
+      "The language of the Juizi blocks' sidebar and editing hints, whatever the page's language: handy when you build a site in a language you don't read. Visitors always see the page's language. Set it back to \"Same as the page\" when the site launches.",
+  },
+  editingLanguageFollow: {
+    id: 'juizi-dashboard-editing-language-follow',
+    defaultMessage: 'Same as the page',
+  },
   enabled: { id: 'juizi-dashboard-enabled', defaultMessage: 'Enabled' },
   disabled: { id: 'juizi-dashboard-disabled', defaultMessage: 'Disabled' },
   resetBlocks: {

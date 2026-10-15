@@ -175,3 +175,19 @@ def test_block_groups_drop_empty_and_duplicate_entries():
 @pytest.mark.parametrize("raw", [None, "", "not json", "[]", '{"x": "y"}'])
 def test_load_block_groups_falls_back_to_everybody(raw):
     assert load_block_groups(raw) == {}
+
+
+@pytest.mark.parametrize("value", [None, "", "en", "pt-br", "af"])
+def test_editor_language_accepts_known_values(value):
+    from juizi.blocks.settings import validate_editor_language
+
+    assert validate_editor_language(value) == (value or "")
+
+
+@pytest.mark.parametrize("value", ["de", "pt_BR", "EN", 1])
+def test_editor_language_rejects_others(value):
+    from juizi.blocks.settings import SettingsValidationError
+    from juizi.blocks.settings import validate_editor_language
+
+    with pytest.raises(SettingsValidationError):
+        validate_editor_language(value)

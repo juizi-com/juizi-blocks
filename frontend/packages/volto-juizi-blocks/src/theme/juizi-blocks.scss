@@ -564,6 +564,10 @@
     }
   }
 
+  &__language {
+    min-width: 16rem;
+  }
+
   &__preview {
     display: flex;
     flex-direction: column;

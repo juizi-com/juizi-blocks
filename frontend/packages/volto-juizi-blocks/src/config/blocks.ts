@@ -3,6 +3,7 @@ import { composeSchema } from '@plone/volto/helpers/Extensions';
 import { themeStylingSchema } from './vlt';
 import { juiziBlocks } from '../blocks';
 import { registerJuiziBlocks, registerThemedBlocks } from '../settings/runtime';
+import { withEditorLanguage } from '../editorLanguage/EditorLanguage';
 
 /** First-Time Editor Test: no Styling tab until the first choice is made. */
 const hideStylingUntilConfigured =
@@ -47,6 +48,8 @@ export default function install(config: ConfigType) {
       // list in Volto, not based on what editors actually use).
       mostUsed: false,
       ...block,
+      // The dashboard's "Editing language" (editorLanguage/)
+      edit: withEditorLanguage(block.edit),
       schemaEnhancer: enhancers.length
         ? composeSchema(...enhancers)
         : undefined,

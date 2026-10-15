@@ -12,6 +12,7 @@
 import { useIntl } from 'react-intl';
 import sideTextSchema from './schema';
 import withSideText from './withSideText';
+import { withEditorLanguage } from '../../editorLanguage/EditorLanguage';
 import './form.css';
 import './style.css';
 
@@ -28,6 +29,7 @@ export default function installFormBlockExtension(config) {
   };
   form.formSchema = SideTextFormSchema;
   form.view = withSideText(form.view);
-  form.edit = withSideText(form.edit);
+  // The dashboard's "Editing language" covers the form's editor too.
+  form.edit = withEditorLanguage(withSideText(form.edit));
   return config;
 }

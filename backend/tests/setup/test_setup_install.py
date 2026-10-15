@@ -14,7 +14,7 @@ class TestSetupInstall:
 
     def test_latest_version(self, profile_last_version):
         """Test latest version of default profile."""
-        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1002"
+        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1003"
 
     def test_site_title_untouched(self, portal):
         """Installing doesn't rename the site."""
@@ -52,6 +52,7 @@ class TestSetupInstall:
         assert records.disabled_blocks == []
         assert records.enabled_blocks == []
         assert records.block_groups == "{}"
+        assert records.editor_language == ""
         assert records.color_config
 
 
@@ -72,7 +73,7 @@ class TestUpgrade1001:
         # Existing values survive the registry re-import.
         assert registry["juizi.blocks.disabled_blocks"] == ["toc"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1002",
+            "1003",
         )
 
 
@@ -92,7 +93,27 @@ class TestUpgrade1002:
         assert registry[key] == "{}"
         assert registry["juizi.blocks.enabled_blocks"] == ["hero"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1002",
+            "1003",
+        )
+
+
+class TestUpgrade1003:
+    def test_adds_editor_language_record(self, portal, setup_tool):
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        registry = getUtility(IRegistry)
+        key = "juizi.blocks.editor_language"
+        registry.records["juizi.blocks.block_groups"].value = '{"hero": ["x"]}'
+        del registry.records[key]
+        setup_tool.setLastVersionForProfile(f"{PACKAGE_NAME}:default", "1002")
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert registry[key] == ""
+        assert registry["juizi.blocks.block_groups"] == '{"hero": ["x"]}'
+        assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
+            "1003",
         )
 
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-08T14:23:49.031Z\n"
+"POT-Creation-Date: 2026-10-15T09:17:44.066Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1753,6 +1753,21 @@ msgstr ""
 msgid "juizi-dashboard-disabled"
 msgstr ""
 
+#. Default: "Editing language"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language"
+msgstr ""
+
+#. Default: "Same as the page"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language-follow"
+msgstr ""
+
+#. Default: "The language of the Juizi blocks' sidebar and editing hints, whatever the page's language: handy when you build a site in a language you don't read. Visitors always see the page's language. Set it back to \"Same as the page\" when the site launches."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-editing-language-help"
+msgstr ""
+
 #. Default: "Enabled"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-enabled"
@@ -2121,6 +2136,191 @@ msgstr ""
 #. Default: "Extra spacious"
 #: components/Blocks/_shared/messages
 msgid "juizi-extra-spacious"
+msgstr ""
+
+#. Default: "Add the text for this side in the sidebar, under \"Text beside the form\"."
+#: extensions/formBlock/messages
+msgid "juizi-form-add-text"
+msgstr ""
+
+#. Default: "Background & spacing"
+#: extensions/formBlock/messages
+msgid "juizi-form-background-spacing"
+msgstr ""
+
+#. Default: "Cancel and back buttons"
+#: extensions/formBlock/messages
+msgid "juizi-form-cancel-button"
+msgstr ""
+
+#. Default: "The Cancel button, if the form shows one, and the button that brings the form back after it's sent. Leave empty for the site's usual button."
+#: extensions/formBlock/messages
+msgid "juizi-form-cancel-button-help"
+msgstr ""
+
+#. Default: "Below the field"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-below"
+msgstr ""
+
+#. Default: "Help text colour"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color"
+msgstr ""
+
+#. Default: "Leave empty for a soft grey."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color-help"
+msgstr ""
+
+#. Default: "The help text colour is light and may be hard to read on the white form. A darker colour reads better."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-color-light"
+msgstr ""
+
+#. Default: "Help text"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-position"
+msgstr ""
+
+#. Default: "The extra line some fields have, such as how you'll use an email address."
+#: extensions/formBlock/messages
+msgid "juizi-form-help-position-help"
+msgstr ""
+
+#. Default: "Under the label"
+#: extensions/formBlock/messages
+msgid "juizi-form-help-under-label"
+msgstr ""
+
+#. Default: "Labels"
+#: extensions/formBlock/messages
+msgid "juizi-form-label-position"
+msgstr ""
+
+#. Default: "Above the fields suits a form beside text. On phones labels are always above."
+#: extensions/formBlock/messages
+msgid "juizi-form-label-position-help"
+msgstr ""
+
+#. Default: "Above the fields"
+#: extensions/formBlock/messages
+msgid "juizi-form-labels-above"
+msgstr ""
+
+#. Default: "Beside the fields"
+#: extensions/formBlock/messages
+msgid "juizi-form-labels-beside"
+msgstr ""
+
+#. Default: "Layout"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout"
+msgstr ""
+
+#. Default: "Form only"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-form"
+msgstr ""
+
+#. Default: "Add text beside the form, such as what happens after someone sends it."
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-help"
+msgstr ""
+
+#. Default: "Form with text beside it"
+#: extensions/formBlock/messages
+msgid "juizi-form-layout-text"
+msgstr ""
+
+#. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
+#: extensions/formBlock/messages
+msgid "juizi-form-other-primary"
+msgstr ""
+
+#. Default: "Optional. Leave empty for the usual space."
+#: extensions/formBlock/messages
+msgid "juizi-form-padding-help"
+msgstr ""
+
+#. Default: "Form position"
+#: extensions/formBlock/messages
+msgid "juizi-form-position"
+msgstr ""
+
+#. Default: "On phones the text always comes first, above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-position-help"
+msgstr ""
+
+#. Default: "Left"
+#: extensions/formBlock/messages
+msgid "juizi-form-position-left"
+msgstr ""
+
+#. Default: "Right"
+#: extensions/formBlock/messages
+msgid "juizi-form-position-right"
+msgstr ""
+
+#. Default: "This is the primary page heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-primary-heading"
+msgstr ""
+
+#. Default: "Makes the heading below the page's main heading and hides the page's own title. Use it when this form is the top of the page. Only one block per page should have this."
+#: extensions/formBlock/messages
+msgid "juizi-form-primary-heading-help"
+msgstr ""
+
+#. Default: "Heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-heading"
+msgstr ""
+
+#. Default: "Introduction"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-intro"
+msgstr ""
+
+#. Default: "Text above the heading"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-kicker"
+msgstr ""
+
+#. Default: "Optional. A short line, e.g. \"Get in touch\"."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-kicker-help"
+msgstr ""
+
+#. Default: "More text"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-more"
+msgstr ""
+
+#. Default: "Optional. Shown below a line, e.g. opening hours or other ways to reach you."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-more-help"
+msgstr ""
+
+#. Default: "Text beside the form"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-text"
+msgstr ""
+
+#. Default: "Send button"
+#: extensions/formBlock/messages
+msgid "juizi-form-submit-button"
+msgstr ""
+
+#. Default: "The button that sends the form. Leave empty for the site's usual button."
+#: extensions/formBlock/messages
+msgid "juizi-form-submit-button-help"
+msgstr ""
+
+#. Default: "This title is hidden on the page because a form is set as the primary page heading. To show it again, untick “This is the primary page heading” in the form’s Text beside the form settings."
+#: extensions/formBlock/messages
+msgid "juizi-form-title-hidden-note"
 msgstr ""
 
 #. Default: "Full width"
@@ -3056,6 +3256,41 @@ msgstr ""
 #. Default: "Medium"
 #: components/Blocks/_shared/messages
 msgid "juizi-medium"
+msgstr ""
+
+#. Default: "Background"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-background"
+msgstr ""
+
+#. Default: "Form colours"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-form-colours"
+msgstr ""
+
+#. Default: "Leave a field empty to keep the site's usual look."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-form-colours-help"
+msgstr ""
+
+#. Default: "Chosen plan"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-highlight-color"
+msgstr ""
+
+#. Default: "The border around the plan (and the \"who is it for\" choice) the visitor picks."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-highlight-color-help"
+msgstr ""
+
+#. Default: "Main button"
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-main-button"
+msgstr ""
+
+#. Default: "The button that sends the form, such as Sign up."
+#: extensions/membershipSignup/messages
+msgid "juizi-membership-main-button-help"
 msgstr ""
 
 #. Default: "Middle"

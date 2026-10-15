@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: juizi.blocks\n"
-"POT-Creation-Date: 2026-10-05 06:36+0000\n"
+"POT-Creation-Date: 2026-10-15 09:22+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,11 +26,11 @@ msgstr "Identifiants des types de blocs désactivés dans le tableau de bord : l
 msgid "Block type ids switched on in the dashboard although their own configuration keeps them out of the block chooser."
 msgstr "Identifiants des types de blocs activés dans le tableau de bord bien que leur propre configuration les exclue du sélecteur de blocs."
 
-#: juizi/blocks/interfaces.py:57
+#: juizi/blocks/interfaces.py:69
 msgid "Colour configuration"
 msgstr "Configuration des couleurs"
 
-#: juizi/blocks/profiles.zcml:23
+#: juizi/blocks/profiles.zcml:31
 msgid "Create example content to showcase the new website"
 msgstr "Crée du contenu d’exemple pour présenter le nouveau site"
 
@@ -38,11 +38,15 @@ msgstr "Crée du contenu d’exemple pour présenter le nouveau site"
 msgid "Disabled blocks"
 msgstr "Blocs désactivés"
 
+#: juizi/blocks/interfaces.py:57
+msgid "Editing language"
+msgstr "Langue d’édition"
+
 #: juizi/blocks/interfaces.py:34
 msgid "Enabled blocks"
 msgstr "Blocs activés"
 
-#: juizi/blocks/interfaces.py:58
+#: juizi/blocks/interfaces.py:70
 msgid "JSON document holding the master colour list, the block themes built from it, and per-block allow lists."
 msgstr "Document JSON contenant la liste principale des couleurs, les thèmes de blocs qui en sont tirés et les listes autorisées par bloc."
 
@@ -50,14 +54,26 @@ msgstr "Document JSON contenant la liste principale des couleurs, les thèmes de
 msgid "JSON object mapping block type ids to the user groups that may add them. Blocks without an entry are offered to everybody."
 msgstr "Objet JSON associant les identifiants de types de blocs aux groupes d’utilisateurs autorisés à les ajouter. Les blocs sans entrée sont proposés à tout le monde."
 
-#: juizi/blocks/profiles.zcml:23
-msgid "Juizi Blocks: Example content"
-msgstr "Juizi Blocks : contenu d’exemple"
-
 #: juizi/blocks/profiles.zcml:13
 msgid "Juizi Blocks"
 msgstr "Juizi Blocks"
 
+#: juizi/blocks/profiles.zcml:21
+msgid "Juizi Blocks: Development site"
+msgstr ""
+
+#: juizi/blocks/profiles.zcml:31
+msgid "Juizi Blocks: Example content"
+msgstr "Juizi Blocks : contenu d’exemple"
+
 #: juizi/blocks/profiles.zcml:13
 msgid "Juizi's block set (Hero, Content Row, Carousel, Gallery, Callout, Redirect) with a dashboard for colours and block switches. Needs the volto-juizi-blocks frontend add-on."
 msgstr "Le jeu de blocs de Juizi (Hero, Content Row, Carousel, Gallery, Callout, Redirect) avec un tableau de bord pour les couleurs et l’activation des blocs. Nécessite le module frontend volto-juizi-blocks."
+
+#: juizi/blocks/profiles.zcml:21
+msgid "Set up this add-on's own development site: Volto Light Theme, its site settings, and the site title and email sender name"
+msgstr ""
+
+#: juizi/blocks/interfaces.py:58
+msgid "The language of the Juizi blocks' editing interface (sidebar, hints), whatever the page's language. Empty: the page's language. Visitors always see the page's language."
+msgstr "La langue de l’interface d’édition des blocs Juizi (barre latérale, indications), quelle que soit la langue de la page. Vide : la langue de la page. Les visiteurs voient toujours la langue de la page."
