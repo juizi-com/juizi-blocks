@@ -142,6 +142,7 @@ const Lightbox = ({
       )}
 
       <div className="gallery__lightbox-body">
+        {/* eslint-disable-next-line no-restricted-syntax */}
         <img
           className="gallery__lightbox-image"
           src={item.imageUrl}

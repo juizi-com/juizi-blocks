@@ -1,0 +1,1 @@
+ESLint works when juizi-blocks is checked out into a site's `frontend/packages/` (as next.plone.org does), and the gallery lightbox no longer fails the site's lint over its `<img>`.

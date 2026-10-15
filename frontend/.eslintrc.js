@@ -7,6 +7,9 @@ if (fs.existsSync(`${projectRootPath}/core`))
   coreLocation = `${projectRootPath}/core`;
 else if (fs.existsSync(`${projectRootPath}/../../core`))
   coreLocation = `${projectRootPath}/../../core`;
+// juizi-blocks checked out by mrs-developer into a site's frontend/packages/
+else if (fs.existsSync(`${projectRootPath}/../../../core`))
+  coreLocation = `${projectRootPath}/../../../core`;
 
 const { registry } = AddonRegistry.init(`${coreLocation}/packages/volto`);
 
