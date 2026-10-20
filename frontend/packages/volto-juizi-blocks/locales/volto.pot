@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-15T09:17:44.066Z\n"
+"POT-Creation-Date: 2026-10-20T04:03:27.754Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -221,6 +221,11 @@ msgstr ""
 #. Default: "Background image"
 #: components/Blocks/_shared/messages
 msgid "juizi-background-image"
+msgstr ""
+
+#. Default: "Background & spacing"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-spacing"
 msgstr ""
 
 #. Default: "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team."
@@ -2088,11 +2093,6 @@ msgstr ""
 msgid "juizi-donation-back-button"
 msgstr ""
 
-#. Default: "Background"
-#: extensions/donationBlock/messages
-msgid "juizi-donation-background"
-msgstr ""
-
 #. Default: "Form colours"
 #: extensions/donationBlock/messages
 msgid "juizi-donation-form-colours"
@@ -2141,11 +2141,6 @@ msgstr ""
 #. Default: "Add the text for this side in the sidebar, under \"Text beside the form\"."
 #: extensions/formBlock/messages
 msgid "juizi-form-add-text"
-msgstr ""
-
-#. Default: "Background & spacing"
-#: extensions/formBlock/messages
-msgid "juizi-form-background-spacing"
 msgstr ""
 
 #. Default: "Cancel and back buttons"
@@ -2236,11 +2231,6 @@ msgstr ""
 #. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
 #: extensions/formBlock/messages
 msgid "juizi-form-other-primary"
-msgstr ""
-
-#. Default: "Optional. Leave empty for the usual space."
-#: extensions/formBlock/messages
-msgid "juizi-form-padding-help"
 msgstr ""
 
 #. Default: "Form position"
@@ -3258,11 +3248,6 @@ msgstr ""
 msgid "juizi-medium"
 msgstr ""
 
-#. Default: "Background"
-#: extensions/membershipSignup/messages
-msgid "juizi-membership-background"
-msgstr ""
-
 #. Default: "Form colours"
 #: extensions/membershipSignup/messages
 msgid "juizi-membership-form-colours"
@@ -3366,6 +3351,11 @@ msgstr ""
 #. Default: "White"
 #: components/Blocks/_shared/messages
 msgid "juizi-overlay-white"
+msgstr ""
+
+#. Default: "Optional. Leave empty for the usual space."
+#: components/Blocks/_shared/messages
+msgid "juizi-padding-help"
 msgstr ""
 
 #. Default: "Previous image"

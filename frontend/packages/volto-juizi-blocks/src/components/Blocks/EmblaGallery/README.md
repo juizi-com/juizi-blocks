@@ -76,6 +76,10 @@ view mode.
 
 ---
 
+## Top and bottom padding
+
+`paddingTop` / `paddingBottom` (end of "Background & spacing"): the Hero's and Content Row's scale (`getOptionalPaddingProperties`, `juizi-common.scss`), as `gallery--pad-top-*` / `--pad-bottom-*` on the outer layer, so a background colour or image grows with it. Optional and without a default: left empty, the block keeps its usual space (the inner layer's 1rem, and the gap below every block), so saved blocks don't change. A chosen side replaces the inner layer's 1rem on that side, and a chosen bottom padding replaces the gap below the block (unless text follows), as in the Content Row.
+
 ## Image source
 
 `sourceMode` — default `context`, pulls images (and Link items with a

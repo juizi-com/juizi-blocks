@@ -13,7 +13,7 @@ export const getAlignmentChoices = (t = translator()) => [
   ['right', t(messages.right)],
 ];
 
-/** Block padding steps (Hero, Content Row). */
+/** Block padding steps (paddingTop / paddingBottom, juizi-common.scss). */
 export const getPaddingChoices = (t = translator()) => [
   ['none', t(messages.none)],
   ['compact', t(messages.compact)],
@@ -21,6 +21,34 @@ export const getPaddingChoices = (t = translator()) => [
   ['spacious', t(messages.spacious)],
   ['extra-spacious', t(messages.extraSpacious)],
 ];
+
+/**
+ * Optional top and bottom padding fields, for blocks that already have
+ * their own space above and below: left empty, the block keeps it (no
+ * schema default, so saved blocks don't change).
+ */
+export const getOptionalPaddingProperties = (t = translator()) => ({
+  paddingTop: {
+    title: t(messages.topPadding),
+    description: t(messages.paddingHelp),
+    widget: 'select',
+    choices: getPaddingChoices(t),
+  },
+  paddingBottom: {
+    title: t(messages.bottomPadding),
+    description: t(messages.paddingHelp),
+    widget: 'select',
+    choices: getPaddingChoices(t),
+  },
+});
+
+/** The `<base>--pad-top-<size>` / `--pad-bottom-<size>` classes for the
+ * padding chosen (none for an empty field). */
+export const paddingClasses = (base, data = {}) =>
+  [
+    data.paddingTop && `${base}--pad-top-${data.paddingTop}`,
+    data.paddingBottom && `${base}--pad-bottom-${data.paddingBottom}`,
+  ].filter(Boolean);
 
 /** Top / Middle / Bottom (vertical alignment). */
 export const getVerticalChoices = (t = translator()) => [

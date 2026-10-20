@@ -20,8 +20,15 @@
   background-size: cover;
 }
 
-/* More room above and below the content once it sits on a background */
-.juizi-donation-frame--has-bg > .donation-block-wrapper {
+/* More room above and below the content once it sits on a background,
+   unless a top or bottom padding is chosen ("Background & spacing": the
+   frame's `--pad-top-*` / `--pad-bottom-*` classes, juizi-common.scss). */
+.juizi-donation-frame--has-bg.juizi-donation-frame--auto-pad-top
+  > .donation-block-wrapper {
   padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.juizi-donation-frame--has-bg.juizi-donation-frame--auto-pad-bottom
+  > .donation-block-wrapper {
   padding-bottom: clamp(3rem, 8vw, 6rem);
 }

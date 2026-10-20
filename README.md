@@ -280,8 +280,8 @@ with the extra settings ignored.
 | Block | From | What juizi-blocks adds | README |
 | --- | --- | --- | --- |
 | Form (`form`) | `volto-form-block` (collective.volto.formsupport) | A cleaner look for every form; text beside the form; labels and help text placement; help text colour; Send and Cancel button styles; background and padding | `extensions/formBlock/README.md` |
-| Donation (`donationBlock`) | `volto-collective-donations` (collective.donations) | Background, form colours | `extensions/donationBlock/README.md` |
-| Membership sign-up (`membershipSignup`) | `volto-collective-membership` (collective.membership) | Background, form colours | `extensions/membershipSignup/README.md` |
+| Donation (`donationBlock`) | `volto-collective-donations` (collective.donations) | Background and padding, form colours | `extensions/donationBlock/README.md` |
+| Membership sign-up (`membershipSignup`) | `volto-collective-membership` (collective.membership) | Background and padding, form colours | `extensions/membershipSignup/README.md` |
 
 The donation and membership blocks look up a `blockExtension` utility that
 juizi-blocks registers. volto-form-block has no such hook, so juizi-blocks
@@ -634,7 +634,12 @@ don't set these values themselves.
 
 ### Padding scale
 
-Blocks with top/bottom padding options (Hero, Content Row) share one scale:
+Blocks with top/bottom padding options share one scale: the Hero and
+Content Row (always set), and the Carousel, Gallery, form, donation and
+membership sign-up blocks (optional: left empty, the block keeps its usual
+space, so saved blocks don't change; `$juizi-optional-padded-blocks` in
+`juizi-common.scss`). The Callout, Audio and Redirect blocks are boxes in
+the flow of the page and follow its usual spacing, so they don't offer it.
 
 | Value | Desktop | Mobile |
 |---|---|---|
@@ -805,7 +810,7 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 | `editMode.js` | `isEditing(props)`: `props.isEditMode` (set by makeBlockEdit), else `typeof props.onChangeBlock === 'function'`. Never `props.mode`. |
 | `links.js` | `getHref(link)` for every stored shape (object browser array, object, plain string); `''` when there's no link. `isExternalHref(href)` and `externalLinkProps(href)`. No `window` reads, so safe on the server. |
 | `images.js` | `getImageUrl`, `getListingImageUrl`, `resolveScales` (size-aware scale picking), `getPickedImageUrl(image, scale)` |
-| `choices.js` | `getAlignmentChoices(t)` (Left / Centre / Right, not icons), `getPaddingChoices(t)`, `getVerticalChoices(t)`, `withSavedChoice(choices, saved, formatLabel, t)` for fields that became named choices ("Custom (…)" for unusual saved values; values as strings, see above), `msToSeconds(ms, t)` |
+| `choices.js` | `getAlignmentChoices(t)` (Left / Centre / Right, not icons), `getPaddingChoices(t)`, `getOptionalPaddingProperties(t)` (optional `paddingTop` / `paddingBottom` fields, no default), `paddingClasses(base, data)` (`{base}--pad-top-*` / `--pad-bottom-*` for the sides chosen), `getVerticalChoices(t)`, `withSavedChoice(choices, saved, formatLabel, t)` for fields that became named choices ("Custom (…)" for unusual saved values; values as strings, see above), `msToSeconds(ms, t)` |
 | `i18n.js`, `messages.js` | `translator(intl)` gives schemas and choice lists their `t(message, values)`; `messages.js` holds the text several blocks share. See [Languages](#languages-) |
 | `format.js` | `formatDate(value, options, language)`, `formatNumber(value, language)`: in the site's language (pass `intl.locale`), British English for English ("13 November 2024", "1,000"), so the server and every browser agree |
 | `anchors.js` | `slugify`, `blockAnchorId(heading, blockId, fallback)` |

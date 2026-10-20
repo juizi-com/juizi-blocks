@@ -1,5 +1,10 @@
 import { getHref, isExternalHref } from './links';
-import { withSavedChoice, msToSeconds } from './choices';
+import {
+  getOptionalPaddingProperties,
+  msToSeconds,
+  paddingClasses,
+  withSavedChoice,
+} from './choices';
 import { formatDate, formatNumber, toLocale } from './format';
 import { blockAnchorId, slugify } from './anchors';
 
@@ -108,6 +113,28 @@ describe('withSavedChoice', () => {
     ]);
     expect(msToSeconds(1500)).toBe('1.5 seconds');
     expect(msToSeconds(1000)).toBe('1 second');
+  });
+});
+
+describe('optional padding', () => {
+  it('has no default, so saved blocks keep their usual space', () => {
+    const { paddingTop, paddingBottom } = getOptionalPaddingProperties();
+    expect(paddingTop.default).toBeUndefined();
+    expect(paddingBottom.default).toBeUndefined();
+    expect(paddingTop.choices.map(([value]) => value)).toEqual([
+      'none',
+      'compact',
+      'default',
+      'spacious',
+      'extra-spacious',
+    ]);
+  });
+
+  it('gives a class only for the padding chosen', () => {
+    expect(paddingClasses('embla', {})).toEqual([]);
+    expect(paddingClasses('embla', { paddingBottom: 'none' })).toEqual([
+      'embla--pad-bottom-none',
+    ]);
   });
 });
 

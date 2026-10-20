@@ -33,6 +33,7 @@
 // =============================================================================
 
 @use 'sass:list';
+@use 'sass:map';
 
 :root {
   // ── Typography ──────────────────────────────────────────────────────────
@@ -157,6 +158,18 @@ $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
   '.embla .slide__body h3';
 // Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
 $juizi-padded-blocks: 'hero-block', 'content-row', 'juizi-form-wrapper';
+// Blocks whose paddingTop / paddingBottom are optional: left empty, the
+// block keeps its usual space above and below (no class), so saved blocks
+// don't change. `<block>: <inner layer>`: the inner layer's own space above
+// and below gives way to the chosen padding (none for an inner layer the
+// block doesn't own). The donation and membership frames only draw their
+// usual space while they have a background (their style.css).
+$juizi-optional-padded-blocks: (
+  'embla': '.embla__inner',
+  'gallery': '.gallery__inner',
+  'juizi-donation-frame': null,
+  'juizi-membership-frame': null,
+);
 // Text block types (`@type`) that keep the gap below a padded block above
 // them. VLT marks a block with `next--is--{@type}` of the block below.
 $juizi-text-blocks: 'slate', 'slateTable', 'title', 'description', 'accordion';
@@ -312,7 +325,9 @@ $juizi-pad-sizes: (
   extra-spacious: var(--juizi-pad-extra-spacious),
 );
 
-@each $block in $juizi-padded-blocks {
+@each $block
+  in list.join($juizi-padded-blocks, map.keys($juizi-optional-padded-blocks))
+{
   @each $size, $value in $juizi-pad-sizes {
     .#{$block}--pad-top-#{$size} {
       padding-top: $value;
@@ -340,7 +355,9 @@ $juizi-pad-sizes: (
       padding-bottom: var(--juizi-pad-extra-spacious-mobile);
     }
   }
+}
 
+@each $block in $juizi-padded-blocks {
   // The space above and below is the editor's choice above, so these blocks
   // don't also get the gap every block gets below it (VLT's 25px, Volto's
   // 1em): with "None", two of them touch. VLT does the same for its grids.
@@ -350,6 +367,35 @@ $juizi-pad-sizes: (
   #page-document
     .blocks-group-wrapper
     > .block:has(> .#{$block}):not(#{$juizi-next-is-text}) {
+    margin-bottom: 0;
+  }
+}
+
+@each $block, $inner in $juizi-optional-padded-blocks {
+  $chosen-bottom: ();
+
+  @each $size, $value in $juizi-pad-sizes {
+    $chosen-bottom: list.append(
+      $chosen-bottom,
+      '.#{$block}--pad-bottom-#{$size}',
+      comma
+    );
+
+    @if $inner {
+      .#{$block}--pad-top-#{$size} > #{$inner} {
+        padding-top: 0;
+      }
+
+      .#{$block}--pad-bottom-#{$size} > #{$inner} {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  // As above, once a bottom padding is chosen: it replaces the gap below.
+  #page-document
+    .blocks-group-wrapper
+    > .block:has(> :is(#{$chosen-bottom})):not(#{$juizi-next-is-text}) {
     margin-bottom: 0;
   }
 }

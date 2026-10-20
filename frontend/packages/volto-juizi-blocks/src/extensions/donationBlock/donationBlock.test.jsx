@@ -34,6 +34,8 @@ describe('donation block extension', () => {
     expect(schema.fieldsets[1].fields).toEqual([
       'backgroundColor',
       'backgroundImage',
+      'paddingTop',
+      'paddingBottom',
     ]);
     expect(schema.properties.layout).toEqual({});
   });
@@ -56,6 +58,22 @@ describe('donation block extension', () => {
       </Frame>,
     );
     expect(container.innerHTML).toBe('<p>form</p>');
+  });
+
+  it('draws a frame for the padding alone, keeping the usual space for an empty side', () => {
+    const { container } = render(
+      <Frame data={{ paddingTop: 'compact' }}>
+        <p>form</p>
+      </Frame>,
+    );
+    expect(container.firstChild).toHaveClass(
+      'juizi-donation-frame',
+      'juizi-donation-frame--pad-top-compact',
+      'juizi-donation-frame--auto-pad-bottom',
+    );
+    expect(container.firstChild).not.toHaveClass(
+      'juizi-donation-frame--has-bg',
+    );
   });
 
   it('draws the colour and a decorative image layer', () => {

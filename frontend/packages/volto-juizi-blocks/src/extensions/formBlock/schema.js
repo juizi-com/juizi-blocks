@@ -3,7 +3,7 @@ import {
   getButtonChoices,
   getColorChoices,
 } from '../../config/colors';
-import { getPaddingChoices } from '../../components/Blocks/_shared/choices';
+import { getOptionalPaddingProperties } from '../../components/Blocks/_shared/choices';
 import shared from '../../components/Blocks/_shared/messages';
 import { translator } from '../../components/Blocks/_shared/i18n';
 import {
@@ -49,10 +49,7 @@ const sideTextSchema = ({ schema, formData = {}, intl }) => {
       fields: SIDE_TEXT_FIELDS,
     });
   }
-  const background = backgroundFieldset(
-    t(messages.backgroundSpacing),
-    formData,
-  );
+  const background = backgroundFieldset(t(shared.backgroundSpacing), formData);
   fieldsets.splice(
     panelPosition(fieldsets),
     0,
@@ -154,18 +151,7 @@ const sideTextSchema = ({ schema, formData = {}, intl }) => {
         choices: buttonChoices,
       },
       ...backgroundProperties(t, formData, colors),
-      paddingTop: {
-        title: t(shared.topPadding),
-        description: t(messages.paddingHelp),
-        widget: 'select',
-        choices: getPaddingChoices(t),
-      },
-      paddingBottom: {
-        title: t(shared.bottomPadding),
-        description: t(messages.paddingHelp),
-        widget: 'select',
-        choices: getPaddingChoices(t),
-      },
+      ...getOptionalPaddingProperties(t),
     },
   };
 };

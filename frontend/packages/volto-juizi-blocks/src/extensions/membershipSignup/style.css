@@ -21,8 +21,15 @@
   background-size: cover;
 }
 
-/* More room above and below the content once it sits on a background */
-.juizi-membership-frame--has-bg > .membership-signup-wrapper {
+/* More room above and below the content once it sits on a background,
+   unless a top or bottom padding is chosen ("Background & spacing": the
+   frame's `--pad-top-*` / `--pad-bottom-*` classes, juizi-common.scss). */
+.juizi-membership-frame--has-bg.juizi-membership-frame--auto-pad-top
+  > .membership-signup-wrapper {
   padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.juizi-membership-frame--has-bg.juizi-membership-frame--auto-pad-bottom
+  > .membership-signup-wrapper {
   padding-bottom: clamp(3rem, 8vw, 6rem);
 }

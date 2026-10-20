@@ -136,6 +136,21 @@ describe('Gallery', () => {
     const { fieldsets } = schema({ data: { displayMode: 'blocks' } });
     expect(fieldsets.flatMap((f) => f.fields)).not.toContain('textTone');
   });
+  it('offers optional padding, and puts the choice on the outer layer', () => {
+    const { fieldsets } = schema({ data: { displayMode: 'blocks' } });
+    expect(fieldsets.find((f) => f.id === 'background').fields).toEqual([
+      'backgroundColor',
+      'paddingTop',
+      'paddingBottom',
+    ]);
+    const { container } = renderGallery(
+      { displayMode: 'blocks', sourceMode: 'context', paddingTop: 'compact' },
+      { search: { subrequests: { 'gal123-context': { loading: true } } } },
+    );
+    const gallery = container.querySelector('section.gallery');
+    expect(gallery).toHaveClass('gallery--pad-top-compact');
+    expect(gallery.className).not.toContain('--pad-bottom');
+  });
 });
 
 describe('Gallery wrapper', () => {

@@ -156,4 +156,13 @@ describe('Carousel schema', () => {
       );
     });
   });
+
+  it('puts the optional padding at the end of the background panel', () => {
+    const schema = emblaCarouselSchema({ formData: { displayMode: 'full' } });
+    expect(fieldset(schema, 'background').slice(-2)).toEqual([
+      'paddingTop',
+      'paddingBottom',
+    ]);
+    expect(schema.properties.paddingTop.default).toBeUndefined();
+  });
 });

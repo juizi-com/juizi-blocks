@@ -228,6 +228,11 @@ msgstr "Color de fondo"
 msgid "juizi-background-image"
 msgstr "Imagen de fondo"
 
+#. Default: "Background & spacing"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-spacing"
+msgstr "Fondo y espaciado"
+
 #. Default: "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team."
 #: components/Blocks/_shared/messages
 msgid "juizi-block-error"
@@ -2093,11 +2098,6 @@ msgstr "Estilo de presentación"
 msgid "juizi-donation-back-button"
 msgstr "Botón Atrás"
 
-#. Default: "Background"
-#: extensions/donationBlock/messages
-msgid "juizi-donation-background"
-msgstr "Fondo"
-
 #. Default: "Form colours"
 #: extensions/donationBlock/messages
 msgid "juizi-donation-form-colours"
@@ -2147,11 +2147,6 @@ msgstr "Muy amplio"
 #: extensions/formBlock/messages
 msgid "juizi-form-add-text"
 msgstr "Añada el texto de este lado en la barra lateral, en “Texto junto al formulario”."
-
-#. Default: "Background & spacing"
-#: extensions/formBlock/messages
-msgid "juizi-form-background-spacing"
-msgstr "Fondo y espaciado"
 
 #. Default: "Cancel and back buttons"
 #: extensions/formBlock/messages
@@ -2242,11 +2237,6 @@ msgstr "Formulario con texto al lado"
 #: extensions/formBlock/messages
 msgid "juizi-form-other-primary"
 msgstr "Otro bloque ya es el encabezado principal de esta página. Desmarque “Este es el encabezado principal de la página” en uno de ellos."
-
-#. Default: "Optional. Leave empty for the usual space."
-#: extensions/formBlock/messages
-msgid "juizi-form-padding-help"
-msgstr "Opcional. Déjelo vacío para el espacio habitual."
 
 #. Default: "Form position"
 #: extensions/formBlock/messages
@@ -3263,11 +3253,6 @@ msgstr "Repetir de forma continua"
 msgid "juizi-medium"
 msgstr "Mediano"
 
-#. Default: "Background"
-#: extensions/membershipSignup/messages
-msgid "juizi-membership-background"
-msgstr "Fondo"
-
 #. Default: "Form colours"
 #: extensions/membershipSignup/messages
 msgid "juizi-membership-form-colours"
@@ -3372,6 +3357,11 @@ msgstr "{color} — {strength} ({percent} %)"
 #: components/Blocks/_shared/messages
 msgid "juizi-overlay-white"
 msgstr "Blanco"
+
+#. Default: "Optional. Leave empty for the usual space."
+#: components/Blocks/_shared/messages
+msgid "juizi-padding-help"
+msgstr "Opcional. Déjelo vacío para el espacio habitual."
 
 #. Default: "Previous image"
 #: components/Blocks/_shared/messages

@@ -8,10 +8,11 @@ without it. On a site without the donation block, the utility is never used.
 
 ## What it adds
 
-- A **Background** panel in the sidebar, after the layout and text panels:
-  background colour (from the site's colour list), background image, and,
-  once an image is set, its position and overlay. Same fields and wording as
-  the Content Row's background.
+- A **Background & spacing** panel in the sidebar, after the layout and
+  text panels: background colour (from the site's colour list), background
+  image, and, once an image is set, its position and overlay; then top and
+  bottom padding. Same fields and wording as the Content Row's background
+  and the form block's padding.
 - A **Form colours** panel: the current step, the border around the chosen
   amount (and the other amount field while it's in use), and the main and
   back button styles, from the site's colours and button styles. Empty
@@ -19,6 +20,12 @@ without it. On a site without the donation block, the utility is never used.
 - `Frame`: renders the background around the whole block. The text colour
   follows the background colour, as in the Content Row. With no colour and no
   image the block renders exactly as before, so saved blocks don't change.
+- Padding (optional, no default): a chosen side is the frame's
+  `juizi-donation-frame--pad-top-*` / `--pad-bottom-*` (the Hero's and Content Row's
+  scale, `juizi-common.scss`), and draws the frame even without a
+  background. A side left empty gets `--auto-pad-top` / `--auto-pad-bottom`:
+  the usual space (`clamp(3rem, 8vw, 6rem)` on a background, none without
+  one). Padding the block doesn't own (inside the form itself) is untouched.
 
 The block is full width (with the usual side padding) while it has a
 background; its content keeps `--juizi-donation-width`.

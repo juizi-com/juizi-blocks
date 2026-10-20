@@ -7,6 +7,7 @@ import {
 import blockMessages from '../../../blocks/messages';
 import {
   getAlignmentChoices,
+  getOptionalPaddingProperties,
   msToSeconds,
   secondsLabel,
   withSavedChoice,
@@ -186,12 +187,14 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
             },
             {
               id: 'background',
-              title: t(shared.background),
+              title: t(shared.backgroundSpacing),
               fields: [
                 'backgroundImage',
                 'backgroundColor',
                 ...(hasBackgroundImage ? ['textTone'] : []),
                 'slideBackgroundColor',
+                'paddingTop',
+                'paddingBottom',
               ],
             },
             {
@@ -581,6 +584,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         choices: [noneChoice, ...getColorChoices(colors)],
         default: 'transparent',
       },
+      ...getOptionalPaddingProperties(t),
       outerClassName: {
         title: t(shared.customClass),
         type: 'string',

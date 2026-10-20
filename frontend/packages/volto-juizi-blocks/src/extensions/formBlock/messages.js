@@ -74,14 +74,6 @@ export default defineMessages({
     defaultMessage:
       'Optional. Shown below a line, e.g. opening hours or other ways to reach you.',
   },
-  backgroundSpacing: {
-    id: 'juizi-form-background-spacing',
-    defaultMessage: 'Background & spacing',
-  },
-  paddingHelp: {
-    id: 'juizi-form-padding-help',
-    defaultMessage: 'Optional. Leave empty for the usual space.',
-  },
   labelPosition: {
     id: 'juizi-form-label-position',
     defaultMessage: 'Labels',
