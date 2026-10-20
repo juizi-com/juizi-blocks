@@ -226,6 +226,11 @@ msgstr "Agtergrondkleur"
 msgid "juizi-background-image"
 msgstr "Agtergrondbeeld"
 
+#. Default: "Background & spacing"
+#: components/Blocks/_shared/messages
+msgid "juizi-background-spacing"
+msgstr "Agtergrond en spasiëring"
+
 #. Default: "This block couldn't be displayed. Try undoing your last change or checking its settings in the sidebar. If it keeps happening, contact your web team."
 #: components/Blocks/_shared/messages
 msgid "juizi-block-error"
@@ -2091,11 +2096,6 @@ msgstr "Vertoonstyl"
 msgid "juizi-donation-back-button"
 msgstr "Terug-knoppie"
 
-#. Default: "Background"
-#: extensions/donationBlock/messages
-msgid "juizi-donation-background"
-msgstr "Agtergrond"
-
 #. Default: "Form colours"
 #: extensions/donationBlock/messages
 msgid "juizi-donation-form-colours"
@@ -2145,11 +2145,6 @@ msgstr "Ekstra ruim"
 #: extensions/formBlock/messages
 msgid "juizi-form-add-text"
 msgstr "Voeg die teks vir hierdie kant in die sybalk by, onder “Teks langs die vorm”."
-
-#. Default: "Background & spacing"
-#: extensions/formBlock/messages
-msgid "juizi-form-background-spacing"
-msgstr "Agtergrond en spasiëring"
 
 #. Default: "Cancel and back buttons"
 #: extensions/formBlock/messages
@@ -2240,11 +2235,6 @@ msgstr "Vorm met teks langsaan"
 #: extensions/formBlock/messages
 msgid "juizi-form-other-primary"
 msgstr "’n Ander blok is reeds die hoofopskrif van hierdie bladsy. Ontmerk “Dit is die hoofopskrif van die bladsy” by een van hulle."
-
-#. Default: "Optional. Leave empty for the usual space."
-#: extensions/formBlock/messages
-msgid "juizi-form-padding-help"
-msgstr "Opsioneel. Laat leeg vir die gewone spasie."
 
 #. Default: "Form position"
 #: extensions/formBlock/messages
@@ -3261,11 +3251,6 @@ msgstr "Herhaal aanhoudend"
 msgid "juizi-medium"
 msgstr "Medium"
 
-#. Default: "Background"
-#: extensions/membershipSignup/messages
-msgid "juizi-membership-background"
-msgstr "Agtergrond"
-
 #. Default: "Form colours"
 #: extensions/membershipSignup/messages
 msgid "juizi-membership-form-colours"
@@ -3370,6 +3355,11 @@ msgstr "{color} — {strength} ({percent}%)"
 #: components/Blocks/_shared/messages
 msgid "juizi-overlay-white"
 msgstr "Wit"
+
+#. Default: "Optional. Leave empty for the usual space."
+#: components/Blocks/_shared/messages
+msgid "juizi-padding-help"
+msgstr "Opsioneel. Laat leeg vir die gewone spasie."
 
 #. Default: "Previous image"
 #: components/Blocks/_shared/messages

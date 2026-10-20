@@ -13,6 +13,7 @@ export const formColorVars = (data = {}) => ({
 const MembershipSignupFrame = makeBackgroundFrame(
   'juizi-membership-frame',
   formColorVars,
+  { padding: true },
 );
 
 export default MembershipSignupFrame;

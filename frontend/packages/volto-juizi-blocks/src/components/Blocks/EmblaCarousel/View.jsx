@@ -25,6 +25,7 @@ import { isEditing } from '../_shared/editMode';
 import { getHref } from '../_shared/links';
 import { getImageUrl, getListingImageUrl } from '../_shared/images';
 import { blockAnchorId } from '../_shared/anchors';
+import { paddingClasses } from '../_shared/choices';
 import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
 import messages from './messages';
@@ -880,7 +881,7 @@ const EmblaCarousel = (blockProps) => {
 
   const sectionProps = {
     id: blockId,
-    className: `embla ${heightClass} ${data.isFullWidth ? 'full-width' : ''} ${imageRatio ? 'has-image-ratio' : ''} align-${data.alignment || 'left'} ${modeClass} ${variantClass} ${toneClass} ${colorClass} ${blockImageUrl ? 'has-bg-image' : ''} ${data.outerClassName || ''}`,
+    className: `embla ${heightClass} ${data.isFullWidth ? 'full-width' : ''} ${imageRatio ? 'has-image-ratio' : ''} align-${data.alignment || 'left'} ${modeClass} ${variantClass} ${toneClass} ${colorClass} ${blockImageUrl ? 'has-bg-image' : ''} ${paddingClasses('embla', data).join(' ')} ${data.outerClassName || ''}`,
     style: {
       ...(imageRatio ? { '--slide-image-ratio': imageRatio } : {}),
       backgroundColor: data.backgroundColor || 'transparent',

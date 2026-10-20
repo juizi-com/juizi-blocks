@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  background: {
-    id: 'juizi-donation-background',
-    defaultMessage: 'Background',
-  },
   formColours: {
     id: 'juizi-donation-form-colours',
     defaultMessage: 'Form colours',

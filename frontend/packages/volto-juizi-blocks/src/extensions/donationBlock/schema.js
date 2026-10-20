@@ -3,7 +3,9 @@ import {
   getButtonChoices,
   getColorChoices,
 } from '../../config/colors';
+import { getOptionalPaddingProperties } from '../../components/Blocks/_shared/choices';
 import { translator } from '../../components/Blocks/_shared/i18n';
+import shared from '../../components/Blocks/_shared/messages';
 import {
   backgroundFieldset,
   backgroundProperties,
@@ -21,6 +23,7 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
   const t = translator(intl);
   const colors = getBlockColorList('donationBlock');
   const fieldsets = [...schema.fieldsets];
+  const background = backgroundFieldset(t(shared.backgroundSpacing), formData);
   const formColours = {
     id: 'juizi_form_colours',
     title: t(messages.formColours),
@@ -35,7 +38,10 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
   fieldsets.splice(
     panelPosition(fieldsets),
     0,
-    backgroundFieldset(t(messages.background), formData),
+    {
+      ...background,
+      fields: [...background.fields, 'paddingTop', 'paddingBottom'],
+    },
     formColours,
   );
   const colorChoices = getColorChoices(colors);
@@ -47,6 +53,7 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
     properties: {
       ...schema.properties,
       ...backgroundProperties(t, formData, colors),
+      ...getOptionalPaddingProperties(t),
       stepColor: {
         title: t(messages.stepColor),
         description: t(messages.stepColorHelp),

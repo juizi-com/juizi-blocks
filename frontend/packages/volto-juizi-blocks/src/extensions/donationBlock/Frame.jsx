@@ -21,6 +21,7 @@ export const formColorVars = (data = {}) => ({
 const DonationFrame = makeBackgroundFrame(
   'juizi-donation-frame',
   formColorVars,
+  { padding: true },
 );
 
 export default DonationFrame;

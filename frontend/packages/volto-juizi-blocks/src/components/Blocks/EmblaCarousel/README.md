@@ -77,6 +77,10 @@ A display style, not a block of its own: reviews need everything the Carousel al
 
 `backgroundImage` and `backgroundColor` are inline styles on the `.embla` section (image over colour, `cover`, centred; no extra layer or overlay). The tone (`tone-dark` / `tone-light`) sets the block's text colour, and the heading and intro text both follow it, so they always match; a background colour's own text colour wins over the tone. Only over a background image does the editor choose ("Text over the background image", `textTone`).
 
+## Top and bottom padding
+
+`paddingTop` / `paddingBottom` (end of "Background & spacing"): the Hero's and Content Row's scale (`getOptionalPaddingProperties`, `juizi-common.scss`), as `embla--pad-top-*` / `--pad-bottom-*` on the outer layer, so a background colour or image grows with it. Optional and without a default: left empty, the block keeps its usual space (the inner layer's 1rem, and the gap below every block), so saved blocks don't change. A chosen side replaces the inner layer's 1rem on that side, and a chosen bottom padding replaces the gap below the block (unless text follows), as in the Content Row.
+
 ## Arrows and the "More" button
 
 `arrowPosition` and `moreButtonPosition` are separate fields.

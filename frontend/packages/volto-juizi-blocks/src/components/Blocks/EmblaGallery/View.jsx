@@ -28,6 +28,7 @@ import Lightbox from './Lightbox';
 import BlockPlaceholder from '../_shared/BlockPlaceholder';
 import BlockWrapper from '../_shared/BlockWrapper';
 import BlockErrorBoundary from '../_shared/BlockErrorBoundary';
+import { paddingClasses } from '../_shared/choices';
 import { isEditing } from '../_shared/editMode';
 import { getHref as getLinkHref } from '../_shared/links';
 import { getImageUrl, getListingImageUrl } from '../_shared/images';
@@ -537,7 +538,7 @@ const EmblaGallery = (blockProps) => {
     >
       <section
         id={blockId}
-        className={`gallery type-${displayMode} align-${data.alignment || 'left'} ${toneClass} ${data.isFullWidth ? 'full-width' : ''} ${data.outerClassName || ''}`}
+        className={`gallery type-${displayMode} align-${data.alignment || 'left'} ${toneClass} ${data.isFullWidth ? 'full-width' : ''} ${paddingClasses('gallery', data).join(' ')} ${data.outerClassName || ''}`}
         style={{
           backgroundColor: data.backgroundColor || 'transparent',
           ...getColorTextStyle(data.backgroundColor),

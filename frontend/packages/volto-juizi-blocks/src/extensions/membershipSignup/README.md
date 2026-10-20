@@ -11,16 +11,23 @@ shared background panel and frame in `../_shared`.
 
 ## What it adds
 
-- A **Background** panel in the sidebar, after the layout and text panels:
-  background colour (from the site's colour list), background image, and,
-  once an image is set, its position and overlay. Same fields and wording as
-  the Content Row's background.
+- A **Background & spacing** panel in the sidebar, after the layout and
+  text panels: background colour (from the site's colour list), background
+  image, and, once an image is set, its position and overlay; then top and
+  bottom padding. Same fields and wording as the Content Row's background
+  and the form block's padding.
 - A **Form colours** panel: the border around the chosen plan (and the
   "who is it for" choice), and the main button's style (Sign up). Empty
   fields keep the site theme's colours.
 - `Frame`: renders the background around the whole block. The text colour
   follows the background colour. With no colour and no image the block
   renders exactly as before, so saved blocks don't change.
+- Padding (optional, no default): a chosen side is the frame's
+  `juizi-membership-frame--pad-top-*` / `--pad-bottom-*` (the Hero's and Content Row's
+  scale, `juizi-common.scss`), and draws the frame even without a
+  background. A side left empty gets `--auto-pad-top` / `--auto-pad-bottom`:
+  the usual space (`clamp(3rem, 8vw, 6rem)` on a background, none without
+  one). Padding the block doesn't own (inside the form itself) is untouched.
 
 The block is full width (with the usual side padding) while it has a
 background; its content keeps `--juizi-membership-width`.

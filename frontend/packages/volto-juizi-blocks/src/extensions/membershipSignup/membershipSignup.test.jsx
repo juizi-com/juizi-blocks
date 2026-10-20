@@ -31,6 +31,10 @@ describe('membership sign-up block extension', () => {
       'juizi_background',
       'juizi_form_colours',
     ]);
+    expect(schema.fieldsets[2].fields.slice(-2)).toEqual([
+      'paddingTop',
+      'paddingBottom',
+    ]);
     expect(schema.fieldsets[3].fields).toEqual([
       'highlightColor',
       'mainButtonStyle',

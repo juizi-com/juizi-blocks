@@ -3,7 +3,9 @@ import {
   getButtonChoices,
   getColorChoices,
 } from '../../config/colors';
+import { getOptionalPaddingProperties } from '../../components/Blocks/_shared/choices';
 import { translator } from '../../components/Blocks/_shared/i18n';
+import shared from '../../components/Blocks/_shared/messages';
 import {
   backgroundFieldset,
   backgroundProperties,
@@ -20,10 +22,14 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
   const t = translator(intl);
   const colors = getBlockColorList('membershipSignup');
   const fieldsets = [...schema.fieldsets];
+  const background = backgroundFieldset(t(shared.backgroundSpacing), formData);
   fieldsets.splice(
     panelPosition(fieldsets),
     0,
-    backgroundFieldset(t(messages.background), formData),
+    {
+      ...background,
+      fields: [...background.fields, 'paddingTop', 'paddingBottom'],
+    },
     {
       id: 'juizi_form_colours',
       title: t(messages.formColours),
@@ -37,6 +43,7 @@ const schemaEnhancer = ({ schema, formData = {}, intl }) => {
     properties: {
       ...schema.properties,
       ...backgroundProperties(t, formData, colors),
+      ...getOptionalPaddingProperties(t),
       highlightColor: {
         title: t(messages.highlightColor),
         description: t(messages.highlightColorHelp),

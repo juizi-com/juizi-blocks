@@ -1,0 +1,1 @@
+The Carousel, Gallery, donation and membership sign-up blocks have top and bottom padding in their "Background & spacing" panel, on the same scale as the Hero and Content Row. Left empty, a block keeps its usual space, so saved blocks don't change.

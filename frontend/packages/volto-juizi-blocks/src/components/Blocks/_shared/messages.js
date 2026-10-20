@@ -48,6 +48,14 @@ export default defineMessages({
     id: 'juizi-bottom-padding',
     defaultMessage: 'Bottom padding',
   },
+  paddingHelp: {
+    id: 'juizi-padding-help',
+    defaultMessage: 'Optional. Leave empty for the usual space.',
+  },
+  backgroundSpacing: {
+    id: 'juizi-background-spacing',
+    defaultMessage: 'Background & spacing',
+  },
   customClass: {
     id: 'juizi-custom-class',
     defaultMessage: 'Extra style name (for your web team)',

@@ -65,6 +65,30 @@ describe('Carousel static render', () => {
     expect(html).toContain('Go');
     // The error boundary's editor message must not be what rendered.
     expect(html).not.toContain("couldn't be displayed");
+    // No padding chosen: no padding classes, the usual space.
+    expect(container.querySelector('.embla').className).not.toContain('--pad');
+  });
+
+  it('puts the chosen padding on the outer layer', () => {
+    const store = configureStore()({ search: { subrequests: {} } });
+    const { container } = render(
+      <Provider store={store}>
+        <View
+          id="abcdef123"
+          data={{
+            '@type': 'emblaCarousel',
+            displayMode: 'full',
+            paddingTop: 'spacious',
+            paddingBottom: 'none',
+            slides: [{ '@id': 's1', heading: 'Visit us' }],
+          }}
+        />
+      </Provider>,
+    );
+    expect(container.querySelector('.embla')).toHaveClass(
+      'embla--pad-top-spacious',
+      'embla--pad-bottom-none',
+    );
   });
 });
 

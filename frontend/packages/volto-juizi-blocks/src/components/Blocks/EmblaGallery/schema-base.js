@@ -7,6 +7,7 @@ import {
 import blockMessages from '../../../blocks/messages';
 import {
   getAlignmentChoices,
+  getOptionalPaddingProperties,
   msToSeconds,
   withSavedChoice,
 } from '../_shared/choices';
@@ -115,8 +116,8 @@ const emblaGallerySchema = ({ formData, intl } = {}) => {
             },
             {
               id: 'background',
-              title: t(shared.background),
-              fields: ['backgroundColor'],
+              title: t(shared.backgroundSpacing),
+              fields: ['backgroundColor', 'paddingTop', 'paddingBottom'],
             },
             {
               id: 'lightbox',
@@ -316,6 +317,7 @@ const emblaGallerySchema = ({ formData, intl } = {}) => {
         type: 'boolean',
         default: false,
       },
+      ...getOptionalPaddingProperties(t),
       outerClassName: {
         title: t(shared.customClass),
         type: 'string',
