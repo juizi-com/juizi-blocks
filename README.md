@@ -282,6 +282,7 @@ with the extra settings ignored.
 | Form (`form`) | `volto-form-block` (collective.volto.formsupport) | A cleaner look for every form; text beside the form; labels and help text placement; help text colour; Send and Cancel button styles; background and padding | `extensions/formBlock/README.md` |
 | Donation (`donationBlock`) | `volto-collective-donations` (collective.donations) | Background and padding, form colours | `extensions/donationBlock/README.md` |
 | Membership sign-up (`membershipSignup`) | `volto-collective-membership` (collective.membership) | Background and padding, form colours | `extensions/membershipSignup/README.md` |
+| Buy button (`shopBuy`) and shop pages | `volto-collective-shop` (collective.shop) | The site's button colours and shape on the block, cart and checkout; background and padding; button colours | `extensions/shopBuy/README.md` |
 
 The donation and membership blocks look up a `blockExtension` utility that
 juizi-blocks registers. volto-form-block has no such hook, so juizi-blocks
