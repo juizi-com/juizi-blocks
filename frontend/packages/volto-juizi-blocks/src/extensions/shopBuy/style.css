@@ -1,0 +1,41 @@
+/* Background around the Buy block (Frame.jsx). Width and side padding come
+   from $juizi-layers in theme/juizi-common.scss. */
+
+.juizi-shop-frame--has-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.juizi-shop-frame__bg,
+.juizi-shop-frame__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.juizi-shop-frame__bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* More room above and below the block once it sits on a background,
+   unless a top or bottom padding is chosen. */
+.juizi-shop-frame--has-bg.juizi-shop-frame--auto-pad-top > .shop-buy {
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.juizi-shop-frame--has-bg.juizi-shop-frame--auto-pad-bottom > .shop-buy {
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+/* The frame gives the side padding: the block's own phone gutter goes. */
+.juizi-shop-frame--has-bg > .shop-buy {
+  margin: 0;
+}
+
+/* On a dark background the shop's grey notes follow the text colour. */
+.juizi-shop-frame.tone-light .shop-buy {
+  --shop-muted: currentColor;
+  --shop-line: rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,1 @@
+The site's button colours and shape for collective.shop's Buy block, cart and checkout (volto-collective-shop), with a background and button colours panel on the Buy block, as for the donation block. @karel
