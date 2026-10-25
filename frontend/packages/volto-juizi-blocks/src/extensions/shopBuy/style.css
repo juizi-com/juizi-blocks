@@ -34,6 +34,15 @@
   margin: 0;
 }
 
+/* The Buy block is a `.block` inside the frame, so Volto Light Theme paints
+   it with the page's theme colour (white) and text; on a background it
+   takes the frame's instead. (Only colours here: the layer rule in
+   juizi-common.scss centres it.) */
+.juizi-shop-frame--has-bg > .block.shop-buy {
+  background: transparent;
+  color: inherit;
+}
+
 /* On a dark background the shop's grey notes follow the text colour. */
 .juizi-shop-frame.tone-light .shop-buy {
   --shop-muted: currentColor;
