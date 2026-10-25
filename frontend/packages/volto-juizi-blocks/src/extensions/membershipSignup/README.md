@@ -11,6 +11,9 @@ shared background panel and frame in `../_shared`.
 
 ## What it adds
 
+- **The sign-up block in the Juizi group** of the block chooser, whichever
+  add-on loads first (`../_shared/group.js`: the utility's `group`, read by
+  membership when it loads later; moved here when it loaded first).
 - A **Background & spacing** panel in the sidebar, after the layout and
   text panels: background colour (from the site's colour list), background
   image, and, once an image is set, its position and overlay; then top and

@@ -4,6 +4,7 @@ import { themeStylingSchema } from './vlt';
 import { juiziBlocks } from '../blocks';
 import { registerJuiziBlocks, registerThemedBlocks } from '../settings/runtime';
 import { withEditorLanguage } from '../editorLanguage/EditorLanguage';
+import { JUIZI_GROUP } from './group';
 
 /** First-Time Editor Test: no Styling tab until the first choice is made. */
 const hideStylingUntilConfigured =
@@ -18,8 +19,7 @@ const hideStylingUntilConfigured =
           ),
         };
 
-/** Block chooser group holding every Juizi block. */
-export const JUIZI_GROUP = 'juizi';
+export { JUIZI_GROUP };
 
 export default function install(config: ConfigType) {
   const blocksConfig = config.blocks.blocksConfig as Record<string, any>;

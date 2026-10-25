@@ -96,6 +96,7 @@
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
+  --juizi-shop-width: var(--narrow-container-width, 620px);
   --juizi-membership-width: var(--juizi-content-width);
   --juizi-form-width: var(--juizi-content-width);
   // Space inside a Callout that has a background colour, on the sides
@@ -169,6 +170,7 @@ $juizi-optional-padded-blocks: (
   'gallery': '.gallery__inner',
   'juizi-donation-frame': null,
   'juizi-membership-frame': null,
+  'juizi-shop-frame': null,
 );
 // Text block types (`@type`) that keep the gap below a padded block above
 // them. VLT marks a block with `next--is--{@type}` of the block below.
@@ -223,6 +225,12 @@ $juizi-layers: (
     (
       '.membership-signup-wrapper',
       --juizi-membership-width,
+    ),
+  // The shop's Buy block (extensions/shopBuy)
+  '.juizi-shop-frame--has-bg':
+    (
+      '.shop-buy',
+      --juizi-shop-width,
     ),
   // The form block, while it has text beside it or a background
   // (extensions/formBlock)

@@ -16,11 +16,22 @@ const baseSchema = () => ({
 
 describe('membership sign-up block extension', () => {
   it('registers the utility the sign-up block looks up', () => {
-    const config = { registerUtility: jest.fn() };
+    const config = { registerUtility: jest.fn(), blocks: { blocksConfig: {} } };
     installMembershipSignupExtension(config);
     const [{ type, name, method }] = config.registerUtility.mock.calls[0];
     expect([type, name]).toEqual(['blockExtension', 'membershipSignup']);
-    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame']);
+    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame', 'group']);
+    // Membership loads later: it reads the group from the utility.
+    expect(method().group).toBe('juizi');
+  });
+
+  it('moves the sign-up block into the Juizi group when membership loaded first', () => {
+    const config = {
+      registerUtility: jest.fn(),
+      blocks: { blocksConfig: { membershipSignup: { group: 'common' } } },
+    };
+    installMembershipSignupExtension(config);
+    expect(config.blocks.blocksConfig.membershipSignup.group).toBe('juizi');
   });
 
   it('adds Background and Form colours after the side text', () => {

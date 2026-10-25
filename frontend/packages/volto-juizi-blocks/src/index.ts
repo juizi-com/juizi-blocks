@@ -5,6 +5,7 @@ import installBlocks from './config/blocks';
 import installLegacy from './legacy';
 import installDonationExtension from './extensions/donationBlock';
 import installMembershipSignupExtension from './extensions/membershipSignup';
+import installShopExtension from './extensions/shopBuy';
 import installFormBlockExtension from './extensions/formBlock';
 
 import './theme/juizi-blocks.scss';
@@ -40,6 +41,9 @@ function applyConfig(config: ConfigType) {
   installDonationExtension(config);
   // The same for the membership sign-up block.
   installMembershipSignupExtension(config);
+  // Site colours, button styles and a background for collective.shop's
+  // Buy block and pages.
+  installShopExtension(config);
   // Text beside the form and a background for volto-form-block's Form
   // block, when the site has it (listed before this add-on).
   installFormBlockExtension(config);

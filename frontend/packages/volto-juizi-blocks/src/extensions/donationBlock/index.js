@@ -5,13 +5,15 @@
  */
 import schemaEnhancer from './schema';
 import Frame from './Frame';
+import { JUIZI_GROUP, joinJuiziGroup } from '../_shared/group';
 import './style.css';
 
 export default function installDonationExtension(config) {
   config.registerUtility({
     type: 'blockExtension',
     name: 'donationBlock',
-    method: () => ({ schemaEnhancer, Frame }),
+    method: () => ({ schemaEnhancer, Frame, group: JUIZI_GROUP }),
   });
+  joinJuiziGroup(config, 'donationBlock');
   return config;
 }
