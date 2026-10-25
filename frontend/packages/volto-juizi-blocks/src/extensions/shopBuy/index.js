@@ -5,13 +5,15 @@
  */
 import schemaEnhancer from './schema';
 import Frame, { shopVars as vars } from './Frame';
+import { JUIZI_GROUP, joinJuiziGroup } from '../_shared/group';
 import './style.css';
 
 export default function installShopExtension(config) {
   config.registerUtility({
     type: 'blockExtension',
     name: 'shopBuy',
-    method: () => ({ schemaEnhancer, Frame, vars }),
+    method: () => ({ schemaEnhancer, Frame, vars, group: JUIZI_GROUP }),
   });
+  joinJuiziGroup(config, 'shopBuy');
   return config;
 }

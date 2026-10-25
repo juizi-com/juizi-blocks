@@ -9,6 +9,8 @@ used.
 
 ## What it adds
 
+- **The Buy button in the Juizi group** of the block chooser, with the other
+  Juizi blocks, whichever of the two add-ons loads first.
 - **The site's buttons everywhere the shop draws one**: the Buy block, the
   cart, checkout, confirmation, My purchases and the floating cart button.
   The main button (Add to cart, Register, Check out, Pay now) is a solid
@@ -41,6 +43,9 @@ background; its content keeps `--juizi-shop-width` (the narrow text width).
 - `vars(data)`: the shop's CSS custom properties (listed in the shop's
   `frontend/src/extension.js`) as a style object. The shop sets them on the
   Buy block (with its data) and on its pages and cart button (without).
+- `group`: the chooser group (`juizi`), read by the shop when it registers
+  its block after this add-on. When the shop loaded first,
+  `installShopExtension` moves the block into the group itself.
 
 ## Known issues
 

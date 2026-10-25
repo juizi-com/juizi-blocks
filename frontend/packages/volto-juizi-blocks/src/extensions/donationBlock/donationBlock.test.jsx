@@ -16,11 +16,22 @@ const baseSchema = () => ({
 
 describe('donation block extension', () => {
   it('registers the utility the donation block looks up', () => {
-    const config = { registerUtility: jest.fn() };
+    const config = { registerUtility: jest.fn(), blocks: { blocksConfig: {} } };
     installDonationExtension(config);
     const [{ type, name, method }] = config.registerUtility.mock.calls[0];
     expect([type, name]).toEqual(['blockExtension', 'donationBlock']);
-    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame']);
+    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame', 'group']);
+    // Donations loads later: it reads the group from the utility.
+    expect(method().group).toBe('juizi');
+  });
+
+  it('moves the donation block into the Juizi group when donations loaded first', () => {
+    const config = {
+      registerUtility: jest.fn(),
+      blocks: { blocksConfig: { donationBlock: { group: 'common' } } },
+    };
+    installDonationExtension(config);
+    expect(config.blocks.blocksConfig.donationBlock.group).toBe('juizi');
   });
 
   it('adds the Background panel after the layout panel', () => {

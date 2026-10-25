@@ -14,11 +14,28 @@ const baseSchema = () => ({
 
 describe('shop extension', () => {
   it('registers the utility collective.shop looks up', () => {
-    const config = { registerUtility: jest.fn() };
+    const config = { registerUtility: jest.fn(), blocks: { blocksConfig: {} } };
     installShopExtension(config);
     const [{ type, name, method }] = config.registerUtility.mock.calls[0];
     expect([type, name]).toEqual(['blockExtension', 'shopBuy']);
-    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame', 'vars']);
+    expect(Object.keys(method())).toEqual([
+      'schemaEnhancer',
+      'Frame',
+      'vars',
+      'group',
+    ]);
+    // The shop loads later: it reads the group from the utility.
+    expect(method().group).toBe('juizi');
+    expect(config.blocks.blocksConfig.shopBuy).toBeUndefined();
+  });
+
+  it('moves the Buy button into the Juizi group when the shop loaded first', () => {
+    const config = {
+      registerUtility: jest.fn(),
+      blocks: { blocksConfig: { shopBuy: { id: 'shopBuy', group: 'common' } } },
+    };
+    installShopExtension(config);
+    expect(config.blocks.blocksConfig.shopBuy.group).toBe('juizi');
   });
 
   it('adds Background & spacing and Button colours after what it sells', () => {
