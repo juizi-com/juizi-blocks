@@ -30,6 +30,9 @@ import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
 import messages from './messages';
 
+// Narrowest a slide gets before the carousel shows one fewer.
+const MIN_SLIDE_WIDTH = 320;
+
 // The picture for a slide: query results use their image (or preview
 // image); slides added in the sidebar use the picked image, through the same
 // size-aware resolver, so a 48px logo isn't served at full resolution.
@@ -349,27 +352,25 @@ const EmblaCarousel = (blockProps) => {
   const slidesToShow = parseInt(data.slidesToShow, 10) || 1;
   const minSlidesOnMobile = parseInt(data.minSlidesOnMobile, 10) || 1;
 
-  const calculateSlidesToShow = React.useCallback(() => {
-    const w = typeof window !== 'undefined' ? window.innerWidth : 1200;
-    if (w <= 540) return Math.max(1, minSlidesOnMobile);
-    if (w <= 768) return Math.min(slidesToShow, Math.max(1, minSlidesOnMobile));
-    return slidesToShow;
-  }, [slidesToShow, minSlidesOnMobile]);
+  // Steps down one slide at a time as the carousel narrows, so slides never
+  // get narrower than MIN_SLIDE_WIDTH, but never below the mobile number.
+  // Measured on the carousel itself, so a narrow column shows fewer too.
+  const calculateSlidesToShow = React.useCallback(
+    (width) => {
+      const fewest = Math.min(slidesToShow, Math.max(1, minSlidesOnMobile));
+      const fit = Math.floor(width / MIN_SLIDE_WIDTH);
+      return Math.max(fewest, Math.min(slidesToShow, fit));
+    },
+    [slidesToShow, minSlidesOnMobile],
+  );
 
   // Starts from the large-screen number, which is what the server renders:
   // reading the window's width for the first render gave phones markup that
   // didn't match the server's, and React threw the server's page away
-  // ("Hydration failed"). The effect below sets the real number on mount.
+  // ("Hydration failed"). The effect after useEmblaCarousel sets the real
+  // number on mount.
   const [effectiveSlidesToShow, setEffectiveSlidesToShow] =
     useState(slidesToShow);
-  useEffect(() => {
-    const onResize = () => {
-      setEffectiveSlidesToShow(calculateSlidesToShow());
-    };
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [calculateSlidesToShow]);
 
   useEffect(() => {
     if (usesListing && data.query) {
@@ -495,6 +496,18 @@ const EmblaCarousel = (blockProps) => {
     },
     plugins,
   );
+
+  useEffect(() => {
+    const viewport = embla?.rootNode();
+    if (!viewport) return undefined;
+    const measure = () =>
+      setEffectiveSlidesToShow(calculateSlidesToShow(viewport.clientWidth));
+    measure();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [embla, calculateSlidesToShow]);
 
   useEffect(() => {
     if (!embla) return;

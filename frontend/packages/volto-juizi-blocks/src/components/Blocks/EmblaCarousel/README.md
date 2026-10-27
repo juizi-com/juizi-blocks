@@ -81,6 +81,10 @@ A display style, not a block of its own: reviews need everything the Carousel al
 
 `paddingTop` / `paddingBottom` (end of "Background & spacing"): the Hero's and Content Row's scale (`getOptionalPaddingProperties`, `juizi-common.scss`), as `embla--pad-top-*` / `--pad-bottom-*` on the outer layer, so a background colour or image grows with it. Optional and without a default: left empty, the block keeps its usual space (the inner layer's 1rem, and the gap below every block), so saved blocks don't change. A chosen side replaces the inner layer's 1rem on that side, and a chosen bottom padding replaces the gap below the block (unless text follows), as in the Content Row.
 
+## Slides in view
+
+`slidesToShow` ("Cards visible at once") is the most in view. As the carousel narrows it shows one fewer whenever a slide would be under 320px wide (`MIN_SLIDE_WIDTH` in `View.jsx`), down to `minSlidesOnMobile` ("Cards visible on mobile"). The count is measured on the carousel's viewport, not the window, so a carousel in a narrow column steps down too. The server renders `slidesToShow`; the real number is set once Embla mounts, so the markup matches on hydration.
+
 ## Arrows and the "More" button
 
 `arrowPosition` and `moreButtonPosition` are separate fields.
