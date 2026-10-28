@@ -68,6 +68,17 @@
   --juizi-item-title-font-size: 1.1em;
   --juizi-item-title-line-height: 1.3;
   --juizi-item-title-font-weight: 700;
+  // "Lines between items" (Content Row). currentColor is read where the
+  // line is drawn, so the line is a shade of each block's own text colour
+  // and works on light and dark backgrounds alike.
+  --juizi-item-line-color: color-mix(in srgb, currentColor 25%, transparent);
+  --juizi-item-line-width: 1px;
+  --juizi-item-line-spacing: 1.5rem;
+  // Space inside each box when "Item borders" is "Joined boxes"
+  --juizi-item-box-padding: 1.75rem;
+  // Corners of the coloured background behind a Content Row icon or number
+  // ("Icon circle", "Number circle"): round by default; 0 for a square.
+  --juizi-icon-background-radius: 50%;
 
   // ── Spacing ─────────────────────────────────────────────────────────────
   // Top/bottom padding options offered by blocks (paddingTop/paddingBottom)
@@ -95,6 +106,7 @@
   --juizi-callout-width: var(--juizi-content-width);
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
+  --juizi-pricing-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
   --juizi-shop-width: var(--narrow-container-width, 620px);
   --juizi-membership-width: var(--juizi-content-width);
@@ -110,6 +122,52 @@
   // ── Cards ───────────────────────────────────────────────────────────────
   --juizi-card-radius: 4px;
   --juizi-card-shadow: none;
+
+  // ── Pricing tiers ───────────────────────────────────────────────────────
+  // A card without a colour of its own ("Plain (white)")
+  --juizi-pricing-card-background: #fff;
+  --juizi-pricing-card-foreground: #111;
+  // Outline of every card; currentColor is the card's own text colour
+  --juizi-pricing-card-border-width: 1px;
+  --juizi-pricing-card-border-color: color-mix(
+    in srgb,
+    currentColor 15%,
+    transparent
+  );
+  --juizi-pricing-card-padding-block: 2rem;
+  --juizi-pricing-card-padding-inline: 1.75rem;
+  // How much taller the highlighted tier is, above and below
+  --juizi-pricing-highlight-lift: 1.125rem;
+  --juizi-pricing-gap: 0.75rem;
+  --juizi-pricing-row-gap: 2.75rem;
+  // Space under the title and description
+  --juizi-pricing-header-spacing: 2.5rem;
+  // Space under the name, and around the price and the line
+  --juizi-pricing-head-spacing: 1.1rem;
+  --juizi-pricing-section-spacing: 1.25rem;
+  --juizi-pricing-button-spacing: 1.5rem;
+  // The tag ("New", "Most chosen") when no tag colour is chosen
+  --juizi-pricing-label-background: color-mix(
+    in srgb,
+    currentColor 12%,
+    transparent
+  );
+  --juizi-pricing-label-foreground: currentColor;
+  --juizi-pricing-price-font-size: clamp(2.25rem, 3.4vw, 3rem);
+  --juizi-pricing-price-font-weight: 800;
+  // A price in words ("Let's scope it")
+  --juizi-pricing-price-words-font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+  --juizi-pricing-note-font-size: 0.875rem;
+  --juizi-pricing-divider-color: color-mix(
+    in srgb,
+    currentColor 20%,
+    transparent
+  );
+  --juizi-pricing-feature-line-height: 2;
+  --juizi-pricing-disclaimer-font-size: 0.9rem;
+  --juizi-pricing-disclaimer-max-width: 75ch;
+  // Width of a card in the mobile carousel: one whole card at a time
+  --juizi-pricing-slide-width: 100%;
 
   // ── Reviews (Carousel, Reviews style) ───────────────────────────────────
   // Star colour on light and on dark backgrounds. Keep each at 3:1 or more
@@ -148,17 +206,22 @@ $juizi-preheaders: '.hero-preheader', '.content-row__preheader',
   '.juizi-form-side__kicker';
 $juizi-titles: '.hero-block--section .hero-title',
   '.hero-block--snapshot .hero-title', '.content-row__heading', '.embla__title',
-  '.gallery__title', '.juizi-audio__title', '.juizi-form-side__heading';
+  '.gallery__title', '.juizi-audio__title', '.juizi-form-side__heading',
+  '.juizi-pricing__title';
+// A Section with "Large title" on takes the Hero size; the extra class
+// outranks the Section rule above.
 $juizi-hero-titles: '.hero-block--hero .hero-title',
+  '.hero-block--section.hero-block--large-title .hero-title',
   '.juizi-form-side__heading--primary';
 $juizi-descriptions: '.hero-subtitle', '.content-row__description',
   '.embla__description', '.gallery__description', '.juizi-audio__description',
-  '.juizi-form-side__intro';
-$juizi-item-preheaders: '.content-row-item__preheader';
+  '.juizi-form-side__intro', '.juizi-pricing__description';
+$juizi-item-preheaders: '.content-row-item__preheader', '.juizi-pricing__label';
 $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
-  '.embla .slide__body h3';
+  '.embla .slide__body h3', '.juizi-pricing__name';
 // Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
-$juizi-padded-blocks: 'hero-block', 'content-row', 'juizi-form-wrapper';
+$juizi-padded-blocks: 'hero-block', 'content-row', 'juizi-form-wrapper',
+  'juizi-pricing';
 // Blocks whose paddingTop / paddingBottom are optional: left empty, the
 // block keeps its usual space above and below (no class), so saved blocks
 // don't change. `<block>: <inner layer>`: the inner layer's own space above
@@ -210,6 +273,10 @@ $juizi-layers: (
     '.juizi-audio',
     --juizi-audio-width,
   ),
+  '.juizi-pricing': (
+    '.juizi-pricing__inner',
+    --juizi-pricing-width,
+  ),
   '.redirect-block-wrapper': (
     '.redirect-block',
     --juizi-redirect-width,
@@ -260,7 +327,7 @@ $juizi-underlined-links: (
 // Cards and card-like slides
 $juizi-cards: '.content-row__grid > .content-row-item',
   '.content-row__embla-slide', '.embla .carousel-slide-inner.image-top .card',
-  '.embla .carousel-slide-inner.reviews';
+  '.embla .carousel-slide-inner.reviews', '.juizi-pricing__tier';
 
 // ── Typography ────────────────────────────────────────────────────────────
 
@@ -531,12 +598,12 @@ $juizi-pad-sizes: (
 // Audio block and the Redirect pad their own box (above).
 #page-document
   > .block
-  > :is(.hero-block, .content-row, .embla, .gallery):not(
+  > :is(.hero-block, .content-row, .embla, .gallery, .juizi-pricing):not(
     .hero-block--full-width,
     .full-width
   ),
 #page-document
-  > :is(.hero-block, .content-row, .embla, .gallery):not(
+  > :is(.hero-block, .content-row, .embla, .gallery, .juizi-pricing):not(
     .hero-block--full-width,
     .full-width
   ) {

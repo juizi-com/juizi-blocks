@@ -172,6 +172,10 @@ export const colorKeyToCssVar = (key, colorList = MASTER_COLOR_LIST) => {
 // Each colour produces two entries:
 //   ['solid__white',   'White — Solid',    'light']
 //   ['outline__white', 'White — Outlined', 'light']
+// and, with { textLinks: true }, a third:
+//   ['text__white',    'White — Text only', 'light']
+// Text only is for link buttons (Hero, Content Row, Carousel): the label in
+// the colour, underlined, with no box. Forms and arrows don't offer it.
 //
 // The "Solid" / "Outlined" part of the label is translated: pass the schema's
 // translator (components/Blocks/_shared/i18n.js) as the second argument.
@@ -185,6 +189,7 @@ export const colorKeyToCssVar = (key, colorList = MASTER_COLOR_LIST) => {
 export const getButtonChoices = (
   colorList = MASTER_COLOR_LIST,
   t = translator(),
+  { textLinks = false } = {},
 ) =>
   colorList.flatMap(([value, label, lightness]) => {
     const key = colorValueToKey(value);
@@ -195,6 +200,15 @@ export const getButtonChoices = (
         t(messages.buttonOutlined, { color: label }),
         lightness,
       ],
+      ...(textLinks
+        ? [
+            [
+              `text__${key}`,
+              t(messages.buttonTextOnly, { color: label }),
+              lightness,
+            ],
+          ]
+        : []),
     ];
   });
 
@@ -263,7 +277,7 @@ export const getContrastingColor = (
 //   className — space-separated string of classes:
 //     '{baseClass}'            — the block's own button class (for sizing/layout)
 //     'btn-unified'            — marks it as a system button (target all at once)
-//     'btn-{variant}'          — 'btn-solid' or 'btn-outline'
+//     'btn-{variant}'          — 'btn-solid', 'btn-outline' or 'btn-text'
 //     'btn-color-{colorKey}'   — e.g. 'btn-color-white', 'btn-color-blue'
 //     '{baseClass}--{variant}' — e.g. 'hero-button--solid' (block-local targeting)
 //

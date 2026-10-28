@@ -1,0 +1,1 @@
+Buttons: a "Text only" style next to Solid and Outlined, in every site colour, for the link buttons of the Hero, Content Row and Carousel: the label in the colour, underlined, with no box. Form buttons and arrows keep Solid and Outlined only.

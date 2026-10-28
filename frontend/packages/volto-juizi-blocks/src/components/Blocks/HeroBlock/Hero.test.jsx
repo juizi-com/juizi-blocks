@@ -56,6 +56,30 @@ describe('Hero', () => {
     expect(container.textContent).toContain('Add a heading in the sidebar.');
   });
 
+  it('offers "Large title" on Section bands only, and marks the band', () => {
+    const layout = (data) =>
+      schema({ data }).fieldsets.find((f) => f.id === 'layout').fields;
+    expect(layout({ blockMode: 'section' })).toContain('largeTitle');
+    expect(layout({ blockMode: 'hero' })).not.toContain('largeTitle');
+    const band = (data) =>
+      renderHero({
+        data: {
+          blockMode: 'section',
+          usePageTitle: false,
+          title: 'Hi',
+          ...data,
+        },
+      }).container.querySelector('section');
+    expect(band({}).classList).not.toContain('hero-block--large-title');
+    expect(band({ largeTitle: true }).classList).toContain(
+      'hero-block--large-title',
+    );
+    // Saved Hero-style blocks ignore it.
+    expect(
+      band({ blockMode: 'hero', largeTitle: true }).classList,
+    ).not.toContain('hero-block--large-title');
+  });
+
   it('keeps saved Section bands without the switch on the page title', () => {
     const { container } = renderHero({
       data: { blockMode: 'section' },

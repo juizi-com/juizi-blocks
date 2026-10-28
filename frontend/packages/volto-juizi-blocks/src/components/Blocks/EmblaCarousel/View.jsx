@@ -17,6 +17,7 @@ import {
   getColorTextStyle,
   isColorDark,
 } from '../../../config/colors';
+import NavArrowIcon from '../_shared/NavArrowIcon';
 import BlockPlaceholder from '../_shared/BlockPlaceholder';
 import BlockWrapper from '../_shared/BlockWrapper';
 import BlockErrorBoundary from '../_shared/BlockErrorBoundary';
@@ -119,25 +120,6 @@ const SlideButtonArrow = () => (
 // old Bootstrap Icon font glyphs so the carousel has no external icon-font
 // dependency). Purely decorative — the button's own aria-label carries the
 // accessible name.
-const NavArrowIcon = ({ direction }) => (
-  <svg
-    className="embla__nav-arrow-icon"
-    width="1em"
-    height="1em"
-    viewBox="0 0 16 16"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d={direction === 'left' ? 'M13 8H3M7 4L3 8l4 4' : 'M3 8h10M9 4l4 4-4 4'}
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const EmblaCarousel = (blockProps) => {
   const { data, id, isEditMode } = blockProps;
   const intl = useIntl();

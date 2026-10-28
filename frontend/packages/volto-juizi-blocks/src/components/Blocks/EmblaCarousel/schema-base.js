@@ -353,7 +353,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
       slideButtonStyle: {
         title: t(messages.slideButtonStyle),
         widget: 'select',
-        choices: getButtonChoices(colors, t),
+        choices: getButtonChoices(colors, t, { textLinks: true }),
         default: getDefaultButton(backgroundColor, colors),
       },
       slideButtonLinkStyle: {
@@ -498,7 +498,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
       headerLinkStyle: {
         title: t(messages.moreButtonStyle),
         widget: 'select',
-        choices: getButtonChoices(colors, t),
+        choices: getButtonChoices(colors, t, { textLinks: true }),
         default: getDefaultButton(backgroundColor, colors),
       },
       arrowStyle: {
@@ -515,7 +515,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
         title: t(messages.listingButtonStyle),
         description: t(messages.listingButtonStyleHelp),
         widget: 'select',
-        choices: getButtonChoices(colors, t),
+        choices: getButtonChoices(colors, t, { textLinks: true }),
         default: getDefaultButton(backgroundColor, colors),
       },
       listingButtonLinkStyle: {
