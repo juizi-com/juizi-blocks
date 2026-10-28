@@ -197,6 +197,15 @@ const PricingTiers = (props) => {
   const startHighlighted =
     !!data.mobileStartHighlighted && highlightedIndex > -1;
   const background = colorProps(data.backgroundColor);
+  // Also as variables, so a theme can paint the band somewhere else (e.g.
+  // only behind the header and the top of the cards).
+  const sectionStyle = background.style && {
+    ...background.style,
+    '--juizi-pricing-background': background.style.backgroundColor,
+    ...(background.style.color && {
+      '--juizi-pricing-foreground': background.style.color,
+    }),
+  };
   // With a title, tier names are its subheadings; without, they're the
   // section's headings.
   const headingLevel = title ? 'h3' : 'h2';
@@ -233,7 +242,7 @@ const PricingTiers = (props) => {
           `juizi-pricing--pad-bottom-${data.paddingBottom || 'default'}`,
           data.customClass,
         )}
-        style={background.style}
+        style={sectionStyle}
         {...(titleId ? { 'aria-labelledby': titleId } : {})}
       >
         <div className="juizi-pricing__inner">

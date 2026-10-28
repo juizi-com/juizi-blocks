@@ -268,6 +268,25 @@ describe('Pricing tiers', () => {
     expect(single.querySelector('.mobile-carousel__arrow')).toBeNull();
   });
 
+  it('hands themes its background and text colour as variables', () => {
+    const colors = getBlockColorList('pricingTiers');
+    const dark = colors.find(([, , l]) => l === 'dark')[0];
+    const { container } = render(
+      <View data={block({ backgroundColor: dark })} />,
+    );
+    const section = container.querySelector('section');
+    expect(section.style.getPropertyValue('--juizi-pricing-background')).toBe(
+      dark,
+    );
+    expect(
+      section.style.getPropertyValue('--juizi-pricing-foreground'),
+    ).toBeTruthy();
+    const none = render(<View data={block()} />);
+    expect(
+      none.container.querySelector('section').getAttribute('style'),
+    ).toBeNull();
+  });
+
   it('colours cards from the block, with tier overrides', () => {
     const colors = getBlockColorList('pricingTiers');
     const dark = colors.find(([, , l]) => l === 'dark')[0];

@@ -57,7 +57,7 @@ Everything visual is a token in `theme/juizi-common.scss` (`--juizi-pricing-*`: 
 
 | Class | What |
 | --- | --- |
-| `juizi-pricing` | the section (outer layer); `--mobile-carousel`, `--pad-top-*`, `--pad-bottom-*`, `bg-*`, plus the Extra style name |
+| `juizi-pricing` | the section (outer layer); `--mobile-carousel`, `--pad-top-*`, `--pad-bottom-*`, `bg-*`, plus the Extra style name. With a background colour it also sets `--juizi-pricing-background` and `--juizi-pricing-foreground`, so a theme can paint the band elsewhere (juizi.com's `overlap-hero` paints it only behind the header and the top of the cards) |
 | `juizi-pricing__inner` | the centred content |
 | `juizi-pricing__header`, `__title`, `__description` | above the cards |
 | `juizi-pricing__grid`, `__grid--columns-{2-5}` | the cards on larger screens |
