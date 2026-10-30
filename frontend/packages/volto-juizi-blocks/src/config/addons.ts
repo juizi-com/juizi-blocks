@@ -8,6 +8,12 @@
  * frontend with volto-juizi-blocks, the list includes it as an available
  * add-on; Volto's usual Install button then installs it. Once installed, the
  * backend lists it itself and nothing is added.
+ *
+ * Other add-ons offer theirs the same way (the collective payments and form
+ * add-ons, juizi.dashboard, members-only), so settings.ts wraps whichever
+ * add-ons reducer is already configured (withJuiziAddons) instead of
+ * replacing it: replacing it would drop the add-ons offered by the ones
+ * loaded earlier.
  */
 import addons from '@plone/volto/reducers/addons/addons';
 import { LIST_ADDONS } from '@plone/volto/constants/ActionTypes';
@@ -32,17 +38,26 @@ export const JUIZI_BLOCKS_ADDON = {
   version: packageJson.version,
 };
 
-export default function juiziAddons(state: any, action: any = {}) {
+/** The action, with juizi.blocks added to the backend's list if missing. */
+export function withJuiziBlocks(action: any = {}) {
   const items = action.result?.items;
   if (
     action.type === `${LIST_ADDONS}_SUCCESS` &&
     Array.isArray(items) &&
     !items.some((item: any) => item?.id === ADDON_ID)
   ) {
-    return addons(state, {
+    return {
       ...action,
       result: { ...action.result, items: [...items, JUIZI_BLOCKS_ADDON] },
-    });
+    };
   }
-  return addons(state, action);
+  return action;
 }
+
+/** Wraps the add-ons reducer that was configured before this add-on. */
+export function withJuiziAddons(previous: any = addons) {
+  return (state: any, action: any = {}) =>
+    previous(state, withJuiziBlocks(action));
+}
+
+export default withJuiziAddons(addons);
