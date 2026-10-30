@@ -1,6 +1,6 @@
 import type { ConfigType } from '@plone/registry';
 import juiziBlocksSettings from '../settings/reducer';
-import juiziAddons from './addons';
+import { withJuiziAddons } from './addons';
 import {
   CONTROLPANEL_ID,
   getJuiziBlocksSettings,
@@ -57,11 +57,11 @@ export default function install(config: ConfigType) {
   });
 
   // Settings store, and Site Setup → Add-ons offering juizi.blocks
-  // (config/addons.ts).
+  // (config/addons.ts), wrapping any add-ons reducer configured before it.
   config.addonReducers = {
     ...config.addonReducers,
     juiziBlocksSettings,
-    addons: juiziAddons,
+    addons: withJuiziAddons(config.addonReducers?.addons),
   };
 
   // Fetch the settings during SSR and apply them before rendering, so

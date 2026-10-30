@@ -1,4 +1,5 @@
-import juiziAddons, { ADDON_ID } from './addons';
+import addons from '@plone/volto/reducers/addons/addons';
+import juiziAddons, { ADDON_ID, withJuiziAddons } from './addons';
 import packageJson from '../../package.json';
 
 const listed = (items) =>
@@ -44,5 +45,37 @@ describe('Site Setup → Add-ons on a frontend with volto-juizi-blocks', () => {
   it("leaves Volto's other add-on actions as they are", () => {
     const state = juiziAddons(undefined, { type: 'INSTALL_ADDON_PENDING' });
     expect(state.loading).toBe(true);
+  });
+
+  it('keeps the add-ons another add-on offers before it', () => {
+    // As another add-on's wrapper would (offerAddon.js in the collective
+    // add-ons): it adds its own entry, then hands on to Volto's reducer.
+    const other = (state, action) =>
+      addons(
+        state,
+        action.type === 'LIST_ADDONS_SUCCESS'
+          ? {
+              ...action,
+              result: {
+                items: [
+                  ...action.result.items,
+                  {
+                    id: 'collective.other',
+                    title: 'Other',
+                    is_installed: false,
+                    upgrade_info: {},
+                  },
+                ],
+              },
+            }
+          : action,
+      );
+    const state = withJuiziAddons(other)(undefined, {
+      type: 'LIST_ADDONS_SUCCESS',
+      result: { items: [plain] },
+    });
+    expect(state.availableAddons.map((a) => a.id).sort()).toEqual(
+      [ADDON_ID, 'collective.other'].sort(),
+    );
   });
 });

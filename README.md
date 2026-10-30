@@ -205,7 +205,11 @@ can serve several sites, and only the ones whose frontend includes
 backend leaves it out of its add-ons list until it is installed on the site,
 and this frontend add-on adds it back (`src/config/addons.ts`); Volto's usual
 Install button installs `juizi.blocks:default`, which adds only the add-on's
-own settings. Once installed, the backend lists it as usual.
+own settings. Once installed, the backend lists it as usual. Other add-ons
+offer themselves the same way (the collective payments and form add-ons,
+juizi.dashboard, members-only), so this one wraps whichever add-ons reducer
+an earlier add-on configured instead of replacing it, and they all stay in
+the list.
 
 The frontend add-on stays inactive on a site until juizi.blocks is installed
 there, so it can be deployed first. The backend's settings service only exists
