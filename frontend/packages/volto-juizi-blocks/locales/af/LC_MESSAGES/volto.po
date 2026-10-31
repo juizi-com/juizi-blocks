@@ -2316,6 +2316,36 @@ msgstr "Dit is die hoofopskrif van die bladsy"
 msgid "juizi-form-primary-heading-help"
 msgstr "Maak die opskrif hieronder die bladsy se hoofopskrif en versteek die bladsy se eie titel. Gebruik dit wanneer hierdie vorm bo-aan die bladsy is. Net een blok per bladsy behoort dit te hê."
 
+#. Default: "Text alignment"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align"
+msgstr "Teksbelyning"
+
+#. Default: "Bottom"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-bottom"
+msgstr "Onder"
+
+#. Default: "Centre"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-center"
+msgstr "Middel"
+
+#. Default: "Where the text sits beside a longer form. \"Top, stays in view\" keeps it on screen while the form scrolls. On phones the text is above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-help"
+msgstr "Waar die teks langs 'n langer vorm staan. \"Bo, bly sigbaar\" hou dit op die skerm terwyl die vorm rol. Op fone is die teks bo die vorm."
+
+#. Default: "Top, stays in view"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-sticky"
+msgstr "Bo, bly sigbaar"
+
+#. Default: "Top"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-top"
+msgstr "Bo"
+
 #. Default: "Heading"
 #: extensions/formBlock/messages
 msgid "juizi-form-side-heading"

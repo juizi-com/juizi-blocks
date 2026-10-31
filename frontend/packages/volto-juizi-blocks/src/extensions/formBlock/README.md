@@ -23,7 +23,11 @@ added.
 - **Layout** in the form's main panel, under its description: "Form only"
   (the default, and what every saved form is) or "Form with text beside it".
   With text, **Form position** (right or left; on phones the text always
-  comes first).
+  comes first) and **Text alignment** beside the form: top, "top, stays in
+  view" (the text stays on screen while a longer form scrolls past it,
+  `--juizi-form-side-sticky-top` from the top, 2rem by default), centre
+  (the default, and what every saved form has) or bottom. Alignment only
+  applies while text and form are side by side.
 - A **Text beside the form** panel: text above the heading, "This is the
   primary page heading", heading, introduction, and more text (rich text,
   shown below a line). Same fields, keys and wording as the donation and

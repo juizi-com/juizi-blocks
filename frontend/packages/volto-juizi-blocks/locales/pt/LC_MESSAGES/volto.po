@@ -2316,6 +2316,36 @@ msgstr "Este é o título principal da página"
 msgid "juizi-form-primary-heading-help"
 msgstr "Torna o título abaixo o título principal da página e esconde o título da própria página. Use-o quando este formulário estiver no topo da página. Só um bloco por página deve ter isto."
 
+#. Default: "Text alignment"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align"
+msgstr "Alinhamento do texto"
+
+#. Default: "Bottom"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-bottom"
+msgstr "Fundo"
+
+#. Default: "Centre"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-center"
+msgstr "Centro"
+
+#. Default: "Where the text sits beside a longer form. \"Top, stays in view\" keeps it on screen while the form scrolls. On phones the text is above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-help"
+msgstr "Onde fica o texto ao lado de um formulário mais longo. «Topo, fica à vista» mantém-no no ecrã enquanto o formulário desliza. Nos telemóveis o texto fica acima do formulário."
+
+#. Default: "Top, stays in view"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-sticky"
+msgstr "Topo, fica à vista"
+
+#. Default: "Top"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-top"
+msgstr "Topo"
+
 #. Default: "Heading"
 #: extensions/formBlock/messages
 msgid "juizi-form-side-heading"
