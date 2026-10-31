@@ -14,6 +14,7 @@ import {
   getColorTextStyle,
 } from '../../../config/colors';
 import BlockPlaceholder from '../_shared/BlockPlaceholder';
+import RichText, { hasRichText } from '../_shared/RichText';
 import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';
 import { isEditing } from '../_shared/editMode';
@@ -24,134 +25,12 @@ import { getPickedImageUrl } from '../_shared/images';
 import { formatNumber } from '../_shared/format';
 import shared from '../_shared/messages';
 import messages from './messages';
+import { BORDER_MODES, BORDER_STYLES, NO_ICON } from './schema';
 import './style.css';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import MobileCarousel from '../_shared/MobileCarousel';
 
-// Hook-free slate node renderer
-// serializeNodesToHtml uses hooks internally so we render nodes directly.
-const SlateLeaf = ({ leaf }) => {
-  let el = <>{typeof leaf.text === 'string' ? leaf.text : ''}</>;
-  if (leaf.bold) el = <strong>{el}</strong>;
-  if (leaf.italic) el = <em>{el}</em>;
-  if (leaf.underline) el = <u>{el}</u>;
-  if (leaf.strikethrough) el = <s>{el}</s>;
-  if (leaf.code) el = <code>{el}</code>;
-  return el;
-};
-
-const SlateNode = ({ node }) => {
-  if (!node) return null;
-  // Leaf (text node)
-  if (node.text !== undefined)
-    return (
-      <SlateLeaf
-        leaf={{ ...node, text: typeof node.text === 'string' ? node.text : '' }}
-      />
-    );
-  const children = (node.children || []).map((child, i) => (
-    <SlateNode key={i} node={child} />
-  ));
-  switch (node.type) {
-    case 'p':
-      return <p>{children}</p>;
-    case 'h1':
-      return <h1>{children}</h1>;
-    case 'h2':
-      return <h2>{children}</h2>;
-    case 'h3':
-      return <h3>{children}</h3>;
-    case 'h4':
-      return <h4>{children}</h4>;
-    case 'ul':
-      return <ul>{children}</ul>;
-    case 'ol':
-      return <ol>{children}</ol>;
-    case 'li':
-      return <li>{children}</li>;
-    case 'blockquote':
-      return <blockquote>{children}</blockquote>;
-    case 'a':
-      return <a href={node.url || node.href || '#'}>{children}</a>;
-    case 'strong':
-      return <strong>{children}</strong>;
-    case 'em':
-      return <em>{children}</em>;
-    default:
-      return <>{children}</>;
-  }
-};
-
-// A description an editor has touched but left empty is still saved: as
-// HTML ("<p></p>", "<p><br></p>") or as Slate nodes without text. It counts
-// as no description, so the item doesn't get an empty paragraph (and the
-// spacing that comes with it).
-const htmlHasContent = (html) =>
-  /<(img|iframe|video|audio|embed|object|hr)\b/i.test(html) ||
-  html
-    .replace(/<[^>]*>/g, '')
-    .replace(/&nbsp;|&#160;|\u00a0/gi, '')
-    .trim() !== '';
-
-const slateHasContent = (nodes) =>
-  nodes.some((node) =>
-    typeof node?.text === 'string'
-      ? node.text.trim() !== ''
-      : Array.isArray(node?.children) && slateHasContent(node.children),
-  );
-
-export const hasRichText = (data) => {
-  if (!data) return false;
-  if (typeof data === 'string') return htmlHasContent(data);
-  if (Array.isArray(data)) return slateHasContent(data);
-  if (typeof data.data === 'string') return htmlHasContent(data.data);
-  if (Array.isArray(data.data)) return slateHasContent(data.data);
-  return false;
-};
-
-const RichText = ({ data, className }) => {
-  if (!hasRichText(data)) return null;
-  // Draftjs format: { data: "<p>html string</p>" }
-  if (data?.data !== undefined) {
-    if (typeof data.data === 'string') {
-      /* eslint-disable-next-line react/no-danger */
-      return (
-        <div
-          className={className}
-          dangerouslySetInnerHTML={{ __html: data.data }}
-        />
-      );
-    }
-    // Slate array nested under data key
-    if (Array.isArray(data.data)) {
-      return (
-        <div className={className}>
-          {data.data.map((node, i) => (
-            <SlateNode key={i} node={node} />
-          ))}
-        </div>
-      );
-    }
-  }
-  // Slate format: top-level array
-  if (Array.isArray(data)) {
-    return (
-      <div className={className}>
-        {data.map((node, i) => (
-          <SlateNode key={i} node={node} />
-        ))}
-      </div>
-    );
-  }
-  // Plain string
-  if (typeof data === 'string') {
-    /* eslint-disable-next-line react/no-danger */
-    return (
-      <div className={className} dangerouslySetInnerHTML={{ __html: data }} />
-    );
-  }
-  return null;
-};
+// Kept as an export of this module for older imports.
+export { hasRichText };
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
@@ -249,107 +128,33 @@ const getCardBgStyle = (item, { pictureBehind = false } = {}) => {
   return { style, imageUrl, toneClass };
 };
 
-// ─── CSS scroll snap carousel ──────────────────────────────────────────────
-// No dependencies, no React version conflicts.
-// Swipe works natively on mobile via CSS scroll-snap.
-// Mobile carousel using Embla — only activates below 768px.
-// On desktop the grid renders normally regardless of this setting.
-
-const MobileCarousel = ({ children, autoplay, showDots }) => {
-  const intl = useIntl();
-  // Respect reduced motion: disable autoplay entirely when the user has
-  // requested it in their OS settings.
-  const reducedMotion =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const plugins =
-    autoplay && !reducedMotion
-      ? [Autoplay({ delay: 4000, stopOnInteraction: true })]
-      : [];
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: 'center', loop: true },
-    plugins,
-  );
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const slideCount = React.Children.count(children);
-
-  React.useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on('select', onSelect);
-
-    // Equal height: measure all slides after init and set container height
-    const equalizeHeights = () => {
-      const slides = emblaApi.slideNodes();
-      // Reset first
-      slides.forEach((slide) => {
-        slide.style.height = '';
-      });
-      // Find tallest
-      const maxHeight = Math.max(...slides.map((s) => s.offsetHeight));
-      if (maxHeight > 0) {
-        slides.forEach((slide) => {
-          slide.style.height = `${maxHeight}px`;
-        });
-      }
-    };
-
-    emblaApi.on('init', equalizeHeights);
-    emblaApi.on('resize', equalizeHeights);
-    equalizeHeights();
-
-    return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('init', equalizeHeights);
-      emblaApi.off('resize', equalizeHeights);
-    };
-  }, [emblaApi]);
-
-  return (
-    <div
-      className="content-row__embla"
-      role="region"
-      aria-label={intl.formatMessage(messages.carouselLabel)}
-    >
-      <div className="content-row__embla-viewport" ref={emblaRef}>
-        <div className="content-row__embla-container">
-          {React.Children.map(children, (child, i) => (
-            <div key={i} className="content-row__embla-slide">
-              {child}
-            </div>
-          ))}
-        </div>
-      </div>
-      {showDots && slideCount > 1 && (
-        <div className="content-row__embla-dots">
-          {Array.from({ length: slideCount }).map((_, i) => (
-            <button
-              key={i}
-              className={`content-row__embla-dot${i === selectedIndex ? ' is-selected' : ''}`}
-              onClick={() => emblaApi?.scrollTo(i)}
-              aria-label={intl.formatMessage(shared.goToSlide, {
-                number: i + 1,
-              })}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
 const ItemsWrapper = ({ mobileCarousel, autoplay, showDots, children }) => {
+  const intl = useIntl();
   if (!mobileCarousel) {
     return <>{children}</>;
   }
   return (
-    <MobileCarousel autoplay={autoplay} showDots={showDots}>
+    <MobileCarousel
+      blockClass="content-row"
+      label={intl.formatMessage(messages.carouselLabel)}
+      autoplay={autoplay}
+      showDots={showDots}
+    >
       {children}
     </MobileCarousel>
   );
 };
 
 // ─── Variation renderers ───────────────────────────────────────────────────
+
+// Where a Numbered or Icon item's number or icon sits ("Icon/number
+// position"). Unset or "above" stacks it above the content.
+const POSITION_CLASSES = {
+  left: ' content-row-item--left',
+  inline: ' content-row-item--inline',
+  beside: ' content-row-item--beside',
+};
+const getPositionClass = (iconPosition) => POSITION_CLASSES[iconPosition] || '';
 
 const NumberedItem = ({ item, index, iconPosition }) => {
   const href = getHref(item.link);
@@ -397,12 +202,7 @@ const NumberedItem = ({ item, index, iconPosition }) => {
   );
 
   const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(item);
-  const positionClass =
-    iconPosition === 'left'
-      ? ' content-row-item--left'
-      : iconPosition === 'inline'
-        ? ' content-row-item--inline'
-        : '';
+  const positionClass = getPositionClass(iconPosition);
 
   return (
     <div
@@ -515,21 +315,27 @@ const IconItem = ({ item, iconPosition }) => {
       }
     : {};
 
+  // "No icon": a plain point. Only the explicit choice hides it; an item
+  // with no icon value at all keeps the fallback circle it always had.
+  const showIcon = item.icon !== NO_ICON;
+
   const inner = (
     <>
-      <div
-        className={`content-row-item__icon${hasCircle ? ' content-row-item__icon--circle' : ''}`}
-        aria-hidden="true"
-        style={circleStyle}
-      >
-        {LucideIcon ? (
-          <LucideIcon size={32} strokeWidth={1.5} />
-        ) : CustomSvg ? (
-          <CustomIcon icon={CustomSvg} />
-        ) : (
-          <FallbackIcon size={32} strokeWidth={1.5} />
-        )}
-      </div>
+      {showIcon && (
+        <div
+          className={`content-row-item__icon${hasCircle ? ' content-row-item__icon--circle' : ''}`}
+          aria-hidden="true"
+          style={circleStyle}
+        >
+          {LucideIcon ? (
+            <LucideIcon size={32} strokeWidth={1.5} />
+          ) : CustomSvg ? (
+            <CustomIcon icon={CustomSvg} />
+          ) : (
+            <FallbackIcon size={32} strokeWidth={1.5} />
+          )}
+        </div>
+      )}
       <div className="content-row-item__content">
         {item.preheader && (
           <p className="content-row-item__preheader juizi-preheader juizi-preheader--item">
@@ -549,12 +355,7 @@ const IconItem = ({ item, iconPosition }) => {
   );
 
   const { style: bgStyle, toneClass: itemToneClass } = getCardBgStyle(item);
-  const positionClass =
-    iconPosition === 'left'
-      ? ' content-row-item--left'
-      : iconPosition === 'inline'
-        ? ' content-row-item--inline'
-        : '';
+  const positionClass = getPositionClass(iconPosition);
 
   return (
     <div
@@ -840,6 +641,10 @@ const View = (props) => {
     isDark ? 'bg-dark' : backgroundColor !== 'transparent' ? 'bg-light' : '',
     bgImageUrl ? 'content-row--has-bg' : '',
     data.mobileCarousel ? 'content-row--mobile-scroll' : '',
+    BORDER_MODES.includes(displayMode) &&
+    BORDER_STYLES.includes(data.itemBorders)
+      ? `content-row--${data.itemBorders}`
+      : '',
     `content-row--pad-top-${paddingTop}`,
     `content-row--pad-bottom-${paddingBottom}`,
     data.customClass || '',
@@ -946,10 +751,19 @@ const View = (props) => {
       </a>
     ) : null;
 
+  // Saved as plain text (older blocks, legacy conversions) or as rich text
+  // from the editor. Plain text keeps showing as text, as it always has.
+  const plainDescription =
+    typeof data.descriptionText === 'string' ? data.descriptionText.trim() : '';
+  const hasDescription =
+    !!plainDescription ||
+    (typeof data.descriptionText !== 'string' &&
+      hasRichText(data.descriptionText));
+
   const hasHeader = !!(
     data.preheaderText ||
     data.headerText ||
-    data.descriptionText ||
+    hasDescription ||
     blockImageUrl ||
     (viewAllButton && viewAllPosition === 'header')
   );
@@ -957,6 +771,12 @@ const View = (props) => {
   // Nothing to show: visitors see nothing (no empty band); editors see the
   // prompt to add the first item, under any heading they've written.
   if (items.length === 0 && !isEditMode && !hasHeader) return null;
+
+  const viewAllBelow = viewAllButton && viewAllPosition === 'below' && (
+    <div className={`content-row__view-all-bottom align-${headerAlignment}`}>
+      {viewAllButton}
+    </div>
+  );
 
   return (
     <BlockWrapper
@@ -1016,10 +836,17 @@ const View = (props) => {
                       {safeString(data.headerText)}
                     </h2>
                   )}
-                  {data.descriptionText && (
+                  {plainDescription ? (
                     <p className="content-row__description">
-                      {safeString(data.descriptionText)}
+                      {plainDescription}
                     </p>
+                  ) : (
+                    hasDescription && (
+                      <RichText
+                        data={data.descriptionText}
+                        className="content-row__description content-row__description--rich"
+                      />
+                    )
                   )}
                 </div>
                 {blockImageUrl && (
@@ -1059,6 +886,9 @@ const View = (props) => {
                   {items.map((item, index) => renderItem(item, index))}
                 </ItemsWrapper>
               )}
+              {/* Side by side: under the items, in their column (a sibling
+                  of the two columns would become a third one). */}
+              {sideBySideLayout && viewAllBelow}
             </div>
           ) : (
             isEditMode && (
@@ -1073,13 +903,7 @@ const View = (props) => {
             )
           )}
 
-          {viewAllButton && viewAllPosition === 'below' && (
-            <div
-              className={`content-row__view-all-bottom align-${headerAlignment}`}
-            >
-              {viewAllButton}
-            </div>
-          )}
+          {!sideBySideLayout && viewAllBelow}
         </div>
       </section>
     </BlockWrapper>

@@ -36,6 +36,31 @@ export default defineMessages({
     id: 'juizi-form-position-left',
     defaultMessage: 'Left',
   },
+  sideAlign: {
+    id: 'juizi-form-side-align',
+    defaultMessage: 'Text alignment',
+  },
+  sideAlignHelp: {
+    id: 'juizi-form-side-align-help',
+    defaultMessage:
+      'Where the text sits beside a longer form. "Top, stays in view" keeps it on screen while the form scrolls. On phones the text is above the form.',
+  },
+  alignTop: {
+    id: 'juizi-form-side-align-top',
+    defaultMessage: 'Top',
+  },
+  alignSticky: {
+    id: 'juizi-form-side-align-sticky',
+    defaultMessage: 'Top, stays in view',
+  },
+  alignCenter: {
+    id: 'juizi-form-side-align-center',
+    defaultMessage: 'Centre',
+  },
+  alignBottom: {
+    id: 'juizi-form-side-align-bottom',
+    defaultMessage: 'Bottom',
+  },
   sideText: {
     id: 'juizi-form-side-text',
     defaultMessage: 'Text beside the form',

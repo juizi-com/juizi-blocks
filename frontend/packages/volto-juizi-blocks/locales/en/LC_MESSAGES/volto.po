@@ -61,6 +61,16 @@ msgstr ""
 msgid "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
 msgstr ""
 
+#. Default: "Price cards side by side, each with a name, price, features and a button."
+#: blocks/messages
+msgid "Price cards side by side, each with a name, price, features and a button."
+msgstr ""
+
+#. Default: "Pricing tiers"
+#: blocks/messages
+msgid "Pricing tiers"
+msgstr ""
+
 #. Default: "Redirect"
 #: blocks/messages
 msgid "Redirect"
@@ -269,6 +279,11 @@ msgstr ""
 #. Default: "Button text"
 #: components/Blocks/_shared/messages
 msgid "juizi-button-text"
+msgstr ""
+
+#. Default: "{color} — Text only"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-text-only"
 msgstr ""
 
 #. Default: "Buttons"
@@ -1326,7 +1341,7 @@ msgstr ""
 msgid "juizi-content-row-counting-speed-help"
 msgstr ""
 
-#. Default: "Supporting text below the heading."
+#. Default: "Supporting text below the heading. You can make words bold or italic and add links. Leave out headings: the heading above is the one for this block."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-description-help"
 msgstr ""
@@ -1349,6 +1364,11 @@ msgstr ""
 #. Default: "Places the icon inside a coloured circle. Leave as None to keep the plain icon."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-icon-circle-help"
+msgstr ""
+
+#. Default: "Choose \"No icon\" for a plain point with just a heading and text."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-help"
 msgstr ""
 
 #. Default: "Icon/number position"
@@ -1391,6 +1411,26 @@ msgstr ""
 msgid "juizi-content-row-item-background"
 msgstr ""
 
+#. Default: "Item borders"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders"
+msgstr ""
+
+#. Default: "Lines between items suit a list of points or steps; joined boxes put each item in a box that shares its lines with its neighbours, like a table. To fill a box with colour, give the item a background colour."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-help"
+msgstr ""
+
+#. Default: "Joined boxes"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-joined"
+msgstr ""
+
+#. Default: "Lines between items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-lines"
+msgstr ""
+
 #. Default: "Items"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-items"
@@ -1431,6 +1471,11 @@ msgstr ""
 msgid "juizi-content-row-next-to-description"
 msgstr ""
 
+#. Default: "No icon"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-icon"
+msgstr ""
+
 #. Default: "No items yet. Add your first item in the sidebar under Items."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-no-items"
@@ -1469,6 +1514,11 @@ msgstr ""
 #. Default: "Above (default)"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-position-above"
+msgstr ""
+
+#. Default: "Heading on the left, text on the right"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-beside"
 msgstr ""
 
 #. Default: "To the right of the text"
@@ -2261,6 +2311,36 @@ msgstr ""
 msgid "juizi-form-primary-heading-help"
 msgstr ""
 
+#. Default: "Text alignment"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align"
+msgstr ""
+
+#. Default: "Bottom"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-bottom"
+msgstr ""
+
+#. Default: "Centre"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-center"
+msgstr ""
+
+#. Default: "Where the text sits beside a longer form. \"Top, stays in view\" keeps it on screen while the form scrolls. On phones the text is above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-help"
+msgstr ""
+
+#. Default: "Top, stays in view"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-sticky"
+msgstr ""
+
+#. Default: "Top"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-top"
+msgstr ""
+
 #. Default: "Heading"
 #: extensions/formBlock/messages
 msgid "juizi-form-side-heading"
@@ -2646,7 +2726,7 @@ msgstr ""
 msgid "juizi-hero-button-label-help"
 msgstr ""
 
-#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa."
+#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light colour — and vice versa. \"Text only\" shows the words underlined, without a box: good for a second, quieter link."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-button-style-help"
 msgstr ""
@@ -2704,6 +2784,16 @@ msgstr ""
 #. Default: "Colour tint over the background image to keep text readable."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-image-overlay-help"
+msgstr ""
+
+#. Default: "Large title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-large-title"
+msgstr ""
+
+#. Default: "Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-large-title-help"
 msgstr ""
 
 #. Default: "Logo"
@@ -3366,6 +3456,276 @@ msgstr ""
 msgid "juizi-previous-slide"
 msgstr ""
 
+#. Default: "Add button text"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-add-button-text"
+msgstr ""
+
+#. Default: "Add a tier name. Visitors won't see this tier until it has one."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-add-name"
+msgstr ""
+
+#. Default: "Standard: outlined in the text colour. Or pick a colour to match your buttons."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrow-style-help"
+msgstr ""
+
+#. Default: "Arrows"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows"
+msgstr ""
+
+#. Default: "Above the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-above"
+msgstr ""
+
+#. Default: "Below the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-below"
+msgstr ""
+
+#. Default: "Optional. Buttons to go to the previous or next card. On each side, the card gets a little narrower so the arrows never cover it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-help"
+msgstr ""
+
+#. Default: "On each side, in the middle"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-middle"
+msgstr ""
+
+#. Default: "Automatic"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-automatic"
+msgstr ""
+
+#. Default: "The band behind the title and the cards."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-background-color-help"
+msgstr ""
+
+#. Default: "Below the tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-below-tiers"
+msgstr ""
+
+#. Default: "Button link"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-link"
+msgstr ""
+
+#. Default: "For all tiers. Leave empty for an outlined button that stands out against each card. Each tier can have its own style."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-style-help"
+msgstr ""
+
+#. Default: "Optional. For example \"Talk it through\". The button needs a link too."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-text-help"
+msgstr ""
+
+#. Default: "Card colour"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-card-color"
+msgstr ""
+
+#. Default: "For all tiers. Leave empty for plain white cards. Each tier can have its own colour."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-card-color-help"
+msgstr ""
+
+#. Default: "Card colours"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-cards"
+msgstr ""
+
+#. Default: "Pricing tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-carousel-label"
+msgstr ""
+
+#. Default: "Cards in a row on large screens"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-columns"
+msgstr ""
+
+#. Default: "Extra tiers start a new row. Smaller screens show two in a row, then one."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-columns-help"
+msgstr ""
+
+#. Default: "Optional. A short introduction under the title. You can add links and bold text."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-description-help"
+msgstr ""
+
+#. Default: "Small print"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-disclaimer"
+msgstr ""
+
+#. Default: "Optional. Shown in small text under the tiers, for example what the prices include."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-disclaimer-help"
+msgstr ""
+
+#. Default: "Features"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-features"
+msgstr ""
+
+#. Default: "Optional. What's included, one feature per line. Shown as a plain list, without bullets."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-features-help"
+msgstr ""
+
+#. Default: "Highlighted tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-highlighted-tier"
+msgstr ""
+
+#. Default: "Optional. This tier is drawn a little taller to stand out, for example your most chosen option. Give that tier its own card colour to make it stand out more."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-highlighted-tier-help"
+msgstr ""
+
+#. Default: "Tag"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label"
+msgstr ""
+
+#. Default: "Tag colour"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-color"
+msgstr ""
+
+#. Default: "For all tags. Leave empty for the usual tag colour. Each tier can have its own."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-color-help"
+msgstr ""
+
+#. Default: "Optional. A short word or two shown with the name, for example \"New\" or \"Most chosen\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-help"
+msgstr ""
+
+#. Default: "Swipe through the tiers on phones"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-mobile-carousel"
+msgstr ""
+
+#. Default: "On: one card at a time, with dots to show there are more. Off: the cards are stacked."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-mobile-carousel-help"
+msgstr ""
+
+#. Default: "Tier name"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-name"
+msgstr ""
+
+#. Default: "For example \"Essential\". Required."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-name-help"
+msgstr ""
+
+#. Default: "Plain (white)"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-plain-card"
+msgstr ""
+
+#. Default: "Price"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price"
+msgstr ""
+
+#. Default: "Type it as it should appear, for example \"R 49 450\", \"R 950 / year\" or \"Let's talk\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-help"
+msgstr ""
+
+#. Default: "Price note"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-note"
+msgstr ""
+
+#. Default: "Optional. Small text under the price, for example \"incl. VAT\" or \"quoted per project\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-note-help"
+msgstr ""
+
+#. Default: "Show dots under the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-show-dots"
+msgstr ""
+
+#. Default: "Add your first tier in the sidebar, under \"Tiers\". Each tier becomes a price card."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start"
+msgstr ""
+
+#. Default: "Start on the highlighted tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start-highlighted"
+msgstr ""
+
+#. Default: "Phones open on your highlighted tier instead of the first one. Autoplay is switched off, so visitors stay on it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start-highlighted-help"
+msgstr ""
+
+#. Default: "Tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier"
+msgstr ""
+
+#. Default: "Leave empty to use the button style set for all tiers. On a tier with its own card colour, empty means a button that stands out against that colour."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-button-style-help"
+msgstr ""
+
+#. Default: "Card colour for this tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-card-color"
+msgstr ""
+
+#. Default: "Leave empty to use the card colour set for all tiers. The text colour follows automatically."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-card-color-help"
+msgstr ""
+
+#. Default: "Optional. Who this tier is for, in a sentence or two."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-description-help"
+msgstr ""
+
+#. Default: "Tag colour for this tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-label-color"
+msgstr ""
+
+#. Default: "Leave empty to use the tag colour set for all tiers."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-label-color-help"
+msgstr ""
+
+#. Default: "Tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tiers"
+msgstr ""
+
+#. Default: "Each tier is one card. Drag tiers to change their order. A tier needs a name before visitors see it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tiers-help"
+msgstr ""
+
+#. Default: "Optional. Shown above the tiers."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-title-help"
+msgstr ""
+
 #. Default: "Read more"
 #: components/Blocks/_shared/messages
 msgid "juizi-read-more"
@@ -3469,6 +3829,41 @@ msgstr ""
 #. Default: "Select a display style in the sidebar to get started."
 #: components/Blocks/_shared/messages
 msgid "juizi-select-style-prompt"
+msgstr ""
+
+#. Default: "Button colours"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-colours"
+msgstr ""
+
+#. Default: "Leave a field empty to keep the site's usual buttons, which follow the background colour."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-colours-help"
+msgstr ""
+
+#. Default: "Chosen option"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-highlight-color"
+msgstr ""
+
+#. Default: "The border around the option the visitor picks, such as a ticket type or a size."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-highlight-color-help"
+msgstr ""
+
+#. Default: "Main button"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-main-button"
+msgstr ""
+
+#. Default: "Add to cart, or Register on a free event."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-main-button-help"
+msgstr ""
+
+#. Default: "Buy now button"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-second-button"
 msgstr ""
 
 #. Default: "Slide navigation"

@@ -110,6 +110,10 @@ export default defineMessages({
     id: 'juizi-button-outlined',
     defaultMessage: '{color} — Outlined',
   },
+  buttonTextOnly: {
+    id: 'juizi-button-text-only',
+    defaultMessage: '{color} — Text only',
+  },
   overlayGradient: {
     id: 'juizi-overlay-gradient',
     defaultMessage: 'Gradient (default)',

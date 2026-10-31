@@ -265,3 +265,242 @@ describe('Content Row empty description', () => {
     expect(texts[0].textContent).toBe('Words');
   });
 });
+
+describe('Content Row lines and list layouts', () => {
+  const row = (data) =>
+    render(
+      <View
+        data={{
+          '@type': 'contentRow',
+          items: [
+            { '@id': 'a', heading: 'One' },
+            { '@id': 'b', heading: 'Two' },
+          ],
+          ...data,
+        }}
+      />,
+    ).container;
+  const layoutFields = (data) =>
+    schema({ data }).fieldsets.find((f) => f.id === 'layout').fields;
+
+  it('puts a "below the items" button under the items when side by side', () => {
+    const button = {
+      displayMode: 'numbered',
+      showViewAll: true,
+      viewAllText: 'See more',
+      viewAllUrl: [{ '@id': '/more' }],
+      viewAllPosition: 'below',
+    };
+    const beside = row({ ...button, sideBySideLayout: true });
+    expect(
+      beside.querySelector(
+        '.content-row__items > .content-row__view-all-bottom',
+      ),
+    ).not.toBeNull();
+    const stacked = row(button);
+    const bottom = stacked.querySelector('.content-row__view-all-bottom');
+    expect(bottom.parentElement.classList).toContain('content-row__inner');
+  });
+
+  it('leaves saved rows without item borders (no new class)', () => {
+    const section = row({ displayMode: 'numbered' }).querySelector('section');
+    expect(section.className).not.toMatch(/content-row--(lines|joined)/);
+  });
+
+  it('offers None, lines and joined boxes in the styles that have them', () => {
+    ['numbered', 'icon', 'statistics'].forEach((displayMode) => {
+      expect(layoutFields({ displayMode })).toContain('itemBorders');
+      ['lines', 'joined'].forEach((itemBorders) => {
+        const section = row({ displayMode, itemBorders }).querySelector(
+          'section',
+        );
+        expect(section.classList).toContain(`content-row--${itemBorders}`);
+      });
+      const none = row({ displayMode, itemBorders: 'none' });
+      expect(none.querySelector('section').className).not.toMatch(
+        /content-row--(lines|joined|none)/,
+      );
+    });
+    const { choices } = schema({ data: { displayMode: 'icon' } }).properties
+      .itemBorders;
+    expect(choices.map(([value]) => value)).toEqual([
+      'none',
+      'lines',
+      'joined',
+    ]);
+  });
+
+  it("doesn't offer or apply item borders to image cards", () => {
+    expect(layoutFields({ displayMode: 'card' })).not.toContain('itemBorders');
+    const section = row({
+      displayMode: 'card',
+      itemBorders: 'joined',
+    }).querySelector('section');
+    expect(section.className).not.toMatch(/content-row--(lines|joined)/);
+  });
+
+  it('keeps an item with its own colour as its own box in joined boxes', () => {
+    const container = row({
+      displayMode: 'icon',
+      itemBorders: 'joined',
+      items: [
+        { '@id': 'a', heading: 'Plain', icon: 'none' },
+        {
+          '@id': 'b',
+          heading: 'Coloured',
+          icon: 'none',
+          backgroundColor: '#074b60',
+        },
+      ],
+    });
+    const items = container.querySelectorAll('.content-row-item');
+    expect(items[0].style.backgroundColor).toBe('');
+    expect(items[1].style.backgroundColor).not.toBe('');
+  });
+
+  it('puts the heading on the left and the text on the right', () => {
+    const choices = schema({ data: { displayMode: 'numbered' } }).properties
+      .iconPosition.choices;
+    expect(choices.map(([value]) => value)).toEqual([
+      'above',
+      'left',
+      'inline',
+      'beside',
+    ]);
+    ['numbered', 'icon'].forEach((displayMode) => {
+      const items = row({
+        displayMode,
+        iconPosition: 'beside',
+      }).querySelectorAll('.content-row-item--beside');
+      expect(items).toHaveLength(2);
+    });
+  });
+
+  it('keeps the text above the heading in the left column, before the heading', () => {
+    // The left column is the number/icon, the text above the heading and
+    // the heading, in that order (style.css places them in column one).
+    const item = row({
+      displayMode: 'numbered',
+      iconPosition: 'beside',
+      items: [
+        {
+          '@id': 'a',
+          preheader: 'Step one',
+          heading: 'Discovery',
+          text: 'Thirty minutes',
+        },
+      ],
+    }).querySelector('.content-row-item--beside');
+    const order = [...item.querySelectorAll('*')]
+      .map((el) => el.className)
+      .filter((name) =>
+        /content-row-item__(number|preheader|heading|text)\b/.test(name),
+      )
+      .map((name) => name.match(/content-row-item__(\w+)/)[1]);
+    expect(order).toEqual(['number', 'preheader', 'heading', 'text']);
+  });
+
+  it('keeps the existing positions as they were', () => {
+    const container = row({ displayMode: 'icon', iconPosition: 'left' });
+    expect(container.querySelectorAll('.content-row-item--left')).toHaveLength(
+      2,
+    );
+    expect(container.querySelector('.content-row-item--beside')).toBeNull();
+    const above = row({ displayMode: 'icon' });
+    expect(
+      above.querySelector(
+        '.content-row-item--left, .content-row-item--inline, .content-row-item--beside',
+      ),
+    ).toBeNull();
+  });
+
+  it('shows no icon for "No icon", but keeps the circle for items with none saved', () => {
+    const container = row({
+      displayMode: 'icon',
+      items: [
+        { '@id': 'a', heading: 'Plain', icon: 'none' },
+        { '@id': 'b', heading: 'Saved without an icon' },
+        { '@id': 'c', heading: 'Globe', icon: 'Globe' },
+      ],
+    });
+    const items = container.querySelectorAll('.content-row-item');
+    expect(items[0].querySelector('.content-row-item__icon')).toBeNull();
+    expect(items[1].querySelector('.content-row-item__icon')).not.toBeNull();
+    expect(items[2].querySelector('.content-row-item__icon')).not.toBeNull();
+  });
+
+  it('offers "No icon" first and hides the circle colour for it', () => {
+    const { items } = schema({ data: { displayMode: 'icon' } }).properties;
+    expect(items.schema.properties.icon.choices[0]).toEqual([
+      'none',
+      'No icon',
+    ]);
+    const fields = (item) =>
+      items.schemaExtender(items.schema, item).fieldsets[0].fields;
+    expect(fields({ icon: 'none' })).not.toContain('iconCircleColor');
+    expect(fields({ icon: 'Globe' })).toContain('iconCircleColor');
+    expect(fields({})).toContain('iconCircleColor');
+  });
+});
+
+describe('Content Row description', () => {
+  const row = (descriptionText) =>
+    render(
+      <View
+        data={{
+          '@type': 'contentRow',
+          displayMode: 'numbered',
+          descriptionText,
+          items: [{ '@id': 'a', heading: 'Liberty' }],
+        }}
+      />,
+    ).container;
+
+  it('keeps showing a description saved as plain text, as text', () => {
+    const container = row('Fish & <chips> for all');
+    const description = container.querySelector('.content-row__description');
+    expect(description.tagName).toBe('P');
+    expect(description.textContent).toBe('Fish & <chips> for all');
+    expect(description.querySelector('chips')).toBeNull();
+  });
+
+  it('shows a rich-text description with its formatting and links', () => {
+    const container = row({
+      'content-type': 'text/html',
+      data: '<p>Read <a href="/about">about us</a>.</p><p>Second.</p>',
+    });
+    const description = container.querySelector('.content-row__description');
+    expect(description.classList).toContain('content-row__description--rich');
+    expect(description.querySelector('a').getAttribute('href')).toBe('/about');
+    expect(description.querySelectorAll('p')).toHaveLength(2);
+  });
+
+  it('leaves out an empty rich-text description, so no empty header shows', () => {
+    const container = render(
+      <View
+        data={{
+          '@type': 'contentRow',
+          displayMode: 'numbered',
+          descriptionText: { 'content-type': 'text/html', data: '<p></p>' },
+        }}
+      />,
+    ).container;
+    expect(container.querySelector('.content-row__description')).toBeNull();
+    expect(container.querySelector('section')).toBeNull();
+  });
+
+  it('hands the editor saved plain text as rich text, without losing any', () => {
+    const { plainTextToRichText } = jest.requireActual('../_shared/RichText');
+    expect(plainTextToRichText('Fish & <chips>\nfor all\n\nNext')).toEqual({
+      'content-type': 'text/html',
+      data: '<p>Fish &amp; &lt;chips&gt; for all</p><p>Next</p>',
+      encoding: 'utf8',
+    });
+    const rich = { 'content-type': 'text/html', data: '<p>Hi</p>' };
+    expect(plainTextToRichText(rich)).toBe(rich);
+    expect(plainTextToRichText('  ')).toBeUndefined();
+    expect(schema({ data: {} }).properties.descriptionText.widget).toBe(
+      'richtext',
+    );
+  });
+});
