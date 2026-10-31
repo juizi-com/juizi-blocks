@@ -96,6 +96,8 @@
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
+  // The column the page title and text sit in
+  --juizi-resource-width: var(--default-container-width, 100%);
   --juizi-shop-width: var(--narrow-container-width, 620px);
   --juizi-membership-width: var(--juizi-content-width);
   --juizi-form-width: var(--juizi-content-width);
@@ -171,6 +173,7 @@ $juizi-optional-padded-blocks: (
   'juizi-donation-frame': null,
   'juizi-membership-frame': null,
   'juizi-shop-frame': null,
+  'juizi-resource-frame': null,
 );
 // Text block types (`@type`) that keep the gap below a padded block above
 // them. VLT marks a block with `next--is--{@type}` of the block below.
@@ -226,6 +229,12 @@ $juizi-layers: (
       '.membership-signup-wrapper',
       --juizi-membership-width,
     ),
+  // collective.resourcelibrary's blocks (extensions/resourceBlocks)
+  '.juizi-resource-frame':
+    (
+      '.resource-block-inner',
+      --juizi-resource-width,
+    ),
   // The shop's Buy block (extensions/shopBuy)
   '.juizi-shop-frame--has-bg':
     (
@@ -251,6 +260,7 @@ $juizi-plain-links: (
   '.content-row-item': 'a:not(.btn-unified)',
   // Carousel card heading that is the card's link (button hidden)
   '.carousel-slide-inner': 'h3 > .embla__stretched-link',
+  '.resource-actions': '.ui.button',
 );
 // Links in running text inside a plain-link element: underlined again, so
 // they read as links. Same shape as above; comes after it, so it wins.

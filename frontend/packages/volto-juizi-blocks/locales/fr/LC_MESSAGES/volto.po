@@ -3461,6 +3461,56 @@ msgstr "Redirection vers {name}…"
 msgid "juizi-redirect-will-be-sent"
 msgstr "Les visiteurs seront envoyés vers {destination}"
 
+#. Default: "Above the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-above"
+msgstr "Au-dessus des détails"
+
+#. Default: "Beside the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-beside"
+msgstr "À côté des détails"
+
+#. Default: "Headings such as Authors and Topics"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-labels"
+msgstr "Intitulés comme Auteurs et Sujets"
+
+#. Default: "Label colour"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color"
+msgstr "Couleur de l'étiquette"
+
+#. Default: "Puts the resource type in a coloured tag. Leave this empty for plain text."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color-help"
+msgstr "Affiche le type de ressource dans une étiquette colorée. Laissez vide pour du texte simple."
+
+#. Default: "Label"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-panel"
+msgstr "Étiquette"
+
+#. Default: "Download button"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button"
+msgstr "Bouton de téléchargement"
+
+#. Default: "Leave this empty to keep the site's usual button, which follows the background colour."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button-help"
+msgstr "Laissez vide pour garder le bouton habituel du site, qui suit la couleur de fond."
+
+#. Default: "Button to the original"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button"
+msgstr "Bouton vers l'original"
+
+#. Default: "Shown when the work is published elsewhere. Leave this empty to keep the usual outlined button."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button-help"
+msgstr "Affiché quand l'œuvre est publiée ailleurs. Laissez vide pour garder le bouton à contour habituel."
+
 #. Default: "Right"
 #: components/Blocks/_shared/messages
 msgid "juizi-right"

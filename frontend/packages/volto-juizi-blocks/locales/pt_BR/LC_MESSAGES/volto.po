@@ -3461,6 +3461,56 @@ msgstr "Levando você para {name}…"
 msgid "juizi-redirect-will-be-sent"
 msgstr "Os visitantes serão enviados para {destination}"
 
+#. Default: "Above the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-above"
+msgstr "Acima dos detalhes"
+
+#. Default: "Beside the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-beside"
+msgstr "Ao lado dos detalhes"
+
+#. Default: "Headings such as Authors and Topics"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-labels"
+msgstr "Títulos como Autores e Temas"
+
+#. Default: "Label colour"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color"
+msgstr "Cor da etiqueta"
+
+#. Default: "Puts the resource type in a coloured tag. Leave this empty for plain text."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color-help"
+msgstr "Mostra o tipo de recurso em uma etiqueta colorida. Deixe em branco para texto simples."
+
+#. Default: "Label"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-panel"
+msgstr "Etiqueta"
+
+#. Default: "Download button"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button"
+msgstr "Botão de download"
+
+#. Default: "Leave this empty to keep the site's usual button, which follows the background colour."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button-help"
+msgstr "Deixe em branco para manter o botão habitual do site, que acompanha a cor de fundo."
+
+#. Default: "Button to the original"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button"
+msgstr "Botão para o original"
+
+#. Default: "Shown when the work is published elsewhere. Leave this empty to keep the usual outlined button."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button-help"
+msgstr "Aparece quando a obra está publicada em outro lugar. Deixe em branco para manter o botão com contorno habitual."
+
 #. Default: "Right"
 #: components/Blocks/_shared/messages
 msgid "juizi-right"

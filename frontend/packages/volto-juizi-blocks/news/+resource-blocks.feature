@@ -1,0 +1,1 @@
+The blocks of collective.resourcelibrary get colour, padding and button options when both add-ons are on a site: Background & spacing on all of them, a label colour on Resource type, heading position on Resource facts, and button colours on the Download button. They stay in their own Resource group.

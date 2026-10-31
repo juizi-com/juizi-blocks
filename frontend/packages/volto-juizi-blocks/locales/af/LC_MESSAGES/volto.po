@@ -3461,6 +3461,56 @@ msgstr "Ons neem jou na {name}…"
 msgid "juizi-redirect-will-be-sent"
 msgstr "Besoekers sal gestuur word na {destination}"
 
+#. Default: "Above the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-above"
+msgstr "Bo die besonderhede"
+
+#. Default: "Beside the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-beside"
+msgstr "Langs die besonderhede"
+
+#. Default: "Headings such as Authors and Topics"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-labels"
+msgstr "Opskrifte soos Outeurs en Onderwerpe"
+
+#. Default: "Label colour"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color"
+msgstr "Etiketkleur"
+
+#. Default: "Puts the resource type in a coloured tag. Leave this empty for plain text."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color-help"
+msgstr "Plaas die hulpbrontipe in 'n gekleurde etiket. Laat dit leeg vir gewone teks."
+
+#. Default: "Label"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-panel"
+msgstr "Etiket"
+
+#. Default: "Download button"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button"
+msgstr "Aflaaiknoppie"
+
+#. Default: "Leave this empty to keep the site's usual button, which follows the background colour."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button-help"
+msgstr "Laat dit leeg om die webwerf se gewone knoppie te hou, wat by die agtergrondkleur aanpas."
+
+#. Default: "Button to the original"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button"
+msgstr "Knoppie na die oorspronklike"
+
+#. Default: "Shown when the work is published elsewhere. Leave this empty to keep the usual outlined button."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button-help"
+msgstr "Word gewys wanneer die werk elders gepubliseer is. Laat dit leeg om die gewone omlynde knoppie te hou."
+
 #. Default: "Right"
 #: components/Blocks/_shared/messages
 msgid "juizi-right"

@@ -7,6 +7,7 @@ import installDonationExtension from './extensions/donationBlock';
 import installMembershipSignupExtension from './extensions/membershipSignup';
 import installShopExtension from './extensions/shopBuy';
 import installFormBlockExtension from './extensions/formBlock';
+import installResourceBlocksExtension from './extensions/resourceBlocks';
 
 import './theme/juizi-blocks.scss';
 import './config/buttons.scss';
@@ -47,6 +48,9 @@ function applyConfig(config: ConfigType) {
   // Text beside the form and a background for volto-form-block's Form
   // block, when the site has it (listed before this add-on).
   installFormBlockExtension(config);
+  // Colours, padding and buttons for collective.resourcelibrary's blocks,
+  // which stay in their own group.
+  installResourceBlocksExtension(config);
   applyInitialSettings();
   return config;
 }
