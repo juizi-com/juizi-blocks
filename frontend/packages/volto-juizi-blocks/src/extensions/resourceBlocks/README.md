@@ -17,7 +17,7 @@ Nothing shows until `juizi.blocks` is installed on the site (`isInstalled`).
 |---|---|---|
 | Resource type | Label | Label colour (a coloured tag; text follows it), text alignment |
 | Resource facts | Layout | Headings beside or above the details |
-| Download button | Buttons | Download button, button to the original, text alignment |
+| Download button | Button colours | Download button, button to the original; text alignment above the panels |
 | Abstract | | |
 | Key findings | | |
 
@@ -44,8 +44,10 @@ and alignment, and a floated picture has no band to colour.
   `.resource-block-inner`, the inner layer that lines the block up with the
   page title (`--juizi-resource-width`, `$juizi-layers`).
 
-Colours reach the add-on's markup through `style.css`, by class name, so the
-add-on carries no Juizi code.
+The frame only sets custom properties (`--resource-main-*`, `--resource-tag-*`
+and the rest, listed in the add-on's `blockExtension.js`). The add-on's own
+stylesheet reads them, as the shop's does, so `style.css` here is just the
+frame, and the add-on carries no Juizi code.
 
 ## Known issues
 

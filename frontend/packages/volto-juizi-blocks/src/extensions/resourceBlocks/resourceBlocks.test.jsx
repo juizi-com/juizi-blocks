@@ -76,6 +76,17 @@ describe('resource blocks extension', () => {
     ]);
   });
 
+  it('puts the alignment with the block, and colours in their own panel', () => {
+    const { fieldsets } = makeSchemaEnhancer('resourceActions')({
+      schema: baseSchema(),
+    });
+    expect(fieldsets[0].fields).toEqual(['alignment']);
+    expect(fieldsets[1].fields).toEqual([
+      'mainButtonStyle',
+      'secondButtonStyle',
+    ]);
+  });
+
   it('asks about the text only while there is a background image', () => {
     const fields = (formData) =>
       makeSchemaEnhancer('resourceAbstract')({
@@ -101,7 +112,7 @@ describe('resource blocks extension', () => {
   it('sets a tag only when a label colour is chosen', () => {
     expect(typeVars({})).toEqual({});
     expect(typeVars({ labelColor: 'var(--green)' })).toMatchObject({
-      '--juizi-resource-tag-background': 'var(--green)',
+      '--resource-tag-background': 'var(--green)',
     });
     expect(typeVars({ alignment: 'center' })).toEqual({ textAlign: 'center' });
   });
@@ -110,16 +121,16 @@ describe('resource blocks extension', () => {
     expect(factsVars({})).toEqual({});
     expect(factsVars({ factsLabels: 'beside' })).toEqual({});
     expect(factsVars({ factsLabels: 'above' })).toMatchObject({
-      '--juizi-resource-facts-columns': '1fr',
+      '--resource-facts-columns': '1fr',
     });
   });
 
   it("uses the site's button unless one is chosen", () => {
     const [first] = getBlockColorList('resourceActions');
     expect(first).toBeDefined();
-    expect(actionsVars({})['--juizi-resource-main-border']).toBeDefined();
+    expect(actionsVars({})['--resource-main-border']).toBeDefined();
     const vars = actionsVars({ mainButtonStyle: 'outline__green' });
-    expect(vars['--juizi-resource-main-background']).toBe('transparent');
+    expect(vars['--resource-main-background']).toBe('transparent');
   });
 
   it('frames the content in every block, styled or not', () => {
@@ -141,7 +152,7 @@ describe('resource blocks extension', () => {
         </Frames.resourceAbstract>,
       )
         .container.querySelector('.juizi-resource-frame')
-        .style.getPropertyValue('--juizi-resource-text');
+        .style.getPropertyValue('--resource-text');
     const image = { backgroundImage: [{ '@id': '/a', url: '/a' }] };
     expect(text({})).toBe('');
     expect(text(image)).toBe('#fff');

@@ -16,6 +16,8 @@ import {
 } from '../_shared/background';
 // Same field and wording as the Carousel's
 import carouselMessages from '../../components/Blocks/EmblaCarousel/messages';
+// The same panel as on the shop's Buy block
+import shopMessages from '../shopBuy/messages';
 import messages from './messages';
 
 export const RESOURCE_BLOCK_IDS = [
@@ -68,9 +70,10 @@ const OWN_PANELS = {
     return {
       fieldset: {
         id: 'juizi_resource_buttons',
-        title: t(shared.buttons),
-        fields: ['mainButtonStyle', 'secondButtonStyle', 'alignment'],
+        title: t(shopMessages.shopColours),
+        fields: ['mainButtonStyle', 'secondButtonStyle'],
       },
+      defaultFields: ['alignment'],
       properties: {
         mainButtonStyle: {
           title: t(messages.mainButton),
@@ -108,7 +111,11 @@ export const makeSchemaEnhancer =
       t(shared.backgroundSpacing),
       formData,
     );
-    const fieldsets = [...schema.fieldsets];
+    const fieldsets = schema.fieldsets.map((fieldset) =>
+      fieldset.id === 'default' && own?.defaultFields
+        ? { ...fieldset, fields: [...fieldset.fields, ...own.defaultFields] }
+        : fieldset,
+    );
     fieldsets.splice(
       panelPosition(fieldsets),
       0,

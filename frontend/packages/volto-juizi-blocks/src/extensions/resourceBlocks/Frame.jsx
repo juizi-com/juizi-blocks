@@ -10,7 +10,7 @@ export const imageTextVars = (data = {}) => {
   if (!data.backgroundImage?.[0]) return {};
   const light = data.imageText !== 'dark';
   return {
-    '--juizi-resource-text': light ? '#fff' : '#111',
+    '--resource-text': light ? '#fff' : '#111',
     '--resource-muted': 'currentColor',
     '--resource-rule': light
       ? 'rgba(255, 255, 255, 0.5)'
@@ -35,15 +35,11 @@ export const actionsVars = (data = {}) => {
   const defaults = defaultMainButton(data);
   return {
     ...align(data),
-    '--juizi-resource-button-radius': 'var(--juizi-button-radius, 4px)',
-    '--juizi-resource-button-border-width':
-      'var(--juizi-button-border-width, 2px)',
+    '--resource-button-radius': 'var(--juizi-button-radius, 4px)',
+    '--resource-button-border-width': 'var(--juizi-button-border-width, 2px)',
+    ...buttonVars('--resource-main-', data.mainButtonStyle || defaults?.main),
     ...buttonVars(
-      '--juizi-resource-main-',
-      data.mainButtonStyle || defaults?.main,
-    ),
-    ...buttonVars(
-      '--juizi-resource-second-',
+      '--resource-second-',
       data.secondButtonStyle || defaults?.second,
     ),
   };
@@ -54,10 +50,10 @@ export const typeVars = (data = {}) => {
   return {
     ...align(data),
     ...(color && {
-      '--juizi-resource-tag-background': color,
-      '--juizi-resource-tag-foreground': textOn(color),
-      '--juizi-resource-tag-padding': '0.2em 0.6em',
-      '--juizi-resource-tag-display': 'inline-block',
+      '--resource-tag-background': color,
+      '--resource-tag-foreground': textOn(color),
+      '--resource-tag-padding': '0.2em 0.6em',
+      '--resource-tag-display': 'inline-block',
     }),
   };
 };
@@ -65,8 +61,8 @@ export const typeVars = (data = {}) => {
 export const factsVars = (data = {}) =>
   data.factsLabels === 'above'
     ? {
-        '--juizi-resource-facts-columns': '1fr',
-        '--juizi-resource-facts-gap': '0.75rem 0',
+        '--resource-facts-columns': '1fr',
+        '--resource-facts-gap': '0.75rem 0',
       }
     : {};
 
@@ -82,7 +78,8 @@ const plain = frame();
 
 /**
  * Around each resource block. The add-on puts its content in
- * `.resource-block-inner`, the frame's inner layer. The download button
+ * `.resource-block-inner`, the frame's inner layer, and reads the properties
+ * set here (they're listed in its blockExtension.js). The download button
  * always gets the site's button; nothing else changes until it's chosen.
  */
 const Frames = {

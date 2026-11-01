@@ -287,9 +287,10 @@ with the extra settings ignored.
 | Donation (`donationBlock`) | `volto-collective-donations` (collective.donations) | Background and padding, form colours; the block in the Juizi group | `extensions/donationBlock/README.md` |
 | Membership sign-up (`membershipSignup`) | `volto-collective-membership` (collective.membership) | Background and padding, form colours; the block in the Juizi group | `extensions/membershipSignup/README.md` |
 | Buy button (`shopBuy`) and shop pages | `volto-collective-shop` (collective.shop) | The site's button colours and shape on the block, cart and checkout; background and padding; button colours; the block in the Juizi group | `extensions/shopBuy/README.md` |
+| Resource type, Resource facts, Download button, Abstract, Key findings | `volto-resource-library` (collective.resourcelibrary) | Background and padding on all five; a label colour, heading position and button colours where they apply. The blocks stay in their own Resource group | `extensions/resourceBlocks/README.md` |
 
-The donation and membership blocks look up a `blockExtension` utility that
-juizi-blocks registers. volto-form-block has no such hook, so juizi-blocks
+The donation, membership, Buy and resource blocks look up a `blockExtension`
+utility that juizi-blocks registers. volto-form-block has no such hook, so juizi-blocks
 wraps the form's view, edit and sidebar schema in its block config instead of
 shadowing its files (the collective.formsupport add-ons already shadow some,
 and only one shadow of a file wins). That is why `volto-juizi-blocks` must be

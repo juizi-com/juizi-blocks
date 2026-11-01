@@ -1,6 +1,7 @@
 /* Around the resource blocks (Frame.jsx). Width and side padding come from
    $juizi-layers in theme/juizi-common.scss, padding sizes from the same
-   file. Everything else here reads custom properties the frame sets. */
+   file. What the blocks do with the frame's colours is in the add-on's own
+   stylesheet, as for the shop. */
 
 .juizi-resource-frame--has-bg {
   position: relative;
@@ -47,61 +48,4 @@
 .juizi-resource-frame.tone-light {
   --resource-muted: currentColor;
   --resource-rule: rgba(255, 255, 255, 0.5);
-}
-
-/* Set over a background image, where the frame's colour can't be trusted. */
-.juizi-resource-frame > .resource-block-inner {
-  color: var(--juizi-resource-text, inherit);
-}
-
-.juizi-resource-frame h2,
-.juizi-resource-frame a:not(.ui.button) {
-  color: inherit;
-}
-
-/* Resource facts */
-.juizi-resource-frame .resource-facts {
-  gap: var(--juizi-resource-facts-gap, 0.25rem 1.5rem);
-  grid-template-columns: var(--juizi-resource-facts-columns, max-content 1fr);
-}
-
-/* Resource type */
-.juizi-resource-frame .resource-type {
-  display: var(--juizi-resource-tag-display, block);
-  margin-top: 1rem;
-  padding: var(--juizi-resource-tag-padding, 0);
-  border-radius: var(--juizi-button-radius, 4px);
-  background: var(--juizi-resource-tag-background, transparent);
-  color: var(--juizi-resource-tag-foreground, var(--resource-muted, #555));
-}
-
-/* Download button, and the button to the original */
-.juizi-resource-frame .resource-actions .ui.button {
-  border-width: var(--juizi-resource-button-border-width);
-  border-style: solid;
-  border-radius: var(--juizi-resource-button-radius);
-}
-
-.juizi-resource-frame .resource-actions .ui.button.resource-download {
-  border-color: var(--juizi-resource-main-border);
-  background: var(--juizi-resource-main-background);
-  color: var(--juizi-resource-main-foreground);
-}
-
-.juizi-resource-frame .resource-actions .ui.button.resource-download:hover,
-.juizi-resource-frame .resource-actions .ui.button.resource-download:focus {
-  background: var(--juizi-resource-main-hover-background);
-  color: var(--juizi-resource-main-hover-foreground);
-}
-
-.juizi-resource-frame .resource-actions .ui.button.resource-elsewhere {
-  border-color: var(--juizi-resource-second-border);
-  background: var(--juizi-resource-second-background);
-  color: var(--juizi-resource-second-foreground);
-}
-
-.juizi-resource-frame .resource-actions .ui.button.resource-elsewhere:hover,
-.juizi-resource-frame .resource-actions .ui.button.resource-elsewhere:focus {
-  background: var(--juizi-resource-second-hover-background);
-  color: var(--juizi-resource-second-hover-foreground);
 }
