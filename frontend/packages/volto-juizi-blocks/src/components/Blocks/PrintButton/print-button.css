@@ -19,6 +19,13 @@
   float: right;
 }
 
+/* Not in the editor: a float leaves the block 0px tall, under the next
+   block, where the editor can't see or select it. */
+.juizi-print--right.juizi-print--editing {
+  margin-left: 0;
+  float: none;
+}
+
 .juizi-print .print-button {
   display: inline-flex;
   align-items: center;

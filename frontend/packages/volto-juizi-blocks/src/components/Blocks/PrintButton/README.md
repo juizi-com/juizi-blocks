@@ -25,7 +25,8 @@ button colours can be narrowed in Colours per block).
   Empty: the site's print button style.
 - **Position** (`align`): Left / Centre / Right. Empty: right. Right floats
   the button beside the text that follows it (as CRA's did); left and centre
-  give it its own line.
+  give it its own line. In the editor a right-hand button doesn't float, so
+  the block keeps its height and can be selected.
 
 **For the whole site (Site Setup › Juizi Blocks › Print, `print_config`):**
 
@@ -81,7 +82,7 @@ only), but shown to everyone who prints, so it's cleaned before use
 
 | Who | What they see |
 | --- | --- |
-| Editor (canvas) | The button as visitors see it, and a hint saying what it does and where the printout is set up. Clicking it does nothing (it would print the edit form) |
+| Editor (canvas) | The button as visitors see it, on its own line (a right-hand button doesn't float in the editor, where the float left the block 0px tall under the next block), and a hint saying what it does and where the printout is set up. Clicking it does nothing (it would print the edit form) |
 | Visitor | The button; while the page is prepared it shows "Preparing…" with a spinner |
 | Anyone printing | The button never prints |
 

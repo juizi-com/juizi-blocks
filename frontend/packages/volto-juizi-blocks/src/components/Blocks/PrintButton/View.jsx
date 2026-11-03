@@ -86,7 +86,11 @@ const PrintButton = (props) => {
 
   return (
     <BlockWrapper {...props} className={`align-${align}`}>
-      <div className={cx('juizi-print', `juizi-print--${align}`)}>
+      <div
+        className={cx('juizi-print', `juizi-print--${align}`, {
+          'juizi-print--editing': isEditMode,
+        })}
+      >
         <button
           type="button"
           className={className}

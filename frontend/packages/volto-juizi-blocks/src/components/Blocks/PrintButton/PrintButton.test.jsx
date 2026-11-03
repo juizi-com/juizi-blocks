@@ -123,6 +123,17 @@ describe('Print button block', () => {
     expect(visitor.container.textContent).not.toContain('Site Setup');
   });
 
+  it('keeps a right-hand button in the flow in the editor, so it can be selected', () => {
+    const editor = renderView({ isEditMode: true });
+    expect(
+      editor.container.querySelector(
+        '.juizi-print--right.juizi-print--editing',
+      ),
+    ).not.toBeNull();
+    const visitor = renderView({});
+    expect(visitor.container.querySelector('.juizi-print--editing')).toBeNull();
+  });
+
   it('prints the page with the header and footer added', async () => {
     document.body.innerHTML = '';
     const page = document.createElement('main');
