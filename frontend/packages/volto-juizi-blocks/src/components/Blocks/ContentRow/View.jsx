@@ -128,7 +128,13 @@ const getCardBgStyle = (item, { pictureBehind = false } = {}) => {
   return { style, imageUrl, toneClass };
 };
 
-const ItemsWrapper = ({ mobileCarousel, autoplay, showDots, children }) => {
+const ItemsWrapper = ({
+  mobileCarousel,
+  autoplay,
+  showDots,
+  className,
+  children,
+}) => {
   const intl = useIntl();
   if (!mobileCarousel) {
     return <>{children}</>;
@@ -139,6 +145,7 @@ const ItemsWrapper = ({ mobileCarousel, autoplay, showDots, children }) => {
       label={intl.formatMessage(messages.carouselLabel)}
       autoplay={autoplay}
       showDots={showDots}
+      className={className}
     >
       {children}
     </MobileCarousel>
@@ -882,6 +889,9 @@ const View = (props) => {
                   mobileCarousel={true}
                   autoplay={data.mobileAutoplay}
                   showDots={data.mobileDots}
+                  // The items keep their alignment on mobile: the grid's
+                  // align-* rules apply to the carousel too
+                  className={`align-${itemsAlignment}`}
                 >
                   {items.map((item, index) => renderItem(item, index))}
                 </ItemsWrapper>

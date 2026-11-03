@@ -19,6 +19,8 @@
  *               never cover it) or 'below'; none when empty
  *   arrowStyle  a button style value ('solid__teal'…); empty: outlined in
  *               the text colour
+ *   className   more classes on the root, e.g. the block's item alignment
+ *               (`align-center`), so its grid rules can apply here too
  *
  * With arrows, the root also gets `mobile-carousel` and
  * `mobile-carousel--arrows-{position}`, and the buttons
@@ -45,6 +47,7 @@ const MobileCarousel = ({
   startIndex = 0,
   arrows,
   arrowStyle,
+  className,
 }) => {
   const intl = useIntl();
   // Respect reduced motion: disable autoplay entirely when the user has
@@ -145,11 +148,14 @@ const MobileCarousel = ({
 
   return (
     <div
-      className={
-        arrowPosition
-          ? `${blockClass}__embla mobile-carousel mobile-carousel--arrows-${arrowPosition}`
-          : `${blockClass}__embla`
-      }
+      className={[
+        `${blockClass}__embla`,
+        arrowPosition &&
+          `mobile-carousel mobile-carousel--arrows-${arrowPosition}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       role="region"
       aria-label={label}
     >
