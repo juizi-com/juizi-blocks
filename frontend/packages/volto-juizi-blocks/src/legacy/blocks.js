@@ -14,6 +14,7 @@
  * | Old @type        | Current @type   | Notes                                   |
  * |------------------|-----------------|-----------------------------------------|
  * | EmblaCarousel    | emblaCarousel   | same lineage; `mode` → `displayMode`    |
+ * | EmblaRatings     | emblaCarousel   | reviews mode (testimonials)             |
  * | customHero       | juiziHero       | hero mode; first hero only              |
  * | buttonRow        | juiziHero       | section mode with buttons / TOC / list  |
  * | multiCard        | contentRow      | card or statistics display style        |
@@ -51,7 +52,8 @@ const OVERLAYS = {
 
 /** Volto icon names used by the old IconLinkRow → Lucide names used by the
  * Content Row. Unknown names (e.g. doi's custom SVGs) are kept: the Content
- * Row also resolves custom SVGs from its icons/ folder by file name. */
+ * Row also resolves custom SVGs by name, from the site's icons
+ * (config.settings.juiziBlocks.icons) or its own icons/ folder. */
 const ICONS = {
   link: 'Link',
   home: 'Home',
@@ -96,6 +98,36 @@ function fromEmblaCarousel(old) {
       data[key] = normalizeButtonStyle(data[key]);
     });
   return data;
+}
+
+/** The testimonials carousel: each testimonial becomes a review (author →
+ * name, testimonial → text, company → role / organisation). */
+function fromEmblaRatings(old) {
+  return {
+    displayMode: 'reviews',
+    ...pick(old, [
+      'slidesToShow',
+      'alignment',
+      'isFullWidth',
+      'loop',
+      'autoplay',
+      'autoplayDelay',
+      'hideArrows',
+      'hideDots',
+      'customClass',
+    ]),
+    slides: (old.slides || []).filter(Boolean).map((slide, index) => ({
+      '@id': itemId(slide, 'review', index),
+      heading: slide.author || '',
+      content: slide.testimonial || '',
+      ...(slide.company ? { organisation: slide.company } : {}),
+      // The reviews mode stores the rating as '0'–'5'.
+      ...(slide.rating !== undefined && slide.rating !== null
+        ? { rating: String(slide.rating) }
+        : {}),
+      ...pick(slide, ['image', 'link']),
+    })),
+  };
 }
 
 function fromCustomHero(old) {
@@ -303,6 +335,7 @@ const isPloneOrgHero = (block) =>
 
 export const LEGACY_BLOCKS = {
   EmblaCarousel: { type: 'emblaCarousel', convert: fromEmblaCarousel },
+  EmblaRatings: { type: 'emblaCarousel', convert: fromEmblaRatings },
   customHero: { type: 'juiziHero', convert: fromCustomHero },
   buttonRow: { type: 'juiziHero', convert: fromButtonRow },
   multiCard: { type: 'contentRow', convert: fromMultiCard },

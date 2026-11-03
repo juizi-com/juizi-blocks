@@ -10,9 +10,21 @@
 // colour: the icon then follows the item's text colour. A hard-coded
 // fill="white" (common in Figma exports) is invisible on light backgrounds.
 //
+// A site adds its own SVGs in its add-on's configuration (it loads after
+// this one), without putting them in this package:
+//
+//   config.settings.juiziBlocks.icons = {
+//     goal: goalSVG, // import goalSVG from './icons/goal.svg';
+//   };
+//
+// The key is what blocks store, so keep it once in use. A site icon with the
+// same name as one of the SVGs here replaces it.
+//
 // In View.jsx, lucideIconMap is checked first; if the key isn't found there,
-// the custom SVG map is used, then FallbackIcon.
+// getCustomSvg() (the site's icons, then the SVGs here), then FallbackIcon.
 // =============================================================================
+
+import config from '@plone/volto/registry';
 
 import {
   ArrowRight,
@@ -219,13 +231,35 @@ try {
   // icons/ folder doesn't exist yet — that's fine
 }
 
+// ─── Site icons ────────────────────────────────────────────────────────────
+// config.settings.juiziBlocks.icons (see the top of this file). Read at call
+// time, so it's always the current list.
+
+const getSiteIcons = () => config.settings?.juiziBlocks?.icons || {};
+
+// risk-alert, risk_alert and RiskAlert all read 'Risk Alert'.
+const iconLabel = (name) =>
+  name
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+/** A custom SVG by name: the site's own, else one from icons/ here. */
+export const getCustomSvg = (name) =>
+  getSiteIcons()[name] || customSvgMap[name];
+
 // ─── Combined export ───────────────────────────────────────────────────────
-// Lucide choices first, custom SVGs appended after. `t` is the schema's
-// translator; custom SVGs keep the name made from their file name.
-export const getIconChoices = (t = translator()) => [
-  ...lucideChoiceKeys.map((key) => [key, t(iconMessages[key])]),
-  ...customSvgChoices,
-];
+// Lucide choices first, then the custom SVGs here, then the site's (one
+// entry per name). `t` is the schema's translator; custom SVGs keep the name
+// made from their file name.
+export const getIconChoices = (t = translator()) => {
+  const siteNames = Object.keys(getSiteIcons());
+  return [
+    ...lucideChoiceKeys.map((key) => [key, t(iconMessages[key])]),
+    ...customSvgChoices.filter(([name]) => !siteNames.includes(name)),
+    ...siteNames.map((name) => [name, iconLabel(name)]),
+  ];
+};
 
 /** The choices in English, for code that has no translator. */
 export const iconChoicesList = getIconChoices();

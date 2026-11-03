@@ -104,6 +104,47 @@ describe('legacy block conversion', () => {
     });
   });
 
+  it('EmblaRatings → emblaCarousel (reviews mode)', () => {
+    const converted = convertLegacyBlock({
+      '@type': 'EmblaRatings',
+      slidesToShow: '4',
+      autoplay: true,
+      hideArrows: true,
+      verticalAlignment: 'top',
+      slides: [
+        {
+          '@id': 'r1',
+          author: 'Engineering client',
+          testimonial: 'Rich data.',
+          company: 'Acme',
+          rating: 5,
+          link: [{ '@id': '/about' }],
+        },
+        { author: 'Academic', testimonial: 'Balanced.' },
+      ],
+    });
+    expect(converted).toMatchObject({
+      '@type': 'emblaCarousel',
+      displayMode: 'reviews',
+      slidesToShow: '4',
+      autoplay: true,
+      hideArrows: true,
+      slides: [
+        {
+          '@id': 'r1',
+          heading: 'Engineering client',
+          content: 'Rich data.',
+          organisation: 'Acme',
+          rating: '5',
+          link: [{ '@id': '/about' }],
+        },
+        { '@id': 'legacy-review-1', heading: 'Academic', content: 'Balanced.' },
+      ],
+    });
+    expect(converted.slides[1]).not.toHaveProperty('rating');
+    expect(converted).not.toHaveProperty('verticalAlignment');
+  });
+
   it('customHero → juiziHero (hero mode)', () => {
     const converted = convertLegacyBlock({
       '@type': 'customHero',

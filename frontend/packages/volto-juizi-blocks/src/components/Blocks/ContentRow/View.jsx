@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { useIntl } from 'react-intl';
 import {
-  customSvgMap,
+  getCustomSvg,
   FallbackIcon,
   lucideIconMap,
 } from '../../../config/iconChoices';
@@ -301,7 +301,7 @@ const CustomIcon = ({ icon }) =>
 
 const IconItem = ({ item, iconPosition }) => {
   const LucideIcon = lucideIconMap[item.icon];
-  const CustomSvg = !LucideIcon ? customSvgMap[item.icon] : null;
+  const CustomSvg = !LucideIcon ? getCustomSvg(item.icon) : null;
   const href = getHref(item.link);
   const hasLink = !!href;
 

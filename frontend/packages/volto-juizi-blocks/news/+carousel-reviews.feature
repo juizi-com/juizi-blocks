@@ -1,1 +1,1 @@
-The Carousel has a Reviews display style: what people said, each with a name, an optional star rating, picture and link. It replaces the standalone ratings block, which is not converted.
+The Carousel has a Reviews display style: what people said, each with a name, an optional star rating, picture and link. It replaces the standalone ratings block (EmblaRatings), whose saved testimonials are converted to it.

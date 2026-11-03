@@ -131,7 +131,22 @@ Custom icons appear in the editor dropdown after the Lucide icons. They go throu
 
 Use `fill="currentColor"` (or `stroke="currentColor"`) in the SVG rather than a fixed colour, so the icon follows the item's text colour. Figma exports often hard-code `fill="white"`, which makes the icon invisible on a light background.
 
-The lookup order in View.jsx is: **`lucideIconMap` → custom SVG → fallback Circle**.
+### A site's own icons
+
+Icons only one site uses belong in that site's add-on, not here. List them in its configuration (it loads after this add-on):
+
+```js
+import goalSVG from './icons/goal.svg';
+
+config.settings.juiziBlocks = {
+  ...config.settings.juiziBlocks,
+  icons: { goal: goalSVG },
+};
+```
+
+The key is what blocks store, so keep it once pages use it. They appear in the dropdown after this package's SVGs; a site icon with the same key as one here replaces it. Keep the SVGs under a folder called `icons/`, so Volto's svg-loader handles them.
+
+The lookup order in View.jsx is: **`lucideIconMap` → the site's icons → custom SVG here → fallback Circle**.
 
 ---
 

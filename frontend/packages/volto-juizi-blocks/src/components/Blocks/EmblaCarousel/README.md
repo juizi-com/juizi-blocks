@@ -40,7 +40,7 @@ After a style is chosen and there are no slides, editors see what to do next, un
 
 ## Reviews
 
-A display style, not a block of its own: reviews need everything the Carousel already has (scrolling, arrows, dots, heading, colours), so a separate block would have put two carousels in the chooser. The older standalone `EmblaRatings` block isn't converted; no site in `old-block-setups` uses it.
+A display style, not a block of its own: reviews need everything the Carousel already has (scrolling, arrows, dots, heading, colours), so a separate block would have put two carousels in the chooser. Testimonials saved with the older standalone `EmblaRatings` block are converted to this style as they load (`legacy/blocks.js`).
 
 **A review is a slide with its own labels.** The same stored fields are used, so what the editor typed carries over when the style changes:
 
