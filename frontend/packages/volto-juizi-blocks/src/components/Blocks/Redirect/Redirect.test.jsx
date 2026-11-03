@@ -4,7 +4,12 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router-dom';
 import View from './View';
-import { isRedirectLoop, isSamePage, rememberRedirect } from './redirectTarget';
+import {
+  canEditPage,
+  isRedirectLoop,
+  isSamePage,
+  rememberRedirect,
+} from './redirectTarget';
 
 jest.mock('../_shared/BlockWrapper');
 jest.mock('@plone/volto/registry', () => ({
@@ -18,11 +23,22 @@ jest.mock('@plone/volto/registry', () => ({
 
 const renderView = (
   data,
-  { loggedIn = false, page = '/here', isEditMode = false } = {},
+  {
+    loggedIn = false,
+    canEdit = loggedIn,
+    actionsLoaded = true,
+    page = '/here',
+    isEditMode = false,
+  } = {},
 ) => {
   const store = configureStore()({
     content: { data: { '@id': page } },
     userSession: { token: loggedIn ? 'x' : null },
+    actions: {
+      actions: { object: canEdit ? [{ id: 'view' }, { id: 'edit' }] : [] },
+      loaded: actionsLoaded,
+      loading: !actionsLoaded,
+    },
   });
   return render(
     <Provider store={store}>
@@ -71,7 +87,7 @@ describe('Redirect view', () => {
     expect(getByText('Go now').getAttribute('href')).toBe('/elsewhere');
   });
 
-  it('shows logged-in users the page name and a link to go there', () => {
+  it('shows logged-in editors the page name and a link to go there', () => {
     const { container, getByText } = renderView(
       { url: [{ '@id': '/elsewhere' }], pageName: 'Our events' },
       { loggedIn: true },
@@ -82,6 +98,36 @@ describe('Redirect view', () => {
     expect(getByText('Go to Our events now').getAttribute('href')).toBe(
       '/elsewhere',
     );
+  });
+
+  it("redirects logged-in users who can't edit the page", () => {
+    const { container } = renderView(
+      { url: [{ '@id': '/elsewhere' }], pageName: 'Our events' },
+      { loggedIn: true, canEdit: false },
+    );
+    expect(container.textContent).toContain('Taking you to Our events');
+    expect(container.textContent).not.toContain('Visitors will be sent');
+  });
+
+  it("shows logged-in users who can't edit nothing when nothing's set", () => {
+    const { container } = renderView({}, { loggedIn: true, canEdit: false });
+    expect(container.textContent).toBe('');
+  });
+
+  it('waits for the page actions before deciding for logged-in users', () => {
+    const { container } = renderView(
+      { url: [{ '@id': '/elsewhere' }] },
+      { loggedIn: true, canEdit: false, actionsLoaded: false },
+    );
+    expect(container.textContent).toBe('');
+  });
+
+  it("reads 'can edit' from the page's edit action", () => {
+    expect(canEditPage({ object: [{ id: 'view' }, { id: 'edit' }] })).toBe(
+      true,
+    );
+    expect(canEditPage({ object: [{ id: 'view' }] })).toBe(false);
+    expect(canEditPage(undefined)).toBe(false);
   });
 
   it('shows editors a start screen, then what is set, never redirecting', () => {

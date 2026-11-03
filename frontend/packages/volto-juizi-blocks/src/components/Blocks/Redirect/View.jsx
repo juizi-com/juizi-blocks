@@ -10,6 +10,7 @@ import { isExternalHref } from '../_shared/links';
 import {
   getRedirectUrl,
   isRedirectLoop,
+  canEditPage,
   isSamePage,
   rememberRedirect,
 } from './redirectTarget';
@@ -27,9 +28,12 @@ const Wrapper = ({ blockProps, children }) => (
 // Who sees what (README.md has the full table):
 // - Editors (canvas, isEditMode): what's set, or a start screen. Never
 //   redirected, and no "go now" link, which would leave the edit form.
-// - Logged-in users viewing the page: where visitors go, with a link to go
-//   there themselves. Never redirected.
-// - Visitors: a short countdown with a "Go now" link, then the redirect.
+// - Logged-in users who can edit the page, viewing it: where visitors go,
+//   with a link to go there themselves. Never redirected.
+// - Visitors, and logged-in users who can't edit the page (a subscriber, a
+//   member): a short countdown with a "Go now" link, then the redirect.
+//   Whether someone can edit is the page's "edit" action; until the page's
+//   actions have loaded, a logged-in user sees nothing and isn't redirected.
 const View = (props) => {
   const { data } = props;
   const isEditMode = isEditing(props);
@@ -44,8 +48,15 @@ const View = (props) => {
   const pageName = data.pageName?.trim() || '';
 
   const isLoggedIn = useSelector((state) => !!state.userSession?.token);
-  const shouldRedirect =
-    !isEditMode && !isLoggedIn && !!url && !samePage && !looped;
+  const actions = useSelector((state) => state.actions);
+  const actionsReady = !!actions?.loaded && !actions?.loading;
+  const canEdit = canEditPage(actions?.actions);
+  // Shown where visitors go, instead of being sent there
+  const showsPreview = isEditMode || (isLoggedIn && actionsReady && canEdit);
+  // Sent on like a visitor
+  const isSent =
+    !isEditMode && (!isLoggedIn || (actionsReady && !canEdit));
+  const shouldRedirect = isSent && !!url && !samePage && !looped;
 
   const navigate = () => {
     if (isExternalHref(url)) {
@@ -62,10 +73,10 @@ const View = (props) => {
 
   // Loop breaker: decided once, when the page opens.
   useEffect(() => {
-    if (isEditMode || isLoggedIn || !url || samePage || !contentId) return;
+    if (!isSent || !url || samePage || !contentId) return;
     if (isRedirectLoop(contentId)) setLooped(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentId]);
+  }, [contentId, isSent]);
 
   useEffect(() => {
     if (!shouldRedirect) return undefined;
@@ -78,7 +89,7 @@ const View = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countdown, shouldRedirect, url, contentId]);
 
-  if (!isEditMode && !isLoggedIn && !shouldRedirect) return null;
+  if (!showsPreview && !shouldRedirect) return null;
 
   if (!url) {
     return (
@@ -113,7 +124,7 @@ const View = (props) => {
     );
   }
 
-  if (isEditMode || isLoggedIn) {
+  if (showsPreview) {
     return (
       <Wrapper blockProps={props}>
         <div className="redirect-block redirect-block--preview">

@@ -1,6 +1,6 @@
 # Redirect block (`redirectBlock`)
 
-Sends visitors from this page to another page or site. Editors and other logged-in users are never redirected.
+Sends visitors from this page to another page or site, and logged-in users who can't edit the page (subscribers, members). People who can edit it are never redirected.
 
 Shared parts (dashboard, shared styling and tokens, links, the block toolkit and the conventions every block follows) are in the repository's root `README.md`.
 
@@ -19,8 +19,9 @@ Registered through the block list in `src/blocks/index.ts` like the other Juizi 
 |---|---|---|
 | Editor (canvas) | no | Start screen: "Choose where to send visitors in the sidebar…" |
 | Editor (canvas) | yes | "Visitors will be sent to <page name or address>" (address in brackets after a page name), and a note about search engines. A warning if it's this same page |
-| Logged-in user viewing the page | yes | "Visitors will be sent to …" and a "Go to <page name / the page> now" link (they aren't redirected themselves) |
-| Logged-in user viewing the page | no | "This redirect has no destination yet, so visitors stay on this page. Edit the page to choose one." |
+| Logged-in user who can edit the page, viewing it | yes | "Visitors will be sent to …" and a "Go to <page name / the page> now" link (they aren't redirected themselves) |
+| Logged-in user who can edit the page, viewing it | no | "This redirect has no destination yet, so visitors stay on this page. Edit the page to choose one." |
+| Logged-in user who can't edit the page | either | As a visitor. Until the page's actions have loaded: nothing, and no redirect |
 | Visitor | yes | "Redirecting in 3…" ("Taking you to <page name> in 3…" with a page name) and a "Go now" link to skip the countdown, then the destination |
 | Visitor | no, or this same page | Nothing (the page shows as normal) |
 
@@ -30,6 +31,7 @@ The message box keeps side padding inside its border (`--juizi-redirect-padding`
 
 - **Same page:** a destination that is this page (ignoring query, hash and trailing slash) never redirects, and the editor is warned as soon as they choose it.
 - **Loops:** before redirecting, the block remembers the page in the visitor's browser session (`sessionStorage`, `redirectTarget.js`). A page that would redirect the same visitor again within 10 seconds (two pages redirecting to each other) shows the page instead. If storage isn't available, it redirects as normal.
+- **Who can edit:** the page's "edit" object action in Volto's store (`state.actions`, `redirectTarget.js` `canEditPage`). A logged-in user is only redirected once the actions have loaded and have no "edit", so an editor is never redirected while they load.
 - **Older content:** destinations saved as a plain URL string work, as well as the link picker's usual format (`_shared/links.js` `getHref`).
 
 ## Happy path — draft, confirm in first-time editor test

@@ -14,6 +14,13 @@ export const getRedirectUrl = (data) => getHref(data?.url);
 export const isSamePage = (url, contentId) =>
   !!url && !!contentId && normalisePath(url) === normalisePath(contentId);
 
+/**
+ * Whether the viewer can edit the page, from the page's actions in Volto's
+ * store (state.actions.actions): its "edit" object action.
+ */
+export const canEditPage = (actions) =>
+  !!actions?.object?.some((action) => action.id === 'edit');
+
 // ─── Loop breaker ──────────────────────────────────────────────────────────
 // Remembers, per browser tab, which pages redirected the visitor in the last
 // few seconds. A page that would redirect them a second time is shown
