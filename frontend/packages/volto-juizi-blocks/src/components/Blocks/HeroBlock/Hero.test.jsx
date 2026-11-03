@@ -56,11 +56,11 @@ describe('Hero', () => {
     expect(container.textContent).toContain('Add a heading in the sidebar.');
   });
 
-  it('offers "Large title" on Section bands only, and marks the band', () => {
+  it('offers "Large title" in both styles, and marks the band', () => {
     const layout = (data) =>
       schema({ data }).fieldsets.find((f) => f.id === 'layout').fields;
     expect(layout({ blockMode: 'section' })).toContain('largeTitle');
-    expect(layout({ blockMode: 'hero' })).not.toContain('largeTitle');
+    expect(layout({ blockMode: 'hero' })).toContain('largeTitle');
     const band = (data) =>
       renderHero({
         data: {
@@ -74,10 +74,9 @@ describe('Hero', () => {
     expect(band({ largeTitle: true }).classList).toContain(
       'hero-block--large-title',
     );
-    // Saved Hero-style blocks ignore it.
-    expect(
-      band({ blockMode: 'hero', largeTitle: true }).classList,
-    ).not.toContain('hero-block--large-title');
+    expect(band({ blockMode: 'hero', largeTitle: true }).classList).toContain(
+      'hero-block--large-title',
+    );
   });
 
   it('keeps saved Section bands without the switch on the page title', () => {
@@ -115,6 +114,50 @@ describe('Hero', () => {
     expect(
       empty.container.querySelector('.block__unfinished').textContent,
     ).toBe('Add a link');
+  });
+
+  it('leaves out the empty header part when a band has only buttons', () => {
+    const buttons = [
+      { '@id': 'a', label: 'Download', link: [{ '@id': '/file.pdf' }] },
+    ];
+    const { container } = renderHero({
+      data: { blockMode: 'section', usePageTitle: false, buttons },
+      properties: { title: 'Page title' },
+    });
+    expect(container.querySelector('.hero-content')).toBeNull();
+    expect(container.querySelector('a.hero-button')).not.toBeNull();
+    // Side by side: no empty right-hand column without subtitle or buttons
+    const horizontal = renderHero({
+      data: {
+        blockMode: 'section',
+        usePageTitle: false,
+        title: 'Title',
+        horizontalLayout: true,
+      },
+    });
+    expect(horizontal.container.querySelector('.hero-content')).not.toBeNull();
+    expect(
+      horizontal.container.querySelector('.hero-inner__horizontal-right'),
+    ).toBeNull();
+  });
+
+  it('opens a file for viewing in a new tab when the button asks for it', () => {
+    const file = [{ '@id': '/report.pdf', '@type': 'File' }];
+    const { container } = renderHero({
+      data: {
+        blockMode: 'section',
+        usePageTitle: false,
+        buttons: [
+          { '@id': 'a', label: 'View', link: file, openInNewTab: true },
+          { '@id': 'b', label: 'Get', link: file },
+        ],
+      },
+    });
+    const [view, get] = container.querySelectorAll('a.hero-button');
+    expect(view.getAttribute('href')).toBe('/report.pdf/@@display-file/file');
+    expect(view.getAttribute('target')).toBe('_blank');
+    expect(get.getAttribute('href')).toBe('/report.pdf/@@download/file');
+    expect(get.getAttribute('target')).toBeNull();
   });
 
   it('uses the shared small button size for "Use smaller buttons"', () => {

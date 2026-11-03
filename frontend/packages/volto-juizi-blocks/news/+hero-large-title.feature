@@ -1,1 +1,1 @@
-Hero: a "Large title" switch for the Section style, which shows the title at the Hero style's bigger size, for an opening band on a colour background.
+Hero: a "Large title" switch. In the Section style it shows the title at the Hero style's bigger size, for an opening band on a colour background; in the Hero style it shows it larger still (`--juizi-hero-large-title-font-size`).

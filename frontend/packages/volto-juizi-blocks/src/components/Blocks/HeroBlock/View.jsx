@@ -13,7 +13,7 @@ import BlockPlaceholder from '../_shared/BlockPlaceholder';
 import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';
 import { isEditing } from '../_shared/editMode';
-import { externalLinkProps, getHref } from '../_shared/links';
+import { getHref, linkTargetProps } from '../_shared/links';
 import { DEFAULT_OVERLAY, overlayBackground } from '../../../config/gradients';
 import { blockAnchorId } from '../_shared/anchors';
 import { formatDate } from '../_shared/format';
@@ -333,7 +333,7 @@ const HeroButtons = ({
   // read as a request to add something the editor may not want.
   const buttons = allButtons
     .map((btn) => {
-      const href = getHref(btn.link);
+      const href = getHref(btn.link, { preview: !!btn.openInNewTab });
       const label = buttonLabel(btn);
       return { btn, href, label, hint: unfinishedHint(href, label) };
     })
@@ -381,7 +381,7 @@ const HeroButtons = ({
               <a
                 href={href || undefined}
                 className={hint ? 'block__unfinished' : undefined}
-                {...externalLinkProps(href)}
+                {...linkTargetProps(href, btn.openInNewTab)}
               >
                 {hint ? (
                   <EditHint isEditMode={isEditMode} as="span">
@@ -415,7 +415,7 @@ const HeroButtons = ({
             href={href || undefined}
             className={hint ? `${btnClass} block__unfinished` : btnClass}
             style={btnStyle}
-            {...externalLinkProps(href)}
+            {...linkTargetProps(href, btn.openInNewTab)}
           >
             {hint ? (
               <EditHint isEditMode={isEditMode} as="span">
@@ -489,10 +489,23 @@ const HeroContent = ({
     : data.logoPosition || 'above-title';
   const hasBesideLogo =
     logoUrl && !hasSideImage && logoPosition === 'beside-content';
-  const contentBlock = (
+  const showLogoAboveTitle = logoUrl && logoPosition === 'above-title';
+  const showSubtitleInContent = !data.horizontalLayout && displaySubtitle;
+  // The header part (breadcrumbs, logo, preheader, title, subtitle and the
+  // editor's hints): left out when it would be empty, so a Hero with only
+  // buttons has no empty div spacing them down.
+  const hasContentBlock = !!(
+    showBreadcrumbs ||
+    showLogoAboveTitle ||
+    displayPreheader ||
+    displayTitle ||
+    showSubtitleInContent ||
+    (isEditMode && (!displayTitle || otherPrimaryHeading))
+  );
+  const contentBlock = hasContentBlock ? (
     <div className="hero-content">
       {showBreadcrumbs && <Breadcrumbs items={breadcrumbItems} />}
-      {logoUrl && logoPosition === 'above-title' && (
+      {showLogoAboveTitle && (
         <div className={`hero-logo hero-logo--${data.logoSize || 'medium'}`}>
           {/* eslint-disable-next-line no-restricted-syntax */}
           <img src={logoUrl} alt="" />
@@ -525,11 +538,11 @@ const HeroContent = ({
           {wrapWordsInSpans(displayTitle)}
         </TitleTag>
       )}
-      {!data.horizontalLayout && displaySubtitle && (
+      {showSubtitleInContent && (
         <div className="hero-subtitle">{displaySubtitle}</div>
       )}
     </div>
-  );
+  ) : null;
 
   // Anything a visitor would see: text, or a button with a link and a text.
   const hasFinishedButton = (data.buttons || []).some(
@@ -614,12 +627,14 @@ const HeroContent = ({
     return (
       <>
         {contentBlock}
-        <div className="hero-inner__horizontal-right">
-          {displaySubtitle && (
-            <div className="hero-subtitle">{displaySubtitle}</div>
-          )}
-          {buttonsBlock}
-        </div>
+        {(displaySubtitle || buttonsBlock) && (
+          <div className="hero-inner__horizontal-right">
+            {displaySubtitle && (
+              <div className="hero-subtitle">{displaySubtitle}</div>
+            )}
+            {buttonsBlock}
+          </div>
+        )}
       </>
     );
   }
@@ -823,7 +838,7 @@ const View = (props) => {
     imageUrl || videoUrl ? 'hero-block--has-bg' : '',
     sideImageUrl ? 'hero-block--has-side-image' : '',
     data.horizontalLayout ? 'hero-block--horizontal' : '',
-    blockMode === 'section' && data.largeTitle ? 'hero-block--large-title' : '',
+    data.largeTitle ? 'hero-block--large-title' : '',
     data.customClass || '',
   ]
     .filter(Boolean)

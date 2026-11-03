@@ -1,4 +1,4 @@
-import { getHref, isExternalHref } from './links';
+import { getHref, isExternalHref, linkTargetProps } from './links';
 import {
   getOptionalPaddingProperties,
   msToSeconds,
@@ -73,6 +73,35 @@ describe('getHref', () => {
         remoteUrl: '${portal_url}/events', // eslint-disable-line no-template-curly-in-string
       }),
     ).toBe('/events');
+  });
+});
+
+describe('file previews', () => {
+  it("links files to Plone's display view, which opens in the browser", () => {
+    const file = { '@id': '/doc.pdf', '@type': 'File' };
+    expect(getHref([file], { preview: true })).toBe(
+      '/doc.pdf/@@display-file/file',
+    );
+    // Visitors' download address becomes the display address
+    expect(
+      getHref([{ '@id': '/doc.pdf/@@download/file', '@type': 'File' }], {
+        preview: true,
+      }),
+    ).toBe('/doc.pdf/@@display-file/file');
+    // Pages are unaffected
+    expect(
+      getHref([{ '@id': '/page', '@type': 'Document' }], { preview: true }),
+    ).toBe('/page');
+  });
+
+  it('opens a new tab when asked, and for other sites', () => {
+    const newTab = { target: '_blank', rel: 'noopener noreferrer' };
+    expect(linkTargetProps('/doc.pdf/@@display-file/file', true)).toEqual(
+      newTab,
+    );
+    expect(linkTargetProps('/page')).toEqual({});
+    expect(linkTargetProps('https://a.org')).toEqual(newTab);
+    expect(linkTargetProps('', true)).toEqual({});
   });
 });
 

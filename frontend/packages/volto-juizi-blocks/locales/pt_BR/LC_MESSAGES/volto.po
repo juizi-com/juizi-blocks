@@ -1229,7 +1229,7 @@ msgstr "Sobreposição da imagem"
 #. Default: "A tint over the background image to keep text readable. Choose \"None\" for patterns and textures that already sit well behind text."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-background-overlay-help"
-msgstr "Uma tonalidade sobre a imagem de fundo para manter o texto legível. Escolha \"Nenhum\" para padrões e texturas que já ficam bem atrás do texto."
+msgstr "Uma tonalidade sobre a imagem de fundo para manter o texto legível. Escolha "Nenhum" para padrões e texturas que já ficam bem atrás do texto."
 
 #. Default: "Background position"
 #: components/Blocks/ContentRow/messages
@@ -1374,7 +1374,7 @@ msgstr "Coloca o ícone dentro de um círculo colorido. Deixe em Nenhum para man
 #. Default: "Choose \"No icon\" for a plain point with just a heading and text."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-icon-help"
-msgstr "Escolha \"Sem ícone\" para um ponto simples, só com cabeçalho e texto."
+msgstr "Escolha "Sem ícone" para um ponto simples, só com cabeçalho e texto."
 
 #. Default: "Icon/number position"
 #: components/Blocks/ContentRow/messages
@@ -2734,7 +2734,7 @@ msgstr "Deixe vazio para usar o título da página ligada. Um botão sem link n�
 #. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light colour — and vice versa. \"Text only\" shows the words underlined, without a box: good for a second, quieter link."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-button-style-help"
-msgstr "Escolha um estilo que contraste com a cor de fundo. Em um fundo escuro, use uma cor clara, e vice-versa. \"Só texto\" mostra as palavras sublinhadas, sem caixa: bom para um segundo link, mais discreto."
+msgstr "Escolha um estilo que contraste com a cor de fundo. Em um fundo escuro, use uma cor clara, e vice-versa. "Só texto" mostra as palavras sublinhadas, sem caixa: bom para um segundo link, mais discreto."
 
 #. Default: "Buttons display"
 #: components/Blocks/HeroBlock/messages
@@ -2796,10 +2796,10 @@ msgstr "Tom de cor sobre a imagem de fundo para manter o texto legível."
 msgid "juizi-hero-large-title"
 msgstr "Título grande"
 
-#. Default: "Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out."
+#. Default: "Shows the title bigger: a Section at the Hero style’s size, a Hero larger still. Use it for the opening of a page, or a statement that should stand out."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-large-title-help"
-msgstr "Mostra o título no tamanho maior usado pelo estilo Hero. Use para a seção de abertura de uma página, ou para uma mensagem que deve se destacar."
+msgstr "Mostra o título maior: uma Seção no tamanho do estilo Hero, um Hero ainda maior. Use para a abertura de uma página, ou para uma mensagem que deve se destacar."
 
 #. Default: "Logo"
 #: components/Blocks/HeroBlock/messages
@@ -2845,6 +2845,16 @@ msgstr "Hero (cabeçalho de página)"
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-mode-section"
 msgstr "Seção (faixa de conteúdo)"
+
+#. Default: "Open in a new tab"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab"
+msgstr "Abrir em uma nova aba"
+
+#. Default: "Opens the link in a new browser tab. A file opens for viewing (PDFs show in the browser) instead of downloading; files a browser cannot show, such as spreadsheets, still download."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab-help"
+msgstr "Abre o link em uma nova aba do navegador. Um arquivo abre para visualização (PDFs aparecem no navegador) em vez de ser baixado; arquivos que o navegador não consegue exibir, como planilhas, continuam sendo baixados."
 
 #. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
 #: components/Blocks/HeroBlock/messages
@@ -2949,7 +2959,7 @@ msgstr "Lado da imagem"
 #. Default: "Which side of the text the image sits on. On small screens it goes above or below the text instead (see \"On mobile\")."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-side-image-position-help"
-msgstr "De que lado do texto a imagem fica. Em telas pequenas, ela vai para cima ou para baixo do texto (veja \"Em dispositivos móveis\")."
+msgstr "De que lado do texto a imagem fica. Em telas pequenas, ela vai para cima ou para baixo do texto (veja "Em dispositivos móveis")."
 
 #. Default: "Use smaller buttons"
 #: components/Blocks/HeroBlock/messages
@@ -3529,7 +3539,7 @@ msgstr "Para todos os planos. Deixe vazio para um botão com contorno que se des
 #. Default: "Optional. For example \"Talk it through\". The button needs a link too."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-button-text-help"
-msgstr "Opcional. Por exemplo \"Vamos conversar\". O botão também precisa de um link."
+msgstr "Opcional. Por exemplo "Vamos conversar". O botão também precisa de um link."
 
 #. Default: "Card colour"
 #: components/Blocks/PricingTiers/messages
@@ -3614,7 +3624,7 @@ msgstr "Para todas as etiquetas. Deixe vazio para a cor habitual. Cada plano pod
 #. Default: "Optional. A short word or two shown with the name, for example \"New\" or \"Most chosen\"."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-label-help"
-msgstr "Opcional. Uma ou duas palavras curtas mostradas com o nome, por exemplo \"Novo\" ou \"O mais escolhido\"."
+msgstr "Opcional. Uma ou duas palavras curtas mostradas com o nome, por exemplo "Novo" ou "O mais escolhido"."
 
 #. Default: "Swipe through the tiers on phones"
 #: components/Blocks/PricingTiers/messages
@@ -3634,7 +3644,7 @@ msgstr "Nome do plano"
 #. Default: "For example \"Essential\". Required."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-name-help"
-msgstr "Por exemplo \"Essencial\". Obrigatório."
+msgstr "Por exemplo "Essencial". Obrigatório."
 
 #. Default: "Plain (white)"
 #: components/Blocks/PricingTiers/messages
@@ -3649,7 +3659,7 @@ msgstr "Preço"
 #. Default: "Type it as it should appear, for example \"R 49 450\", \"R 950 / year\" or \"Let's talk\"."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-price-help"
-msgstr "Digite como deve aparecer, por exemplo \"R 49 450\", \"R 950 / ano\" ou \"Vamos conversar\"."
+msgstr "Digite como deve aparecer, por exemplo "R 49 450", "R 950 / ano" ou "Vamos conversar"."
 
 #. Default: "Price note"
 #: components/Blocks/PricingTiers/messages
@@ -3659,7 +3669,7 @@ msgstr "Nota do preço"
 #. Default: "Optional. Small text under the price, for example \"incl. VAT\" or \"quoted per project\"."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-price-note-help"
-msgstr "Opcional. Texto pequeno abaixo do preço, por exemplo \"impostos incluídos\" ou \"orçamento por projeto\"."
+msgstr "Opcional. Texto pequeno abaixo do preço, por exemplo "impostos incluídos" ou "orçamento por projeto"."
 
 #. Default: "Show dots under the cards"
 #: components/Blocks/PricingTiers/messages
@@ -3669,7 +3679,7 @@ msgstr "Mostrar pontos abaixo dos cartões"
 #. Default: "Add your first tier in the sidebar, under \"Tiers\". Each tier becomes a price card."
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-start"
-msgstr "Adicione o primeiro plano na barra lateral, em \"Planos\". Cada plano vira um cartão de preço."
+msgstr "Adicione o primeiro plano na barra lateral, em "Planos". Cada plano vira um cartão de preço."
 
 #. Default: "Start on the highlighted tier"
 #: components/Blocks/PricingTiers/messages

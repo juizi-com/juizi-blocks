@@ -57,6 +57,10 @@
   --juizi-hero-title-font-size: 48px;
   --juizi-hero-title-line-height: 56px;
   --juizi-hero-title-font-weight: 700;
+  // A Hero-style block with "Large title" on: larger still, from the Hero
+  // size on phones to 64px on wide screens
+  --juizi-hero-large-title-font-size: clamp(3rem, 2rem + 3vw, 4rem);
+  --juizi-hero-large-title-line-height: 1.1;
 
   // Text under a block title
   --juizi-description-font-size: 1.1em;
@@ -363,6 +367,12 @@ $juizi-cards: '.content-row__grid > .content-row-item',
   font-size: var(--juizi-hero-title-font-size);
   font-weight: var(--juizi-hero-title-font-weight);
   line-height: var(--juizi-hero-title-line-height);
+}
+
+// After the Hero rule, which it outranks anyway (one class more).
+.hero-block--hero.hero-block--large-title .hero-title {
+  font-size: var(--juizi-hero-large-title-font-size);
+  line-height: var(--juizi-hero-large-title-line-height);
 }
 
 #{$juizi-descriptions} {

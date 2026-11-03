@@ -49,12 +49,13 @@ Both work in every mode and do nothing on an item without the underlying field. 
 
 | Buttons display | Behaviour |
 |---|---|
-| `buttons` | Per-button label, link, style and arrow |
+| `buttons` | Per-button label, link, new tab (`openInNewTab`), style and arrow |
 | `list` | The same buttons as inline links separated by vertical bars |
 | `toc` | "Buttons to each heading on this page": generated from the page's main headings and sub-headings (H2/H3), styled by `tocButtonStyle` |
 
 - A button with no label uses its linked page's title (`autoFillButtonLabels` in `index.js`).
 - A button without a link (or any text) is never shown to visitors. Editors see it flagged ("Add a link" / "Add a label", dashed outline) **only while the Hero has nothing else in it** (no heading, text or finished button): otherwise the prompt read as a request to add something the editor may not want.
+- **Open in a new tab** (`openInNewTab`) opens the link in a new tab. A linked file opens through Plone's `@@display-file` view instead of `@@download`, so a PDF shows in the browser; files a browser can't show (spreadsheets) still download.
 - **Text only** (`text__<colour>`, offered on the buttons, not on TOC buttons) shows the label in the colour, underlined, with no box: for a second, quieter link beside a solid button. The arrow switch works with it as with the other styles.
 - **Use smaller buttons** adds the shared `btn-small` size (`config/buttons.scss`) to every button, including TOC buttons.
 - TOC buttons take their label from the heading text, so headings need to be descriptive; a heading like "Overview" used twice gives two identical buttons.
@@ -125,6 +126,11 @@ For a band further down the page: add a Hero, choose **Section (content band)**,
 
 **Image side** (`sideImagePosition`: `right`, the default and what saved blocks without the field get, or `left`) swaps the image and the text on wide screens only (`hero-inner__side-layout--image-left`, `row-reverse` from 769px). The text stays first in the page, so screen readers and the stacked small-screen layout are unchanged; **On mobile** still decides whether the image goes above or below.
 
-## Large title (2026-10)
+## Large title (2026-10, both styles 2026-11)
 
-**Large title** (`largeTitle`, Section style only, Layout panel) gives a Section band the Hero style's title size (`hero-block--large-title`, in `$juizi-hero-titles` in `juizi-common.scss`). It's for an opening band on a colour background, which the Hero style can't have (it takes a picture or video only). Off by default; saved blocks don't have it and look the same, and a Hero-style block ignores it.
+**Large title** (`largeTitle`, Layout panel, both styles) marks the band `hero-block--large-title`:
+
+- **Section style:** the title takes the Hero style's size (`$juizi-hero-titles` in `juizi-common.scss`). For an opening band on a colour background, which the Hero style can't have (it takes a picture or video only).
+- **Hero style:** the title goes larger still: `--juizi-hero-large-title-font-size` and `--juizi-hero-large-title-line-height`, 64px on wide screens, never below the Hero size (48px) on phones. The weight stays the Hero title's.
+
+Off by default; saved blocks without it look the same. Until 2026-11 a Hero-style block ignored the switch and didn't offer it, so the only Hero-style blocks with it on are ones switched from the Section style with it on: those now show the larger title.

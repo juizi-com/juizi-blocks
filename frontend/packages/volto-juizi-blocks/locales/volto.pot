@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-10-31T07:33:43.221Z\n"
+"POT-Creation-Date: 2026-11-03T09:45:19.560Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2793,7 +2793,7 @@ msgstr ""
 msgid "juizi-hero-large-title"
 msgstr ""
 
-#. Default: "Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out."
+#. Default: "Shows the title bigger: a Section at the Hero style’s size, a Hero larger still. Use it for the opening of a page, or a statement that should stand out."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-large-title-help"
 msgstr ""
@@ -2841,6 +2841,16 @@ msgstr ""
 #. Default: "Section (content band)"
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-mode-section"
+msgstr ""
+
+#. Default: "Open in a new tab"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab"
+msgstr ""
+
+#. Default: "Opens the link in a new browser tab. A file opens for viewing (PDFs show in the browser) instead of downloading; files a browser cannot show, such as spreadsheets, still download."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab-help"
 msgstr ""
 
 #. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."

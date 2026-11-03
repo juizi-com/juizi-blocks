@@ -16,7 +16,16 @@ export default defineMessages({
   largeTitleHelp: {
     id: 'juizi-hero-large-title-help',
     defaultMessage:
-      'Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out.',
+      'Shows the title bigger: a Section at the Hero style’s size, a Hero larger still. Use it for the opening of a page, or a statement that should stand out.',
+  },
+  openInNewTab: {
+    id: 'juizi-hero-open-in-new-tab',
+    defaultMessage: 'Open in a new tab',
+  },
+  openInNewTabHelp: {
+    id: 'juizi-hero-open-in-new-tab-help',
+    defaultMessage:
+      'Opens the link in a new browser tab. A file opens for viewing (PDFs show in the browser) instead of downloading; files a browser cannot show, such as spreadsheets, still download.',
   },
   showArrow: { id: 'juizi-hero-show-arrow', defaultMessage: 'Show arrow icon' },
   showArrowHelp: {

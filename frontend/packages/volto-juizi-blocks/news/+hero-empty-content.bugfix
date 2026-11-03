@@ -1,0 +1,1 @@
+Hero: a band with nothing in its header part (no title, preheader, logo, breadcrumbs or subtitle), such as one with only buttons, no longer renders an empty header box that added space above the buttons. Side by side, the right-hand column is left out when it has no subtitle or buttons.
