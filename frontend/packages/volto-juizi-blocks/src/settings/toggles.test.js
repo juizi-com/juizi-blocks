@@ -45,12 +45,29 @@ describe('blockToggleState', () => {
   });
 
   it('reads the own value from a wrapped block', () => {
+    const blocksConfig = { hero: { restricted: true } };
+    wrapBlocksRestricted(blocksConfig, () => none);
+    expect(blockToggleState('hero', blocksConfig.hero, none).defaultOn).toBe(
+      false,
+    );
+  });
+
+  it('reads a restricted reassigned after the wrapping, not the kept one', () => {
+    // A site's config replacing a wrapped block's `restricted` (CRA's
+    // `leadimage.restricted = false`) before it's wrapped again: the
+    // dashboard must not show the old value (it differed between the
+    // server's page and the browser's first render).
+    const blocksConfig = { leadimage: { restricted: () => true } };
+    wrapBlocksRestricted(blocksConfig, () => none);
+    blocksConfig.leadimage.restricted = false;
     expect(
-      blockToggleState(
-        'hero',
-        { restricted: () => false, [OWN_RESTRICTED]: true },
-        none,
-      ).defaultOn,
+      blockToggleState('leadimage', blocksConfig.leadimage, none),
+    ).toMatchObject({ contextual: false, defaultOn: true });
+
+    wrapBlocksRestricted(blocksConfig, () => none);
+    expect(blocksConfig.leadimage[OWN_RESTRICTED]).toBe(false);
+    expect(
+      blockToggleState('leadimage', blocksConfig.leadimage, none).contextual,
     ).toBe(false);
   });
 });
