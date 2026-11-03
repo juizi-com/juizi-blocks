@@ -39,6 +39,7 @@ import ThemesEditor from './ThemesEditor';
 import { hasVLT } from '../../config/vlt';
 import BlockMatrix from './BlockMatrix';
 import CalloutTypesEditor from './CalloutTypesEditor';
+import PrintEditor from './PrintEditor';
 import messages from './messages';
 
 const colorBlocks = juiziBlocks.filter((block) => block.usesColors);
@@ -59,9 +60,16 @@ const toDraft = (data) => ({
   block_groups: data.block_groups || {},
   editor_language: data.editor_language || '',
   color_config: data.color_config,
+  print_config: data.print_config,
 });
 
-const TABS = ['blocks', 'colors'];
+const TABS = ['blocks', 'colors', 'print'];
+
+const TAB_LABELS = {
+  blocks: messages.tabBlocks,
+  colors: messages.tabColors,
+  print: messages.tabPrint,
+};
 
 /** A problem from validateColorConfig as a sentence in the editor's
  * language. */
@@ -128,11 +136,21 @@ const Dashboard = () => {
 
   const save = () => {
     if (errors.length || saving) return;
+    const printChanged = !isEqual(draft.print_config, saved.print_config);
     dispatch(updateJuiziBlocksSettings(draft))
-      .then(() =>
-        toast.success(
-          <Toast success title={intl.formatMessage(messages.saved)} />,
-        ),
+      .then((result) =>
+        // An older backend answers without print settings: it dropped them.
+        printChanged && !(result && 'print_config' in result)
+          ? toast.error(
+              <Toast
+                error
+                title={intl.formatMessage(messages.printNotSaved)}
+                content={intl.formatMessage(messages.printNotSupported)}
+              />,
+            )
+          : toast.success(
+              <Toast success title={intl.formatMessage(messages.saved)} />,
+            ),
       )
       .catch((error) =>
         toast.error(
@@ -222,9 +240,7 @@ const Dashboard = () => {
             }
             onClick={() => selectTab(id)}
           >
-            {intl.formatMessage(
-              id === 'blocks' ? messages.tabBlocks : messages.tabColors,
-            )}
+            {intl.formatMessage(TAB_LABELS[id])}
           </button>
         ))}
       </div>
@@ -338,6 +354,21 @@ const Dashboard = () => {
             </Section>
           )}
         </>
+      )}
+
+      {tab === 'print' && state.printSupported === false && (
+        <div className="juizi-dashboard__error" role="alert">
+          {intl.formatMessage(messages.printNotSupported)}
+        </div>
+      )}
+
+      {tab === 'print' && (
+        <PrintEditor
+          printConfig={draft.print_config}
+          onChange={(print_config) =>
+            setDraft((current) => ({ ...current, print_config }))
+          }
+        />
       )}
 
       {/* Not a <p>: Volto Light Theme restyles every `.content-area p > a`. */}

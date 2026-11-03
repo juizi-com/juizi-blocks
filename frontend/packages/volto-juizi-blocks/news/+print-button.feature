@@ -1,0 +1,1 @@
+New Print button block (`printReport`, the id of CRA's Print Report block, so its saved blocks carry on), with site-wide print settings in a new Print tab of the dashboard: the button's default colour, the printout's header and footer with placeholders, the paper, and the blocks left out. The dashboard warns when the backend can't keep print settings yet.

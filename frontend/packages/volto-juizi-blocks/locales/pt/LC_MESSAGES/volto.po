@@ -16,6 +16,11 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 
+#. Default: "A button visitors click to print the page, with the site’s header and footer on the printout."
+#: blocks/messages
+msgid "A button visitors click to print the page, with the site’s header and footer on the printout."
+msgstr "Um botão em que os visitantes clicam para imprimir a página, com o cabeçalho e o rodapé do site na impressão."
+
 #. Default: "A sound recording with a player, title, description and transcript."
 #: blocks/messages
 msgid "A sound recording with a player, title, description and transcript."
@@ -75,6 +80,11 @@ msgstr "Cartões de preço lado a lado, cada um com nome, preço, funcionalidade
 #: blocks/messages
 msgid "Pricing tiers"
 msgstr "Escalões de preço"
+
+#. Default: "Print button"
+#: blocks/messages
+msgid "Print button"
+msgstr "Botão de imprimir"
 
 #. Default: "Redirect"
 #: blocks/messages
@@ -1701,6 +1711,11 @@ msgstr "Adicionar cor"
 msgid "juizi-dashboard-add-theme"
 msgstr "Adicionar tema"
 
+#. Default: "Advanced"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-advanced"
+msgstr "Avançado"
+
 #. Default: "All"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-all"
@@ -2006,6 +2021,196 @@ msgstr "Texto de apoio esbatido"
 msgid "juizi-dashboard-preview-title"
 msgstr "Título de pré-visualização"
 
+#. Default: "Print button"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button"
+msgstr "Botão de imprimir"
+
+#. Default: "Automatic (stands out against the page)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button-automatic"
+msgstr "Automático (destaca-se na página)"
+
+#. Default: "The colour and style of every Print button on the site. Editors can choose a different one on a single button."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button-help"
+msgstr "A cor e o estilo de todos os botões de imprimir do site. Os editores podem escolher outro num botão específico."
+
+#. Default: "Bottom of the printout (HTML)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-footer"
+msgstr "Parte inferior da impressão (HTML)"
+
+#. Default: "Top of the printout (HTML)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-header"
+msgstr "Parte superior da impressão (HTML)"
+
+#. Default: "Custom layout (for your web team)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-layout"
+msgstr "Esquema personalizado (para a sua equipa web)"
+
+#. Default: "HTML that replaces the top or bottom of the printout set above. The same words in square brackets work, and [logo] gives the logo’s address. Scripts are removed."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-layout-help"
+msgstr "HTML que substitui a parte superior ou inferior da impressão definida acima. As mesmas palavras entre parênteses retos funcionam, e [logo] dá o endereço do logótipo. Os scripts são removidos."
+
+#. Default: "Bottom of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer"
+msgstr "Parte inferior da impressão"
+
+#. Default: "A line printed below the page. The same words in square brackets work here. Leave it empty for no line."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer-help"
+msgstr "Uma linha impressa abaixo da página. As mesmas palavras entre parênteses retos funcionam aqui. Deixe vazio para não ter linha."
+
+#. Default: "Text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer-text"
+msgstr "Texto"
+
+#. Default: "Top of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-header"
+msgstr "Parte superior da impressão"
+
+#. Default: "Printed above the page: a logo on the left, and up to two lines of text on the right. Leave a line empty to leave it out."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-header-help"
+msgstr "Impresso acima da página: um logótipo à esquerda e até duas linhas de texto à direita. Deixe uma linha vazia para a omitir."
+
+#. Default: "First line (in bold)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-heading"
+msgstr "Primeira linha (a negrito)"
+
+#. Default: "Landscape (sideways)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-landscape"
+msgstr "Paisagem (deitado)"
+
+#. Default: "Left out of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-left-out"
+msgstr "Omitido da impressão"
+
+#. Default: "Ticked kinds of content aren’t printed, for example videos and maps that don’t work on paper. The site’s menus, header and footer are always left out."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-left-out-help"
+msgstr "Os tipos de conteúdo assinalados não são impressos, por exemplo vídeos e mapas que não funcionam em papel. Os menus, o cabeçalho e o rodapé do site são sempre omitidos."
+
+#. Default: "Logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo"
+msgstr "Logótipo"
+
+#. Default: "Another picture"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-custom"
+msgstr "Outra imagem"
+
+#. Default: "No logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-none"
+msgstr "Sem logótipo"
+
+#. Default: "The site’s logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-site"
+msgstr "O logótipo do site"
+
+#. Default: "Picture’s address"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-url"
+msgstr "Endereço da imagem"
+
+#. Default: "The address of a picture on this site (starting with /, for example /images/print-logo.png), or a full web address starting with https://. Upload the picture to the site first."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-url-help"
+msgstr "O endereço de uma imagem neste site (a começar por /, por exemplo /images/print-logo.png) ou um endereço web completo a começar por https://. Carregue primeiro a imagem para o site."
+
+#. Default: "The print settings weren’t saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-not-saved"
+msgstr "As definições de impressão não foram guardadas"
+
+#. Default: "This site’s server needs an update before print settings can be kept (Juizi Blocks on the server, then its upgrade in Site Setup › Add-ons). Until then printouts use the standard settings shown here, and changes on this tab aren’t kept. Changes on the other tabs are saved as usual."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-not-supported"
+msgstr "O servidor deste site precisa de uma atualização antes de as definições de impressão poderem ser guardadas (Juizi Blocks no servidor e depois a sua atualização em Configuração do site › Extensões). Até lá, as impressões usam as definições padrão aqui mostradas, e as alterações neste separador não são guardadas. As alterações nos outros separadores são guardadas normalmente."
+
+#. Default: "Orientation"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-orientation"
+msgstr "Orientação"
+
+#. Default: "Paper"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper"
+msgstr "Papel"
+
+#. Default: "The paper the printout is laid out for. People can still choose another in their printer’s settings."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper-help"
+msgstr "O papel para o qual a impressão é preparada. Pode-se escolher outro nas definições da impressora."
+
+#. Default: "Paper size"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper-size"
+msgstr "Tamanho do papel"
+
+#. Default: "the page’s web address"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-page-address"
+msgstr "o endereço web da página"
+
+#. Default: "the page’s publication date"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-publication-date"
+msgstr "a data de publicação da página"
+
+#. Default: "the section the page is in, one level below the main menu (for example “Risk Alert”)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-section"
+msgstr "a secção em que a página está, um nível abaixo do menu principal (por exemplo «Risk Alert»)"
+
+#. Default: "the site’s name"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-site-name"
+msgstr "o nome do site"
+
+#. Default: "the page’s title"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-title"
+msgstr "o título da página"
+
+#. Default: "the day it’s printed"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-today"
+msgstr "o dia em que é impresso"
+
+#. Default: "Type any text, and use these words in square brackets to fill in details of the page being printed:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholders"
+msgstr "Escreva qualquer texto e use estas palavras entre parênteses retos para preencher dados da página impressa:"
+
+#. Default: "Portrait (upright)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-portrait"
+msgstr "Retrato (ao alto)"
+
+#. Default: "Print"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-sample-button"
+msgstr "Imprimir"
+
+#. Default: "Second line"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-subheading"
+msgstr "Segunda linha"
+
 #. Default: "Remove"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-remove"
@@ -2065,6 +2270,11 @@ msgstr "Blocos"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-tab-colors"
 msgstr "Cores"
+
+#. Default: "Print"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-print"
+msgstr "Imprimir"
 
 #. Default: "Block themes"
 #: components/Dashboard/messages
@@ -3740,6 +3950,46 @@ msgstr "Cada escalão é um cartão. Arraste os escalões para mudar a ordem. Um
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-title-help"
 msgstr "Opcional. Aparece por cima dos escalões."
+
+#. Default: "Print"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print"
+msgstr "Imprimir"
+
+#. Default: "Leave empty to use the site’s print button style, set in Site Setup › Juizi Blocks › Print."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-button-style-help"
+msgstr "Deixe vazio para usar o estilo do botão de imprimir do site, definido em Configuração do site › Juizi Blocks › Imprimir."
+
+#. Default: "Visitors click this to print the page. The printout’s header, footer, paper size and the parts left out are set for the whole site in Site Setup › Juizi Blocks › Print."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-edit-hint"
+msgstr "Os visitantes clicam aqui para imprimir a página. O cabeçalho, o rodapé, o tamanho do papel e as partes omitidas da impressão definem-se para todo o site em Configuração do site › Juizi Blocks › Imprimir."
+
+#. Default: "Leave empty for “Print”."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-label-help"
+msgstr "Deixe vazio para «Imprimir»."
+
+#. Default: "Position"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-position"
+msgstr "Posição"
+
+#. Default: "Right puts the button beside the text that follows it. Leave empty for right."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-position-help"
+msgstr "À direita coloca o botão ao lado do texto que se segue. Deixe vazio para à direita."
+
+#. Default: "Preparing…"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-preparing"
+msgstr "A preparar…"
+
+#. Default: "The site’s print button style"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-site-style"
+msgstr "O estilo do botão de imprimir do site"
 
 #. Default: "Read more"
 #: components/Blocks/_shared/messages

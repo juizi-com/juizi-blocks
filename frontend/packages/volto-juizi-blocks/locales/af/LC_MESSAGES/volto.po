@@ -16,6 +16,11 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 
+#. Default: "A button visitors click to print the page, with the site’s header and footer on the printout."
+#: blocks/messages
+msgid "A button visitors click to print the page, with the site’s header and footer on the printout."
+msgstr "’n Knoppie waarop besoekers klik om die bladsy te druk, met die webwerf se kop- en voetstuk op die drukstuk."
+
 #. Default: "A sound recording with a player, title, description and transcript."
 #: blocks/messages
 msgid "A sound recording with a player, title, description and transcript."
@@ -75,6 +80,11 @@ msgstr "Pryskaarte langs mekaar, elk met ’n naam, prys, kenmerke en ’n knopp
 #: blocks/messages
 msgid "Pricing tiers"
 msgstr "Prysvlakke"
+
+#. Default: "Print button"
+#: blocks/messages
+msgid "Print button"
+msgstr "Drukknoppie"
 
 #. Default: "Redirect"
 #: blocks/messages
@@ -1701,6 +1711,11 @@ msgstr "Voeg kleur by"
 msgid "juizi-dashboard-add-theme"
 msgstr "Voeg tema by"
 
+#. Default: "Advanced"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-advanced"
+msgstr "Gevorderd"
+
 #. Default: "All"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-all"
@@ -2006,6 +2021,196 @@ msgstr "Gedempte ondersteunende teks"
 msgid "juizi-dashboard-preview-title"
 msgstr "Voorskou-opskrif"
 
+#. Default: "Print button"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button"
+msgstr "Drukknoppie"
+
+#. Default: "Automatic (stands out against the page)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button-automatic"
+msgstr "Outomaties (staan uit teen die bladsy)"
+
+#. Default: "The colour and style of every Print button on the site. Editors can choose a different one on a single button."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-button-help"
+msgstr "Die kleur en styl van elke drukknoppie op die webwerf. Redakteurs kan ’n ander een op ’n enkele knoppie kies."
+
+#. Default: "Bottom of the printout (HTML)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-footer"
+msgstr "Onderkant van die drukstuk (HTML)"
+
+#. Default: "Top of the printout (HTML)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-header"
+msgstr "Bokant van die drukstuk (HTML)"
+
+#. Default: "Custom layout (for your web team)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-layout"
+msgstr "Eie uitleg (vir jou webspan)"
+
+#. Default: "HTML that replaces the top or bottom of the printout set above. The same words in square brackets work, and [logo] gives the logo’s address. Scripts are removed."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-custom-layout-help"
+msgstr "HTML wat die bo- of onderkant van die drukstuk hierbo vervang. Dieselfde woorde in vierkantige hakies werk, en [logo] gee die logo se adres. Skripte word verwyder."
+
+#. Default: "Bottom of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer"
+msgstr "Onderkant van die drukstuk"
+
+#. Default: "A line printed below the page. The same words in square brackets work here. Leave it empty for no line."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer-help"
+msgstr "’n Reël wat onder die bladsy gedruk word. Dieselfde woorde in vierkantige hakies werk hier. Laat dit leeg vir geen reël nie."
+
+#. Default: "Text"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-footer-text"
+msgstr "Teks"
+
+#. Default: "Top of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-header"
+msgstr "Bokant van die drukstuk"
+
+#. Default: "Printed above the page: a logo on the left, and up to two lines of text on the right. Leave a line empty to leave it out."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-header-help"
+msgstr "Bo die bladsy gedruk: ’n logo links, en tot twee reëls teks regs. Laat ’n reël leeg om dit weg te laat."
+
+#. Default: "First line (in bold)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-heading"
+msgstr "Eerste reël (in vetdruk)"
+
+#. Default: "Landscape (sideways)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-landscape"
+msgstr "Landskap (dwars)"
+
+#. Default: "Left out of the printout"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-left-out"
+msgstr "Uitgelaat uit die drukstuk"
+
+#. Default: "Ticked kinds of content aren’t printed, for example videos and maps that don’t work on paper. The site’s menus, header and footer are always left out."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-left-out-help"
+msgstr "Aangemerkte soorte inhoud word nie gedruk nie, byvoorbeeld video’s en kaarte wat nie op papier werk nie. Die webwerf se kieslyste, kopstuk en voetstuk word altyd weggelaat."
+
+#. Default: "Logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo"
+msgstr "Logo"
+
+#. Default: "Another picture"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-custom"
+msgstr "’n Ander prent"
+
+#. Default: "No logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-none"
+msgstr "Geen logo nie"
+
+#. Default: "The site’s logo"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-site"
+msgstr "Die webwerf se logo"
+
+#. Default: "Picture’s address"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-url"
+msgstr "Prent se adres"
+
+#. Default: "The address of a picture on this site (starting with /, for example /images/print-logo.png), or a full web address starting with https://. Upload the picture to the site first."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-logo-url-help"
+msgstr "Die adres van ’n prent op hierdie webwerf (begin met /, byvoorbeeld /images/print-logo.png), of ’n volledige webadres wat met https:// begin. Laai die prent eers na die webwerf op."
+
+#. Default: "The print settings weren’t saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-not-saved"
+msgstr "Die drukinstellings is nie gestoor nie"
+
+#. Default: "This site’s server needs an update before print settings can be kept (Juizi Blocks on the server, then its upgrade in Site Setup › Add-ons). Until then printouts use the standard settings shown here, and changes on this tab aren’t kept. Changes on the other tabs are saved as usual."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-not-supported"
+msgstr "Hierdie webwerf se bediener moet bygewerk word voordat drukinstellings gehou kan word (Juizi Blocks op die bediener, dan sy opgradering in Werfopstelling › Byvoegings). Tot dan gebruik drukstukke die standaardinstellings wat hier gewys word, en veranderinge op hierdie oortjie word nie gehou nie. Veranderinge op die ander oortjies word soos gewoonlik gestoor."
+
+#. Default: "Orientation"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-orientation"
+msgstr "Oriëntasie"
+
+#. Default: "Paper"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper"
+msgstr "Papier"
+
+#. Default: "The paper the printout is laid out for. People can still choose another in their printer’s settings."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper-help"
+msgstr "Die papier waarvoor die drukstuk uitgelê word. Mense kan steeds ’n ander een in hul drukker se instellings kies."
+
+#. Default: "Paper size"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-paper-size"
+msgstr "Papiergrootte"
+
+#. Default: "the page’s web address"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-page-address"
+msgstr "die bladsy se webadres"
+
+#. Default: "the page’s publication date"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-publication-date"
+msgstr "die bladsy se publikasiedatum"
+
+#. Default: "the section the page is in, one level below the main menu (for example “Risk Alert”)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-section"
+msgstr "die afdeling waarin die bladsy is, een vlak onder die hoofkieslys (byvoorbeeld “Risk Alert”)"
+
+#. Default: "the site’s name"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-site-name"
+msgstr "die webwerf se naam"
+
+#. Default: "the page’s title"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-title"
+msgstr "die bladsy se titel"
+
+#. Default: "the day it’s printed"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholder-today"
+msgstr "die dag waarop dit gedruk word"
+
+#. Default: "Type any text, and use these words in square brackets to fill in details of the page being printed:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-placeholders"
+msgstr "Tik enige teks, en gebruik hierdie woorde in vierkantige hakies om besonderhede van die bladsy wat gedruk word in te vul:"
+
+#. Default: "Portrait (upright)"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-portrait"
+msgstr "Portret (regop)"
+
+#. Default: "Print"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-sample-button"
+msgstr "Druk"
+
+#. Default: "Second line"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-print-subheading"
+msgstr "Tweede reël"
+
 #. Default: "Remove"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-remove"
@@ -2065,6 +2270,11 @@ msgstr "Blokke"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-tab-colors"
 msgstr "Kleure"
+
+#. Default: "Print"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-print"
+msgstr "Druk"
 
 #. Default: "Block themes"
 #: components/Dashboard/messages
@@ -3740,6 +3950,46 @@ msgstr "Elke vlak is een kaart. Sleep vlakke om hul volgorde te verander. ’n V
 #: components/Blocks/PricingTiers/messages
 msgid "juizi-pricing-title-help"
 msgstr "Opsioneel. Word bo die vlakke gewys."
+
+#. Default: "Print"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print"
+msgstr "Druk"
+
+#. Default: "Leave empty to use the site’s print button style, set in Site Setup › Juizi Blocks › Print."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-button-style-help"
+msgstr "Laat leeg om die webwerf se drukknoppiestyl te gebruik, gestel in Werfopstelling › Juizi Blocks › Druk."
+
+#. Default: "Visitors click this to print the page. The printout’s header, footer, paper size and the parts left out are set for the whole site in Site Setup › Juizi Blocks › Print."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-edit-hint"
+msgstr "Besoekers klik hierop om die bladsy te druk. Die drukstuk se kopstuk, voetstuk, papiergrootte en die dele wat weggelaat word, word vir die hele webwerf gestel in Werfopstelling › Juizi Blocks › Druk."
+
+#. Default: "Leave empty for “Print”."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-label-help"
+msgstr "Laat leeg vir “Druk”."
+
+#. Default: "Position"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-position"
+msgstr "Posisie"
+
+#. Default: "Right puts the button beside the text that follows it. Leave empty for right."
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-position-help"
+msgstr "Regs plaas die knoppie langs die teks wat volg. Laat leeg vir regs."
+
+#. Default: "Preparing…"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-preparing"
+msgstr "Berei voor…"
+
+#. Default: "The site’s print button style"
+#: components/Blocks/PrintButton/messages
+msgid "juizi-print-site-style"
+msgstr "Die webwerf se drukknoppiestyl"
 
 #. Default: "Read more"
 #: components/Blocks/_shared/messages

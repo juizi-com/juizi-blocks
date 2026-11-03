@@ -2,6 +2,7 @@
 
 from juizi.blocks import _
 from juizi.blocks.settings import DEFAULT_COLOR_CONFIG_JSON
+from juizi.blocks.settings import DEFAULT_PRINT_CONFIG_JSON
 from zope import schema
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
@@ -73,4 +74,15 @@ class IJuiziBlocksSettings(Interface):
         ),
         required=False,
         default=DEFAULT_COLOR_CONFIG_JSON,
+    )
+
+    print_config = schema.Text(
+        title=_("Print settings"),
+        description=_(
+            "JSON document with the Print button block's site-wide settings: "
+            "the button's default look, the printout's header and footer, "
+            "the blocks left out and the paper size."
+        ),
+        required=False,
+        default=DEFAULT_PRINT_CONFIG_JSON,
     )

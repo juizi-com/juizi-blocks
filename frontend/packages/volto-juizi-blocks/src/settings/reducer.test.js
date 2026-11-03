@@ -1,5 +1,6 @@
 import reducer from './reducer';
 import {
+  DEFAULT_PRINT_CONFIG,
   DEFAULT_SETTINGS,
   GET_JUIZI_BLOCKS_SETTINGS,
   UPDATE_JUIZI_BLOCKS_SETTINGS,
@@ -23,9 +24,35 @@ describe('juiziBlocksSettings reducer', () => {
       type: `${GET_JUIZI_BLOCKS_SETTINGS}_SUCCESS`,
       result,
     });
-    expect(state.data).toEqual({ ...result, editor_language: '' });
+    expect(state.data).toEqual({
+      ...result,
+      editor_language: '',
+      // Not served by older backends: the defaults.
+      print_config: DEFAULT_PRINT_CONFIG,
+    });
     expect(state.get.loaded).toBe(true);
     expect(state.update.loaded).toBe(false);
+  });
+
+  it('notices a backend that doesn’t keep print settings yet', () => {
+    expect(reducer(undefined, { type: '@@INIT' }).printSupported).toBe(null);
+    const older = reducer(undefined, {
+      type: `${UPDATE_JUIZI_BLOCKS_SETTINGS}_SUCCESS`,
+      result: { disabled_blocks: [] },
+    });
+    expect(older.printSupported).toBe(false);
+  });
+
+  it('fills in print settings the backend leaves out', () => {
+    const state = reducer(undefined, {
+      type: `${GET_JUIZI_BLOCKS_SETTINGS}_SUCCESS`,
+      result: { print_config: { paper_size: 'Letter' } },
+    });
+    expect(state.printSupported).toBe(true);
+    expect(state.data.print_config).toEqual({
+      ...DEFAULT_PRINT_CONFIG,
+      paper_size: 'Letter',
+    });
   });
 
   it('tracks update requests separately', () => {

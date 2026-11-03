@@ -55,6 +55,27 @@ export type ColorConfig = {
   blocks: Record<string, BlockColorConfig>;
 };
 
+/** The Print button block's site-wide settings (dashboard: Print).
+ * Mirrors juizi.blocks.settings.validate_print_config in the backend. */
+export type PrintConfig = {
+  /** The button's default look ('solid__green'); '' = automatic. */
+  button_style: string;
+  logo: 'site' | 'custom' | 'none';
+  /** A picture's address, used when logo is 'custom'. */
+  logo_url: string;
+  /** Header lines and footer text, with [placeholders]. */
+  heading: string;
+  subheading: string;
+  footer: string;
+  /** Advanced: custom markup replacing the header lines / footer text. */
+  header_html: string;
+  footer_html: string;
+  /** Block types left out of the printout. */
+  exclude_blocks: string[];
+  paper_size: 'A4' | 'A3' | 'A5' | 'Letter' | 'Legal';
+  orientation: 'portrait' | 'landscape';
+};
+
 export type JuiziBlocksSettings = {
   /** Switched off in the dashboard. */
   disabled_blocks: string[];
@@ -66,4 +87,5 @@ export type JuiziBlocksSettings = {
    * '' follows the page's language. */
   editor_language: string;
   color_config: ColorConfig;
+  print_config: PrintConfig;
 };

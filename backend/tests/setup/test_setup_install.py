@@ -14,7 +14,7 @@ class TestSetupInstall:
 
     def test_latest_version(self, profile_last_version):
         """Test latest version of default profile."""
-        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1003"
+        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1004"
 
     def test_site_title_untouched(self, portal):
         """Installing doesn't rename the site."""
@@ -54,6 +54,7 @@ class TestSetupInstall:
         assert records.block_groups == "{}"
         assert records.editor_language == ""
         assert records.color_config
+        assert records.print_config
 
 
 class TestUpgrade1001:
@@ -73,7 +74,7 @@ class TestUpgrade1001:
         # Existing values survive the registry re-import.
         assert registry["juizi.blocks.disabled_blocks"] == ["toc"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1003",
+            "1004",
         )
 
 
@@ -93,7 +94,7 @@ class TestUpgrade1002:
         assert registry[key] == "{}"
         assert registry["juizi.blocks.enabled_blocks"] == ["hero"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1003",
+            "1004",
         )
 
 
@@ -113,7 +114,30 @@ class TestUpgrade1003:
         assert registry[key] == ""
         assert registry["juizi.blocks.block_groups"] == '{"hero": ["x"]}'
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1003",
+            "1004",
+        )
+
+
+class TestUpgrade1004:
+    def test_adds_print_config_record(self, portal, setup_tool):
+        from juizi.blocks.settings import DEFAULT_PRINT_CONFIG
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        import json
+
+        registry = getUtility(IRegistry)
+        key = "juizi.blocks.print_config"
+        registry.records["juizi.blocks.editor_language"].value = "fr"
+        del registry.records[key]
+        setup_tool.setLastVersionForProfile(f"{PACKAGE_NAME}:default", "1003")
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert json.loads(registry[key]) == DEFAULT_PRINT_CONFIG
+        assert registry["juizi.blocks.editor_language"] == "fr"
+        assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
+            "1004",
         )
 
 
