@@ -363,6 +363,8 @@ grouped as in the block chooser with the Juizi group first.
 - A block's own `restricted` setting is its default. `true` means off by
   default; you can switch it on. A function (e.g. Title once per page,
   Event metadata only on Events) keeps its constraint while switched on.
+  A site's own config may change a block's `restricted` (CRA makes Lead
+  Image available everywhere); its value is then the block's default.
 - Text (`slate`), Description, Image and Title are locked on
   (`LOCKED_BLOCKS` in `settings/constants.ts`).
 - Switched-off blocks disappear from the block chooser and the `/` menu.
