@@ -29,7 +29,7 @@ const buttonSchema = (bgColor, colors, t) => ({
     {
       id: 'default',
       title: t(shared.default),
-      fields: ['label', 'link', 'buttonStyle', 'showArrow'],
+      fields: ['label', 'link', 'openInNewTab', 'buttonStyle', 'showArrow'],
     },
   ],
   properties: {
@@ -45,6 +45,12 @@ const buttonSchema = (bgColor, colors, t) => ({
       allowExternals: true,
       multi: false,
       default: null,
+    },
+    openInNewTab: {
+      title: t(messages.openInNewTab),
+      description: t(messages.openInNewTabHelp),
+      type: 'boolean',
+      default: false,
     },
     buttonStyle: {
       title: t(shared.buttonStyle),
@@ -163,7 +169,7 @@ const schema = (args) => {
             id: 'layout',
             title: t(shared.layout),
             fields: [
-              ...(isSectionMode ? ['largeTitle'] : []),
+              'largeTitle',
               'alignment',
               'horizontalLayout',
               'paddingTop',

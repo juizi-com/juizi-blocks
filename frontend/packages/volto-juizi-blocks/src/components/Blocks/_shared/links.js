@@ -17,13 +17,15 @@ const PORTAL_URL = /\$\{portal_url\}/g;
  * The URL a link points to, ready for an `href`, or '' when there is no
  * usable link (so callers can tell "no link" apart from a real one).
  * - File items link to their download (once: visitors may already be
- *   given the download address).
+ *   given the download address). With `{ preview: true }` they link to
+ *   Plone's display view instead, which the browser shows when it can (a
+ *   PDF) and downloads otherwise (a spreadsheet).
  * - Link items (from the object browser or a query) follow their remoteUrl.
  */
 /** The site root flattens to '': keep it as a link to the home page. */
 const appHref = (url) => flattenToAppURL(url) || '/';
 
-export const getHref = (link) => {
+export const getHref = (link, { preview = false } = {}) => {
   const item = Array.isArray(link) ? link[0] : link;
   if (!item) return '';
   if (typeof item === 'string') {
@@ -39,9 +41,11 @@ export const getHref = (link) => {
   const url = appHref(id);
   // plone.restapi already gives visitors who can't edit the file its
   // download address (IObjectPrimaryFieldTarget); editors get the item.
-  return item['@type'] === 'File' && !url.includes('/@@download/')
-    ? `${url}/@@download/file`
-    : url;
+  if (url.includes('/@@download/')) {
+    return preview ? url.replace('/@@download/', '/@@display-file/') : url;
+  }
+  if (item['@type'] !== 'File') return url;
+  return `${url}/${preview ? '@@display-file' : '@@download'}/file`;
 };
 
 /** True for http(s) URLs that leave this site. Relative paths, anchors,
@@ -57,3 +61,10 @@ export const isExternalHref = (href) => {
 /** Props for an <a> that opens external links in a new tab. */
 export const externalLinkProps = (href) =>
   isExternalHref(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+
+/** Props for an <a>: a new tab when the editor asked for one, or when the
+ * link leaves the site. */
+export const linkTargetProps = (href, openInNewTab = false) =>
+  openInNewTab && href
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : externalLinkProps(href);

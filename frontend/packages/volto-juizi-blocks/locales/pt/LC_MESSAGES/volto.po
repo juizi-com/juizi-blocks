@@ -2796,10 +2796,10 @@ msgstr "Tom de cor sobre a imagem de fundo para manter o texto legível."
 msgid "juizi-hero-large-title"
 msgstr "Título grande"
 
-#. Default: "Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out."
+#. Default: "Shows the title bigger: a Section at the Hero style’s size, a Hero larger still. Use it for the opening of a page, or a statement that should stand out."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-large-title-help"
-msgstr "Mostra o título no tamanho maior usado pelo estilo Hero. Use-o para a secção de abertura de uma página, ou para uma mensagem que deva destacar-se."
+msgstr "Mostra o título maior: uma Secção no tamanho do estilo Hero, um Hero ainda maior. Use-o para a abertura de uma página, ou para uma mensagem que deva destacar-se."
 
 #. Default: "Logo"
 #: components/Blocks/HeroBlock/messages
@@ -2845,6 +2845,16 @@ msgstr "Hero (cabeçalho de página)"
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-mode-section"
 msgstr "Secção (faixa de conteúdo)"
+
+#. Default: "Open in a new tab"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab"
+msgstr "Abrir num novo separador"
+
+#. Default: "Opens the link in a new browser tab. A file opens for viewing (PDFs show in the browser) instead of downloading; files a browser cannot show, such as spreadsheets, still download."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-open-in-new-tab-help"
+msgstr "Abre a ligação num novo separador do navegador. Um ficheiro abre para visualização (os PDF são mostrados no navegador) em vez de ser transferido; os ficheiros que o navegador não consegue mostrar, como folhas de cálculo, continuam a ser transferidos."
 
 #. Default: "Another block is already the main heading for this page. Untick 'This is the primary page heading' on one of them."
 #: components/Blocks/HeroBlock/messages
