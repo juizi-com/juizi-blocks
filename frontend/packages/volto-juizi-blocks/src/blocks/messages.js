@@ -28,6 +28,12 @@ export default defineMessages({
     defaultMessage:
       'Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view.',
   },
+  printButton: { id: 'Print button', defaultMessage: 'Print button' },
+  printButtonDescription: {
+    id: 'A button visitors click to print the page, with the site’s header and footer on the printout.',
+    defaultMessage:
+      'A button visitors click to print the page, with the site’s header and footer on the printout.',
+  },
   redirect: { id: 'Redirect', defaultMessage: 'Redirect' },
   redirectDescription: {
     id: 'Sends anonymous visitors to another page or URL. Editors are not redirected.',

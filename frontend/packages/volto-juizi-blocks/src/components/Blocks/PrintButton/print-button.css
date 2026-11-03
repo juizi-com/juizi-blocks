@@ -1,0 +1,141 @@
+/* Print button block. The button's colours come from the shared button
+   styles (config/buttons.scss); its size matches the other blocks' buttons. */
+
+.juizi-print {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.juizi-print--center {
+  align-items: center;
+}
+
+/* Right: beside the text that follows, as a float. */
+.juizi-print--right {
+  align-items: flex-end;
+  margin: 0 0 1rem 1rem;
+  float: right;
+}
+
+.juizi-print .print-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65em 1.4em;
+  border-width: var(--juizi-button-border-width, 2px);
+  border-style: solid;
+  border-radius: var(--juizi-button-radius, 4px);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  gap: 0.5em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.juizi-print .print-button svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+}
+
+.juizi-print .print-button:disabled {
+  cursor: progress;
+  opacity: 0.8;
+}
+
+.juizi-print__spinner {
+  animation: juizi-print-spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .juizi-print__spinner {
+    animation: none;
+  }
+}
+
+@keyframes juizi-print-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Added around the content only while printing (print.js). */
+.juizi-print-header,
+.juizi-print-footer {
+  display: none;
+}
+
+@media print {
+  /* Never print the button, also when printing from the browser's menu. */
+  .juizi-print,
+  .block.printReport {
+    display: none !important;
+  }
+
+  /* Printing from the button: everything except the page's content. */
+  html.juizi-printing [data-juizi-print-hidden] {
+    display: none !important;
+  }
+
+  html.juizi-printing,
+  html.juizi-printing body {
+    background: #fff !important;
+  }
+
+  html.juizi-printing .juizi-print-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 4mm;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 8mm;
+    gap: 8mm;
+  }
+
+  html.juizi-printing .juizi-print-header__logo img {
+    width: auto;
+    max-width: 70mm;
+    max-height: 18mm;
+  }
+
+  html.juizi-printing .juizi-print-header__text {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  html.juizi-printing .juizi-print-header__heading {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  html.juizi-printing .juizi-print-header__subheading {
+    margin: 0.25rem 0 0;
+    color: #555;
+    font-size: 0.85rem;
+  }
+
+  html.juizi-printing .juizi-print-footer {
+    display: block !important;
+    padding-top: 4mm;
+    border-top: 1px solid #ccc;
+    margin-top: 8mm;
+    color: #555;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  html.juizi-printing .juizi-print-footer p {
+    margin: 0;
+  }
+
+  html.juizi-printing img,
+  html.juizi-printing figure,
+  html.juizi-printing table {
+    max-width: 100%;
+    break-inside: avoid;
+  }
+}

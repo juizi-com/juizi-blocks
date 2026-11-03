@@ -35,6 +35,155 @@ export default defineMessages({
   },
   tabBlocks: { id: 'juizi-dashboard-tab-blocks', defaultMessage: 'Blocks' },
   tabColors: { id: 'juizi-dashboard-tab-colors', defaultMessage: 'Colours' },
+  tabPrint: { id: 'juizi-dashboard-tab-print', defaultMessage: 'Print' },
+  advanced: { id: 'juizi-dashboard-advanced', defaultMessage: 'Advanced' },
+  printButton: {
+    id: 'juizi-dashboard-print-button',
+    defaultMessage: 'Print button',
+  },
+  printButtonHelp: {
+    id: 'juizi-dashboard-print-button-help',
+    defaultMessage:
+      'The colour and style of every Print button on the site. Editors can choose a different one on a single button.',
+  },
+  printButtonAutomatic: {
+    id: 'juizi-dashboard-print-button-automatic',
+    defaultMessage: 'Automatic (stands out against the page)',
+  },
+  printSampleButton: {
+    id: 'juizi-dashboard-print-sample-button',
+    defaultMessage: 'Print',
+  },
+  printHeader: {
+    id: 'juizi-dashboard-print-header',
+    defaultMessage: 'Top of the printout',
+  },
+  printHeaderHelp: {
+    id: 'juizi-dashboard-print-header-help',
+    defaultMessage:
+      'Printed above the page: a logo on the left, and up to two lines of text on the right. Leave a line empty to leave it out.',
+  },
+  printLogo: { id: 'juizi-dashboard-print-logo', defaultMessage: 'Logo' },
+  printLogoSite: {
+    id: 'juizi-dashboard-print-logo-site',
+    defaultMessage: 'The site’s logo',
+  },
+  printLogoCustom: {
+    id: 'juizi-dashboard-print-logo-custom',
+    defaultMessage: 'Another picture',
+  },
+  printLogoNone: {
+    id: 'juizi-dashboard-print-logo-none',
+    defaultMessage: 'No logo',
+  },
+  printLogoUrl: {
+    id: 'juizi-dashboard-print-logo-url',
+    defaultMessage: 'Picture’s address',
+  },
+  printLogoUrlHelp: {
+    id: 'juizi-dashboard-print-logo-url-help',
+    defaultMessage:
+      'The address of a picture on this site (starting with /, for example /images/print-logo.png), or a full web address starting with https://. Upload the picture to the site first.',
+  },
+  printHeading: {
+    id: 'juizi-dashboard-print-heading',
+    defaultMessage: 'First line (in bold)',
+  },
+  printSubheading: {
+    id: 'juizi-dashboard-print-subheading',
+    defaultMessage: 'Second line',
+  },
+  printPlaceholders: {
+    id: 'juizi-dashboard-print-placeholders',
+    defaultMessage:
+      'Type any text, and use these words in square brackets to fill in details of the page being printed:',
+  },
+  printPlaceholderTitle: {
+    id: 'juizi-dashboard-print-placeholder-title',
+    defaultMessage: 'the page’s title',
+  },
+  printPlaceholderSection: {
+    id: 'juizi-dashboard-print-placeholder-section',
+    defaultMessage:
+      'the section the page is in, one level below the main menu (for example “Risk Alert”)',
+  },
+  printPlaceholderPublicationDate: {
+    id: 'juizi-dashboard-print-placeholder-publication-date',
+    defaultMessage: 'the page’s publication date',
+  },
+  printPlaceholderToday: {
+    id: 'juizi-dashboard-print-placeholder-today',
+    defaultMessage: 'the day it’s printed',
+  },
+  printPlaceholderSiteName: {
+    id: 'juizi-dashboard-print-placeholder-site-name',
+    defaultMessage: 'the site’s name',
+  },
+  printPlaceholderPageAddress: {
+    id: 'juizi-dashboard-print-placeholder-page-address',
+    defaultMessage: 'the page’s web address',
+  },
+  printFooter: {
+    id: 'juizi-dashboard-print-footer',
+    defaultMessage: 'Bottom of the printout',
+  },
+  printFooterHelp: {
+    id: 'juizi-dashboard-print-footer-help',
+    defaultMessage:
+      'A line printed below the page. The same words in square brackets work here. Leave it empty for no line.',
+  },
+  printFooterText: {
+    id: 'juizi-dashboard-print-footer-text',
+    defaultMessage: 'Text',
+  },
+  printPaper: { id: 'juizi-dashboard-print-paper', defaultMessage: 'Paper' },
+  printPaperHelp: {
+    id: 'juizi-dashboard-print-paper-help',
+    defaultMessage:
+      'The paper the printout is laid out for. People can still choose another in their printer’s settings.',
+  },
+  printPaperSize: {
+    id: 'juizi-dashboard-print-paper-size',
+    defaultMessage: 'Paper size',
+  },
+  printOrientation: {
+    id: 'juizi-dashboard-print-orientation',
+    defaultMessage: 'Orientation',
+  },
+  printPortrait: {
+    id: 'juizi-dashboard-print-portrait',
+    defaultMessage: 'Portrait (upright)',
+  },
+  printLandscape: {
+    id: 'juizi-dashboard-print-landscape',
+    defaultMessage: 'Landscape (sideways)',
+  },
+  printLeftOut: {
+    id: 'juizi-dashboard-print-left-out',
+    defaultMessage: 'Left out of the printout',
+  },
+  printLeftOutHelp: {
+    id: 'juizi-dashboard-print-left-out-help',
+    defaultMessage:
+      'Ticked kinds of content aren’t printed, for example videos and maps that don’t work on paper. The site’s menus, header and footer are always left out.',
+  },
+  printCustomLayout: {
+    id: 'juizi-dashboard-print-custom-layout',
+    defaultMessage: 'Custom layout (for your web team)',
+  },
+  printCustomLayoutHelp: {
+    id: 'juizi-dashboard-print-custom-layout-help',
+    defaultMessage:
+      'HTML that replaces the top or bottom of the printout set above. The same words in square brackets work, and [logo] gives the logo’s address. Scripts are removed.',
+  },
+  printCustomHeader: {
+    id: 'juizi-dashboard-print-custom-header',
+    defaultMessage: 'Top of the printout (HTML)',
+  },
+  printCustomFooter: {
+    id: 'juizi-dashboard-print-custom-footer',
+    defaultMessage: 'Bottom of the printout (HTML)',
+  },
   groupCount: {
     id: 'juizi-dashboard-group-count',
     defaultMessage: '{on} of {total} on',
@@ -201,6 +350,15 @@ export default defineMessages({
   cancel: { id: 'juizi-dashboard-cancel', defaultMessage: 'Discard changes' },
   back: { id: 'juizi-dashboard-back', defaultMessage: 'Back' },
   saved: { id: 'juizi-dashboard-saved', defaultMessage: 'Changes saved' },
+  printNotSaved: {
+    id: 'juizi-dashboard-print-not-saved',
+    defaultMessage: 'The print settings weren’t saved',
+  },
+  printNotSupported: {
+    id: 'juizi-dashboard-print-not-supported',
+    defaultMessage:
+      'This site’s server needs an update before print settings can be kept (Juizi Blocks on the server, then its upgrade in Site Setup › Add-ons). Until then printouts use the standard settings shown here, and changes on this tab aren’t kept. Changes on the other tabs are saved as usual.',
+  },
   saveFailed: {
     id: 'juizi-dashboard-save-failed',
     defaultMessage: 'Could not save the settings',

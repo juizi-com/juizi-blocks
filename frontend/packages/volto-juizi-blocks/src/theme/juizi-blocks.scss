@@ -564,6 +564,78 @@
     }
   }
 
+  // ---- Print tab ----
+
+  &__print-field {
+    max-width: 40rem;
+    margin-bottom: 12px;
+
+    .juizi-dashboard__input,
+    .juizi-dashboard__select {
+      width: 100%;
+    }
+  }
+
+  &__print-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+
+    .juizi-dashboard__print-field {
+      margin-bottom: 0;
+    }
+  }
+
+  &__print-sample {
+    margin: 0;
+    float: none;
+  }
+
+  &__print-logo {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 0;
+    margin: 0 0 12px;
+    gap: 16px;
+
+    legend {
+      width: 100%;
+      margin-bottom: 6px;
+      color: #333;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  &__placeholders {
+    padding-left: 1.2em;
+    margin: 0;
+    font-size: 14px;
+
+    code {
+      font-weight: 600;
+    }
+  }
+
+  &__print-blocks {
+    display: grid;
+    gap: 6px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+
+  &__print-advanced summary {
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  &__code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+  }
+
   &__language {
     min-width: 16rem;
   }

@@ -9,8 +9,8 @@
 
 Consolidated Juizi block set for Volto, with a central colour dashboard and per-block toggles
 
-- Seven blocks: Hero, Content Row, Carousel, Gallery, Callout, Audio and
-  Redirect.
+- Nine blocks: Hero, Content Row, Carousel, Gallery, Callout, Audio,
+  Pricing tiers, Redirect and Print button.
   Reviews with star ratings and scrolling logo strips are display styles of
   the Carousel (see [Blocks](#blocks)).
 - A dashboard to switch any block on or off, limit it to some user groups,
@@ -238,6 +238,7 @@ point here too.
 | Callout | `juiziCallout` | yes | | `Callout/README.md` |
 | Audio | `audioBlock` | yes | | `Audio/README.md` |
 | Pricing tiers | `pricingTiers` | yes | | `PricingTiers/README.md` |
+| Print button | `printReport` | yes | | `PrintButton/README.md` |
 
 The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").
@@ -329,7 +330,7 @@ listed after `volto-form-block`.
 
 ## The dashboard (Site Setup → Juizi Blocks)
 
-Two tabs, sharing one Save: the save button in Volto's toolbar, or the bar
+Three tabs, sharing one Save: the save button in Volto's toolbar, or the bar
 that appears at the top as soon as something has changed (Save / Discard
 changes). Problems that would stop a save (a colour without a valid name, a
 theme missing its text colour, …) are listed there in the editor's language.
@@ -401,6 +402,16 @@ grouped as in the block chooser with the Juizi group first.
   See `Callout/README.md`.
 - A "Themes per block" table appears for any Juizi block defined with
   `usesThemes` (none are right now), on sites with Volto Light Theme.
+
+**Print tab** — the Print button block's settings for the whole site,
+stored as `print_config` (validated by `juizi.blocks.settings.validate_print_config`):
+the button's default colour and style (each block can choose its own), the
+top of the printout (logo: the site's, another picture by address, or none;
+two lines of text), the bottom line, the paper size and orientation, and the
+kinds of blocks left out. Text can use `[title]`, `[section]`,
+`[publication date]`, `[today]`, `[site name]` and `[page address]`. Under
+Advanced, a custom HTML header and footer for the web team replace the
+fields when filled in. See `PrintButton/README.md`.
 
 Blocks store a colour as `var(--<name>)` (the same format as before), so
 changing a colour's value updates every block that uses it. Renaming a colour

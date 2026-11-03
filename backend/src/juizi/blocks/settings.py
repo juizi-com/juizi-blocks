@@ -336,3 +336,115 @@ def load_color_config(raw: str | None) -> dict:
         except (ValueError, TypeError):
             pass
     return validate_color_config(DEFAULT_COLOR_CONFIG)
+
+
+# ─── Print ──────────────────────────────────────────────────────────────────
+# The Print button block's site-wide settings: how the printout looks.
+#
+#     {
+#         "button_style": "",            # the button's default look
+#                                        # ("solid__green"); "" = automatic
+#         "logo": "site",                # "site" (the site logo), "custom"
+#                                        # (logo_url) or "none"
+#         "logo_url": "",                # a picture's address, for "custom"
+#         "heading": "[section]",        # header lines and footer text, with
+#         "subheading": "[publication date]",  # placeholders in [brackets]
+#         "footer": "Printed from [site name] on [today]",
+#         "header_html": "",             # Advanced: custom header / footer
+#         "footer_html": "",             # markup, replacing the lines above
+#         "exclude_blocks": ["video"],   # block types left out
+#         "paper_size": "A4",
+#         "orientation": "portrait"
+#     }
+#
+# Missing keys take the defaults, unknown keys are dropped. The frontend
+# mirrors the defaults in settings/constants.ts. The HTML is written by site
+# managers (the service is Manager only) and is cleaned again in the browser
+# before it's used (no scripts, no event attributes).
+
+PAPER_SIZES = ("A4", "A3", "A5", "Letter", "Legal")
+ORIENTATIONS = ("portrait", "landscape")
+LOGO_CHOICES = ("site", "custom", "none")
+BUTTON_STYLE = re.compile(r"^(?:solid|outline)__[a-z0-9-]{1,40}$")
+MAX_LINE_LENGTH = 300
+MAX_HTML_LENGTH = 20000
+MAX_URL_LENGTH = 1000
+
+DEFAULT_PRINT_CONFIG = {
+    "button_style": "",
+    "logo": "site",
+    "logo_url": "",
+    "heading": "[section]",
+    "subheading": "[publication date]",
+    "footer": "Printed from [site name] on [today]",
+    "header_html": "",
+    "footer_html": "",
+    "exclude_blocks": ["video", "maps"],
+    "paper_size": "A4",
+    "orientation": "portrait",
+}
+
+
+def _text(value, key: str, max_length: int) -> str:
+    if value is None:
+        return ""
+    if not isinstance(value, str):
+        raise SettingsValidationError(f"{key} must be text")
+    if len(value) > max_length:
+        raise SettingsValidationError(
+            f"{key} is too long (at most {max_length} characters)"
+        )
+    return value.strip()
+
+
+def _choice(value, key: str, choices: tuple) -> str:
+    if value not in choices:
+        raise SettingsValidationError(f"Unsupported {key}: {value!r}")
+    return value
+
+
+def validate_print_config(value) -> dict:
+    """Validate and normalise the print settings, returning a clean copy."""
+    if not isinstance(value, dict):
+        raise SettingsValidationError("print_config must be an object")
+    data = {**DEFAULT_PRINT_CONFIG, **value}
+
+    button_style = _text(data["button_style"], "button_style", 50)
+    if button_style and not BUTTON_STYLE.match(button_style):
+        raise SettingsValidationError(f"Invalid button style: {button_style!r}")
+
+    logo_url = _text(data["logo_url"], "logo_url", MAX_URL_LENGTH)
+    # A page on the site or a web address: never javascript: or data:.
+    if logo_url and not re.match(r"^(?:https?://|/)", logo_url):
+        raise SettingsValidationError(
+            "The logo's address must start with http://, https:// or /"
+        )
+
+    return {
+        "button_style": button_style,
+        "logo": _choice(data["logo"], "logo", LOGO_CHOICES),
+        "logo_url": logo_url,
+        "heading": _text(data["heading"], "heading", MAX_LINE_LENGTH),
+        "subheading": _text(data["subheading"], "subheading", MAX_LINE_LENGTH),
+        "footer": _text(data["footer"], "footer", MAX_LINE_LENGTH),
+        "header_html": _text(data["header_html"], "header_html", MAX_HTML_LENGTH),
+        "footer_html": _text(data["footer_html"], "footer_html", MAX_HTML_LENGTH),
+        "exclude_blocks": validate_block_ids(
+            data["exclude_blocks"] or [], "exclude_blocks"
+        ),
+        "paper_size": _choice(data["paper_size"], "paper size", PAPER_SIZES),
+        "orientation": _choice(data["orientation"], "orientation", ORIENTATIONS),
+    }
+
+
+DEFAULT_PRINT_CONFIG_JSON = json.dumps(DEFAULT_PRINT_CONFIG, indent=2)
+
+
+def load_print_config(raw: str | None) -> dict:
+    """Parse the stored JSON, falling back to the defaults if it is unusable."""
+    if raw:
+        try:
+            return validate_print_config(json.loads(raw))
+        except (ValueError, TypeError):
+            pass
+    return validate_print_config(DEFAULT_PRINT_CONFIG)

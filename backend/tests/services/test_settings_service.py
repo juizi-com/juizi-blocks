@@ -243,3 +243,62 @@ class TestEditorLanguage:
         response = manager.patch(ENDPOINT, json={"editor_language": value})
         assert response.status_code == 400
         assert "editing language" in response.json()["error"]["message"]
+
+
+class TestPrintConfig:
+    def test_anonymous_reads_the_defaults(self, anonymous):
+        from juizi.blocks.settings import DEFAULT_PRINT_CONFIG
+
+        response = anonymous.get(ENDPOINT)
+        assert response.json()["print_config"] == DEFAULT_PRINT_CONFIG
+
+    def test_get_works_without_print_config_record(self, functional, anonymous):
+        from juizi.blocks.settings import DEFAULT_PRINT_CONFIG
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        del getUtility(IRegistry).records["juizi.blocks.print_config"]
+        transaction.commit()
+        response = anonymous.get(ENDPOINT)
+        assert response.status_code == 200
+        assert response.json()["print_config"] == DEFAULT_PRINT_CONFIG
+
+    def test_manager_saves_it(self, manager, anonymous):
+        response = manager.patch(
+            ENDPOINT,
+            json={
+                "print_config": {
+                    "button_style": "solid__green",
+                    "heading": " [title] ",
+                    "paper_size": "Letter",
+                    "exclude_blocks": ["video", "emblaCarousel"],
+                    "unknown": "dropped",
+                }
+            },
+        )
+        assert response.status_code == 200
+        saved = anonymous.get(ENDPOINT).json()["print_config"]
+        assert saved["button_style"] == "solid__green"
+        assert saved["heading"] == "[title]"
+        assert saved["paper_size"] == "Letter"
+        assert saved["exclude_blocks"] == ["video", "emblaCarousel"]
+        # Missing keys keep their defaults; unknown ones are dropped.
+        assert saved["orientation"] == "portrait"
+        assert "unknown" not in saved
+
+    @pytest.mark.parametrize(
+        "print_config",
+        [
+            {"paper_size": "B5"},
+            {"orientation": "sideways"},
+            {"logo": "upload"},
+            {"logo_url": "javascript:alert(1)"},
+            {"button_style": "solid__Not valid"},
+            {"exclude_blocks": "video"},
+            {"heading": "x" * 301},
+            [],
+        ],
+    )
+    def test_invalid_print_settings_are_rejected(self, manager, print_config):
+        response = manager.patch(ENDPOINT, json={"print_config": print_config})
+        assert response.status_code == 400

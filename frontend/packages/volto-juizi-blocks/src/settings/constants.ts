@@ -1,4 +1,9 @@
-import type { ColorConfig, JuiziBlocksSettings, ThemeSlotName } from './types';
+import type {
+  ColorConfig,
+  JuiziBlocksSettings,
+  PrintConfig,
+  ThemeSlotName,
+} from './types';
 
 export const SETTINGS_ENDPOINT = '/@juizi-blocks-settings';
 
@@ -64,12 +69,28 @@ export const DEFAULT_COLOR_CONFIG: ColorConfig = {
  * apply, e.g. Title is only offered once per page). */
 export const LOCKED_BLOCKS = ['slate', 'description', 'image', 'title'];
 
+/** Mirrors juizi.blocks.settings.DEFAULT_PRINT_CONFIG in the backend. */
+export const DEFAULT_PRINT_CONFIG: PrintConfig = {
+  button_style: '',
+  logo: 'site',
+  logo_url: '',
+  heading: '[section]',
+  subheading: '[publication date]',
+  footer: 'Printed from [site name] on [today]',
+  header_html: '',
+  footer_html: '',
+  exclude_blocks: ['video', 'maps'],
+  paper_size: 'A4',
+  orientation: 'portrait',
+};
+
 export const DEFAULT_SETTINGS: JuiziBlocksSettings = {
   disabled_blocks: [],
   enabled_blocks: [],
   block_groups: {},
   editor_language: '',
   color_config: DEFAULT_COLOR_CONFIG,
+  print_config: DEFAULT_PRINT_CONFIG,
 };
 
 /** The languages the editing interface can be shown in: the ones the add-on

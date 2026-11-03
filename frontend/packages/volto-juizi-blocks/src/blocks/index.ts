@@ -38,6 +38,7 @@ import {
 import callout from '../components/Blocks/Callout';
 import audio from '../components/Blocks/Audio';
 import pricingTiers from '../components/Blocks/PricingTiers';
+import printButton from '../components/Blocks/PrintButton';
 
 export type JuiziBlockDefinition = {
   id: string;
@@ -146,4 +147,5 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
   callout,
   audio,
   pricingTiers,
+  printButton,
 ];

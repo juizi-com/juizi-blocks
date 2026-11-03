@@ -191,3 +191,28 @@ def test_editor_language_rejects_others(value):
 
     with pytest.raises(SettingsValidationError):
         validate_editor_language(value)
+
+
+def test_default_print_config_is_valid():
+    from juizi.blocks.settings import DEFAULT_PRINT_CONFIG
+    from juizi.blocks.settings import validate_print_config
+
+    assert validate_print_config(DEFAULT_PRINT_CONFIG) == DEFAULT_PRINT_CONFIG
+
+
+@pytest.mark.parametrize("raw", [None, "", "not json", "[]", '{"paper_size": "B5"}'])
+def test_print_config_falls_back_to_defaults(raw):
+    from juizi.blocks.settings import DEFAULT_PRINT_CONFIG
+    from juizi.blocks.settings import load_print_config
+
+    assert load_print_config(raw) == DEFAULT_PRINT_CONFIG
+
+
+def test_print_config_keeps_site_paths_and_web_addresses():
+    from juizi.blocks.settings import validate_print_config
+
+    for url in ("/images/logo.png", "https://example.org/logo.svg"):
+        assert validate_print_config({"logo_url": url})["logo_url"] == url
+    for url in ("javascript:alert(1)", "data:image/png;base64,xx", "logo.png"):
+        with pytest.raises(SettingsValidationError):
+            validate_print_config({"logo_url": url})

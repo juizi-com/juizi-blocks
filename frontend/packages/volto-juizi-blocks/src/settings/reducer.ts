@@ -21,6 +21,10 @@ export type JuiziBlocksSettingsState = {
    * load, false when the backend has no settings service (404), null until
    * known. */
   installed: boolean | null;
+  /** Whether the backend keeps print settings (juizi.blocks with upgrade
+   * step 1004): null until the settings load. An older backend leaves them
+   * out, and silently drops them when they're saved. */
+  printSupported: boolean | null;
   get: RequestState;
   update: RequestState;
 };
@@ -30,6 +34,7 @@ const idle: RequestState = { loading: false, loaded: false, error: null };
 const initialState: JuiziBlocksSettingsState = {
   data: DEFAULT_SETTINGS,
   installed: null,
+  printSupported: null,
   get: idle,
   update: idle,
 };
@@ -64,8 +69,14 @@ export default function juiziBlocksSettings(
           editor_language: action.result?.editor_language ?? '',
           color_config:
             action.result?.color_config ?? DEFAULT_SETTINGS.color_config,
+          // Older backends don't serve print settings yet: the defaults.
+          print_config: {
+            ...DEFAULT_SETTINGS.print_config,
+            ...(action.result?.print_config || {}),
+          },
         },
         installed: true,
+        printSupported: !!action.result && 'print_config' in action.result,
         [requestKey(action.type)]: {
           loading: false,
           loaded: true,

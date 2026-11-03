@@ -12,16 +12,20 @@ block_groups:    {block id: [group id, ...]}, the user groups a switched-on
                  block is offered to; blocks without an entry: everybody.
 editor_language: the language of the Juizi blocks' editing interface
                  ("en", "pt", ...); "" follows the page's language.
+print_config:    the Print button block's site-wide settings
+                 (juizi.blocks.settings.validate_print_config).
 """
 
 from juizi.blocks.interfaces import IJuiziBlocksSettings
 from juizi.blocks.settings import load_block_groups
 from juizi.blocks.settings import load_color_config
+from juizi.blocks.settings import load_print_config
 from juizi.blocks.settings import SettingsValidationError
 from juizi.blocks.settings import validate_color_config
 from juizi.blocks.settings import validate_block_groups
 from juizi.blocks.settings import validate_block_ids
 from juizi.blocks.settings import validate_editor_language
+from juizi.blocks.settings import validate_print_config
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
 from plone.restapi.deserializer import json_body
@@ -50,6 +54,7 @@ def serialize_settings(context, records) -> dict:
         # A value the frontend can't use (edited by hand) counts as unset.
         "editor_language": _editor_language(records.editor_language),
         "color_config": load_color_config(records.color_config),
+        "print_config": load_print_config(records.print_config),
     }
 
 
@@ -96,6 +101,11 @@ class SettingsPatch(Service):
                 if "color_config" in data
                 else None
             )
+            print_config = (
+                validate_print_config(data["print_config"])
+                if "print_config" in data
+                else None
+            )
         except SettingsValidationError as exc:
             return self._error(str(exc))
 
@@ -114,6 +124,8 @@ class SettingsPatch(Service):
             records.editor_language = editor_language
         if color_config is not None:
             records.color_config = json.dumps(color_config, indent=2)
+        if print_config is not None:
+            records.print_config = json.dumps(print_config, indent=2)
 
         return serialize_settings(self.context, records)
 
