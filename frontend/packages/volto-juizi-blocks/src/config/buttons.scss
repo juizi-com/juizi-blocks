@@ -115,11 +115,38 @@ a.btn-unified.btn-unified.btn-unified.btn-unified {
   }
 }
 
+// ── Text only variant ─────────────────────────────────────────────────────
+// For link buttons: the label in the button's colour, underlined, with no
+// box. Keeps the button's font, so it sits well next to a solid button. The
+// underline uses a border (not text-decoration), so it also spans the arrow
+// and the "no underline" rule above leaves it alone.
+
+a.btn-unified.btn-text {
+  @include btn-context {
+    --link-foreground-color: var(--btn-color);
+
+    padding: 0 0 0.2em;
+    border-width: 0 0 var(--juizi-button-border-width, 2px);
+    border-color: currentColor;
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--btn-color);
+  }
+
+  &:hover {
+    @include btn-context {
+      border-color: transparent;
+      color: var(--btn-color);
+    }
+  }
+}
+
 // ── Block-specific anchors ────────────────────────────────────────────────
 // Adds the block base class as a third class → specificity (0, 3, 1).
 // Add new block base class names here as new blocks are built.
 
-$block-btn-classes: 'hero-button', 'row-button', 'card-button', 'button';
+$block-btn-classes: 'hero-button', 'row-button', 'card-button', 'button',
+  'pricing-button';
 
 @each $class in $block-btn-classes {
   a.btn-unified.btn-solid.#{$class} {
@@ -130,6 +157,18 @@ $block-btn-classes: 'hero-button', 'row-button', 'card-button', 'button';
     &:hover {
       @include btn-context {
         color: var(--btn-foreground, #fff);
+      }
+    }
+  }
+
+  a.btn-unified.btn-text.#{$class} {
+    @include btn-context {
+      color: var(--btn-color);
+    }
+
+    &:hover {
+      @include btn-context {
+        color: var(--btn-color);
       }
     }
   }

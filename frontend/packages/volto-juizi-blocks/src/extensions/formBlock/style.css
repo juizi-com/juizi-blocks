@@ -63,6 +63,24 @@
   .juizi-form-wrapper--form-left .juizi-form-side {
     order: 2;
   }
+
+  /* "Text alignment", only while text and form are side by side. Centre is
+     the grid's own align-items above. */
+  .juizi-form-wrapper--text-top .juizi-form-side {
+    align-self: start;
+  }
+
+  .juizi-form-wrapper--text-bottom .juizi-form-side {
+    align-self: end;
+  }
+
+  /* "Top, stays in view": the text stays on screen while a longer form
+     scrolls past it, until the end of the block. */
+  .juizi-form-wrapper--text-sticky .juizi-form-side {
+    position: sticky;
+    top: var(--juizi-form-side-sticky-top, 2rem);
+    align-self: start;
+  }
 }
 
 /* "Buttons": the site's unified button styles (config/buttons.scss) on the
@@ -146,6 +164,7 @@
     .ui.tabular.menu > .item.active:not(:first-child)
   )
   .juizi-form-side {
+  position: static;
   order: -1 !important;
 }
 

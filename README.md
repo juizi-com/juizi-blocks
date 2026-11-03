@@ -233,6 +233,7 @@ point here too.
 | Redirect | `redirectBlock` | | | `Redirect/README.md` |
 | Callout | `juiziCallout` | yes | | `Callout/README.md` |
 | Audio | `audioBlock` | yes | | `Audio/README.md` |
+| Pricing tiers | `pricingTiers` | yes | | `PricingTiers/README.md` |
 
 The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").
@@ -626,6 +627,8 @@ override on a narrower selector wouldn't reach them.
 | Width | `--juizi-gutter`, `--juizi-content-width`, per-block `--juizi-*-width` |
 | Boxes | `--juizi-callout-padding` (1.5rem), `--juizi-redirect-padding` (1.25rem) |
 | Cards | `--juizi-card-radius`, `--juizi-card-shadow` |
+| Item borders | `--juizi-item-line-color` (a shade of the text colour), `--juizi-item-line-width`, `--juizi-item-line-spacing`, `--juizi-item-box-padding` (the Content Row's "Item borders") |
+| Icon backgrounds | `--juizi-icon-background-radius` (the Content Row's icon and number circles: `50%` round, `0` square) |
 | Reviews | `--juizi-review-star-color`, `--juizi-review-star-color-on-dark` (the Carousel's Reviews style; keep each at 3:1 or more against its background) |
 | Buttons | `--juizi-button-radius`, `--juizi-button-border-width` |
 | Form block | `--juizi-form-box-background` / `-foreground` / `-border` / `-radius` / `-shadow` / `-padding`, `--juizi-form-field-background` / `-border` / `-radius`, `--juizi-form-accent` (focus), `--juizi-form-error`, `--juizi-form-success` |
@@ -799,6 +802,21 @@ but **not** `block`. Before a site switches to block model 3, set
 `config.settings.blockModel = 3` in the same release; the `className`
 modifiers are dropped under v3, so move them then. In tests,
 `jest.mock('../_shared/BlockWrapper')` uses the manual mock in `__mocks__/`.
+
+**`MobileCarousel`** — the swipeable row of items on phones (Embla), used by
+the Content Row and Pricing tiers. The block renders its normal grid too and
+its own CSS shows one or the other per screen size. Props: `blockClass` (the
+block's class; the carousel's classes are `{blockClass}__embla`,
+`__embla-viewport`, `__embla-container`, `__embla-slide`, `__embla-dots`,
+`__embla-dot`), `label` (the region's accessible name), `autoplay` (never with
+reduced motion), `showDots`, `startIndex` (the slide shown first), `arrows` (`'above'`, `'middle'` — one on each side, in columns of their own so the slide narrows instead of being covered — or `'below'`) and `arrowStyle` (a button style; empty is outlined in the text colour; `mobile-carousel.css`). Without arrows the markup is unchanged. Slides get equal heights.
+
+**`NavArrowIcon`** — the left / right arrow used on the Carousel's and the mobile carousel's buttons (`direction`, `className`).
+
+**`RichText`** — shows a `richtext` field's saved value (HTML, Slate nodes or
+an HTML string) with a `className`; renders nothing for an empty value
+(`<p></p>`, nodes without text). `hasRichText(value)` tells you whether
+there's anything to show.
 
 **Hook-free wrapper** — blocks whose view uses hooks (Embla) check for a
 display style in an outer, hook-free component and only mount the inner one

@@ -214,10 +214,46 @@
   opacity: 0.85;
 }
 
+/* Rich text: a div of paragraphs (or lists) instead of one <p>. The size and
+   colour stay on the container, so both forms look the same, and the
+   paragraphs bring no gap above the first or below the last. Links follow the
+   text colour, underlined, so they read on light and dark backgrounds. */
+.content-row__description--rich > :is(p, ul, ol) {
+  margin: 0 0 0.75em;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Links and list items in running text keep the size and weight of the text
+   around them. VLT sets both on p, a and li directly (18px, light), which
+   would otherwise make a link bigger or lighter than its sentence. Bold and
+   italic keep their own weight and style. */
+:is(.content-row__description--rich, .content-row-item__text) :is(a, li) {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.content-row__description--rich > :last-child {
+  margin-bottom: 0;
+}
+
+.content-row__description--rich a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 /* ── View All button — below items ───────────────────────────────────────── */
 
 .content-row__view-all-bottom {
   display: flex;
+}
+
+/* Side by side: the button sits under the items, in their column. */
+.content-row__items > .content-row__view-all-bottom {
+  margin-top: 2rem;
 }
 
 .content-row__view-all-bottom.align-left {
@@ -232,9 +268,11 @@
 
 /* ── Grid ────────────────────────────────────────────────────────────────── */
 
+/* Items in a row stretch to the tallest, so coloured boxes, cards and
+   lines line up. */
 .content-row__grid {
   display: grid;
-  align-items: start;
+  align-items: stretch;
   gap: 1.2rem;
 }
 
@@ -410,7 +448,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--juizi-icon-background-radius);
   font-size: 1.25rem;
   opacity: 1;
 }
@@ -482,7 +520,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--juizi-icon-background-radius);
 }
 
 /* ── Icon/number position ────────────────────────────────────────────────── */
@@ -527,6 +565,120 @@
 
 .content-row-item--inline .content-row-item__content {
   flex: 1;
+}
+
+/* Beside: number/icon, text above the heading and the heading in a narrow
+   left column; the description in the wider right column. The content
+   wrapper steps aside (display: contents) so its children join the item's
+   grid. The description spans every row, and the last row is the flexible
+   one, so a long description adds space below the heading, not between
+   the number and the heading. A linked item's <a> takes the grid instead
+   (the base rule above makes it a flex copy of the item). */
+.content-row-item--beside,
+.content-row-item--beside > a {
+  display: grid;
+  align-items: start;
+  gap: 0 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-rows: auto auto auto 1fr;
+}
+
+.content-row-item--beside > a {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.content-row-item--beside .content-row-item__content {
+  display: contents;
+}
+
+.content-row-item--beside
+  :is(
+    .content-row-item__number,
+    .content-row-item__icon,
+    .content-row-item__preheader,
+    .content-row-item__heading
+  ) {
+  grid-column: 1;
+}
+
+.content-row-item--beside .content-row-item__text {
+  grid-column: 2;
+  grid-row: 1 / -1;
+}
+
+/* The heading is no longer above the description, so no space under it. */
+.content-row-item--beside .content-row-item__heading {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .content-row-item--beside,
+  .content-row-item--beside > a {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .content-row-item--beside .content-row-item__text {
+    margin-top: 8px;
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ── Item borders ────────────────────────────────────────────────────────── */
+/* "Item borders" (itemBorders): lines between items, or joined boxes. Both
+   draw each line once, never two lines on top of each other (the line
+   colour is translucent, so overlapping lines would show darker). Rows
+   stretch (the grid's default) so the lines under neighbouring items meet. Square corners and no
+   shadow, so the lines meet cleanly; the selectors outrank the coloured-item
+   box below. Colour, width and spacing: --juizi-item-line-* and
+   --juizi-item-box-padding (src/theme/juizi-common.scss). */
+.content-row:is(.content-row--lines, .content-row--joined)
+  :is(.content-row__grid, .content-row__embla-slide)
+  > .content-row-item {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Lines between items: a line above and below every item; each item pulls
+   up by the line's width so neighbours share one line, and rows sit on the
+   lines instead of a gap. */
+.content-row--lines .content-row__grid {
+  row-gap: 0;
+}
+
+.content-row--lines .content-row-item {
+  border-top: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+  border-bottom: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+  margin-top: calc(-1 * var(--juizi-item-line-width));
+  padding-block: var(--juizi-item-line-spacing);
+}
+
+/* In the phone carousel each item is its own slide. */
+.content-row--lines .content-row__embla-slide .content-row-item {
+  margin-top: 0;
+}
+
+/* Joined boxes: the grid draws the top and left edges, each item its own
+   right and bottom edges, with no gap, so every line is drawn once. An item
+   with a background colour fills its box. */
+.content-row--joined .content-row__grid {
+  border-top: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+  border-left: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+  gap: 0;
+}
+
+.content-row.content-row--joined .content-row__grid > .content-row-item {
+  padding: var(--juizi-item-box-padding);
+  border-right: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+  border-bottom: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
+}
+
+/* In the phone carousel each slide is a whole box. */
+.content-row.content-row--joined .content-row__embla-slide .content-row-item {
+  padding: var(--juizi-item-box-padding);
+  border: var(--juizi-item-line-width) solid var(--juizi-item-line-color);
 }
 
 /* ── Image above ─────────────────────────────────────────────────────────── */
@@ -689,7 +841,7 @@
 .content-row-item:not(.content-row-item--image-top).bg-dark,
 .content-row-item:not(.content-row-item--image-top).bg-light {
   padding: 1.25rem;
-  border-radius: 4px;
+  border-radius: var(--juizi-card-radius);
 }
 
 /* Image-top items: colour only the body, not the image */
@@ -701,7 +853,7 @@
 .content-row-item--image-top.bg-dark,
 .content-row-item--image-top.bg-light {
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: var(--juizi-card-radius);
 }
 
 /* ── Mobile carousel dots ────────────────────────────────────────────────── */

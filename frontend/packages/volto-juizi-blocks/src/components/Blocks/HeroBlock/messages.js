@@ -10,7 +10,13 @@ export default defineMessages({
   buttonStyleHelp: {
     id: 'juizi-hero-button-style-help',
     defaultMessage:
-      'Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa.',
+      'Choose a style that contrasts with your background colour. On a dark background, use a light colour — and vice versa. "Text only" shows the words underlined, without a box: good for a second, quieter link.',
+  },
+  largeTitle: { id: 'juizi-hero-large-title', defaultMessage: 'Large title' },
+  largeTitleHelp: {
+    id: 'juizi-hero-large-title-help',
+    defaultMessage:
+      'Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out.',
   },
   showArrow: { id: 'juizi-hero-show-arrow', defaultMessage: 'Show arrow icon' },
   showArrowHelp: {

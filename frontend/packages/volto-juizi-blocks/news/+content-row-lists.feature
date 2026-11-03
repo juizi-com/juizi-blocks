@@ -1,0 +1,1 @@
+Content Row: "Item borders" draws thin lines between items or joins them into boxes like a table (in a shade of the text colour, for light and dark backgrounds); a new "Heading on the left, text on the right" item position; a "No icon" choice for Icon items; and theme tokens for the corners of coloured items and of icon circles. Saved rows don't change.

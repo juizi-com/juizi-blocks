@@ -23,7 +23,11 @@ added.
 - **Layout** in the form's main panel, under its description: "Form only"
   (the default, and what every saved form is) or "Form with text beside it".
   With text, **Form position** (right or left; on phones the text always
-  comes first).
+  comes first) and **Text alignment** beside the form: top, "top, stays in
+  view" (the text stays on screen while a longer form scrolls past it,
+  `--juizi-form-side-sticky-top` from the top, 2rem by default), centre
+  (the default, and what every saved form has) or bottom. Alignment only
+  applies while text and form are side by side.
 - A **Text beside the form** panel: text above the heading, "This is the
   primary page heading", heading, introduction, and more text (rich text,
   shown below a line). Same fields, keys and wording as the donation and
@@ -103,7 +107,8 @@ and the success message.
 
 ## Saved content
 
-New keys only (`layout`, `form_position`, `side_*`, `isPrimaryHeading`,
+New keys only (`layout`, `form_position`, `side_*` (including
+`side_align`), `isPrimaryHeading`,
 `labelPosition`, `helpTextPosition`, `helpTextColor`, `submitButtonStyle`,
 `cancelButtonStyle`, `background*`, `paddingTop`, `paddingBottom`). Nothing
 existing is renamed or reinterpreted. If juizi-blocks is removed, the keys
@@ -124,5 +129,11 @@ changes.
   without one lose their `field_id`, and formsupport then checks the wrong
   field as the email address ('Email not valid in "Your name" field').
   Forms built in the editor always have ids.
+- A form can vanish for visitors after it is edited: volto-form-block hides
+  any form it has checked in the editor and found unconfigured (recipient,
+  sender, subject, captcha, and "store" or "send"), with a red note only in
+  the editor. Forms built over the REST API aren't checked until someone
+  opens them. A backend without a captcha provider (e.g.
+  `collective.volto.formsupport[honeypot]`) can never pass the check.
 - The colour list is `getBlockColorList('form')`. The form block isn't in
   the dashboard's block list, so it always offers every site colour.

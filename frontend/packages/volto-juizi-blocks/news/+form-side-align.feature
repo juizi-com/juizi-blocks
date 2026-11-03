@@ -1,0 +1,1 @@
+Form block with text beside it: a "Text alignment" option puts the text at the top, at the top and staying in view while a longer form scrolls, in the centre (the default, as before) or at the bottom. @karel

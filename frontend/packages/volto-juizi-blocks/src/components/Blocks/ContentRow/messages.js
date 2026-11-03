@@ -148,7 +148,8 @@ export default defineMessages({
   },
   descriptionHelp: {
     id: 'juizi-content-row-description-help',
-    defaultMessage: 'Supporting text below the heading.',
+    defaultMessage:
+      'Supporting text below the heading. You can make words bold or italic and add links. Leave out headings: the heading above is the one for this block.',
   },
   blockImage: {
     id: 'juizi-content-row-block-image',
@@ -235,6 +236,36 @@ export default defineMessages({
   positionInline: {
     id: 'juizi-content-row-position-inline',
     defaultMessage: 'To the right of the text',
+  },
+  positionBeside: {
+    id: 'juizi-content-row-position-beside',
+    defaultMessage: 'Heading on the left, text on the right',
+  },
+  noIcon: {
+    id: 'juizi-content-row-no-icon',
+    defaultMessage: 'No icon',
+  },
+  iconHelp: {
+    id: 'juizi-content-row-icon-help',
+    defaultMessage:
+      'Choose "No icon" for a plain point with just a heading and text.',
+  },
+  itemBorders: {
+    id: 'juizi-content-row-item-borders',
+    defaultMessage: 'Item borders',
+  },
+  itemBordersHelp: {
+    id: 'juizi-content-row-item-borders-help',
+    defaultMessage:
+      'Lines between items suit a list of points or steps; joined boxes put each item in a box that shares its lines with its neighbours, like a table. To fill a box with colour, give the item a background colour.',
+  },
+  itemBordersLines: {
+    id: 'juizi-content-row-item-borders-lines',
+    defaultMessage: 'Lines between items',
+  },
+  itemBordersJoined: {
+    id: 'juizi-content-row-item-borders-joined',
+    defaultMessage: 'Joined boxes',
   },
   shortenThousands: {
     id: 'juizi-content-row-shorten-thousands',

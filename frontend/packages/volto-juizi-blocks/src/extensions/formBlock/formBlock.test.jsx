@@ -64,6 +64,7 @@ describe('form block extension', () => {
       formData: { layout: 'text' },
     });
     expect(schema.fieldsets[0].fields).toContain('form_position');
+    expect(schema.fieldsets[0].fields).toContain('side_align');
     expect(fieldsetIds(schema)).toEqual([
       'default',
       'side_text',
@@ -104,6 +105,8 @@ describe('form block extension', () => {
     expect(wrapper).toHaveClass(
       'juizi-form-wrapper--with-text',
       'juizi-form-wrapper--form-left',
+      // Unset alignment: centred, as before the option
+      'juizi-form-wrapper--text-center',
     );
     expect(container.querySelector('.juizi-form-frame')).not.toHaveClass(
       'juizi-form-frame--has-bg',
@@ -116,6 +119,22 @@ describe('form block extension', () => {
       'Open weekdays',
     );
     expect(container.querySelector('.the-form')).toBeInTheDocument();
+  });
+
+  it.each([
+    ['top', 'top'],
+    ['sticky', 'sticky'],
+    ['bottom', 'bottom'],
+    ['middle', 'center'],
+  ])('aligns the text: %s', (side_align, expected) => {
+    const { container } = renderWithIntl(
+      <SideTextView
+        data={{ layout: 'text', side_heading: 'Talk to us', side_align }}
+      />,
+    );
+    expect(container.querySelector('.juizi-form-wrapper')).toHaveClass(
+      `juizi-form-wrapper--text-${expected}`,
+    );
   });
 
   it('gives visitors no empty text column', () => {

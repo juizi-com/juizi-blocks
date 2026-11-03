@@ -45,4 +45,10 @@ export default defineMessages({
     defaultMessage:
       'A sound recording with a player, title, description and transcript.',
   },
+  pricingTiers: { id: 'Pricing tiers', defaultMessage: 'Pricing tiers' },
+  pricingTiersDescription: {
+    id: 'Price cards side by side, each with a name, price, features and a button.',
+    defaultMessage:
+      'Price cards side by side, each with a name, price, features and a button.',
+  },
 });

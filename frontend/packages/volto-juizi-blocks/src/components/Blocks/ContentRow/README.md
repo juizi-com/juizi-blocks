@@ -149,6 +149,21 @@ When "Show 'View all' button" is enabled, "View all" button position controls wh
 - When a Numbered, Icon or Statistic item has a link, the whole item content is wrapped in one `<a>`, made a flex container that copies the item's own layout, so a linked item looks the same as an unlinked one (a linked statistic's value centres like its label).
 - Item links follow the item's text colour and have no underline; links inside an item's rich-text description stay underlined (shared link rules).
 
+## Item borders, "Heading on the left, text on the right" and "No icon"
+
+These options give the Numbered and Icon styles the ruled lists and tile grids common on content pages:
+
+- **Item borders** (`itemBorders`, Layout panel; Numbered, Icon and Statistics only, image cards have their own frames): **None** (unset, as saved blocks), **Lines between items** (`content-row--lines`) or **Joined boxes** (`content-row--joined`). Both draw every line once, never two on top of each other, because the line colour is translucent and overlaps would show darker. Lines: every item gets a line above and below and pulls up by the line's width; rows sit on the lines instead of a gap. Joined boxes: no gap; the grid draws the top and left edges and each item its right and bottom edges, with padding inside (`--juizi-item-box-padding`); with an uneven number of items the empty cell is left open. In both, rows stretch so lines meet, and items get square corners and no shadow. The line is a shade of the text colour (`color-mix` with `currentColor`) wherever it is drawn, so it suits light and dark backgrounds, and coloured boxes. Works with any number of columns. Tokens: `--juizi-item-line-color`, `--juizi-item-line-width`, `--juizi-item-line-spacing`, `--juizi-item-box-padding` (`src/theme/juizi-common.scss`).
+- **Separate boxes need no option**: an item with its own background colour is already a padded box with a gap around it. In joined boxes, an item's background colour fills its box, which is also how one box is picked out in a different colour.
+- **Heading on the left, text on the right** (`iconPosition: 'beside'`, the fourth "Icon/number position" choice). The number or icon, text above the heading and the heading sit in a narrow left column (one third), the description in the right column. `.content-row-item__content` is `display: contents` so its children join the item's grid; a linked item's `<a>` takes the grid instead. Stacks to heading-then-text on phones. Different from **Heading beside the items**, which places the *block's* heading beside the whole list.
+- **No icon** (`icon: 'none'`, first in the Icon item's icon list). The item shows just its heading and text, and the item's "Icon circle" field is hidden (`schemaExtender`). Only this explicit value hides the icon: an item with no icon value at all (cleared, or saved before this choice) keeps the fallback circle it always showed, so saved rows don't change. No earlier Juizi icon list used the value `none`.
+
+Typical recipes: a list of points is Icon style, items set to No icon, Columns 1, Heading beside the items, Item borders: Lines between items (add "Heading on the left, text on the right" for label/text rows). A tile grid is Icon style, Columns 2, Item borders: Joined boxes, each item's background colour White on a grey block.
+
+**Corners:** the coloured box behind an item and the circle behind an icon or number read tokens, so a site sets them once in its theme: `--juizi-card-radius` (coloured items; was a fixed 4px, the token's default, which also outranked a theme's own value) and `--juizi-icon-background-radius` ("Icon circle" / "Number circle"; `50%` by default, `0` for a square).
+
+Saved content: all the options are new values, and the corner tokens default to the old values, so blocks without them render exactly as before (covered by tests in `ContentRow.test.jsx`).
+
 ## Mobile carousel
 
 When "Carousel on mobile" is enabled, items become a horizontally scrollable Embla carousel on small screens. The grid layout is restored on desktop. Autoplay is automatically disabled for users who have enabled reduced motion in their OS settings.
@@ -216,6 +231,12 @@ The wrapper `id` is derived from `headerText`. A short block-id suffix (first 6 
 5. Optionally set the columns under **Layout** and a colour under **Background & spacing**.
 6. Publish.
 
+For a list of points with lines (draft, confirm in first-time editor test):
+
+1. Choose **Icon** as the display style and add items, setting each item's icon to **No icon**.
+2. Under **Layout**, set **Columns on large screens** to 1, switch on **Heading beside the items**, and set **Item borders** to **Lines between items**.
+3. For short labels with text beside them, set **Icon position** to **Heading on the left, text on the right**.
+
 ## Decisions and trade-offs (2026-09 audit)
 
 - Style field renamed `variation` → `displayMode`, with a repair for saved blocks (CR1).
@@ -228,3 +249,19 @@ The wrapper `id` is derived from `headerText`. A short block-id suffix (first 6 
 - Numbers are formatted for the site's language; British English for English, e.g. "1,000".
 - The block renders inside `BlockWrapper` (`@kitconcept/volto-bm3-compat`), which adds the outer `block contentRow` container with `type-*`, `align-*` and `tone-*` classes.
 - The anchor id for same-page links is unchanged.
+
+## Equal heights (2026-10)
+
+Items in a row now stretch to the height of the tallest (`.content-row__grid` is `align-items: stretch`; it was `start`). Coloured boxes, cards and image cards in one row line up instead of ending at different heights. This changes saved pages on purpose: items without a background look the same (only their invisible box grows), but coloured items and image cards in a row with uneven text become taller. The phone carousel already stretched its slides.
+
+## Rich-text description (2026-10)
+
+The description under the heading (`descriptionText`) uses the rich-text widget, so editors can add bold, italic and links. Headings belong in the block's own heading; the helper text says so.
+
+Saved content:
+
+- **Plain text stays as it is.** Descriptions saved before this change, and those written by the legacy conversion, are strings. The view keeps showing them as text in the same `<p class="content-row__description">` (escaped, so `&` or `<` show as typed). Live pages don't change.
+- **In the editor**, `getFormData` hands the field a string as one paragraph per blank-line break (`_shared/RichText.jsx`, `plainTextToRichText`), because the widget shows a plain string as empty. The block is saved as rich text when the editor next changes it; it looks the same.
+- **Rich text** renders as `<div class="content-row__description content-row__description--rich">` with its paragraphs: the class is unchanged, so site themes that style `.content-row__description` still apply. The first and last paragraphs bring no extra space. Links take the text colour, underlined.
+- An empty rich-text description (`<p></p>`) counts as no description, so it never draws an empty header.
+- Links and list items in the description and in item text inherit the size and weight of their text (VLT sizes `p`, `a` and `li` directly). The link colour follows the text colour on light and dark backgrounds, also on hover. This also changed item-text links on existing pages, which used to show bigger and lighter than their sentence.

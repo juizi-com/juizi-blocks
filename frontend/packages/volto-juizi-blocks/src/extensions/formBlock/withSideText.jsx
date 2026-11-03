@@ -125,6 +125,10 @@ const withSideText = (Base) => {
     if (!withText && !hasExtras) return <Base {...props} />;
 
     const formPosition = data.form_position === 'left' ? 'left' : 'right';
+    // Unset or unknown is centred, as every form saved before the option
+    const sideAlign = ['top', 'sticky', 'bottom'].includes(data.side_align)
+      ? data.side_align
+      : 'center';
     const primary =
       withText && !!data.isPrimaryHeading && !!data.side_heading?.trim();
     // `block` in the editor, `id` on the published page
@@ -139,6 +143,7 @@ const withSideText = (Base) => {
       'juizi-form-wrapper',
       withText && 'juizi-form-wrapper--with-text',
       withText && `juizi-form-wrapper--form-${formPosition}`,
+      withText && `juizi-form-wrapper--text-${sideAlign}`,
       // Chosen padding (juizi-common.scss), else the layout's own space
       data.paddingTop
         ? `juizi-form-wrapper--pad-top-${data.paddingTop}`

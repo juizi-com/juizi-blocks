@@ -1,5 +1,6 @@
 import makeBlockEdit from '../../BlockEdit/BlockEdit';
 import { ensureIds, withItemTitles } from '../_shared/items';
+import { plainTextToRichText } from '../_shared/RichText';
 import ContentRowView from './View';
 import ContentRowSchema from './schema';
 import './style.css';
@@ -60,7 +61,15 @@ const normalizeData = (data) =>
 export const ContentRowEdit = makeBlockEdit(ContentRowView, {
   getChangedData,
   normalizeData,
-  getFormData: (data) => ({ ...data, items: ensureIds(data.items) }),
+  // A description saved as plain text (before it was rich text, or by the
+  // legacy conversion) is shown in the rich-text field as a paragraph.
+  getFormData: (data) => ({
+    ...data,
+    items: ensureIds(data.items),
+    ...(typeof data.descriptionText === 'string' && {
+      descriptionText: plainTextToRichText(data.descriptionText),
+    }),
+  }),
   // Remount the sidebar only when the style changes (its item form differs),
   // not when items are added or removed.
   formKey: (data) => `contentrow-${data.displayMode || 'none'}`,

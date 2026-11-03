@@ -1,0 +1,1 @@
+Content Row: the description under the heading is now rich text, so editors can make words bold or italic and add links. Descriptions saved as plain text keep showing as before, and open in the editor as a paragraph; they are saved as rich text when the editor next changes the block.

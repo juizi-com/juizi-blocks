@@ -66,6 +66,16 @@ msgstr "Bladsyopskrif of gekleurde afdelingsband met titel, agtergrondbeeld of -
 msgid "Pictures from the page or across the site, as a slideshow, even grid or natural grid, with an optional enlarged view."
 msgstr "Prente van die bladsy of van oor die hele werf, as ’n skyfievertoning, egalige rooster of natuurlike rooster, met ’n opsionele vergrote aansig."
 
+#. Default: "Price cards side by side, each with a name, price, features and a button."
+#: blocks/messages
+msgid "Price cards side by side, each with a name, price, features and a button."
+msgstr "Pryskaarte langs mekaar, elk met ’n naam, prys, kenmerke en ’n knoppie."
+
+#. Default: "Pricing tiers"
+#: blocks/messages
+msgid "Pricing tiers"
+msgstr "Prysvlakke"
+
 #. Default: "Redirect"
 #: blocks/messages
 msgid "Redirect"
@@ -275,6 +285,11 @@ msgstr "Knoppiestyl"
 #: components/Blocks/_shared/messages
 msgid "juizi-button-text"
 msgstr "Knoppieteks"
+
+#. Default: "{color} — Text only"
+#: components/Blocks/_shared/messages
+msgid "juizi-button-text-only"
+msgstr "{color} — Net teks"
 
 #. Default: "Buttons"
 #: components/Blocks/_shared/messages
@@ -1214,7 +1229,7 @@ msgstr "Beeldoorleg"
 #. Default: "A tint over the background image to keep text readable. Choose \"None\" for patterns and textures that already sit well behind text."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-background-overlay-help"
-msgstr "'n Tint oor die agtergrondbeeld om teks leesbaar te hou. Kies "Geen" vir patrone en teksture wat reeds goed agter teks werk."
+msgstr "'n Tint oor die agtergrondbeeld om teks leesbaar te hou. Kies \"Geen\" vir patrone en teksture wat reeds goed agter teks werk."
 
 #. Default: "Background position"
 #: components/Blocks/ContentRow/messages
@@ -1331,10 +1346,10 @@ msgstr "Telspoed"
 msgid "juizi-content-row-counting-speed-help"
 msgstr "Hoe lank die getalle neem om op te tel."
 
-#. Default: "Supporting text below the heading."
+#. Default: "Supporting text below the heading. You can make words bold or italic and add links. Leave out headings: the heading above is the one for this block."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-description-help"
-msgstr "Ondersteunende teks onder die opskrif."
+msgstr "Ondersteunende teks onder die opskrif. Jy kan woorde vet of kursief maak en skakels byvoeg. Moenie opskrifte byvoeg nie: die een hierbo is die opskrif vir hierdie blok."
 
 #. Default: "Heading alignment"
 #: components/Blocks/ContentRow/messages
@@ -1355,6 +1370,11 @@ msgstr "Kleur van die ikoonsirkel"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-icon-circle-help"
 msgstr "Plaas die ikoon in ’n gekleurde sirkel. Los dit op Geen om die gewone ikoon te hou."
+
+#. Default: "Choose \"No icon\" for a plain point with just a heading and text."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-icon-help"
+msgstr "Kies \"Geen ikoon\" vir 'n eenvoudige punt met net 'n opskrif en teks."
 
 #. Default: "Icon/number position"
 #: components/Blocks/ContentRow/messages
@@ -1396,6 +1416,26 @@ msgstr "Item"
 msgid "juizi-content-row-item-background"
 msgstr "Item se agtergrondkleur"
 
+#. Default: "Item borders"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders"
+msgstr "Itemrande"
+
+#. Default: "Lines between items suit a list of points or steps; joined boxes put each item in a box that shares its lines with its neighbours, like a table. To fill a box with colour, give the item a background colour."
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-help"
+msgstr "Lyne tussen items pas by 'n lys punte of stappe; aaneengeslote blokke sit elke item in 'n blok wat sy lyne met sy bure deel, soos 'n tabel. Gee die item 'n agtergrondkleur om 'n blok met kleur te vul."
+
+#. Default: "Joined boxes"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-joined"
+msgstr "Aaneengeslote blokke"
+
+#. Default: "Lines between items"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-item-borders-lines"
+msgstr "Lyne tussen items"
+
 #. Default: "Items"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-items"
@@ -1436,6 +1476,11 @@ msgstr "Genommer"
 msgid "juizi-content-row-next-to-description"
 msgstr "Langs die beskrywing"
 
+#. Default: "No icon"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-no-icon"
+msgstr "Geen ikoon"
+
 #. Default: "No items yet. Add your first item in the sidebar under Items."
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-no-items"
@@ -1475,6 +1520,11 @@ msgstr "Nommerposisie"
 #: components/Blocks/ContentRow/messages
 msgid "juizi-content-row-position-above"
 msgstr "Bo (verstek)"
+
+#. Default: "Heading on the left, text on the right"
+#: components/Blocks/ContentRow/messages
+msgid "juizi-content-row-position-beside"
+msgstr "Opskrif links, teks regs"
 
 #. Default: "To the right of the text"
 #: components/Blocks/ContentRow/messages
@@ -2266,6 +2316,36 @@ msgstr "Dit is die hoofopskrif van die bladsy"
 msgid "juizi-form-primary-heading-help"
 msgstr "Maak die opskrif hieronder die bladsy se hoofopskrif en versteek die bladsy se eie titel. Gebruik dit wanneer hierdie vorm bo-aan die bladsy is. Net een blok per bladsy behoort dit te hê."
 
+#. Default: "Text alignment"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align"
+msgstr "Teksbelyning"
+
+#. Default: "Bottom"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-bottom"
+msgstr "Onder"
+
+#. Default: "Centre"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-center"
+msgstr "Middel"
+
+#. Default: "Where the text sits beside a longer form. \"Top, stays in view\" keeps it on screen while the form scrolls. On phones the text is above the form."
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-help"
+msgstr "Waar die teks langs 'n langer vorm staan. \"Bo, bly sigbaar\" hou dit op die skerm terwyl die vorm rol. Op fone is die teks bo die vorm."
+
+#. Default: "Top, stays in view"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-sticky"
+msgstr "Bo, bly sigbaar"
+
+#. Default: "Top"
+#: extensions/formBlock/messages
+msgid "juizi-form-side-align-top"
+msgstr "Bo"
+
 #. Default: "Heading"
 #: extensions/formBlock/messages
 msgid "juizi-form-side-heading"
@@ -2651,10 +2731,10 @@ msgstr "Langs die inhoud (regs)"
 msgid "juizi-hero-button-label-help"
 msgstr "Laat leeg om die gekoppelde bladsy se titel te gebruik. ’n Knoppie sonder ’n skakel word nie aan besoekers gewys nie."
 
-#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light solid or outline — and vice versa."
+#. Default: "Choose a style that contrasts with your background colour. On a dark background, use a light colour — and vice versa. \"Text only\" shows the words underlined, without a box: good for a second, quieter link."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-button-style-help"
-msgstr "Kies ’n styl wat met jou agtergrondkleur kontrasteer. Op ’n donker agtergrond, gebruik ’n ligte soliede knoppie of buitelyn, en omgekeerd."
+msgstr "Kies ’n styl wat met die agtergrondkleur kontrasteer. Op ’n donker agtergrond, gebruik ’n ligte kleur, en andersom. \"Net teks\" wys die woorde onderstreep, sonder ’n blokkie: goed vir ’n tweede, stiller skakel."
 
 #. Default: "Buttons display"
 #: components/Blocks/HeroBlock/messages
@@ -2710,6 +2790,16 @@ msgstr "Beeldoorleg"
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-image-overlay-help"
 msgstr "Kleurtint oor die agtergrondbeeld om die teks leesbaar te hou."
+
+#. Default: "Large title"
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-large-title"
+msgstr "Groot titel"
+
+#. Default: "Shows the title at the bigger size used by the Hero style. Use it for the opening section of a page, or a statement that should stand out."
+#: components/Blocks/HeroBlock/messages
+msgid "juizi-hero-large-title-help"
+msgstr "Wys die titel in die groter grootte wat die Hero-styl gebruik. Gebruik dit vir die openingsafdeling van ’n bladsy, of ’n boodskap wat moet uitstaan."
 
 #. Default: "Logo"
 #: components/Blocks/HeroBlock/messages
@@ -2859,7 +2949,7 @@ msgstr "Beeldkant"
 #. Default: "Which side of the text the image sits on. On small screens it goes above or below the text instead (see \"On mobile\")."
 #: components/Blocks/HeroBlock/messages
 msgid "juizi-hero-side-image-position-help"
-msgstr "Aan watter kant van die teks die beeld staan. Op klein skerms gaan dit eerder bo of onder die teks (sien "Op selfone")."
+msgstr "Aan watter kant van die teks die beeld staan. Op klein skerms gaan dit eerder bo of onder die teks (sien \"Op selfone\")."
 
 #. Default: "Use smaller buttons"
 #: components/Blocks/HeroBlock/messages
@@ -3371,6 +3461,276 @@ msgstr "Vorige beeld"
 msgid "juizi-previous-slide"
 msgstr "Vorige skyfie"
 
+#. Default: "Add button text"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-add-button-text"
+msgstr "Voeg knoppieteks by"
+
+#. Default: "Add a tier name. Visitors won't see this tier until it has one."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-add-name"
+msgstr "Voeg ’n vlaknaam by. Besoekers sien nie hierdie vlak voordat dit een het nie."
+
+#. Default: "Standard: outlined in the text colour. Or pick a colour to match your buttons."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrow-style-help"
+msgstr "Standaard: omlyn in die tekskleur. Of kies ’n kleur wat by jou knoppies pas."
+
+#. Default: "Arrows"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows"
+msgstr "Pyle"
+
+#. Default: "Above the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-above"
+msgstr "Bo die kaarte"
+
+#. Default: "Below the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-below"
+msgstr "Onder die kaarte"
+
+#. Default: "Optional. Buttons to go to the previous or next card. On each side, the card gets a little narrower so the arrows never cover it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-help"
+msgstr "Opsioneel. Knoppies om na die vorige of volgende kaart te gaan. Aan die kante word die kaart effens smaller sodat die pyle dit nooit bedek nie."
+
+#. Default: "On each side, in the middle"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-arrows-middle"
+msgstr "Aan elke kant, in die middel"
+
+#. Default: "Automatic"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-automatic"
+msgstr "Outomaties"
+
+#. Default: "The band behind the title and the cards."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-background-color-help"
+msgstr "Die band agter die titel en die kaarte."
+
+#. Default: "Below the tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-below-tiers"
+msgstr "Onder die vlakke"
+
+#. Default: "Button link"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-link"
+msgstr "Knoppieskakel"
+
+#. Default: "For all tiers. Leave empty for an outlined button that stands out against each card. Each tier can have its own style."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-style-help"
+msgstr "Vir alle vlakke. Laat leeg vir ’n omlynde knoppie wat teen elke kaart uitstaan. Elke vlak kan sy eie styl hê."
+
+#. Default: "Optional. For example \"Talk it through\". The button needs a link too."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-button-text-help"
+msgstr "Opsioneel. Byvoorbeeld \"Kom ons praat\". Die knoppie het ook ’n skakel nodig."
+
+#. Default: "Card colour"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-card-color"
+msgstr "Kaartkleur"
+
+#. Default: "For all tiers. Leave empty for plain white cards. Each tier can have its own colour."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-card-color-help"
+msgstr "Vir alle vlakke. Laat leeg vir gewone wit kaarte. Elke vlak kan sy eie kleur hê."
+
+#. Default: "Card colours"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-cards"
+msgstr "Kaartkleure"
+
+#. Default: "Pricing tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-carousel-label"
+msgstr "Prysvlakke"
+
+#. Default: "Cards in a row on large screens"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-columns"
+msgstr "Kaarte per ry op groot skerms"
+
+#. Default: "Extra tiers start a new row. Smaller screens show two in a row, then one."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-columns-help"
+msgstr "Ekstra vlakke begin ’n nuwe ry. Kleiner skerms wys twee per ry, dan een."
+
+#. Default: "Optional. A short introduction under the title. You can add links and bold text."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-description-help"
+msgstr "Opsioneel. ’n Kort inleiding onder die titel. Jy kan skakels en vet teks byvoeg."
+
+#. Default: "Small print"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-disclaimer"
+msgstr "Fynskrif"
+
+#. Default: "Optional. Shown in small text under the tiers, for example what the prices include."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-disclaimer-help"
+msgstr "Opsioneel. In klein teks onder die vlakke gewys, byvoorbeeld wat die pryse insluit."
+
+#. Default: "Features"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-features"
+msgstr "Kenmerke"
+
+#. Default: "Optional. What's included, one feature per line. Shown as a plain list, without bullets."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-features-help"
+msgstr "Opsioneel. Wat ingesluit is, een kenmerk per reël. Gewys as ’n gewone lys, sonder kolpunte."
+
+#. Default: "Highlighted tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-highlighted-tier"
+msgstr "Uitgeligte vlak"
+
+#. Default: "Optional. This tier is drawn a little taller to stand out, for example your most chosen option. Give that tier its own card colour to make it stand out more."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-highlighted-tier-help"
+msgstr "Opsioneel. Hierdie vlak is ’n bietjie langer om uit te staan, byvoorbeeld jou gewildste keuse. Gee daardie vlak sy eie kaartkleur om meer uit te staan."
+
+#. Default: "Tag"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label"
+msgstr "Etiket"
+
+#. Default: "Tag colour"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-color"
+msgstr "Etiketkleur"
+
+#. Default: "For all tags. Leave empty for the usual tag colour. Each tier can have its own."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-color-help"
+msgstr "Vir alle etikette. Laat leeg vir die gewone kleur. Elke vlak kan sy eie hê."
+
+#. Default: "Optional. A short word or two shown with the name, for example \"New\" or \"Most chosen\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-label-help"
+msgstr "Opsioneel. ’n Kort woord of twee wat saam met die naam gewys word, byvoorbeeld \"Nuut\" of \"Gewildste\"."
+
+#. Default: "Swipe through the tiers on phones"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-mobile-carousel"
+msgstr "Swiep deur die vlakke op fone"
+
+#. Default: "On: one card at a time, with dots to show there are more. Off: the cards are stacked."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-mobile-carousel-help"
+msgstr "Aan: een kaart op ’n slag, met kolletjies wat wys daar is meer. Af: die kaarte is onder mekaar."
+
+#. Default: "Tier name"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-name"
+msgstr "Naam van die vlak"
+
+#. Default: "For example \"Essential\". Required."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-name-help"
+msgstr "Byvoorbeeld \"Noodsaaklik\". Verpligtend."
+
+#. Default: "Plain (white)"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-plain-card"
+msgstr "Gewoon (wit)"
+
+#. Default: "Price"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price"
+msgstr "Prys"
+
+#. Default: "Type it as it should appear, for example \"R 49 450\", \"R 950 / year\" or \"Let's talk\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-help"
+msgstr "Tik dit soos dit moet verskyn, byvoorbeeld \"R 49 450\", \"R 950 / jaar\" of \"Kom ons gesels\"."
+
+#. Default: "Price note"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-note"
+msgstr "Prysnota"
+
+#. Default: "Optional. Small text under the price, for example \"incl. VAT\" or \"quoted per project\"."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-price-note-help"
+msgstr "Opsioneel. Klein teks onder die prys, byvoorbeeld \"BTW ingesluit\" of \"kwotasie per projek\"."
+
+#. Default: "Show dots under the cards"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-show-dots"
+msgstr "Wys kolletjies onder die kaarte"
+
+#. Default: "Add your first tier in the sidebar, under \"Tiers\". Each tier becomes a price card."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start"
+msgstr "Voeg jou eerste vlak in die kantbalk by, onder \"Vlakke\". Elke vlak word ’n pryskaart."
+
+#. Default: "Start on the highlighted tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start-highlighted"
+msgstr "Begin by die uitgeligte vlak"
+
+#. Default: "Phones open on your highlighted tier instead of the first one. Autoplay is switched off, so visitors stay on it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-start-highlighted-help"
+msgstr "Op fone begin die karrousel by jou uitgeligte vlak in plaas van die eerste. Outomaties speel word afgeskakel, sodat besoekers daarop bly."
+
+#. Default: "Tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier"
+msgstr "Vlak"
+
+#. Default: "Leave empty to use the button style set for all tiers. On a tier with its own card colour, empty means a button that stands out against that colour."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-button-style-help"
+msgstr "Laat leeg om die knoppiestyl vir alle vlakke te gebruik. Op ’n vlak met sy eie kaartkleur beteken leeg ’n knoppie wat teen daardie kleur uitstaan."
+
+#. Default: "Card colour for this tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-card-color"
+msgstr "Kaartkleur vir hierdie vlak"
+
+#. Default: "Leave empty to use the card colour set for all tiers. The text colour follows automatically."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-card-color-help"
+msgstr "Laat leeg om die kaartkleur vir alle vlakke te gebruik. Die tekskleur pas outomaties aan."
+
+#. Default: "Optional. Who this tier is for, in a sentence or two."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-description-help"
+msgstr "Opsioneel. Vir wie hierdie vlak is, in ’n sin of twee."
+
+#. Default: "Tag colour for this tier"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-label-color"
+msgstr "Etiketkleur vir hierdie vlak"
+
+#. Default: "Leave empty to use the tag colour set for all tiers."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tier-label-color-help"
+msgstr "Laat leeg om die etiketkleur vir alle vlakke te gebruik."
+
+#. Default: "Tiers"
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tiers"
+msgstr "Vlakke"
+
+#. Default: "Each tier is one card. Drag tiers to change their order. A tier needs a name before visitors see it."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-tiers-help"
+msgstr "Elke vlak is een kaart. Sleep vlakke om hul volgorde te verander. ’n Vlak het ’n naam nodig voordat besoekers dit sien."
+
+#. Default: "Optional. Shown above the tiers."
+#: components/Blocks/PricingTiers/messages
+msgid "juizi-pricing-title-help"
+msgstr "Opsioneel. Word bo die vlakke gewys."
+
 #. Default: "Read more"
 #: components/Blocks/_shared/messages
 msgid "juizi-read-more"
@@ -3475,6 +3835,41 @@ msgstr "{count, plural, one {# sekonde} other {# sekondes}}"
 #: components/Blocks/_shared/messages
 msgid "juizi-select-style-prompt"
 msgstr "Kies ’n vertoonstyl in die sybalk om te begin."
+
+#. Default: "Button colours"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-colours"
+msgstr "Knoppiekleure"
+
+#. Default: "Leave a field empty to keep the site's usual buttons, which follow the background colour."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-colours-help"
+msgstr "Laat 'n veld leeg om die webwerf se gewone knoppies te hou, wat die agtergrondkleur volg."
+
+#. Default: "Chosen option"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-highlight-color"
+msgstr "Gekose opsie"
+
+#. Default: "The border around the option the visitor picks, such as a ticket type or a size."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-highlight-color-help"
+msgstr "Die rand om die opsie wat die besoeker kies, soos 'n kaartjiesoort of 'n grootte."
+
+#. Default: "Main button"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-main-button"
+msgstr "Hoofknoppie"
+
+#. Default: "Add to cart, or Register on a free event."
+#: extensions/shopBuy/messages
+msgid "juizi-shop-main-button-help"
+msgstr "Voeg by mandjie, of Registreer vir 'n gratis geleentheid."
+
+#. Default: "Buy now button"
+#: extensions/shopBuy/messages
+msgid "juizi-shop-second-button"
+msgstr "Koop nou-knoppie"
 
 #. Default: "Slide navigation"
 #: components/Blocks/_shared/messages

@@ -33,7 +33,10 @@ export const SIDE_TEXT_FIELDS = [
 const sideTextSchema = ({ schema, formData = {}, intl }) => {
   const t = translator(intl);
   const withText = formData.layout === 'text';
-  const layoutFields = ['layout', ...(withText ? ['form_position'] : [])];
+  const layoutFields = [
+    'layout',
+    ...(withText ? ['form_position', 'side_align'] : []),
+  ];
 
   const fieldsets = schema.fieldsets.map((fieldset) => {
     if (fieldset.id !== 'default') return fieldset;
@@ -95,6 +98,18 @@ const sideTextSchema = ({ schema, formData = {}, intl }) => {
           ['left', t(messages.left)],
         ],
         default: 'right',
+      },
+      side_align: {
+        title: t(messages.sideAlign),
+        description: t(messages.sideAlignHelp),
+        choices: [
+          ['top', t(messages.alignTop)],
+          ['sticky', t(messages.alignSticky)],
+          ['center', t(messages.alignCenter)],
+          ['bottom', t(messages.alignBottom)],
+        ],
+        // Same as unset: every form saved before this has its text centred
+        default: 'center',
       },
       side_kicker: {
         title: t(messages.kicker),

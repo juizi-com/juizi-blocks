@@ -1,0 +1,1 @@
+Content Row: links and list items in item text and in the description now have the same size and weight as the text around them; before, the theme's own link size made them bigger and lighter. This changes saved pages with links in item text.

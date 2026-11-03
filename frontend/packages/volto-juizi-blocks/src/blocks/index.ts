@@ -37,6 +37,7 @@ import {
 } from '../components/Blocks/Redirect';
 import callout from '../components/Blocks/Callout';
 import audio from '../components/Blocks/Audio';
+import pricingTiers from '../components/Blocks/PricingTiers';
 
 export type JuiziBlockDefinition = {
   id: string;
@@ -144,4 +145,5 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
   },
   callout,
   audio,
+  pricingTiers,
 ];

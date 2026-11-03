@@ -823,6 +823,7 @@ const View = (props) => {
     imageUrl || videoUrl ? 'hero-block--has-bg' : '',
     sideImageUrl ? 'hero-block--has-side-image' : '',
     data.horizontalLayout ? 'hero-block--horizontal' : '',
+    blockMode === 'section' && data.largeTitle ? 'hero-block--large-title' : '',
     data.customClass || '',
   ]
     .filter(Boolean)

@@ -50,7 +50,7 @@ const buttonSchema = (bgColor, colors, t) => ({
       title: t(shared.buttonStyle),
       description: t(messages.buttonStyleHelp),
       widget: 'select',
-      choices: getButtonChoices(colors, t),
+      choices: getButtonChoices(colors, t, { textLinks: true }),
       default: getDefaultButton(bgColor, colors),
     },
     showArrow: {
@@ -163,6 +163,7 @@ const schema = (args) => {
             id: 'layout',
             title: t(shared.layout),
             fields: [
+              ...(isSectionMode ? ['largeTitle'] : []),
               'alignment',
               'horizontalLayout',
               'paddingTop',
@@ -432,6 +433,12 @@ const schema = (args) => {
         title: t(shared.textAlignment),
         choices: getAlignmentChoices(t),
         default: 'left',
+      },
+      largeTitle: {
+        title: t(messages.largeTitle),
+        description: t(messages.largeTitleHelp),
+        type: 'boolean',
+        default: false,
       },
       horizontalLayout: {
         title: t(messages.sideBySide),

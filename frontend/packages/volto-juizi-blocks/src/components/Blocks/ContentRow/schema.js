@@ -48,6 +48,29 @@ const linkField = (t) => ({
 
 const noneChoice = (value, t) => [value, t(shared.none)];
 
+// The stored value of the icon item's "No icon" choice (see View.jsx).
+export const NO_ICON = 'none';
+
+// The circle behind an icon means nothing without the icon, so an item set
+// to "No icon" doesn't offer it.
+const iconItemSchemaExtender = (itemSchema, item) =>
+  item?.icon === NO_ICON
+    ? {
+        ...itemSchema,
+        fieldsets: itemSchema.fieldsets.map((fieldset) => ({
+          ...fieldset,
+          fields: fieldset.fields.filter(
+            (field) => field !== 'iconCircleColor',
+          ),
+        })),
+      }
+    : itemSchema;
+
+// "Item borders" (lines between items, joined boxes) suit points, steps and
+// figures; image cards have their own frames.
+export const BORDER_MODES = ['numbered', 'icon', 'statistics'];
+export const BORDER_STYLES = ['lines', 'joined'];
+
 const cardProperties = (colors, t) => ({
   image: {
     title: t(shared.image),
@@ -75,7 +98,7 @@ const cardProperties = (colors, t) => ({
   buttonStyle: {
     title: t(shared.buttonStyle),
     widget: 'select',
-    choices: getButtonChoices(colors, t),
+    choices: getButtonChoices(colors, t, { textLinks: true }),
     default: getDefaultButton(null, colors),
   },
   link: linkField(t),
@@ -163,8 +186,12 @@ const itemSchemas = (colors, t) => ({
       icon: {
         title: t(shared.icon),
         type: 'string',
-        choices: getIconChoices(t),
+        // "No icon" is stored as 'none'. An item without any icon value
+        // (cleared, or saved before this choice existed) keeps showing the
+        // fallback circle, so saved rows don't change.
+        choices: [[NO_ICON, t(messages.noIcon)], ...getIconChoices(t)],
         default: 'Globe',
+        description: t(messages.iconHelp),
       },
       iconCircleColor: {
         title: t(messages.iconCircle),
@@ -296,6 +323,7 @@ const schema = (args) => {
               ...(data.sideBySideLayout
                 ? ['sideBySideRatio', 'sideBySideAlign']
                 : []),
+              ...(BORDER_MODES.includes(displayMode) ? ['itemBorders'] : []),
               'headerAlignment',
               'itemsAlignment',
             ],
@@ -405,8 +433,7 @@ const schema = (args) => {
       },
       descriptionText: {
         title: t(shared.description),
-        type: 'string',
-        widget: 'textarea',
+        widget: 'richtext',
         description: t(messages.descriptionHelp),
       },
       blockImage: {
@@ -456,7 +483,7 @@ const schema = (args) => {
       viewAllStyle: {
         title: t(messages.viewAllStyle),
         widget: 'select',
-        choices: getButtonChoices(colors, t),
+        choices: getButtonChoices(colors, t, { textLinks: true }),
         default: getDefaultButton(backgroundColor, colors),
       },
       viewAllPosition: {
@@ -477,6 +504,7 @@ const schema = (args) => {
           ['above', t(messages.positionAbove)],
           ['left', t(messages.positionLeft)],
           ['inline', t(messages.positionInline)],
+          ['beside', t(messages.positionBeside)],
         ],
         default: 'above',
         description: t(messages.iconNumberPositionHelp),
@@ -553,6 +581,18 @@ const schema = (args) => {
         description: t(messages.columnAlignmentHelp),
       },
 
+      itemBorders: {
+        title: t(messages.itemBorders),
+        widget: 'select',
+        choices: [
+          ['none', t(shared.none)],
+          ['lines', t(messages.itemBordersLines)],
+          ['joined', t(messages.itemBordersJoined)],
+        ],
+        default: 'none',
+        description: t(messages.itemBordersHelp),
+      },
+
       mobileCarousel: {
         title: t(messages.mobileCarousel),
         type: 'boolean',
@@ -577,6 +617,9 @@ const schema = (args) => {
         schema: modeSelected
           ? variationItemSchemas[displayMode]
           : variationItemSchemas.numbered,
+        ...(displayMode === 'icon'
+          ? { schemaExtender: iconItemSchemaExtender }
+          : {}),
       },
     },
     required: [],
