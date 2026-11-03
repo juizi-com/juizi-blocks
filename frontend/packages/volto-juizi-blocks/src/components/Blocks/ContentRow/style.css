@@ -318,10 +318,10 @@
 }
 
 /* Item alignment */
-.content-row__grid.align-center .content-row-item {
+:is(.content-row__grid, .content-row__embla).align-center .content-row-item {
   text-align: center;
 }
-.content-row__grid.align-right .content-row-item {
+:is(.content-row__grid, .content-row__embla).align-right .content-row-item {
   text-align: right;
 }
 
@@ -460,10 +460,12 @@
   gap: 0.25rem;
 }
 
-.content-row__grid.align-center .content-row-item--statistic {
+:is(.content-row__grid, .content-row__embla).align-center
+  .content-row-item--statistic {
   align-items: center;
 }
-.content-row__grid.align-right .content-row-item--statistic {
+:is(.content-row__grid, .content-row__embla).align-right
+  .content-row-item--statistic {
   align-items: flex-end;
 }
 
@@ -498,10 +500,12 @@
   gap: 0.75rem;
 }
 
-.content-row__grid.align-center .content-row-item--icon {
+:is(.content-row__grid, .content-row__embla).align-center
+  .content-row-item--icon {
   align-items: center;
 }
-.content-row__grid.align-right .content-row-item--icon {
+:is(.content-row__grid, .content-row__embla).align-right
+  .content-row-item--icon {
   align-items: flex-end;
 }
 
@@ -822,16 +826,22 @@
 /* Scoped to the grid's own align-* class: the block wrapper also carries
    align-* for the Heading alignment, and a bare .align-right matched that
    too, so the heading setting moved the item buttons. */
-.content-row__grid.align-left .content-row-item__body .card-button,
+:is(.content-row__grid, .content-row__embla).align-left
+  .content-row-item__body
+  .card-button,
 .content-row__embla-slide .content-row-item__body .card-button {
   align-self: flex-start;
 }
 
-.content-row__grid.align-center .content-row-item__body .card-button {
+:is(.content-row__grid, .content-row__embla).align-center
+  .content-row-item__body
+  .card-button {
   align-self: center;
 }
 
-.content-row__grid.align-right .content-row-item__body .card-button {
+:is(.content-row__grid, .content-row__embla).align-right
+  .content-row-item__body
+  .card-button {
   align-self: flex-end;
 }
 
