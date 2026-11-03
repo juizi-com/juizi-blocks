@@ -1,0 +1,1 @@
+Dashboard: the block toggles no longer say "This site has no user groups yet" before the groups have loaded, which caused a hydration warning.

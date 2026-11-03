@@ -1,0 +1,1 @@
+Dashboard: a block whose `restricted` the site reassigns after Juizi Blocks loads (CRA's Lead Image) no longer shows the old "Only offered where the block allows it" hint on the browser's first render, which caused a hydration warning.

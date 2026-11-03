@@ -12,13 +12,15 @@ import messages from './messages';
 /**
  * Who may add a switched-on block: a collapsed summary ("Everybody" or the
  * chosen groups) that opens to a checkbox per site group. Stored groups that
- * no longer exist stay listed so they can be unticked.
+ * no longer exist stay listed so they can be unticked. `userGroups` is null
+ * until the site's groups have loaded: the stored ones are listed, and
+ * "no groups yet" isn't said.
  */
 const GroupPicker = ({ blockTitle, selected, userGroups, onChange }) => {
   const intl = useIntl();
-  const known = userGroups.map((group) => group.id);
+  const known = (userGroups || []).map((group) => group.id);
   const options = [
-    ...userGroups,
+    ...(userGroups || []),
     ...selected
       .filter((id) => !known.includes(id))
       .map((id) => ({ id, title: id })),
@@ -44,7 +46,7 @@ const GroupPicker = ({ blockTitle, selected, userGroups, onChange }) => {
         <legend className="juizi-dashboard__muted">
           {intl.formatMessage(messages.groupsHelp, { title: blockTitle })}
         </legend>
-        {options.length === 0 && (
+        {userGroups && options.length === 0 && (
           <div className="juizi-dashboard__muted">
             {intl.formatMessage(messages.noGroups)}
           </div>
@@ -76,9 +78,9 @@ const GroupPicker = ({ blockTitle, selected, userGroups, onChange }) => {
 /**
  * On/off switches for every registered block, one table per chooser group.
  * `lists` is { disabled_blocks, enabled_blocks, block_groups }; `userGroups`
- * are the site's user groups ({ id, title }).
+ * are the site's user groups ({ id, title }), or null until they've loaded.
  */
-const BlockToggles = ({ groups, lists, userGroups = [], onChange }) => {
+const BlockToggles = ({ groups, lists, userGroups = null, onChange }) => {
   const intl = useIntl();
   // Volto's block chooser looks titles up as message ids; so do we, for
   // titles, descriptions and group names.

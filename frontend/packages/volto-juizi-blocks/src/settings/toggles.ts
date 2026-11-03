@@ -30,8 +30,12 @@ export type BlockLists = {
   block_groups?: BlockGroups;
 };
 
+/** The block's own `restricted`: kept by the wrapper while it's in place.
+ * A site that reassigns `restricted` after the wrapping (CRA:
+ * `leadimage.restricted = false`) replaces the wrapper, and the kept value
+ * is stale until the next wrap; the current value is the block's own. */
 export const getOwnRestricted = (blockConfig: any): Restricted =>
-  blockConfig && OWN_RESTRICTED in blockConfig
+  blockConfig?.restricted?.[WRAPPER_FLAG]
     ? blockConfig[OWN_RESTRICTED]
     : blockConfig?.restricted;
 
