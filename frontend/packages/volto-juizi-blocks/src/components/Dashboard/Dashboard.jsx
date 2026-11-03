@@ -117,8 +117,13 @@ const Dashboard = () => {
     [],
   );
 
-  // The site's user groups, for limiting blocks to some of them.
-  const userGroups = useSelector((state) => state.groups?.groups) || [];
+  // The site's user groups, for limiting blocks to some of them. They load
+  // in the browser only: until then (and while the server renders, and the
+  // browser's first render matches it) they're unknown, `null`, rather than
+  // "none", so the page hydrates without a mismatch.
+  const groups = useSelector((state) => state.groups);
+  const userGroups =
+    isClient && groups?.list?.loaded ? groups.groups || [] : null;
 
   useEffect(() => {
     dispatch(getJuiziBlocksSettings());

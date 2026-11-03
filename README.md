@@ -381,6 +381,9 @@ grouped as in the block chooser with the Juizi group first.
   still want to add the block. Stored as `block_groups`
   (`{block id: [group id, ...]}`); groups deleted later stay listed so they
   can be unticked.
+  Until the site's groups have loaded (and in the page the server sends),
+  the list shows only the ticked groups and says nothing about the site having
+  none, so the server and browser draw the same page.
 
 **Colours tab:**
 

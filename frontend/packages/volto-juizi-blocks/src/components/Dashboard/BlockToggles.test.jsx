@@ -45,6 +45,29 @@ const renderToggles = (lists, onChange = jest.fn()) =>
 const none = { disabled_blocks: [], enabled_blocks: [] };
 
 describe('BlockToggles', () => {
+  it('says nothing about groups until they have loaded', () => {
+    const renderWith = (loaded) =>
+      render(
+        <IntlProvider locale="en">
+          <BlockToggles
+            groups={groups}
+            lists={{ ...none, block_groups: { juiziHero: ['editors'] } }}
+            userGroups={loaded}
+            onChange={jest.fn()}
+          />
+        </IntlProvider>,
+      );
+    // Not loaded yet (the server, and the browser's first render): the
+    // stored groups are listed, and "no groups yet" isn't claimed.
+    const loading = renderWith(null);
+    expect(loading.container.textContent).not.toContain('no user groups');
+    expect(loading.container.textContent).toContain('editors');
+    loading.unmount();
+    // Loaded, and the site really has none.
+    const empty = renderWith([]);
+    expect(empty.container.textContent).toContain('no user groups');
+  });
+
   it('lists every group with its on count', () => {
     renderToggles(none);
     expect(screen.getByText('Juizi')).toBeTruthy();
