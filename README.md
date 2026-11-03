@@ -870,13 +870,10 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 ## Older content
 
 Content from earlier Juizi block add-ons (`customHero`, `buttonRow`,
-`multiCard`, `iconLinkRow`, `EmblaCarousel`, and plone.org's `hero`) is converted to the current
+`multiCard`, `iconLinkRow`, `EmblaCarousel`, `EmblaRatings`, and plone.org's `hero`) is converted to the current
 blocks as it loads. See [COMPATIBILITY.md](COMPATIBILITY.md) for what maps
-where and what's only partly supported.
-
-Not converted: the standalone `EmblaRatings` block. Its job is now the
-Carousel's Reviews style, and reviews saved with the old block have to be
-added again in a Carousel.
+where and what's only partly supported. The standalone `EmblaRatings`
+testimonials become the Carousel's Reviews style.
 
 ## Adding a block
 

@@ -39,6 +39,9 @@ declare module '@plone/types' {
     juiziBlocks?: {
       /** Replaces the built-in overlay list (DEFAULT_OVERLAYS). */
       overlays?: Overlay[];
+      /** The site's own Content Row icons: name → imported SVG
+       * (config/iconChoices.js). */
+      icons?: Record<string, unknown>;
     };
   }
 }

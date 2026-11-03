@@ -97,16 +97,9 @@ These use an older block generation with different block types:
 | `buttonRow` | `juiziHero` (section mode) | Full: preheader, title, text, background colour/image, full width, alignment, buttons beside/below, TOC or inline list. |
 | `multiCard` | `contentRow` (`card`, or `statistics` when `useStatistics`) | Good: header, description, cards (image, preheader, title, text, link, link text, button style, card colour), statistics, columns, alignment, view-all button, mobile carousel. |
 | `iconLinkRow` | `contentRow` (`icon`) | Good: header, alignment, columns, background colours, items (icon, heading, text, link), call-to-action button → view-all. |
+| `EmblaRatings` | `emblaCarousel` (`reviews`) | Full: each testimonial becomes a review (author → name, testimonial → text, company → role / organisation, rating, picture, link); slides to show, loop, autoplay, arrows, dots, alignment, full width. `verticalAlignment` has no equivalent. |
 | `redirectBlock` | unchanged | Full (same block). |
 | `Events` (nithecs) | not converted | No equivalent in the set: renders as an unknown block. Porting it is a separate job. |
-
-### Not converted: `EmblaRatings`
-
-The standalone ratings carousel (`volto-EmblaRatings`, block type
-`EmblaRatings`) is not converted. None of the setups compared here use it.
-A page that still has one shows it as an unknown block; add the reviews again
-in a Carousel with the **Reviews** display style, which has the same fields
-(review text, star rating, name, organisation, picture, link).
 
 ### Partly supported (kept in `legacyData`)
 
