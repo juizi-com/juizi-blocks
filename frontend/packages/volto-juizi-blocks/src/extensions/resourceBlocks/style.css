@@ -1,0 +1,51 @@
+/* Around the resource blocks (Frame.jsx). Width and side padding come from
+   $juizi-layers in theme/juizi-common.scss, padding sizes from the same
+   file. What the blocks do with the frame's colours is in the add-on's own
+   stylesheet, as for the shop. */
+
+.juizi-resource-frame--has-bg {
+  position: relative;
+  box-sizing: border-box;
+  padding-right: var(--juizi-gutter);
+  padding-left: var(--juizi-gutter);
+  isolation: isolate;
+}
+
+.juizi-resource-frame__bg,
+.juizi-resource-frame__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.juizi-resource-frame__bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Room above and below on a background, unless a padding is chosen. */
+.juizi-resource-frame--has-bg.juizi-resource-frame--auto-pad-top
+  > .resource-block-inner {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.juizi-resource-frame--has-bg.juizi-resource-frame--auto-pad-bottom
+  > .resource-block-inner {
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* The blocks' own margins would add to that, unevenly. */
+.juizi-resource-frame--has-bg .resource-block-inner > :first-child {
+  margin-top: 0;
+}
+
+.juizi-resource-frame--has-bg .resource-block-inner > :last-child {
+  margin-bottom: 0;
+}
+
+/* On a dark background the grey labels and rules follow the text colour. */
+.juizi-resource-frame.tone-light {
+  --resource-muted: currentColor;
+  --resource-rule: rgba(255, 255, 255, 0.5);
+}

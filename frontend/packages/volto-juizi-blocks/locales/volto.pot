@@ -3818,6 +3818,56 @@ msgstr ""
 msgid "juizi-redirect-will-be-sent"
 msgstr ""
 
+#. Default: "Above the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-above"
+msgstr ""
+
+#. Default: "Beside the details"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-beside"
+msgstr ""
+
+#. Default: "Headings such as Authors and Topics"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-facts-labels"
+msgstr ""
+
+#. Default: "Label colour"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color"
+msgstr ""
+
+#. Default: "Puts the resource type in a coloured tag. Leave this empty for plain text."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-color-help"
+msgstr ""
+
+#. Default: "Label"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-label-panel"
+msgstr ""
+
+#. Default: "Download button"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button"
+msgstr ""
+
+#. Default: "Leave this empty to keep the site's usual button, which follows the background colour."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-main-button-help"
+msgstr ""
+
+#. Default: "Button to the original"
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button"
+msgstr ""
+
+#. Default: "Shown when the work is published elsewhere. Leave this empty to keep the usual outlined button."
+#: extensions/resourceBlocks/messages
+msgid "juizi-resource-second-button-help"
+msgstr ""
+
 #. Default: "Right"
 #: components/Blocks/_shared/messages
 msgid "juizi-right"
