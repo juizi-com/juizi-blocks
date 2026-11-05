@@ -8,8 +8,8 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 
 ## Features
 
-- A consolidated block set: Hero, Content Row, Carousel, Gallery, Callout and Redirect.
-- A dashboard (Site Setup → Juizi Blocks) to switch blocks on or off, limit them to some user groups, and manage the colours and themes they share.
+- A consolidated block set: Hero, Content Row, Carousel, Gallery, Callout, Audio, Pricing tiers, Redirect and Print button.
+- A dashboard (Site Setup → Juizi Blocks) to switch blocks on or off, limit them to some user groups, manage the colours and themes they share, the editing language and the printout, and export those settings to a file to import on another site (Managers and Site Administrators).
 - Available in English, French, Portuguese (`pt` and `pt_BR`), Spanish and Afrikaans; German is scaffolded and falls back to English.
 
 ## Languages
@@ -29,10 +29,10 @@ has the details, under **Languages**.
 
 ## Installation
 
-The add-on needs **Volto 18** and
-[Volto Light Theme](https://github.com/kitconcept/volto-light-theme) 7, and
-the backend add-on `juizi.blocks` installed on the Plone site (it stores the
-dashboard's settings).
+The add-on needs **Volto 18** and the backend add-on `juizi.blocks` installed
+on the Plone site (it stores the dashboard's settings).
+[Volto Light Theme](https://github.com/kitconcept/volto-light-theme) is
+optional (7.x, from 7.8.1).
 
 Add `volto-juizi-blocks` to your `package.json`.
 
@@ -48,10 +48,14 @@ Add `volto-juizi-blocks` to your `volto.config.js`.
 const addons = ['volto-juizi-blocks'];
 ```
 
-The blocks are styled for Volto Light Theme, which the add-on brings with it.
-Use it as the site's theme in `volto.config.js`.
+The add-on doesn't install or switch on Volto Light Theme. A site that wants
+it adds it itself, lists it before `volto-juizi-blocks`, and sets it as the
+theme; the blocks then use the theme's hooks (block theme picker, the
+dashboard's Block themes). Without it they're styled for Volto's own layout.
+The root `README.md` has the details, under **Installing on a site**.
 
 ```javascript
+const addons = ['@kitconcept/volto-light-theme', 'volto-juizi-blocks'];
 const theme = '@kitconcept/volto-light-theme';
 ```
 

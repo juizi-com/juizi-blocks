@@ -436,4 +436,105 @@ export default defineMessages({
     id: 'juizi-dashboard-unnamed-theme',
     defaultMessage: 'Theme {number}',
   },
+  // Export and import
+  tabTransfer: {
+    id: 'juizi-dashboard-tab-transfer',
+    defaultMessage: 'Export and import',
+  },
+  transferExport: {
+    id: 'juizi-dashboard-transfer-export',
+    defaultMessage: 'Export',
+  },
+  transferExportHelp: {
+    id: 'juizi-dashboard-transfer-export-help',
+    defaultMessage:
+      "Download this site's saved settings as a file: blocks, editing language, colours and themes, and print settings. Import the file on another site to give it the same settings.",
+  },
+  transferExportUnsaved: {
+    id: 'juizi-dashboard-transfer-export-unsaved',
+    defaultMessage:
+      'You have unsaved changes. The file holds the saved settings, without them: save first if you want them in it.',
+  },
+  transferExportButton: {
+    id: 'juizi-dashboard-transfer-export-button',
+    defaultMessage: 'Download settings',
+  },
+  transferImport: {
+    id: 'juizi-dashboard-transfer-import',
+    defaultMessage: 'Import',
+  },
+  transferImportHelp: {
+    id: 'juizi-dashboard-transfer-import-help',
+    defaultMessage:
+      'Take settings from a file exported on another site. You choose which parts to take. They replace the same parts here as unsaved changes: look them over on the other tabs, then Save, or Discard changes to keep what you had.',
+  },
+  transferChooseFile: {
+    id: 'juizi-dashboard-transfer-choose-file',
+    defaultMessage: 'Choose a file…',
+  },
+  transferFrom: {
+    id: 'juizi-dashboard-transfer-from',
+    defaultMessage: '“{name}”, exported from {site} on {date}.',
+  },
+  transferChoose: {
+    id: 'juizi-dashboard-transfer-choose',
+    defaultMessage: 'Parts to import',
+  },
+  transferImportButton: {
+    id: 'juizi-dashboard-transfer-import-button',
+    defaultMessage: 'Import the chosen parts',
+  },
+  transferCancel: {
+    id: 'juizi-dashboard-transfer-cancel',
+    defaultMessage: 'Cancel',
+  },
+  transferImported: {
+    id: 'juizi-dashboard-transfer-imported',
+    defaultMessage:
+      'Imported: {parts}. Nothing is saved yet: check the other tabs, then Save.',
+  },
+  transferNothing: {
+    id: 'juizi-dashboard-transfer-nothing',
+    defaultMessage: 'This file has no settings that can be imported.',
+  },
+  transferPartInvalid: {
+    id: 'juizi-dashboard-transfer-part-invalid',
+    defaultMessage:
+      '“{part}” in this file is damaged or incomplete, so it can’t be imported.',
+  },
+  transferMissingGroups: {
+    id: 'juizi-dashboard-transfer-missing-groups',
+    defaultMessage:
+      'Some blocks in this file are limited to user groups this site doesn’t have: {groups}. Nobody will be offered those blocks until you create the groups or change who can add them.',
+  },
+  transferNotJson: {
+    id: 'juizi-dashboard-transfer-not-json',
+    defaultMessage: '“{name}” can’t be read: it isn’t a settings file.',
+  },
+  transferNotOurs: {
+    id: 'juizi-dashboard-transfer-not-ours',
+    defaultMessage:
+      '“{name}” isn’t a Juizi Blocks settings file. Use a file made with “Download settings”.',
+  },
+  transferNewerFormat: {
+    id: 'juizi-dashboard-transfer-newer-format',
+    defaultMessage:
+      '“{name}” was exported by a newer version of Juizi Blocks. Update this site first.',
+  },
+  transferPartBlocks: {
+    id: 'juizi-dashboard-transfer-part-blocks',
+    defaultMessage: 'Blocks switched on or off, and who can add them',
+  },
+  transferPartLanguage: {
+    id: 'juizi-dashboard-transfer-part-language',
+    defaultMessage: 'Editing language',
+  },
+  transferPartColors: {
+    id: 'juizi-dashboard-transfer-part-colors',
+    defaultMessage: 'Colours and themes, and which blocks offer them',
+  },
+  transferPartPrint: {
+    id: 'juizi-dashboard-transfer-part-print',
+    defaultMessage: 'Print settings',
+  },
 });

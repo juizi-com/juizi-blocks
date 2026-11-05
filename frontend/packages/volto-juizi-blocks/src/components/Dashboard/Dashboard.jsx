@@ -20,6 +20,7 @@ import Toast from '@plone/volto/components/manage/Toast/Toast';
 import { useClient } from '@plone/volto/hooks/client/useClient';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
 import { listGroups } from '@plone/volto/actions/groups/groups';
+import { listActions } from '@plone/volto/actions/actions/actions';
 import backSVG from '@plone/volto/icons/back.svg';
 import saveSVG from '@plone/volto/icons/save.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
@@ -40,6 +41,7 @@ import { hasVLT } from '../../config/vlt';
 import BlockMatrix from './BlockMatrix';
 import CalloutTypesEditor from './CalloutTypesEditor';
 import PrintEditor from './PrintEditor';
+import TransferPanel from './TransferPanel';
 import messages from './messages';
 
 const colorBlocks = juiziBlocks.filter((block) => block.usesColors);
@@ -64,12 +66,26 @@ const toDraft = (data) => ({
 });
 
 const TABS = ['blocks', 'colors', 'print'];
+/** Only for people who can see Site Setup (Managers and Site
+ * Administrators): saving an import needs their rights on the backend. */
+const ADMIN_TABS = ['transfer'];
 
 const TAB_LABELS = {
   blocks: messages.tabBlocks,
   colors: messages.tabColors,
   print: messages.tabPrint,
+  transfer: messages.tabTransfer,
 };
+
+/** Whether the user can see Site Setup, as Volto's toolbar decides it.
+ * The dashboard loads the actions itself (see below). */
+const useCanManage = () =>
+  useSelector(
+    (state) =>
+      state.actions?.actions?.user?.some(
+        (action) => action.id === 'plone_setup',
+      ) ?? false,
+  );
 
 /** A problem from validateColorConfig as a sentence in the editor's
  * language. */
@@ -102,9 +118,16 @@ const Dashboard = () => {
   const saved = useMemo(() => toDraft(state.data), [state.data]);
   const [draft, setDraft] = useState(saved);
   // The tab is kept in the URL hash (#colors) so it can be linked to.
+  const canManage = useCanManage();
+  const tabs = canManage ? [...TABS, ...ADMIN_TABS] : TABS;
   const [tab, setTab] = useState(
-    TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'blocks',
+    [...TABS, ...ADMIN_TABS].includes(location.hash.slice(1))
+      ? location.hash.slice(1)
+      : 'blocks',
   );
+  // A linked admin tab, or the user's actions not loaded yet: the page
+  // shows Blocks until it may show the tab.
+  const shownTab = tabs.includes(tab) ? tab : 'blocks';
   const selectTab = (next) => {
     setTab(next);
     history.replace({ ...location, hash: next === 'blocks' ? '' : next });
@@ -128,6 +151,11 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getJuiziBlocksSettings());
     dispatch(listGroups());
+    // Volto gets the user's actions with the page's content, and a control
+    // panel has none: opened directly, the store has no actions and the
+    // admin tabs would stay hidden. Volto's own Users and Groups control
+    // panel loads them the same way.
+    dispatch(listActions(''));
   }, [dispatch]);
 
   // Reset the draft whenever fresh settings arrive from the backend.
@@ -232,14 +260,14 @@ const Dashboard = () => {
       )}
 
       <div className="juizi-dashboard__tabs" role="tablist">
-        {TABS.map((id) => (
+        {tabs.map((id) => (
           <button
             key={id}
             type="button"
             role="tab"
-            aria-selected={tab === id}
+            aria-selected={shownTab === id}
             className={
-              tab === id
+              shownTab === id
                 ? 'juizi-dashboard__tab juizi-dashboard__tab--active'
                 : 'juizi-dashboard__tab'
             }
@@ -250,7 +278,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {tab === 'blocks' && (
+      {shownTab === 'blocks' && (
         <Section
           title={intl.formatMessage(messages.editingLanguage)}
           help={intl.formatMessage(messages.editingLanguageHelp)}
@@ -278,7 +306,7 @@ const Dashboard = () => {
         </Section>
       )}
 
-      {tab === 'blocks' && (
+      {shownTab === 'blocks' && (
         <Section
           title={intl.formatMessage(messages.blocks)}
           help={intl.formatMessage(messages.blocksHelp)}
@@ -294,7 +322,7 @@ const Dashboard = () => {
         </Section>
       )}
 
-      {tab === 'colors' && (
+      {shownTab === 'colors' && (
         <>
           <Section
             title={intl.formatMessage(messages.colors)}
@@ -361,18 +389,33 @@ const Dashboard = () => {
         </>
       )}
 
-      {tab === 'print' && state.printSupported === false && (
+      {shownTab === 'print' && state.printSupported === false && (
         <div className="juizi-dashboard__error" role="alert">
           {intl.formatMessage(messages.printNotSupported)}
         </div>
       )}
 
-      {tab === 'print' && (
+      {shownTab === 'print' && (
         <PrintEditor
           printConfig={draft.print_config}
           onChange={(print_config) =>
             setDraft((current) => ({ ...current, print_config }))
           }
+        />
+      )}
+
+      {shownTab === 'transfer' && (
+        <TransferPanel
+          saved={saved}
+          draft={draft}
+          dirty={dirty}
+          site={(state.data?.['@id'] || '').replace(
+            /\/@juizi-blocks-settings$/,
+            '',
+          )}
+          addonVersion={packageJson.version}
+          userGroups={userGroups}
+          onImport={setDraft}
         />
       )}
 

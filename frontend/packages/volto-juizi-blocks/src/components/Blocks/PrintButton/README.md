@@ -53,6 +53,9 @@ validate_print_config`); missing keys take the defaults (also mirrored in
 `settings/constants.ts`), so a backend without the record (before upgrade
 step 1004) serves defaults and the block still works.
 
+The print settings travel with the dashboard's Export and import tab (part
+*Print settings*), so a printout set up on one site can be copied to another.
+
 ## How printing works (`print.js`)
 
 The browser's own print on the page itself, not a copy in a frame (CRA's
