@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { LoaderCircle, Printer } from 'lucide-react';
 import { getButtonClasses, getDefaultButton } from '../../../config/colors';
-import { DEFAULT_PRINT_CONFIG, useJuiziBlocksSettings } from '../../../settings';
+import {
+  DEFAULT_PRINT_CONFIG,
+  useJuiziBlocksSettings,
+} from '../../../settings';
 import BlockErrorBoundary from '../_shared/BlockErrorBoundary';
 import BlockWrapper from '../_shared/BlockWrapper';
 import EditHint from '../_shared/EditHint';

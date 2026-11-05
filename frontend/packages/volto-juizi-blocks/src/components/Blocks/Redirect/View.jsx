@@ -54,8 +54,7 @@ const View = (props) => {
   // Shown where visitors go, instead of being sent there
   const showsPreview = isEditMode || (isLoggedIn && actionsReady && canEdit);
   // Sent on like a visitor
-  const isSent =
-    !isEditMode && (!isLoggedIn || (actionsReady && !canEdit));
+  const isSent = !isEditMode && (!isLoggedIn || (actionsReady && !canEdit));
   const shouldRedirect = isSent && !!url && !samePage && !looped;
 
   const navigate = () => {
