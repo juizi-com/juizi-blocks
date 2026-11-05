@@ -133,11 +133,14 @@ describe('resource blocks extension', () => {
     expect(vars['--resource-main-background']).toBe('transparent');
   });
 
+  // A JSX component name must be PascalCase.
+  const AbstractFrame = Frames.resourceAbstract;
+
   it('frames the content in every block, styled or not', () => {
     const { container } = render(
-      <Frames.resourceAbstract data={{}}>
+      <AbstractFrame data={{}}>
         <div className="resource-block-inner" />
-      </Frames.resourceAbstract>,
+      </AbstractFrame>,
     );
     expect(
       container.querySelector('.juizi-resource-frame > .resource-block-inner'),
@@ -147,9 +150,9 @@ describe('resource blocks extension', () => {
   it('sets the text over a background image, light by default', () => {
     const text = (data) =>
       render(
-        <Frames.resourceAbstract data={data}>
+        <AbstractFrame data={data}>
           <div />
-        </Frames.resourceAbstract>,
+        </AbstractFrame>,
       )
         .container.querySelector('.juizi-resource-frame')
         .style.getPropertyValue('--resource-text');
