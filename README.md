@@ -14,7 +14,9 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
   Reviews with star ratings and scrolling logo strips are display styles of
   the Carousel (see [Blocks](#blocks)).
 - A dashboard to switch any block on or off, limit it to some user groups,
-  and manage the colours and themes the blocks share.
+  and manage the colours and themes the blocks share, the editing language
+  and the printout. Its settings can be exported to a file and imported on
+  another site.
 - Extras for blocks from other add-ons, when a site has them: the Form block
   (`volto-form-block`) gets a cleaner look, text beside the form, label and
   help text options, the site's button styles and a background; the donation
@@ -53,7 +55,8 @@ Volto Light Theme and the block add-ons it works with, in
 juizi-blocks has two halves, installed separately:
 
 - the backend package **`juizi.blocks`**, on the site's Plone backend, stores
-  the settings (block switches, colours) and serves them;
+  the settings (block switches, colours and themes, editing language, print
+  settings) and serves them;
 - the Volto add-on **`volto-juizi-blocks`**, in the site's frontend, has the
   blocks, the dashboard and the styling.
 
@@ -175,6 +178,13 @@ Blocks** opens the dashboard.
 
 Until it is installed, a frontend with the add-on shows none of it (see
 above), so the frontend can be deployed first.
+
+A new install starts with juizi-blocks' own colours and themes, not the
+site's. To give it another site's settings (say, from the development site
+to production), use **Site Setup → Juizi Blocks → Export and import**:
+*Download settings* on the site that has them, then choose the file on the
+new site, pick the parts to take, check them and Save. See
+[The dashboard](#the-dashboard-site-setup--juizi-blocks).
 
 ### Updating
 
@@ -330,7 +340,8 @@ listed after `volto-form-block`.
 
 ## The dashboard (Site Setup → Juizi Blocks)
 
-Three tabs, sharing one Save: the save button in Volto's toolbar, or the bar
+Three tabs, and a fourth (Export and import) for people who can see Site
+Setup, sharing one Save: the save button in Volto's toolbar, or the bar
 that appears at the top as soon as something has changed (Save / Discard
 changes). Problems that would stop a save (a colour without a valid name, a
 theme missing its text colour, …) are listed there in the editor's language.
@@ -417,6 +428,28 @@ kinds of blocks left out. Text can use `[title]`, `[section]`,
 `[publication date]`, `[today]`, `[site name]` and `[page address]`. Under
 Advanced, a custom HTML header and footer for the web team replace the
 fields when filled in. See `PrintButton/README.md`.
+
+**Export and import tab** — copies the settings from one site to another,
+e.g. from a development site to production. Shown only to people who can see
+Site Setup (Managers and Site Administrators: Volto's `plone_setup` action),
+the same people the backend lets save.
+
+- *Download settings* saves a JSON file holding the saved settings (not
+  unsaved changes): block switches and groups, editing language, colours and
+  themes with the per-block choices, and print settings. It also records the
+  site, the date and the add-on version (`format: "juizi-blocks-settings"`,
+  `format_version: 1`; `settings/transfer.ts`).
+- *Choose a file…* reads such a file and lists the parts it has, all ticked:
+  *Blocks switched on or off, and who can add them*, *Editing language*,
+  *Colours and themes, and which blocks offer them*, *Print settings*. Each
+  part replaces the same part here as a whole.
+- Importing changes only the dashboard's draft: the unsaved bar appears, so
+  the other tabs can be checked before Save (or Discard changes). Saving goes
+  through `PATCH @juizi-blocks-settings`, which validates every value again.
+- Other JSON files and files from a newer `format_version` are refused.
+  Colours that fail the dashboard's checks are held back while the rest can
+  still be imported. Blocks limited to user groups the site doesn't have are
+  flagged, since nobody would be offered them.
 
 Blocks store a colour as `var(--<name>)` (the same format as before), so
 changing a colour's value updates every block that uses it. Renaming a colour
