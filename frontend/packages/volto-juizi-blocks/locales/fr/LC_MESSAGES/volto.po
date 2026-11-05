@@ -2276,6 +2276,11 @@ msgstr "Couleurs"
 msgid "juizi-dashboard-tab-print"
 msgstr "Impression"
 
+#. Default: "Export and import"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-transfer"
+msgstr "Exporter et importer"
+
 #. Default: "Block themes"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-themes"
@@ -2310,6 +2315,116 @@ msgstr "sombre"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-tone-light"
 msgstr "claire"
+
+#. Default: "Cancel"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-cancel"
+msgstr "Annuler"
+
+#. Default: "Parts to import"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-choose"
+msgstr "Parties à importer"
+
+#. Default: "Choose a file…"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-choose-file"
+msgstr "Choisir un fichier…"
+
+#. Default: "Export"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-export"
+msgstr "Exporter"
+
+#. Default: "Download settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-export-button"
+msgstr "Télécharger les réglages"
+
+#. Default: "Download this site's saved settings as a file: blocks, editing language, colours and themes, and print settings. Import the file on another site to give it the same settings."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-export-help"
+msgstr "Téléchargez les réglages enregistrés de ce site dans un fichier : blocs, langue d’édition, couleurs et thèmes, et réglages d’impression. Importez ce fichier sur un autre site pour lui donner les mêmes réglages."
+
+#. Default: "You have unsaved changes. The file holds the saved settings, without them: save first if you want them in it."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-export-unsaved"
+msgstr "Vous avez des modifications non enregistrées. Le fichier contient les réglages enregistrés, sans elles : enregistrez d’abord si vous voulez les y inclure."
+
+#. Default: "“{name}”, exported from {site} on {date}."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-from"
+msgstr "« {name} », exporté de {site} le {date}."
+
+#. Default: "Import"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-import"
+msgstr "Importer"
+
+#. Default: "Import the chosen parts"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-import-button"
+msgstr "Importer les parties choisies"
+
+#. Default: "Take settings from a file exported on another site. You choose which parts to take. They replace the same parts here as unsaved changes: look them over on the other tabs, then Save, or Discard changes to keep what you had."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-import-help"
+msgstr "Reprenez les réglages d’un fichier exporté sur un autre site. Vous choisissez les parties à reprendre. Elles remplacent les mêmes parties ici, en modifications non enregistrées : vérifiez-les dans les autres onglets, puis « Enregistrer », ou « Annuler les modifications » pour garder vos réglages."
+
+#. Default: "Imported: {parts}. Nothing is saved yet: check the other tabs, then Save."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-imported"
+msgstr "Importé : {parts}. Rien n’est encore enregistré : vérifiez les autres onglets, puis Enregistrez."
+
+#. Default: "Some blocks in this file are limited to user groups this site doesn’t have: {groups}. Nobody will be offered those blocks until you create the groups or change who can add them."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-missing-groups"
+msgstr "Certains blocs de ce fichier sont réservés à des groupes d’utilisateurs que ce site n’a pas : {groups}. Personne ne se verra proposer ces blocs tant que vous n’aurez pas créé ces groupes ou modifié qui peut les ajouter."
+
+#. Default: "“{name}” was exported by a newer version of Juizi Blocks. Update this site first."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-newer-format"
+msgstr "« {name} » a été exporté par une version plus récente de Juizi Blocks. Mettez d’abord ce site à jour."
+
+#. Default: "“{name}” can’t be read: it isn’t a settings file."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-not-json"
+msgstr "« {name} » est illisible : ce n’est pas un fichier de réglages."
+
+#. Default: "“{name}” isn’t a Juizi Blocks settings file. Use a file made with “Download settings”."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-not-ours"
+msgstr "« {name} » n’est pas un fichier de réglages Juizi Blocks. Utilisez un fichier créé avec « Télécharger les réglages »."
+
+#. Default: "This file has no settings that can be imported."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-nothing"
+msgstr "Ce fichier ne contient aucun réglage importable."
+
+#. Default: "Blocks switched on or off, and who can add them"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-part-blocks"
+msgstr "Blocs activés ou désactivés, et qui peut les ajouter"
+
+#. Default: "Colours and themes, and which blocks offer them"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-part-colors"
+msgstr "Couleurs et thèmes, et les blocs qui les proposent"
+
+#. Default: "“{part}” in this file is damaged or incomplete, so it can’t be imported."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-part-invalid"
+msgstr "« {part} » est endommagé ou incomplet dans ce fichier : impossible de l’importer."
+
+#. Default: "Editing language"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-part-language"
+msgstr "Langue d’édition"
+
+#. Default: "Print settings"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-transfer-part-print"
+msgstr "Réglages d’impression"
 
 #. Default: "Colour {number}"
 #: components/Dashboard/messages
