@@ -293,6 +293,28 @@ describe('Hero backgrounds and side image', () => {
     expect(overlays).toHaveLength(1);
     expect(overlays[0].style.background).toBe('rgb(2, 62, 138)');
   });
+
+  it('uses the preview image as background in Hero mode only', () => {
+    const properties = {
+      '@id': 'http://localhost:3000/news/item',
+      preview_image_link: { '@id': 'http://localhost:3000/images/photo.jpg' },
+    };
+    // A converted legacy hero, later switched to a Section band: the
+    // section sidebar has no preview-image switch to turn it off.
+    const section = renderHero({
+      data: { blockMode: 'section', usePreviewImage: true },
+      properties,
+    });
+    expect(section.container.querySelector('.hero-block__image-bg')).toBeNull();
+    const hero = renderHero({
+      data: { blockMode: 'hero', usePreviewImage: true },
+      properties,
+    });
+    expect(
+      hero.container.querySelector('.hero-block__image-bg').style
+        .backgroundImage,
+    ).toContain('/images/photo.jpg');
+  });
 });
 
 describe('Hero TOC button labels', () => {

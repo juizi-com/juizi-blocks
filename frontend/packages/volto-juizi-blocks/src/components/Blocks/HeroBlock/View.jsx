@@ -725,8 +725,11 @@ const View = (props) => {
   }
 
   // ── Background image (both modes) ───────────────────────────────────────
+  // The preview image is a hero-mode option only: section mode's sidebar has
+  // no switch for it, so a usePreviewImage left over from hero mode (or from
+  // a converted legacy hero) must not keep showing the picture.
   let imageUrl = '';
-  if (data.usePreviewImage) {
+  if (isHeroMode && data.usePreviewImage) {
     imageUrl = getPreviewImageUrl(properties);
   } else {
     const img = data.backgroundImage?.[0];
