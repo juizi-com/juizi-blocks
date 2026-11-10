@@ -34,8 +34,12 @@
 // cover real <button>s (the carousel and gallery arrows, the enlarged view's
 // buttons), which keep their own square size but get the same colours and
 // hover. :is(a, button) is as specific as `a`, so nothing else changes.
+// The membership sign-up block's main button (Sign up, Claim my place) is a
+// real <button> with words, so it takes the size too
+// (extensions/membershipSignup/buttonProps.js).
 
-a.btn-unified {
+a.btn-unified,
+button.btn-unified.membership-button {
   @include btn-context {
     display: inline-flex;
     align-items: center;
