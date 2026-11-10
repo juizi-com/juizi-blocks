@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import installMembershipSignupExtension from './index';
 import schemaEnhancer from './schema';
 import Frame, { formColorVars } from './Frame';
+import buttonProps from './buttonProps';
 
 jest.mock('@plone/volto/registry', () => ({ settings: {} }));
 
@@ -20,7 +21,12 @@ describe('membership sign-up block extension', () => {
     installMembershipSignupExtension(config);
     const [{ type, name, method }] = config.registerUtility.mock.calls[0];
     expect([type, name]).toEqual(['blockExtension', 'membershipSignup']);
-    expect(Object.keys(method())).toEqual(['schemaEnhancer', 'Frame', 'group']);
+    expect(Object.keys(method())).toEqual([
+      'schemaEnhancer',
+      'Frame',
+      'buttonProps',
+      'group',
+    ]);
     // Membership loads later: it reads the group from the utility.
     expect(method().group).toBe('juizi');
   });
@@ -85,5 +91,21 @@ describe('membership sign-up block extension', () => {
     const outline = formColorVars({ mainButtonStyle: 'outline__c8102e' });
     expect(outline['--membership-button-background']).toBe('transparent');
     expect(outline['--membership-button-hover-background']).toBe('#c8102e');
+  });
+
+  it('makes the main button a unified button in the chosen colour', () => {
+    const { className, style } = buttonProps({
+      mainButtonStyle: 'outline__c8102e',
+    });
+    expect(className.split(' ')).toEqual(
+      expect.arrayContaining(['btn-unified', 'btn-outline']),
+    );
+    expect(style['--btn-color']).toBe('#c8102e');
+  });
+
+  it('keeps the block accent on a unified button with no colour chosen', () => {
+    const { className, style } = buttonProps({});
+    expect(className).toBe('btn-unified btn-solid');
+    expect(style['--btn-color']).toBe('var(--m-accent)');
   });
 });

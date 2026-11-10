@@ -33,3 +33,13 @@
   > .membership-signup-wrapper {
   padding-bottom: clamp(3rem, 8vw, 6rem);
 }
+
+/* The main button is a unified button (buttonProps.js): no hover change
+   while it can't be pressed (sending, or in the editor) */
+.membership-signup
+  .membership-submit
+  button.btn-unified.membership-button[disabled] {
+  cursor: not-allowed;
+  filter: none;
+  opacity: 0.55;
+}
