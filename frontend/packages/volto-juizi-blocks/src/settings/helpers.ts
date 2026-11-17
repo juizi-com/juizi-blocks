@@ -234,6 +234,9 @@ export function renameColor(
     blocks: mapBlocks(config, (v) => ({
       ...v,
       colors: (v.colors || []).map((n) => (n === from ? to : n)),
+      ...(v.chartColors
+        ? { chartColors: v.chartColors.map((n) => (n === from ? to : n)) }
+        : {}),
       ...(v.calloutTypes
         ? {
             calloutTypes: mapCalloutTypeColors(v.calloutTypes, (n) =>
@@ -260,6 +263,9 @@ export function removeColor(config: ColorConfig, name: string): ColorConfig {
     blocks: mapBlocks(config, (v) => ({
       ...v,
       colors: (v.colors || []).filter((n) => n !== name),
+      ...(v.chartColors
+        ? { chartColors: v.chartColors.filter((n) => n !== name) }
+        : {}),
       ...(v.calloutTypes
         ? {
             calloutTypes: mapCalloutTypeColors(v.calloutTypes, (n) =>

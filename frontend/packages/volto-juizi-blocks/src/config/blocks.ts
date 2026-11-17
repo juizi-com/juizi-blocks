@@ -33,8 +33,19 @@ export default function install(config: ConfigType) {
   }
 
   juiziBlocks.forEach((definition) => {
-    const { schemaEnhancer, usesColors, usesThemes, isConfigured, ...block } =
-      definition;
+    const {
+      schemaEnhancer,
+      usesColors,
+      usesThemes,
+      isConfigured,
+      widgets,
+      ...block
+    } = definition;
+    // Sidebar widgets a block's schema uses (Data visualisation's picker).
+    if (widgets) {
+      config.widgets = config.widgets || ({} as any);
+      config.widgets.widget = { ...config.widgets.widget, ...widgets };
+    }
     // The block's own enhancer runs last so it has the final say.
     const enhancers = [
       usesThemes ? themeStylingSchema : undefined,

@@ -39,6 +39,7 @@ import callout from '../components/Blocks/Callout';
 import audio from '../components/Blocks/Audio';
 import pricingTiers from '../components/Blocks/PricingTiers';
 import printButton from '../components/Blocks/PrintButton';
+import graph from '../components/Blocks/Graph';
 
 export type JuiziBlockDefinition = {
   id: string;
@@ -69,6 +70,9 @@ export type JuiziBlockDefinition = {
    * hidden, so the editor only sees the block's first choice. */
   isConfigured?: (data: any) => boolean;
   restricted?: boolean | ((args: any) => boolean);
+  /** Sidebar widgets the block's schema uses, registered in
+   * config.widgets.widget under these names. */
+  widgets?: Record<string, React.ComponentType<any>>;
   schemaEnhancer?: (args: any) => any;
   /** Any other Volto block config (sidebarTab, security, ...). Blocks go in
    * the "Juizi" chooser group unless they set `group`. */
@@ -148,4 +152,5 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
   audio,
   pricingTiers,
   printButton,
+  graph,
 ];

@@ -57,4 +57,10 @@ export default defineMessages({
     defaultMessage:
       'Price cards side by side, each with a name, price, features and a button.',
   },
+  graph: { id: 'Data visualisation', defaultMessage: 'Data visualisation' },
+  graphDescription: {
+    id: 'Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file.',
+    defaultMessage:
+      'Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file.',
+  },
 });

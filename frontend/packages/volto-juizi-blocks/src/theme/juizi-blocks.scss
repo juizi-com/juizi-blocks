@@ -588,6 +588,44 @@
     }
   }
 
+  // ---- Chart colours (Data visualisation) ----
+
+  &__chart-color-list {
+    display: grid;
+    max-width: 40rem;
+    padding: 0;
+    margin: 0 0 12px;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    list-style: none;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  &__chart-color-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &__chart-color-preview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__chart-swatch {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
   // ---- Print tab ----
 
   &__print-field {

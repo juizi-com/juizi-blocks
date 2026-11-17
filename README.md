@@ -249,6 +249,7 @@ point here too.
 | Audio | `audioBlock` | yes | | `Audio/README.md` |
 | Pricing tiers | `pricingTiers` | yes | | `PricingTiers/README.md` |
 | Print button | `printReport` | yes | | `PrintButton/README.md` |
+| Data visualisation | `graphBlock` | yes | | `Graph/README.md` |
 
 The ids match the previous add-on, so existing content keeps rendering.
 In the block chooser they are grouped under **Juizi** (after "Most used").
@@ -864,6 +865,13 @@ block's class; the carousel's classes are `{blockClass}__embla`,
 `__embla-viewport`, `__embla-container`, `__embla-slide`, `__embla-dots`,
 `__embla-dot`), `label` (the region's accessible name), `autoplay` (never with
 reduced motion), `showDots`, `startIndex` (the slide shown first), `arrows` (`'above'`, `'middle'` — one on each side, in columns of their own so the slide narrows instead of being covered — or `'below'`) and `arrowStyle` (a button style; empty is outlined in the text colour; `mobile-carousel.css`). Without arrows the markup is unchanged. Slides get equal heights.
+
+**`CountUp`** — a figure that counts up from zero when it comes into view
+(Content Row statistics, Data visualisation key figures). Props: `end`,
+`duration` in ms (`0` shows the figure straight away), `formatK` (1,000 →
+1k), `className`. Keeps the figure's decimals (8.63 counts up as 8.63). The
+server and visitors with reduced motion get the final figure, and so does a
+printout started mid-count.
 
 **`NavArrowIcon`** — the left / right arrow used on the Carousel's and the mobile carousel's buttons (`direction`, `className`).
 

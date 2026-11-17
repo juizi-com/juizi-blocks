@@ -6,6 +6,7 @@ Consolidated Juizi block set for Volto, with a central colour dashboard and per-
 
 - Stores the Juizi Blocks settings (which blocks are switched off or on and for which user groups, the shared colours and block themes, the editing language and the print settings) in the Plone registry.
 - Serves them to Volto through the `@juizi-blocks-settings` REST API service: anybody can read them (the frontend needs them to render), only Managers and Site Administrators (`cmf.ManagePortal`) can change them, with `PATCH`, and every value is validated (`juizi.blocks.settings`).
+- Gives the Data visualisation block (`graphBlock`) its figures (`juizi.blocks.graph`): every page request adds the current contents of the block's linked CSV file as `dataTable`, never saved, cached by the file's last save so a new upload shows at once, and cut to 1,000 points or rows. Saving a new version of a file purges the pages that use it, link integrity knows about it, and `@juizi-graph-data` (POST, editors only) reads pasted figures and previews a newly chosen file.
 - The dashboard's Export and import tab copies them between sites through the same service: a file from `GET` on one site, `PATCH` on the other.
 - Translated into French, Portuguese (`pt` and `pt_BR`), Spanish and Afrikaans, next to the English source.
 

@@ -33,6 +33,16 @@ A block that needs more than one repair gets them all.
 Link fields saved as a plain URL string (older Redirect blocks) are read as
 well as the link picker's format (`_shared/links.js`).
 
+## volto-GraphBlock (CRA)
+
+CRA's charts were a separate add-on with the same block id, `graphBlock`. The
+Data visualisation block reads its saved blocks as they are, with no
+conversion: the field ids and `chartType` values are the same. What changes on
+those pages (colours from the dashboard, no chart animation, long files cut to
+1,000 points or rows, `shuffleColours` ignored) is listed under **Saved
+content** in `Graph/README.md`. Remove the site's own registration of the old
+block when switching.
+
 ## acqf
 
 Same block generation as juizi-blocks (`juiziHero`, `contentRow`,

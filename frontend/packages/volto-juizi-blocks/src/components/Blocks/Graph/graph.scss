@@ -1,0 +1,544 @@
+// Data visualisation block. Colours from the site's tokens where there is
+// one, with fallbacks; chart colours come from the dashboard (palette.js).
+
+.graph-block {
+  // No space of its own: the editor's Top / Bottom padding, else the gap
+  // every block has below it.
+  margin: 0;
+
+  &__title {
+    margin: 0 0 1rem;
+  }
+
+  &__caption {
+    margin-top: 0.75rem;
+    font-size: 0.95em;
+    text-align: center;
+  }
+
+  &__note {
+    margin: 0.5rem 0 0;
+    color: var(--grey, #595959);
+    font-size: 0.875em;
+  }
+
+  &__numbers {
+    margin-top: 0.75rem;
+    font-size: 0.9em;
+
+    summary {
+      color: var(--grey, #595959);
+      cursor: pointer;
+    }
+
+    .graph-table__scroll {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &--loading {
+    min-height: 240px;
+    border-radius: 4px;
+    animation: block-skeleton-pulse 1.4s ease-in-out infinite;
+    background: var(--lightest, #f4f4f4);
+  }
+}
+
+.graph-block--narrow .graph-block {
+  max-width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+// ── Charts ──────────────────────────────────────────────────────────────
+.graph-chart {
+  position: relative;
+  width: 100%;
+
+  &__svg,
+  &__live,
+  &__print {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__print {
+    display: none;
+
+    @media print {
+      display: block;
+    }
+  }
+
+  // The server's drawing scales to the box until the interactive chart
+  // takes over at the real size.
+  &__svg svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__svg:empty {
+    border-radius: 4px;
+    background: var(--lightest, #f4f4f4);
+  }
+}
+
+// ── Tables ──────────────────────────────────────────────────────────────
+.graph-table__search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.graph-table__search-input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #8c8c8c;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.graph-table__count {
+  color: var(--grey, #595959);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.graph-table__scroll {
+  overflow-x: auto;
+}
+
+.graph-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    padding: 0.65rem 1rem;
+    border-right: 1px solid #dee2e6;
+    text-align: left;
+    vertical-align: top;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  thead th {
+    border-bottom: 2px solid #dee2e6;
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  tbody tr:hover {
+    background: #f8f9fa;
+  }
+}
+
+.graph-table__row--hidden {
+  display: none;
+}
+
+.graph-table__no-results td {
+  padding: 2rem;
+  color: var(--grey, #595959);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .graph-block--table .graph-table {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    tbody td {
+      display: flex;
+      justify-content: space-between;
+      border-right: none;
+      border-bottom: 1px solid #f0f0f0;
+      gap: 1rem;
+      text-align: right;
+
+      &::before {
+        flex-shrink: 0;
+        color: #333;
+        content: attr(data-label);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ── Cards ───────────────────────────────────────────────────────────────
+.graph-cards__grid {
+  display: grid;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  grid-template-columns: repeat(var(--graph-cols, 3), minmax(0, 1fr));
+
+  @for $cols from 2 through 5 {
+    &--cols-#{$cols} {
+      --graph-cols: #{$cols};
+    }
+  }
+
+  &--ranked-bars {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// With "Swipe through cards on phones", phones get the carousel instead.
+.graph-cards__embla {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .graph-cards__grid--carousel {
+    display: none;
+  }
+
+  .graph-cards__embla {
+    display: block;
+    overflow: hidden;
+  }
+
+  .graph-cards__embla-container {
+    display: flex;
+  }
+
+  .graph-cards__embla-slide {
+    min-width: 0;
+    flex: 0 0 88%;
+    padding-right: 0.75rem;
+  }
+
+  .graph-cards__embla-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .graph-cards__embla-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+
+    &.is-selected {
+      background: currentColor;
+    }
+  }
+}
+
+.graph-card {
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+
+  &--colored {
+    --graph-accent: currentColor;
+
+    border-color: transparent;
+  }
+}
+
+.align-center .graph-card {
+  text-align: center;
+}
+
+.align-right .graph-card {
+  text-align: right;
+}
+
+.graph-stat {
+  &__label {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  &__primary {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  &__unit {
+    margin-left: 0.1em;
+    font-size: 0.55em;
+  }
+
+  &__primary-label {
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  &__subs {
+    padding: 0.75rem 0 0;
+    border-top: 1px solid currentColor;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__sub {
+    font-size: 0.875rem;
+  }
+
+  &__arrow {
+    margin-right: 0.35rem;
+    font-size: 0.75rem;
+  }
+
+  &__sub-label {
+    opacity: 0.8;
+  }
+
+  &__sub-value {
+    font-weight: 600;
+  }
+}
+
+.graph-ranked {
+  &__header {
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__subtitle {
+    margin: 0.25rem 0 0;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  // Themes add bullets to list items; these lists show bars instead.
+  &__item {
+    margin-bottom: 0.75rem;
+    list-style: none;
+
+    &::before,
+    &::marker {
+      display: none;
+      content: none;
+    }
+  }
+
+  &__track {
+    overflow: hidden;
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    background: rgba(128, 128, 128, 0.25);
+
+    &--bare {
+      background: transparent;
+    }
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: 4px;
+    // The first chart colour; on a coloured card, the card's text colour.
+    background: var(--graph-accent, currentColor);
+  }
+
+  &__meta {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__label {
+    flex: 1;
+  }
+
+  &__value,
+  &__rank {
+    font-weight: 600;
+  }
+}
+
+// ── Print ───────────────────────────────────────────────────────────────
+// A chart, with its title and caption, moves whole to the next page rather
+// than splitting. Long tables continue over pages, breaking between rows,
+// with the header row repeated.
+// Keys under a chart: they wrap onto more lines on narrow screens, with the
+// same space between keys on every line.
+.graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  gap: 8px 28px;
+  list-style: none;
+
+  &__item {
+    margin: 0;
+    list-style: none;
+
+    &::before,
+    &::marker {
+      display: none;
+      content: none;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #333333;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    gap: 6px;
+    line-height: 1.3;
+    text-align: left;
+
+    &:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    &[aria-pressed='false'] {
+      opacity: 0.45;
+      text-decoration: line-through;
+    }
+
+    &:focus-visible {
+      border-radius: 2px;
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+
+  &__swatch {
+    width: 12px;
+    height: 12px;
+    flex: none;
+    border-radius: 3px;
+  }
+}
+
+@media print {
+  .graphBlock,
+  .graph-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .graph-block--table,
+  .type-table,
+  .type-searchableTable {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .graph-block__title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .graph-chart {
+    max-height: 17cm;
+  }
+
+  // The print copy (drawn at the paper's width before printing, Chart.jsx)
+  // replaces the interactive chart; like the server's drawing, it scales
+  // to the page.
+  .graph-chart__print:not(:empty) ~ .graph-chart__live,
+  .graph-chart__live:has(~ .graph-chart__print:not(:empty)) {
+    display: none;
+  }
+
+  .graph-chart__print svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  // A scrolling box can't be split across pages: let long tables run on.
+  .graph-table__scroll {
+    overflow: visible;
+  }
+
+  // The Print button keeps every table and figure whole
+  // (html.juizi-printing table); these tables may still run on between
+  // rows, as above.
+  html.juizi-printing .graph-block--table,
+  html.juizi-printing .graph-table {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .graph-table thead {
+    display: table-header-group;
+  }
+
+  .graph-table tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .graph-table__row--hidden {
+    display: table-row;
+  }
+
+  // Keep the printed swatches' colours.
+  .graph-legend__swatch {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .graph-table__search,
+  .graph-table__no-results,
+  .graph-block__numbers,
+  .graph-cards__embla {
+    display: none;
+  }
+
+  .graph-cards__grid--carousel {
+    display: grid;
+  }
+}

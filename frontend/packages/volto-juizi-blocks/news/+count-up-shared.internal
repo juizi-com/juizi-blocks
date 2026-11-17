@@ -1,0 +1,1 @@
+`CountUp` moved from the Content Row into `_shared/`; it keeps decimals, takes `duration: 0` for no animation, and shows the final figure when a page is printed mid-count.

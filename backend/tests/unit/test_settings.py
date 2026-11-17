@@ -216,3 +216,15 @@ def test_print_config_keeps_site_paths_and_web_addresses():
     for url in ("javascript:alert(1)", "data:image/png;base64,xx", "logo.png"):
         with pytest.raises(SettingsValidationError):
             validate_print_config({"logo_url": url})
+
+
+def test_chart_colours_keep_order_and_drop_removed_colours():
+    result = validate_color_config(
+        config(blocks={"graphBlock": {"chartColors": ["gold", "gone", "green"]}})
+    )
+    assert result["blocks"]["graphBlock"]["chartColors"] == ["gold", "green"]
+
+
+def test_chart_colours_must_be_a_list():
+    with pytest.raises(SettingsValidationError):
+        validate_color_config(config(blocks={"graphBlock": {"chartColors": "gold"}}))
