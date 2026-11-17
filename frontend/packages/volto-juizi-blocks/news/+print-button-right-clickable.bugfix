@@ -1,0 +1,1 @@
+Print button: a right-aligned button can be clicked again. It floats in a block of no height, and the next block's box (positioned by the theme) was drawn over it and took its clicks.

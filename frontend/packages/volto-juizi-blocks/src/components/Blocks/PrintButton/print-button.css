@@ -12,8 +12,12 @@
   align-items: center;
 }
 
-/* Right: beside the text that follows, as a float. */
+/* Right: beside the text that follows, as a float. Positioned above the
+   next block, whose box (positioned by the theme) would otherwise cover the
+   button and take its clicks. */
 .juizi-print--right {
+  position: relative;
+  z-index: 1;
   align-items: flex-end;
   margin: 0 0 1rem 1rem;
   float: right;
