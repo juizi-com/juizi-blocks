@@ -78,4 +78,58 @@ describe('Site Setup → Add-ons on a frontend with volto-juizi-blocks', () => {
       [ADDON_ID, 'collective.other'].sort(),
     );
   });
+
+  describe('on a site that hides juizi.blocks once installed', () => {
+    // As plone.org does: ploneorg installs and upgrades juizi.blocks, and
+    // leaves it out of the list. The settings service says it is installed.
+    const settingsLoaded = {
+      type: 'GET_JUIZI_BLOCKS_SETTINGS_SUCCESS',
+      result: { color_config: {} },
+    };
+    const notInstalled = {
+      type: 'GET_JUIZI_BLOCKS_SETTINGS_FAIL',
+      error: { status: 404 },
+    };
+    const list = { type: 'LIST_ADDONS_SUCCESS', result: { items: [plain] } };
+    const run = (...actions) => actions.reduce(juiziAddons, undefined);
+    const offered = (state) =>
+      state.availableAddons.some((a) => a.id === ADDON_ID);
+
+    it('offers nothing when the settings load first', () => {
+      expect(offered(run(settingsLoaded, list))).toBe(false);
+    });
+
+    it('takes the offer back when the settings load after the list', () => {
+      expect(offered(run(list))).toBe(true);
+      expect(offered(run(list, settingsLoaded))).toBe(false);
+    });
+
+    it('still offers it when the settings are missing (404)', () => {
+      expect(offered(run(notInstalled, list))).toBe(true);
+      expect(offered(run(list, notInstalled))).toBe(true);
+      expect(
+        run(list, notInstalled).availableAddons.filter(
+          (a) => a.id === ADDON_ID,
+        ),
+      ).toHaveLength(1);
+    });
+
+    it('offers it again once it is uninstalled', () => {
+      const state = run(settingsLoaded, list, notInstalled);
+      expect(offered(state)).toBe(true);
+    });
+
+    it('keeps the verdict when the settings fail for another reason', () => {
+      const state = run(settingsLoaded, list, {
+        type: 'GET_JUIZI_BLOCKS_SETTINGS_FAIL',
+        error: { status: 500 },
+      });
+      expect(offered(state)).toBe(false);
+    });
+
+    it('leaves the state alone on unrelated actions', () => {
+      const state = run(settingsLoaded, list);
+      expect(juiziAddons(state, { type: 'SOMETHING_ELSE' })).toBe(state);
+    });
+  });
 });
