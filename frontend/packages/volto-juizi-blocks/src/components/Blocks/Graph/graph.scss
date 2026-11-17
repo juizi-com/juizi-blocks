@@ -470,8 +470,8 @@
   }
 
   .graph-block--table,
-  .type-table,
-  .type-searchableTable {
+  .graphBlock.type-table,
+  .graphBlock.type-searchableTable {
     break-inside: auto;
     page-break-inside: auto;
   }
