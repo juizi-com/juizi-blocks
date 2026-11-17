@@ -1,0 +1,1 @@
+Site Setup → Add-ons no longer offers to install Juizi Blocks on a site that has it installed but hides it from the list (as plone.org does): the offer now follows the settings service. Installing it again there would have reset its settings.
