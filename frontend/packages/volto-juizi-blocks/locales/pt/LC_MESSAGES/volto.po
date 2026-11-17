@@ -46,6 +46,16 @@ msgstr "Carrossel"
 msgid "Content Row"
 msgstr "Linha de conteúdo"
 
+#. Default: "Data visualisation"
+#: blocks/messages
+msgid "Data visualisation"
+msgstr "Visualização de dados"
+
+#. Default: "Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file."
+#: blocks/messages
+msgid "Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file."
+msgstr "Números de uma folha de cálculo como gráfico, tabela ou cartões, sempre atualizados com o ficheiro."
+
 #. Default: "Gallery"
 #: blocks/messages
 msgid "Gallery"
@@ -1776,6 +1786,31 @@ msgstr "As cores com que um destaque começa quando um editor escolhe o seu tipo
 msgid "juizi-dashboard-cancel"
 msgstr "Descartar alterações"
 
+#. Default: "Colour {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colour"
+msgstr "Cor {number}"
+
+#. Default: "Add a colour…"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colour-add"
+msgstr "Adicionar uma cor…"
+
+#. Default: "Chart colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours"
+msgstr "Cores dos gráficos"
+
+#. Default: "The colours charts use, in order: the first column of figures gets colour 1, the next colour 2, and so on. Leave them empty to use the site’s colours in their order, without the very light ones."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours-help"
+msgstr "As cores dos gráficos, por ordem: a primeira coluna de números recebe a cor 1, a seguinte a cor 2, e assim por diante. Deixe-as vazias para usar as cores do site pela sua ordem, sem as muito claras."
+
+#. Default: "Charts will use:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours-preview"
+msgstr "Os gráficos vão usar:"
+
 #. Default: "Colours"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-colors"
@@ -2980,6 +3015,661 @@ msgstr "Branco, definição anterior"
 #: components/Blocks/_shared/messages
 msgid "juizi-go-to-slide"
 msgstr "Ir para o diapositivo {number}"
+
+#. Default: "Optional, for example “Year” or “Rand (millions)”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-axis-label-help"
+msgstr "Opcional, por exemplo “Ano” ou “Rand (milhões)”."
+
+#. Default: "Grey line behind the bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bar-track"
+msgstr "Linha cinzenta atrás das barras"
+
+#. Default: "Shows how far each bar is from the largest."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bar-track-help"
+msgstr "Mostra a distância de cada barra até à maior."
+
+#. Default: "Show a bar under each item"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bars-in-cards"
+msgstr "Mostrar uma barra por baixo de cada item"
+
+#. Default: "Caption"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-caption"
+msgstr "Legenda"
+
+#. Default: "Shown underneath, for example the source of the figures. Captions are numbered “Figure 1”, “Figure 2” down the page."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-caption-help"
+msgstr "Mostrada por baixo, por exemplo a fonte dos números. As legendas são numeradas “Figura 1”, “Figura 2” ao longo da página."
+
+#. Default: "Text alignment"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-alignment"
+msgstr "Alinhamento do texto"
+
+#. Default: "Card colour"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-colour"
+msgstr "Cor dos cartões"
+
+#. Default: "The text colour follows the card colour automatically."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-colour-help"
+msgstr "A cor do texto acompanha automaticamente a cor dos cartões."
+
+#. Default: "Cards per row"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-cards-per-row"
+msgstr "Cartões por linha"
+
+#. Default: "Name for the labels (beside the chart)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-category-axis"
+msgstr "Nome dos rótulos (ao lado do gráfico)"
+
+#. Default: "Show as"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-chart-type"
+msgstr "Mostrar como"
+
+#. Default: "Choose your CSV file under “CSV file” in the sidebar. Not on the site yet? Save this page, add the file with the Add (+) button in the toolbar, then come back and choose it."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-choose-file"
+msgstr "Escolha o seu ficheiro CSV em “Ficheiro CSV” na barra lateral. Ainda não está no site? Guarde esta página, adicione o ficheiro com o botão Adicionar (+) da barra de ferramentas e volte para o escolher."
+
+#. Default: "Your figures are ready. Choose how to show them under “How to show it” in the sidebar: a chart, a table or cards."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-choose-view"
+msgstr "Os seus números estão prontos. Escolha como mostrá-los em “Como mostrar” na barra lateral: um gráfico, uma tabela ou cartões."
+
+#. Default: "Count up the figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-count-up"
+msgstr "Animar os números"
+
+#. Default: "The figures count up from zero when the cards come into view. Visitors who turn off motion on their device see the final figures."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-count-up-help"
+msgstr "Os números contam a partir de zero quando os cartões aparecem. Os visitantes que desligam as animações no dispositivo veem logo os números finais."
+
+#. Default: "CSV file"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-csv-file"
+msgstr "Ficheiro CSV"
+
+#. Default: "Choose a CSV file on this site. Save it from your spreadsheet as “CSV”. The first row holds the column names, the first column the labels (years, places, names). Not on the site yet? Save this page, add the file with the Add (+) button in the toolbar, then come back and choose it here."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-csv-file-help"
+msgstr "Escolha um ficheiro CSV deste site. Guarde-o a partir da sua folha de cálculo como “CSV”. A primeira linha tem os nomes das colunas e a primeira coluna os rótulos (anos, locais, nomes). Ainda não está no site? Guarde esta página, adicione o ficheiro com o botão Adicionar (+) da barra de ferramentas e volte para o escolher aqui."
+
+#. Default: "Write the figures on the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-labels"
+msgstr "Escrever os números no gráfico"
+
+#. Default: "Each bar, point or slice gets its figure. Visitors can always point at the chart to see them."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-labels-help"
+msgstr "Cada barra, ponto ou fatia mostra o seu número. Os visitantes podem sempre apontar para o gráfico para os ver."
+
+#. Default: "Where is your data?"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-source"
+msgstr "Onde estão os seus dados?"
+
+#. Default: "What separates the columns in the file"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter"
+msgstr "O que separa as colunas no ficheiro"
+
+#. Default: "Work it out automatically"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-auto"
+msgstr "Detetar automaticamente"
+
+#. Default: "Commas ( , )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-comma"
+msgstr "Vírgulas ( , )"
+
+#. Default: "Usually worked out automatically. Change it only if the columns come out wrong."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-help"
+msgstr "Normalmente detetado automaticamente. Altere-o só se as colunas saírem mal."
+
+#. Default: "Vertical bars ( | )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-pipe"
+msgstr "Barras verticais ( | )"
+
+#. Default: "Semicolons ( ; )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-semicolon"
+msgstr "Pontos e vírgulas ( ; )"
+
+#. Default: "Tabs"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-tab"
+msgstr "Tabulações"
+
+#. Default: "(lower)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-down"
+msgstr "(menor)"
+
+#. Default: "(the same)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-same"
+msgstr "(igual)"
+
+#. Default: "(higher)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-up"
+msgstr "(maior)"
+
+#. Default: "There are no rows of figures in your data, only column names (or nothing at all). Check the file or the pasted cells."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-empty"
+msgstr "Os seus dados não têm linhas de números, só nomes de colunas (ou nada). Verifique o ficheiro ou as células coladas."
+
+#. Default: "The linked file can’t be found. It may have been deleted: choose it again under “CSV file” in the sidebar."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-missing"
+msgstr "Não é possível encontrar o ficheiro ligado. Pode ter sido eliminado: escolha-o de novo em “Ficheiro CSV” na barra lateral."
+
+#. Default: "You aren’t allowed to see the linked file. Ask whoever added it, or choose another file."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-private"
+msgstr "Não tem permissão para ver o ficheiro ligado. Pergunte a quem o adicionou, ou escolha outro ficheiro."
+
+#. Default: "This file is too big to draw on a page (more than 5 MB). Save a shorter version, for example monthly instead of daily figures."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-too-big"
+msgstr "Este ficheiro é demasiado grande para mostrar numa página (mais de 5 MB). Guarde uma versão mais curta, por exemplo números mensais em vez de diários."
+
+#. Default: "This file can’t be read as a table. Check that it was saved from your spreadsheet as “CSV”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-unreadable"
+msgstr "Este ficheiro não pode ser lido como tabela. Verifique se foi guardado a partir da sua folha de cálculo como “CSV”."
+
+#. Default: "Figure {number}:"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-figure"
+msgstr "Figura {number}:"
+
+#. Default: "Visitors can’t see this file yet, so they won’t see this chart. Publish the file too."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-file-private"
+msgstr "Os visitantes ainda não podem ver este ficheiro, por isso não vão ver este gráfico. Publique também o ficheiro."
+
+#. Default: "Cards"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-cards"
+msgstr "Cartões"
+
+#. Default: "Charts"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-charts"
+msgstr "Gráficos"
+
+#. Default: "Tables"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-tables"
+msgstr "Tabelas"
+
+#. Default: "Leave out of the figure numbers"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-independent"
+msgstr "Deixar fora da numeração das figuras"
+
+#. Default: "The caption gets no “Figure” number, and the next ones don’t count this one."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-independent-help"
+msgstr "A legenda não recebe número de “Figura” e as seguintes não contam com esta."
+
+#. Default: "In the middle of each bar"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-centre"
+msgstr "No meio de cada barra"
+
+#. Default: "Just past the end of each bar"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-end"
+msgstr "Logo a seguir ao fim de cada barra"
+
+#. Default: "Where to write them"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-position"
+msgstr "Onde os escrever"
+
+#. Default: "Inside, near the start"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-start"
+msgstr "Por dentro, perto do início"
+
+#. Default: "Key: select an item to hide or show it in the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-legend"
+msgstr "Legenda: selecione um item para o ocultar ou mostrar no gráfico"
+
+#. Default: "Optional: with this many rows, a line is easier to read than bars."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-many-bars"
+msgstr "Opcional: com tantas linhas, uma linha é mais fácil de ler do que barras."
+
+#. Default: "Optional: pies read best with up to 8 slices. Bars or sideways bars may suit these figures better."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-many-slices"
+msgstr "Opcional: os gráficos circulares leem-se melhor com até 8 fatias. Barras ou barras horizontais podem servir melhor estes números."
+
+#. Default: "Swipe through cards on phones"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-mobile-carousel"
+msgstr "Deslizar os cartões no telemóvel"
+
+#. Default: "On small screens, one card at a time instead of a long column."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-mobile-carousel-help"
+msgstr "Em ecrãs pequenos, um cartão de cada vez em vez de uma coluna comprida."
+
+#. Default: "Narrow"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-narrow"
+msgstr "Estreito"
+
+#. Default: "Half the usual width, centred."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-narrow-help"
+msgstr "Metade da largura habitual, centrado."
+
+#. Default: "“{view}” needs at least {count} columns in your data. Choose another way to show it, or add columns to your data."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-needs-columns"
+msgstr "“{view}” precisa de pelo menos {count} colunas nos seus dados. Escolha outra forma de os mostrar, ou acrescente colunas aos seus dados."
+
+#. Default: "“{view}” needs figures, but the columns after the first hold text. Choose “Table” instead, or check your data."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-needs-numbers"
+msgstr "“{view}” precisa de números, mas as colunas depois da primeira têm texto. Escolha antes “Tabela”, ou verifique os seus dados."
+
+#. Default: "Title and caption"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-caption"
+msgstr "Título e legenda"
+
+#. Default: "Your data"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-data"
+msgstr "Os seus dados"
+
+#. Default: "Look"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-look"
+msgstr "Aspeto"
+
+#. Default: "How to show it"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-view"
+msgstr "Como mostrar"
+
+#. Default: "Paste your cells here"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-box"
+msgstr "Cole aqui as suas células"
+
+#. Default: "Keep the current figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-cancel"
+msgstr "Manter os números atuais"
+
+#. Default: "These figures couldn’t be read. Copy the cells again from your spreadsheet, including the row of column names."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-failed"
+msgstr "Não foi possível ler estes números. Copie de novo as células da sua folha de cálculo, incluindo a linha dos nomes das colunas."
+
+#. Default: "Copy the cells in your spreadsheet, paste them under “Your figures” in the sidebar, and press “Use these figures”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-prompt"
+msgstr "Copie as células da sua folha de cálculo, cole-as em “Os seus números” na barra lateral e carregue em “Usar estes números”."
+
+#. Default: "Reading your figures…"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-reading"
+msgstr "A ler os seus números…"
+
+#. Default: "Paste new figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-replace"
+msgstr "Colar números novos"
+
+#. Default: "In use: {columns, plural, one {# column} other {# columns}} ({names}), {rows, plural, one {# row} other {# rows}}."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-summary"
+msgstr "Em uso: {columns, plural, one {# coluna} other {# colunas}} ({names}), {rows, plural, one {# linha} other {# linhas}}."
+
+#. Default: "That’s too much to keep in the page. Save it as a CSV file instead, add it to the site and choose “A CSV file on this site”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-too-big"
+msgstr "É demasiado para guardar na página. Guarde-o antes como ficheiro CSV, adicione-o ao site e escolha “Um ficheiro CSV deste site”."
+
+#. Default: "Only the first {shown} of {total} rows were kept. For longer data, use a CSV file on this site instead."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-too-long"
+msgstr "Só as primeiras {shown} de {total} linhas foram guardadas. Para dados mais longos, use antes um ficheiro CSV deste site."
+
+#. Default: "Use these figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-use"
+msgstr "Usar estes números"
+
+#. Default: "Your figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-pasted-table"
+msgstr "Os seus números"
+
+#. Default: "Copy the cells in your spreadsheet, including the row of column names, and paste them here. The first column holds the labels (years, places, names)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-pasted-table-help"
+msgstr "Copie as células da sua folha de cálculo, incluindo a linha dos nomes das colunas, e cole-as aqui. A primeira coluna tem os rótulos (anos, locais, nomes)."
+
+#. Default: "The figures are percentages"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-percent"
+msgstr "Os números são percentagens"
+
+#. Default: "Adds a % sign. Not needed when the figures in your file already have one."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-percent-help"
+msgstr "Acrescenta o sinal %. Não é preciso quando os números do seu ficheiro já o têm."
+
+#. Default: "Flip left and right"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-reverse-x"
+msgstr "Trocar a esquerda e a direita"
+
+#. Default: "Flip top and bottom"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-reverse-y"
+msgstr "Trocar cima e baixo"
+
+#. Default: "{shown} of {total} rows"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-count"
+msgstr "{shown} de {total} linhas"
+
+#. Default: "Hint in the search box"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-hint"
+msgstr "Dica na caixa de pesquisa"
+
+#. Default: "Shown in the empty search box, for example “Search for a town”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-hint-help"
+msgstr "Mostrada na caixa de pesquisa vazia, por exemplo “Procurar uma cidade”."
+
+#. Default: "Search the table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-label"
+msgstr "Pesquisar na tabela"
+
+#. Default: "No rows match your search."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-none"
+msgstr "Nenhuma linha corresponde à sua pesquisa."
+
+#. Default: "Search…"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-placeholder"
+msgstr "Pesquisar…"
+
+#. Default: "Show the figures as a table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-show-numbers"
+msgstr "Mostrar os números como tabela"
+
+#. Default: "A CSV file on this site"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-file"
+msgstr "Um ficheiro CSV deste site"
+
+#. Default: "the chart always shows what’s in the file: upload a new version and every page using it updates by itself"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-file-help"
+msgstr "o gráfico mostra sempre o que está no ficheiro: carregue uma versão nova e todas as páginas que o usam atualizam-se sozinhas"
+
+#. Default: "Paste from a spreadsheet"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-paste"
+msgstr "Colar de uma folha de cálculo"
+
+#. Default: "copy the cells in Excel or Google Sheets and paste them; the figures are kept with this page"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-paste-help"
+msgstr "copie as células no Excel ou no Google Sheets e cole-as; os números ficam guardados com esta página"
+
+#. Default: "Normal"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-normal"
+msgstr "Normal"
+
+#. Default: "Off"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-off"
+msgstr "Desligado"
+
+#. Default: "Quick"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-quick"
+msgstr "Rápida"
+
+#. Default: "Slow"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-slow"
+msgstr "Lenta"
+
+#. Default: "Add your figures under “Your data” in the sidebar, then choose how to show them. Your data can be:"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-start"
+msgstr "Adicione os seus números em “Os seus dados” na barra lateral e depois escolha como mostrá-los. Os seus dados podem ser:"
+
+#. Default: "{view} of {series} by {category}, {rows} rows"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-summary"
+msgstr "{view} de {series} por {category}, {rows} linhas"
+
+#. Default: "Optional: columns holding text are left out of the chart. Choose “Table” to show them."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-text-columns"
+msgstr "Opcional: as colunas com texto ficam fora do gráfico. Escolha “Tabela” para as mostrar."
+
+#. Default: "Your file has {total} rows. To keep the page fast, the chart draws {shown} of them, chosen so the line keeps its shape (peaks and dips included)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-thinned"
+msgstr "O seu ficheiro tem {total} linhas. Para a página continuar rápida, o gráfico desenha {shown}, escolhidas para a linha manter a forma (picos e quedas incluídos)."
+
+#. Default: "Shown above the chart."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-help"
+msgstr "Mostrado por cima do gráfico."
+
+#. Default: "Title level"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level"
+msgstr "Nível do título"
+
+#. Default: "Section heading"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-2"
+msgstr "Título de secção"
+
+#. Default: "Under a section heading (usual)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-3"
+msgstr "Debaixo de um título de secção (habitual)"
+
+#. Default: "Under a sub-heading"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-4"
+msgstr "Debaixo de um subtítulo"
+
+#. Default: "For screen readers and search engines: how the title fits into the page’s headings. Use “Section heading” when there’s no heading above this chart."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-help"
+msgstr "Para leitores de ecrã e motores de busca: onde o título se encaixa nos títulos da página. Use “Título de secção” quando não houver nenhum título acima deste gráfico."
+
+#. Default: "Showing the first {shown} of {total} rows."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-truncated"
+msgstr "A mostrar as primeiras {shown} de {total} linhas."
+
+#. Default: "Name for the figures (under the chart)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-value-axis"
+msgstr "Nome dos números (por baixo do gráfico)"
+
+#. Default: "Area"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-area"
+msgstr "Área"
+
+#. Default: "A line with the space below it filled in, to show volume over time."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-area-help"
+msgstr "Uma linha com o espaço por baixo preenchido, para mostrar volume ao longo do tempo."
+
+#. Default: "Bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar"
+msgstr "Barras"
+
+#. Default: "Compare amounts side by side, such as totals per year or per region."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-help"
+msgstr "Comparar valores lado a lado, como totais por ano ou por região."
+
+#. Default: "Sideways bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-horizontal"
+msgstr "Barras horizontais"
+
+#. Default: "Bars running left to right: good for long labels or a ranking."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-horizontal-help"
+msgstr "Barras da esquerda para a direita: boas para rótulos compridos ou uma classificação."
+
+#. Default: "Doughnut"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-doughnut"
+msgstr "Anel"
+
+#. Default: "A pie with a hole in the middle."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-doughnut-help"
+msgstr "Um gráfico circular com um buraco no meio."
+
+#. Default: "Line"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-line"
+msgstr "Linha"
+
+#. Default: "Show how figures change over time. Best for long series, such as daily prices."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-line-help"
+msgstr "Mostrar como os números mudam ao longo do tempo. Ideal para séries longas, como preços diários."
+
+#. Default: "Bars and line"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-mixed"
+msgstr "Barras e linha"
+
+#. Default: "Bars for every column except the last, which is drawn as a line over them (for example sales and a growth rate)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-mixed-help"
+msgstr "Barras para todas as colunas menos a última, desenhada como uma linha por cima (por exemplo vendas e uma taxa de crescimento)."
+
+#. Default: "Pie"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pie"
+msgstr "Circular"
+
+#. Default: "Parts of a whole, as slices. Reads best with up to 8 slices."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pie-help"
+msgstr "Partes de um todo, em fatias. Lê-se melhor com até 8 fatias."
+
+#. Default: "Population pyramid"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pyramid"
+msgstr "Pirâmide etária"
+
+#. Default: "Two columns back to back, such as men and women per age group. The first goes left, the second right."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pyramid-help"
+msgstr "Duas colunas costas com costas, como homens e mulheres por faixa etária. A primeira vai para a esquerda, a segunda para a direita."
+
+#. Default: "Ranked bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-bars"
+msgstr "Barras ordenadas"
+
+#. Default: "A list with a bar under each item. With three columns, the first groups the rows into separate lists."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-bars-help"
+msgstr "Uma lista com uma barra por baixo de cada item. Com três colunas, a primeira agrupa as linhas em listas separadas."
+
+#. Default: "Top lists"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-cards"
+msgstr "Listas dos primeiros"
+
+#. Default: "Numbered lists side by side, one card per group. Needs three columns: group, label, figure."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-cards-help"
+msgstr "Listas numeradas lado a lado, um cartão por grupo. Precisa de três colunas: grupo, rótulo, número."
+
+#. Default: "Table with search"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-searchable-table"
+msgstr "Tabela com pesquisa"
+
+#. Default: "A table with a search box, so visitors can find a row in a long list."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-searchable-table-help"
+msgstr "Uma tabela com caixa de pesquisa, para os visitantes encontrarem uma linha numa lista longa."
+
+#. Default: "Key figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-stats"
+msgstr "Números-chave"
+
+#. Default: "A card per row with its figure in large type. More columns show underneath, with an arrow saying whether they’re higher or lower."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-stats-help"
+msgstr "Um cartão por linha com o seu número em destaque. As outras colunas aparecem por baixo, com uma seta a indicar se são maiores ou menores."
+
+#. Default: "Table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-table"
+msgstr "Tabela"
+
+#. Default: "Your rows and columns as a table."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-table-help"
+msgstr "As suas linhas e colunas numa tabela."
+
+#. Default: "Name under the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-x-label"
+msgstr "Nome por baixo do gráfico"
+
+#. Default: "Name beside the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-y-label"
+msgstr "Nome ao lado do gráfico"
 
 #. Default: "Heading"
 #: components/Blocks/_shared/messages

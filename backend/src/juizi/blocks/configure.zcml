@@ -17,6 +17,7 @@
   <include file="permissions.zcml" />
 
   <include package=".controlpanels" />
+  <include package=".graph" />
   <include package=".indexers" />
   <include package=".serializers" />
   <include package=".services" />

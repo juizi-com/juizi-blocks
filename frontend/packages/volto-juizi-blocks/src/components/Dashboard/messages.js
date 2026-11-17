@@ -323,6 +323,27 @@ export default defineMessages({
     id: 'juizi-dashboard-callout-types',
     defaultMessage: 'Callout types',
   },
+  chartColors: {
+    id: 'juizi-dashboard-chart-colours',
+    defaultMessage: 'Chart colours',
+  },
+  chartColorsHelp: {
+    id: 'juizi-dashboard-chart-colours-help',
+    defaultMessage:
+      'The colours charts use, in order: the first column of figures gets colour 1, the next colour 2, and so on. Leave them empty to use the site’s colours in their order, without the very light ones.',
+  },
+  chartColor: {
+    id: 'juizi-dashboard-chart-colour',
+    defaultMessage: 'Colour {number}',
+  },
+  chartColorAdd: {
+    id: 'juizi-dashboard-chart-colour-add',
+    defaultMessage: 'Add a colour…',
+  },
+  chartColorsPreview: {
+    id: 'juizi-dashboard-chart-colours-preview',
+    defaultMessage: 'Charts will use:',
+  },
   calloutTypesHelp: {
     id: 'juizi-dashboard-callout-types-help',
     defaultMessage:

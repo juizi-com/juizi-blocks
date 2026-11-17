@@ -27,6 +27,9 @@ The colour configuration is a JSON document shaped like::
             "juiziCallout": {             # Callout only: colours per type
                 "calloutTypes": {"warning": {"background": "gold"}}
             },
+            "graphBlock": {               # Data visualisation: chart colours
+                "chartColors": ["darkblue", "green", "gold"]
+            },
             "teaser": {"themes": ["green"], "defaultTheme": "green"}
         }
     }
@@ -44,6 +47,8 @@ THEME_SLOTS = ("background", "foreground", "surface", "muted")
 # Callout block: colours each callout type starts with (dashboard setting).
 CALLOUT_BLOCK = "juiziCallout"
 CALLOUT_TYPE_SLOTS = ("background", "icon")
+# Data visualisation block: the chart colours, in order (dashboard setting).
+GRAPH_BLOCK = "graphBlock"
 REQUIRED_THEME_SLOTS = ("background", "foreground")
 
 DEFAULT_COLOR_CONFIG = {
@@ -273,6 +278,11 @@ def _validate_block(block_id, block_config, colors: list[str], themes: list[str]
     default = block_config.get("defaultTheme")
     if default in (allowed_themes or themes):
         result["defaultTheme"] = default
+    if block_id == GRAPH_BLOCK and "chartColors" in block_config:
+        chart_colors = block_config["chartColors"] or []
+        if not isinstance(chart_colors, list):
+            raise SettingsValidationError("chartColors must be a list")
+        result["chartColors"] = [n for n in chart_colors if n in colors]
     if block_id == CALLOUT_BLOCK and "calloutTypes" in block_config:
         result["calloutTypes"] = _validate_callout_types(
             block_config["calloutTypes"], colors

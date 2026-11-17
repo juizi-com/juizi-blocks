@@ -42,6 +42,9 @@ export type BlockColorConfig = {
   /** Callout only: the colours each callout type starts with, as master-list
    * colour names. Missing or empty = no colour. */
   calloutTypes?: Record<string, CalloutTypeColors>;
+  /** Data visualisation only: the chart colours in order, as master-list
+   * colour names. Empty = the site's colours, light ones left out. */
+  chartColors?: string[];
 };
 
 export type CalloutTypeColors = {

@@ -40,6 +40,7 @@ import ThemesEditor from './ThemesEditor';
 import { hasVLT } from '../../config/vlt';
 import BlockMatrix from './BlockMatrix';
 import CalloutTypesEditor from './CalloutTypesEditor';
+import ChartColorsEditor from './ChartColorsEditor';
 import PrintEditor from './PrintEditor';
 import TransferPanel from './TransferPanel';
 import messages from './messages';
@@ -47,6 +48,7 @@ import messages from './messages';
 const colorBlocks = juiziBlocks.filter((block) => block.usesColors);
 const themeBlocks = juiziBlocks.filter((block) => block.usesThemes);
 const hasCallout = juiziBlocks.some((block) => block.id === 'juiziCallout');
+const hasGraph = juiziBlocks.some((block) => block.id === 'graphBlock');
 
 const Section = ({ title, help, children }) => (
   <section className="juizi-dashboard__section">
@@ -367,6 +369,18 @@ const Dashboard = () => {
               help={intl.formatMessage(messages.calloutTypesHelp)}
             >
               <CalloutTypesEditor
+                colorConfig={draft.color_config}
+                onChange={setColorConfig}
+              />
+            </Section>
+          )}
+
+          {hasGraph && (
+            <Section
+              title={intl.formatMessage(messages.chartColors)}
+              help={intl.formatMessage(messages.chartColorsHelp)}
+            >
+              <ChartColorsEditor
                 colorConfig={draft.color_config}
                 onChange={setColorConfig}
               />

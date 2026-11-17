@@ -16,21 +16,27 @@ const placeholders = (message) =>
 
 // A value for every placeholder the messages use.
 const VALUES = {
+  category: 'Year',
   color: 'Green',
+  columns: 2,
   count: 2,
   current: 2,
   date: '13 November 2024',
-  groups: 'Editors',
   destination: '/news',
+  groups: 'Editors',
   label: 'Gold',
   name: 'gold',
+  names: 'Year, Price',
   number: 3,
   on: 1,
   part: 'Print settings',
   parts: 'Editing language, Print settings',
   percent: 30,
   ratio: '4.5',
+  rows: 5,
   seconds: 3,
+  series: 'Price',
+  shown: 4,
   site: 'https://plone.org',
   slot: 'Text',
   strength: 'Light',
@@ -38,6 +44,7 @@ const VALUES = {
   title: 'Harbour',
   tone: 'dark',
   total: 9,
+  view: 'Bars',
 };
 
 describe('locales', () => {

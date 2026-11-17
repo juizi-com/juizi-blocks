@@ -46,6 +46,16 @@ msgstr "Karrousel"
 msgid "Content Row"
 msgstr "Inhoudry"
 
+#. Default: "Data visualisation"
+#: blocks/messages
+msgid "Data visualisation"
+msgstr "Datavisualisering"
+
+#. Default: "Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file."
+#: blocks/messages
+msgid "Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file."
+msgstr "Syfers uit ’n sigblad as ’n grafiek, ’n tabel of kaarte, altyd op datum met die lêer."
+
 #. Default: "Gallery"
 #: blocks/messages
 msgid "Gallery"
@@ -1776,6 +1786,31 @@ msgstr "Die kleure waarmee ’n uitligblok begin wanneer ’n redakteur sy tipe 
 msgid "juizi-dashboard-cancel"
 msgstr "Gooi veranderinge weg"
 
+#. Default: "Colour {number}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colour"
+msgstr "Kleur {number}"
+
+#. Default: "Add a colour…"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colour-add"
+msgstr "Voeg ’n kleur by…"
+
+#. Default: "Chart colours"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours"
+msgstr "Grafiekkleure"
+
+#. Default: "The colours charts use, in order: the first column of figures gets colour 1, the next colour 2, and so on. Leave them empty to use the site’s colours in their order, without the very light ones."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours-help"
+msgstr "Die kleure wat grafieke gebruik, in volgorde: die eerste kolom syfers kry kleur 1, die volgende kleur 2, ensovoorts. Laat hulle leeg om die webwerf se kleure in hul volgorde te gebruik, sonder die baie ligtes."
+
+#. Default: "Charts will use:"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-chart-colours-preview"
+msgstr "Grafieke sal gebruik:"
+
 #. Default: "Colours"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-colors"
@@ -2980,6 +3015,661 @@ msgstr "Wit, vorige instelling"
 #: components/Blocks/_shared/messages
 msgid "juizi-go-to-slide"
 msgstr "Gaan na skyfie {number}"
+
+#. Default: "Optional, for example “Year” or “Rand (millions)”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-axis-label-help"
+msgstr "Opsioneel, byvoorbeeld “Jaar” of “Rand (miljoene)”."
+
+#. Default: "Grey line behind the bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bar-track"
+msgstr "Grys lyn agter die stawe"
+
+#. Default: "Shows how far each bar is from the largest."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bar-track-help"
+msgstr "Wys hoe ver elke staaf van die grootste af is."
+
+#. Default: "Show a bar under each item"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-bars-in-cards"
+msgstr "Wys ’n staaf onder elke item"
+
+#. Default: "Caption"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-caption"
+msgstr "Onderskrif"
+
+#. Default: "Shown underneath, for example the source of the figures. Captions are numbered “Figure 1”, “Figure 2” down the page."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-caption-help"
+msgstr "Word onderaan gewys, byvoorbeeld die bron van die syfers. Onderskrifte word “Figuur 1”, “Figuur 2” af in die bladsy genommer."
+
+#. Default: "Text alignment"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-alignment"
+msgstr "Teksbelyning"
+
+#. Default: "Card colour"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-colour"
+msgstr "Kaartkleur"
+
+#. Default: "The text colour follows the card colour automatically."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-card-colour-help"
+msgstr "Die tekskleur volg die kaartkleur outomaties."
+
+#. Default: "Cards per row"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-cards-per-row"
+msgstr "Kaarte per ry"
+
+#. Default: "Name for the labels (beside the chart)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-category-axis"
+msgstr "Naam vir die etikette (langs die grafiek)"
+
+#. Default: "Show as"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-chart-type"
+msgstr "Wys as"
+
+#. Default: "Choose your CSV file under “CSV file” in the sidebar. Not on the site yet? Save this page, add the file with the Add (+) button in the toolbar, then come back and choose it."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-choose-file"
+msgstr "Kies jou CSV-lêer onder “CSV-lêer” in die kantbalk. Nog nie op die webwerf nie? Stoor hierdie bladsy, voeg die lêer by met die Voeg by (+)-knoppie in die nutsbalk, en kom dan terug om dit te kies."
+
+#. Default: "Your figures are ready. Choose how to show them under “How to show it” in the sidebar: a chart, a table or cards."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-choose-view"
+msgstr "Jou syfers is gereed. Kies hoe om hulle te wys onder “Hoe om dit te wys” in die kantbalk: ’n grafiek, ’n tabel of kaarte."
+
+#. Default: "Count up the figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-count-up"
+msgstr "Tel die syfers op"
+
+#. Default: "The figures count up from zero when the cards come into view. Visitors who turn off motion on their device see the final figures."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-count-up-help"
+msgstr "Die syfers tel van nul af op wanneer die kaarte in sig kom. Besoekers wat beweging op hul toestel afgeskakel het, sien dadelik die finale syfers."
+
+#. Default: "CSV file"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-csv-file"
+msgstr "CSV-lêer"
+
+#. Default: "Choose a CSV file on this site. Save it from your spreadsheet as “CSV”. The first row holds the column names, the first column the labels (years, places, names). Not on the site yet? Save this page, add the file with the Add (+) button in the toolbar, then come back and choose it here."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-csv-file-help"
+msgstr "Kies ’n CSV-lêer op hierdie webwerf. Stoor dit uit jou sigblad as “CSV”. Die eerste ry bevat die kolomname, die eerste kolom die etikette (jare, plekke, name). Nog nie op die webwerf nie? Stoor hierdie bladsy, voeg die lêer by met die Voeg by (+)-knoppie in die nutsbalk, en kom dan terug om dit hier te kies."
+
+#. Default: "Write the figures on the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-labels"
+msgstr "Skryf die syfers op die grafiek"
+
+#. Default: "Each bar, point or slice gets its figure. Visitors can always point at the chart to see them."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-labels-help"
+msgstr "Elke staaf, punt of sny kry sy syfer. Besoekers kan altyd na die grafiek wys om hulle te sien."
+
+#. Default: "Where is your data?"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-data-source"
+msgstr "Waar is jou data?"
+
+#. Default: "What separates the columns in the file"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter"
+msgstr "Wat die kolomme in die lêer skei"
+
+#. Default: "Work it out automatically"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-auto"
+msgstr "Werk dit outomaties uit"
+
+#. Default: "Commas ( , )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-comma"
+msgstr "Kommas ( , )"
+
+#. Default: "Usually worked out automatically. Change it only if the columns come out wrong."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-help"
+msgstr "Word gewoonlik outomaties uitgewerk. Verander dit net as die kolomme verkeerd uitkom."
+
+#. Default: "Vertical bars ( | )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-pipe"
+msgstr "Vertikale strepe ( | )"
+
+#. Default: "Semicolons ( ; )"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-semicolon"
+msgstr "Kommapunte ( ; )"
+
+#. Default: "Tabs"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-delimiter-tab"
+msgstr "Oortjies"
+
+#. Default: "(lower)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-down"
+msgstr "(laer)"
+
+#. Default: "(the same)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-same"
+msgstr "(dieselfde)"
+
+#. Default: "(higher)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-direction-up"
+msgstr "(hoër)"
+
+#. Default: "There are no rows of figures in your data, only column names (or nothing at all). Check the file or the pasted cells."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-empty"
+msgstr "Daar is geen rye syfers in jou data nie, net kolomname (of glad niks nie). Gaan die lêer of die geplakte selle na."
+
+#. Default: "The linked file can’t be found. It may have been deleted: choose it again under “CSV file” in the sidebar."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-missing"
+msgstr "Die gekoppelde lêer kan nie gevind word nie. Dit is dalk uitgevee: kies dit weer onder “CSV-lêer” in die kantbalk."
+
+#. Default: "You aren’t allowed to see the linked file. Ask whoever added it, or choose another file."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-private"
+msgstr "Jy mag nie die gekoppelde lêer sien nie. Vra die persoon wat dit bygevoeg het, of kies ’n ander lêer."
+
+#. Default: "This file is too big to draw on a page (more than 5 MB). Save a shorter version, for example monthly instead of daily figures."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-too-big"
+msgstr "Hierdie lêer is te groot om op ’n bladsy te teken (meer as 5 MB). Stoor ’n korter weergawe, byvoorbeeld maandelikse eerder as daaglikse syfers."
+
+#. Default: "This file can’t be read as a table. Check that it was saved from your spreadsheet as “CSV”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-error-unreadable"
+msgstr "Hierdie lêer kan nie as ’n tabel gelees word nie. Maak seker dat dit uit jou sigblad as “CSV” gestoor is."
+
+#. Default: "Figure {number}:"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-figure"
+msgstr "Figuur {number}:"
+
+#. Default: "Visitors can’t see this file yet, so they won’t see this chart. Publish the file too."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-file-private"
+msgstr "Besoekers kan hierdie lêer nog nie sien nie, so hulle sal nie hierdie grafiek sien nie. Publiseer die lêer ook."
+
+#. Default: "Cards"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-cards"
+msgstr "Kaarte"
+
+#. Default: "Charts"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-charts"
+msgstr "Grafieke"
+
+#. Default: "Tables"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-group-tables"
+msgstr "Tabelle"
+
+#. Default: "Leave out of the figure numbers"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-independent"
+msgstr "Laat uit by die figuurnommers"
+
+#. Default: "The caption gets no “Figure” number, and the next ones don’t count this one."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-independent-help"
+msgstr "Die onderskrif kry geen “Figuur”-nommer nie, en die volgendes tel hierdie een nie."
+
+#. Default: "In the middle of each bar"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-centre"
+msgstr "In die middel van elke staaf"
+
+#. Default: "Just past the end of each bar"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-end"
+msgstr "Net verby die einde van elke staaf"
+
+#. Default: "Where to write them"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-position"
+msgstr "Waar om hulle te skryf"
+
+#. Default: "Inside, near the start"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-label-start"
+msgstr "Binne, naby die begin"
+
+#. Default: "Key: select an item to hide or show it in the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-legend"
+msgstr "Sleutel: kies ’n item om dit in die grafiek te versteek of te wys"
+
+#. Default: "Optional: with this many rows, a line is easier to read than bars."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-many-bars"
+msgstr "Opsioneel: met soveel rye is ’n lyn makliker om te lees as stawe."
+
+#. Default: "Optional: pies read best with up to 8 slices. Bars or sideways bars may suit these figures better."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-many-slices"
+msgstr "Opsioneel: sirkelgrafieke lees die beste met tot 8 snye. Stawe of horisontale stawe pas dalk beter by hierdie syfers."
+
+#. Default: "Swipe through cards on phones"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-mobile-carousel"
+msgstr "Swiep deur kaarte op fone"
+
+#. Default: "On small screens, one card at a time instead of a long column."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-mobile-carousel-help"
+msgstr "Op klein skerms een kaart op ’n slag in plaas van ’n lang kolom."
+
+#. Default: "Narrow"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-narrow"
+msgstr "Smal"
+
+#. Default: "Half the usual width, centred."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-narrow-help"
+msgstr "Die helfte van die gewone breedte, gesentreer."
+
+#. Default: "“{view}” needs at least {count} columns in your data. Choose another way to show it, or add columns to your data."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-needs-columns"
+msgstr "“{view}” het minstens {count} kolomme in jou data nodig. Kies ’n ander manier om dit te wys, of voeg kolomme by jou data."
+
+#. Default: "“{view}” needs figures, but the columns after the first hold text. Choose “Table” instead, or check your data."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-needs-numbers"
+msgstr "“{view}” het syfers nodig, maar die kolomme ná die eerste bevat teks. Kies eerder “Tabel”, of gaan jou data na."
+
+#. Default: "Title and caption"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-caption"
+msgstr "Titel en onderskrif"
+
+#. Default: "Your data"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-data"
+msgstr "Jou data"
+
+#. Default: "Look"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-look"
+msgstr "Voorkoms"
+
+#. Default: "How to show it"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-panel-view"
+msgstr "Hoe om dit te wys"
+
+#. Default: "Paste your cells here"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-box"
+msgstr "Plak jou selle hier"
+
+#. Default: "Keep the current figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-cancel"
+msgstr "Hou die huidige syfers"
+
+#. Default: "These figures couldn’t be read. Copy the cells again from your spreadsheet, including the row of column names."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-failed"
+msgstr "Hierdie syfers kon nie gelees word nie. Kopieer die selle weer uit jou sigblad, saam met die ry kolomname."
+
+#. Default: "Copy the cells in your spreadsheet, paste them under “Your figures” in the sidebar, and press “Use these figures”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-prompt"
+msgstr "Kopieer die selle in jou sigblad, plak hulle onder “Jou syfers” in die kantbalk, en druk “Gebruik hierdie syfers”."
+
+#. Default: "Reading your figures…"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-reading"
+msgstr "Lees tans jou syfers…"
+
+#. Default: "Paste new figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-replace"
+msgstr "Plak nuwe syfers"
+
+#. Default: "In use: {columns, plural, one {# column} other {# columns}} ({names}), {rows, plural, one {# row} other {# rows}}."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-summary"
+msgstr "In gebruik: {columns, plural, one {# kolom} other {# kolomme}} ({names}), {rows, plural, one {# ry} other {# rye}}."
+
+#. Default: "That’s too much to keep in the page. Save it as a CSV file instead, add it to the site and choose “A CSV file on this site”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-too-big"
+msgstr "Dit is te veel om in die bladsy te hou. Stoor dit eerder as ’n CSV-lêer, voeg dit by die webwerf en kies “’n CSV-lêer op hierdie webwerf”."
+
+#. Default: "Only the first {shown} of {total} rows were kept. For longer data, use a CSV file on this site instead."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-too-long"
+msgstr "Net die eerste {shown} van {total} rye is gehou. Gebruik eerder ’n CSV-lêer op hierdie webwerf vir langer data."
+
+#. Default: "Use these figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-paste-use"
+msgstr "Gebruik hierdie syfers"
+
+#. Default: "Your figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-pasted-table"
+msgstr "Jou syfers"
+
+#. Default: "Copy the cells in your spreadsheet, including the row of column names, and paste them here. The first column holds the labels (years, places, names)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-pasted-table-help"
+msgstr "Kopieer die selle in jou sigblad, saam met die ry kolomname, en plak hulle hier. Die eerste kolom bevat die etikette (jare, plekke, name)."
+
+#. Default: "The figures are percentages"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-percent"
+msgstr "Die syfers is persentasies"
+
+#. Default: "Adds a % sign. Not needed when the figures in your file already have one."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-percent-help"
+msgstr "Voeg ’n %-teken by. Nie nodig as die syfers in jou lêer reeds een het nie."
+
+#. Default: "Flip left and right"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-reverse-x"
+msgstr "Ruil links en regs om"
+
+#. Default: "Flip top and bottom"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-reverse-y"
+msgstr "Ruil bo en onder om"
+
+#. Default: "{shown} of {total} rows"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-count"
+msgstr "{shown} van {total} rye"
+
+#. Default: "Hint in the search box"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-hint"
+msgstr "Wenk in die soekblokkie"
+
+#. Default: "Shown in the empty search box, for example “Search for a town”."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-hint-help"
+msgstr "Word in die leë soekblokkie gewys, byvoorbeeld “Soek ’n dorp”."
+
+#. Default: "Search the table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-label"
+msgstr "Deursoek die tabel"
+
+#. Default: "No rows match your search."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-none"
+msgstr "Geen rye pas by jou soektog nie."
+
+#. Default: "Search…"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-search-placeholder"
+msgstr "Soek…"
+
+#. Default: "Show the figures as a table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-show-numbers"
+msgstr "Wys die syfers as ’n tabel"
+
+#. Default: "A CSV file on this site"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-file"
+msgstr "’n CSV-lêer op hierdie webwerf"
+
+#. Default: "the chart always shows what’s in the file: upload a new version and every page using it updates by itself"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-file-help"
+msgstr "die grafiek wys altyd wat in die lêer is: laai ’n nuwe weergawe op en elke bladsy wat dit gebruik, werk vanself by"
+
+#. Default: "Paste from a spreadsheet"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-paste"
+msgstr "Plak uit ’n sigblad"
+
+#. Default: "copy the cells in Excel or Google Sheets and paste them; the figures are kept with this page"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-source-paste-help"
+msgstr "kopieer die selle in Excel of Google Sheets en plak hulle; die syfers word saam met hierdie bladsy gehou"
+
+#. Default: "Normal"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-normal"
+msgstr "Normaal"
+
+#. Default: "Off"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-off"
+msgstr "Af"
+
+#. Default: "Quick"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-quick"
+msgstr "Vinnig"
+
+#. Default: "Slow"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-speed-slow"
+msgstr "Stadig"
+
+#. Default: "Add your figures under “Your data” in the sidebar, then choose how to show them. Your data can be:"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-start"
+msgstr "Voeg jou syfers by onder “Jou data” in die kantbalk, en kies dan hoe om hulle te wys. Jou data kan wees:"
+
+#. Default: "{view} of {series} by {category}, {rows} rows"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-summary"
+msgstr "{view} van {series} volgens {category}, {rows} rye"
+
+#. Default: "Optional: columns holding text are left out of the chart. Choose “Table” to show them."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-text-columns"
+msgstr "Opsioneel: kolomme met teks word uit die grafiek gelaat. Kies “Tabel” om hulle te wys."
+
+#. Default: "Your file has {total} rows. To keep the page fast, the chart draws {shown} of them, chosen so the line keeps its shape (peaks and dips included)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-thinned"
+msgstr "Jou lêer het {total} rye. Om die bladsy vinnig te hou, teken die grafiek {shown} daarvan, so gekies dat die lyn sy vorm behou (pieke en duike ingesluit)."
+
+#. Default: "Shown above the chart."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-help"
+msgstr "Word bo die grafiek gewys."
+
+#. Default: "Title level"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level"
+msgstr "Titelvlak"
+
+#. Default: "Section heading"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-2"
+msgstr "Afdelingsopskrif"
+
+#. Default: "Under a section heading (usual)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-3"
+msgstr "Onder ’n afdelingsopskrif (gewoonlik)"
+
+#. Default: "Under a sub-heading"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-4"
+msgstr "Onder ’n subopskrif"
+
+#. Default: "For screen readers and search engines: how the title fits into the page’s headings. Use “Section heading” when there’s no heading above this chart."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-title-level-help"
+msgstr "Vir skermlesers en soekenjins: hoe die titel by die bladsy se opskrifte inpas. Gebruik “Afdelingsopskrif” as daar geen opskrif bo hierdie grafiek is nie."
+
+#. Default: "Showing the first {shown} of {total} rows."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-truncated"
+msgstr "Wys die eerste {shown} van {total} rye."
+
+#. Default: "Name for the figures (under the chart)"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-value-axis"
+msgstr "Naam vir die syfers (onder die grafiek)"
+
+#. Default: "Area"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-area"
+msgstr "Area"
+
+#. Default: "A line with the space below it filled in, to show volume over time."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-area-help"
+msgstr "’n Lyn met die ruimte daaronder ingekleur, om volume oor tyd te wys."
+
+#. Default: "Bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar"
+msgstr "Stawe"
+
+#. Default: "Compare amounts side by side, such as totals per year or per region."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-help"
+msgstr "Vergelyk bedrae langs mekaar, soos totale per jaar of per streek."
+
+#. Default: "Sideways bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-horizontal"
+msgstr "Horisontale stawe"
+
+#. Default: "Bars running left to right: good for long labels or a ranking."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-bar-horizontal-help"
+msgstr "Stawe van links na regs: goed vir lang etikette of ’n ranglys."
+
+#. Default: "Doughnut"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-doughnut"
+msgstr "Ring"
+
+#. Default: "A pie with a hole in the middle."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-doughnut-help"
+msgstr "’n Sirkelgrafiek met ’n gat in die middel."
+
+#. Default: "Line"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-line"
+msgstr "Lyn"
+
+#. Default: "Show how figures change over time. Best for long series, such as daily prices."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-line-help"
+msgstr "Wys hoe syfers oor tyd verander. Die beste vir lang reekse, soos daaglikse pryse."
+
+#. Default: "Bars and line"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-mixed"
+msgstr "Stawe en lyn"
+
+#. Default: "Bars for every column except the last, which is drawn as a line over them (for example sales and a growth rate)."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-mixed-help"
+msgstr "Stawe vir elke kolom behalwe die laaste, wat as ’n lyn daaroor geteken word (byvoorbeeld verkope en ’n groeikoers)."
+
+#. Default: "Pie"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pie"
+msgstr "Sirkelgrafiek"
+
+#. Default: "Parts of a whole, as slices. Reads best with up to 8 slices."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pie-help"
+msgstr "Dele van ’n geheel, as snye. Lees die beste met tot 8 snye."
+
+#. Default: "Population pyramid"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pyramid"
+msgstr "Bevolkingspiramide"
+
+#. Default: "Two columns back to back, such as men and women per age group. The first goes left, the second right."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-pyramid-help"
+msgstr "Twee kolomme rug aan rug, soos mans en vroue per ouderdomsgroep. Die eerste gaan links, die tweede regs."
+
+#. Default: "Ranked bars"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-bars"
+msgstr "Gerangskikte stawe"
+
+#. Default: "A list with a bar under each item. With three columns, the first groups the rows into separate lists."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-bars-help"
+msgstr "’n Lys met ’n staaf onder elke item. Met drie kolomme groepeer die eerste die rye in aparte lyste."
+
+#. Default: "Top lists"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-cards"
+msgstr "Toplyste"
+
+#. Default: "Numbered lists side by side, one card per group. Needs three columns: group, label, figure."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-ranked-cards-help"
+msgstr "Genommerde lyste langs mekaar, een kaart per groep. Het drie kolomme nodig: groep, etiket, syfer."
+
+#. Default: "Table with search"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-searchable-table"
+msgstr "Tabel met soektog"
+
+#. Default: "A table with a search box, so visitors can find a row in a long list."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-searchable-table-help"
+msgstr "’n Tabel met ’n soekblokkie, sodat besoekers ’n ry in ’n lang lys kan vind."
+
+#. Default: "Key figures"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-stats"
+msgstr "Kernsyfers"
+
+#. Default: "A card per row with its figure in large type. More columns show underneath, with an arrow saying whether they’re higher or lower."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-stats-help"
+msgstr "’n Kaart per ry met sy syfer in groot letters. Meer kolomme word daaronder gewys, met ’n pyl wat sê of hulle hoër of laer is."
+
+#. Default: "Table"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-table"
+msgstr "Tabel"
+
+#. Default: "Your rows and columns as a table."
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-view-table-help"
+msgstr "Jou rye en kolomme as ’n tabel."
+
+#. Default: "Name under the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-x-label"
+msgstr "Naam onder die grafiek"
+
+#. Default: "Name beside the chart"
+#: components/Blocks/Graph/messages
+msgid "juizi-graph-y-label"
+msgstr "Naam langs die grafiek"
 
 #. Default: "Heading"
 #: components/Blocks/_shared/messages

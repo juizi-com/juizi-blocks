@@ -1,0 +1,46 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <!-- Data visualisation block (graphBlock): data read on the server.
+       Registered for the add-on's browser layer: only where juizi.blocks
+       is installed. -->
+
+  <subscriber
+      factory=".transforms.GraphBlockSerializer"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      for="*
+           juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+  <subscriber
+      factory=".transforms.GraphBlockDeserializer"
+      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+      for="*
+           juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+  <subscriber
+      factory=".transforms.GraphBlockLinksRetriever"
+      provides="plone.restapi.interfaces.IBlockFieldLinkIntegrityRetriever"
+      for="*
+           juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+  <subscriber
+      for="plone.app.contenttypes.interfaces.IFile
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.purge_pages_using_file"
+      />
+
+  <plone:service
+      method="POST"
+      factory=".service.GraphDataPost"
+      for="*"
+      permission="cmf.ModifyPortalContent"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-graph-data"
+      />
+
+</configure>

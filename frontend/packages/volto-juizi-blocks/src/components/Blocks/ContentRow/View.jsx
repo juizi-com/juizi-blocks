@@ -28,6 +28,7 @@ import messages from './messages';
 import { BORDER_MODES, BORDER_STYLES, NO_ICON } from './schema';
 import './style.css';
 import MobileCarousel from '../_shared/MobileCarousel';
+import CountUp from '../_shared/CountUp';
 
 // Kept as an export of this module for older imports.
 export { hasRichText };
@@ -48,64 +49,6 @@ const safeString = (val) => {
 };
 
 const getImageUrl = (image) => getPickedImageUrl(image, 'large') || null;
-
-// ─── Count-up animation ────────────────────────────────────────────────────
-
-// The server (and visitors without JavaScript) get the real number. In the
-// browser it counts up once, when the statistic first comes into view.
-// Reduced motion: no animation.
-const CountUp = ({ end = 0, duration = 2000, formatK = false }) => {
-  const { locale } = useIntl();
-  const safeEnd = Number(end) || 0;
-  const [value, setValue] = React.useState(safeEnd);
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    setValue(safeEnd);
-    const el = ref.current;
-    const reducedMotion =
-      typeof window === 'undefined' ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!el || reducedMotion || typeof IntersectionObserver === 'undefined') {
-      return undefined;
-    }
-
-    let raf;
-    const animate = () => {
-      let start = null;
-      const step = (ts) => {
-        if (start === null) start = ts;
-        const progress = Math.min((ts - start) / duration, 1);
-        let next = Math.floor(progress * safeEnd);
-        if (formatK && safeEnd >= 1000) next = next - (next % 1000);
-        setValue(progress < 1 ? next : safeEnd);
-        if (progress < 1) raf = requestAnimationFrame(step);
-      };
-      raf = requestAnimationFrame(step);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          animate();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [safeEnd, duration, formatK]);
-
-  const text =
-    formatK && safeEnd >= 1000
-      ? `${formatNumber(Math.max(1, Math.floor(value / 1000)), locale)}k`
-      : formatNumber(value, locale);
-  return <span ref={ref}>{text}</span>;
-};
 
 // ─── Card background style ────────────────────────────────────────────────
 // An item gets its own tone only when it has its own background: a colour
