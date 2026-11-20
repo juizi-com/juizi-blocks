@@ -145,6 +145,36 @@ export default defineMessages({
     id: 'juizi-slide-navigation',
     defaultMessage: 'Slide navigation',
   },
+  // Screen readers say "carousel" and "slide" for these instead of
+  // "region" and "group" (aria-roledescription).
+  carousel: {
+    id: 'juizi-carousel',
+    defaultMessage: 'carousel',
+  },
+  slide: {
+    id: 'juizi-slide',
+    defaultMessage: 'slide',
+  },
+  slideOfTotal: {
+    id: 'juizi-slide-of-total',
+    defaultMessage: '{number} of {total}',
+  },
+  pauseSlides: {
+    id: 'juizi-pause-slides',
+    defaultMessage: 'Stop moving the slides',
+  },
+  playSlides: {
+    id: 'juizi-play-slides',
+    defaultMessage: 'Move the slides automatically',
+  },
+  pauseVideo: {
+    id: 'juizi-pause-video',
+    defaultMessage: 'Pause the background video',
+  },
+  playVideo: {
+    id: 'juizi-play-video',
+    defaultMessage: 'Play the background video',
+  },
   previousImage: {
     id: 'juizi-previous-image',
     defaultMessage: 'Previous image',

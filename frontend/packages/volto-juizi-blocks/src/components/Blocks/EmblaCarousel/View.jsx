@@ -30,6 +30,8 @@ import { paddingClasses } from '../_shared/choices';
 import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
 import messages from './messages';
+import { blockIdOf, headingLevels, levelAttrs } from '../_shared/headingLevel';
+import AutoplayToggle, { useAutoplayToggle } from '../_shared/AutoplayToggle';
 
 // Narrowest a slide gets before the carousel shows one fewer.
 const MIN_SLIDE_WIDTH = 320;
@@ -478,6 +480,7 @@ const EmblaCarousel = (blockProps) => {
     },
     plugins,
   );
+  const autoplayControl = useAutoplayToggle(embla);
 
   useEffect(() => {
     const viewport = embla?.rootNode();
@@ -596,11 +599,19 @@ const EmblaCarousel = (blockProps) => {
     );
   };
 
+  // Slide headings one level below the carousel's title, or below the
+  // page's last heading when it has none (_shared/headingLevel.js).
+  const slideHeadingAttrs = levelAttrs(
+    headingLevels(blockProps.properties, blockIdOf(blockProps), {
+      hasTitle: !!data.title,
+    }).item,
+    3,
+  );
   const renderHeading = (slide) => {
     if (!slide.heading) return null;
     if (isClickable(slide) && !showsButton(slide)) {
       return (
-        <h3>
+        <h3 {...slideHeadingAttrs}>
           <UniversalLink
             href={getHref(slide.link)}
             className="embla__stretched-link"
@@ -610,7 +621,7 @@ const EmblaCarousel = (blockProps) => {
         </h3>
       );
     }
-    return <h3>{slide.heading}</h3>;
+    return <h3 {...slideHeadingAttrs}>{slide.heading}</h3>;
   };
 
   // Reviews style: a quotation with its source. The picture is decorative
@@ -753,6 +764,8 @@ const EmblaCarousel = (blockProps) => {
   // a still row. Measured in the browser (the server renders the still row),
   // and again whenever the strip is resized.
   const marqueeRef = React.useRef(null);
+  // The visitor stopped the moving logos (WCAG 2.2.2).
+  const [marqueeStopped, setMarqueeStopped] = useState(false);
   const marqueeTrackRef = React.useRef(null);
   const measureMarqueeRef = React.useRef(() => {});
   const [marqueeOverflows, setMarqueeOverflows] = useState(false);
@@ -972,7 +985,7 @@ const EmblaCarousel = (blockProps) => {
               ) : null}
               <div
                 ref={marqueeRef}
-                className={`logo-marquee ${isMarqueeStatic ? `static align-${data.logoAlignment || 'center'}` : ''} ${!isMarqueeStatic && data.pauseOnHover ? 'pause-on-hover' : ''} ${slideToneClass}`}
+                className={`logo-marquee ${isMarqueeStatic ? `static align-${data.logoAlignment || 'center'}` : ''} ${!isMarqueeStatic && data.pauseOnHover ? 'pause-on-hover' : ''} ${marqueeStopped ? 'is-stopped' : ''} ${slideToneClass}`}
                 style={{
                   '--marquee-duration': `${parseInt(data.marqueeSpeed, 10) || 20}s`,
                   '--logo-height': `${parseInt(data.logoHeight, 10) || 48}px`,
@@ -1011,14 +1024,22 @@ const EmblaCarousel = (blockProps) => {
                           }}
                         />
                       );
+                      // The second copy only makes the loop seamless: screen
+                      // readers and the keyboard get each logo once.
+                      const copy = i >= slides.length;
                       return (
-                        <div className="logo-marquee__item" key={`r-${i}`}>
+                        <div
+                          className="logo-marquee__item"
+                          key={`r-${i}`}
+                          aria-hidden={copy || undefined}
+                        >
                           {clickable ? (
                             <a
                               href={href}
                               className="logo-marquee__link"
                               target="_blank"
                               rel="noopener noreferrer"
+                              tabIndex={copy ? -1 : undefined}
                             >
                               {img}
                             </a>
@@ -1031,6 +1052,15 @@ const EmblaCarousel = (blockProps) => {
                   )}
                 </div>
               </div>
+              {!isMarqueeStatic && !reducedMotion && slides.length > 0 && (
+                <div className="juizi-autoplay-row">
+                  <AutoplayToggle
+                    available
+                    playing={!marqueeStopped}
+                    toggle={() => setMarqueeStopped((v) => !v)}
+                  />
+                </div>
+              )}
               {isMarqueeStatic && slides.length > 0 && (
                 <EditHint isEditMode={isEditMode}>
                   {intl.formatMessage(messages.logosFit)}
@@ -1109,14 +1139,16 @@ const EmblaCarousel = (blockProps) => {
 
               {/* Tag filter tabs */}
               {tagsWithSlides.length > 0 && (
+                // Buttons that filter the slides below (not tabs: there are
+                // no tab panels), each saying whether it's the one on.
                 <div
                   className="embla__filter-tabs"
-                  role="tablist"
+                  role="group"
                   aria-label={intl.formatMessage(messages.filterLabel)}
                 >
                   <button
-                    role="tab"
-                    aria-selected={activeTag === 'all'}
+                    type="button"
+                    aria-pressed={activeTag === 'all'}
                     className={`embla__filter-tab ${activeTag === 'all' ? 'is-active' : ''}`}
                     onClick={() => setActiveTag('all')}
                   >
@@ -1125,8 +1157,8 @@ const EmblaCarousel = (blockProps) => {
                   {tagsWithSlides.map((tag) => (
                     <button
                       key={tag}
-                      role="tab"
-                      aria-selected={activeTag === tag}
+                      type="button"
+                      aria-pressed={activeTag === tag}
                       className={`embla__filter-tab ${activeTag === tag ? 'is-active' : ''}`}
                       onClick={() => setActiveTag(tag)}
                     >
@@ -1175,6 +1207,12 @@ const EmblaCarousel = (blockProps) => {
                         className="embla__slide"
                         key={index}
                         style={{ flex: `0 0 ${100 / effectiveSlidesToShow}%` }}
+                        role="group"
+                        aria-roledescription={intl.formatMessage(shared.slide)}
+                        aria-label={intl.formatMessage(shared.slideOfTotal, {
+                          number: index + 1,
+                          total: slides.length,
+                        })}
                       >
                         <div className="slide__content">
                           <div
@@ -1301,21 +1339,28 @@ const EmblaCarousel = (blockProps) => {
               {showDots && pageCount > 1 && (
                 <div
                   className="embla__nav"
-                  role="tablist"
+                  role="group"
                   aria-label={intl.formatMessage(shared.slideNavigation)}
                 >
+                  <AutoplayToggle {...autoplayControl} />
                   {Array.from({ length: pageCount }).map((_, i) => (
                     <button
                       key={i}
-                      role="tab"
+                      type="button"
                       aria-label={intl.formatMessage(shared.goToSlide, {
                         number: i + 1,
                       })}
-                      aria-selected={i === selectedIndex}
+                      aria-current={i === selectedIndex ? 'true' : undefined}
                       onClick={() => embla && embla.scrollTo(i)}
                       className={`embla__dot ${i === selectedIndex ? 'is-selected' : ''}`}
                     />
                   ))}
+                </div>
+              )}
+
+              {!(showDots && pageCount > 1) && autoplayControl.available && (
+                <div className="juizi-autoplay-row">
+                  <AutoplayToggle {...autoplayControl} />
                 </div>
               )}
 

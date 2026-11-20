@@ -437,6 +437,13 @@
   animation-play-state: paused;
 }
 
+/* Held while a logo has keyboard focus, and stopped by the visitor's
+   stop button (WCAG 2.2.2). */
+.logo-marquee:focus-within .logo-marquee__track,
+.logo-marquee.is-stopped .logo-marquee__track {
+  animation-play-state: paused;
+}
+
 /* Static mode: the full set of logos already fits within the query's batch
    size, so there's nothing extra a scroll would reveal. Show one centred,
    wrapping row instead of an animated, duplicated track. */

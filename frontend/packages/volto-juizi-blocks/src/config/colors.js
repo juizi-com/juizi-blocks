@@ -52,9 +52,15 @@ import {
   MASTER_COLOR_LIST,
   getBlockColorList,
   getColorForeground,
+  getRuntimeColorConfig,
 } from '../settings/runtime';
 
-import { isHexColor, suggestDark } from '../settings/helpers';
+import {
+  colorForeground,
+  isHexColor,
+  luminance,
+  suggestDark,
+} from '../settings/helpers';
 import { normalizeButtonStyle, normalizeColorValue } from '../legacy/colors';
 import messages from '../components/Blocks/_shared/messages';
 import { translator } from '../components/Blocks/_shared/i18n';
@@ -120,6 +126,46 @@ export const getColorTextStyle = (value) => {
         : '#111111'
       : undefined);
   return color ? { color } : {};
+};
+
+// ─── canDimText ──────────────────────────────────────────────────────────────
+// Whether secondary text (a preheader, breadcrumbs) can be shown at
+// `opacity` over this background and still meet WCAG AA (4.5:1). Blocks dim
+// secondary text for hierarchy; on mid-tone colours that drops it below
+// the minimum, so they show it at full strength there instead. True when the
+// colour can't be judged (not a dashboard colour or hex), so nothing changes
+// for those.
+const contrast = (a, b) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+const toHex = (rgb) =>
+  `#${rgb.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
+const hexRgb = (hex) => {
+  let h = hex.replace('#', '');
+  if (h.length < 6) h = [...h.slice(0, 3)].map((c) => c + c).join('');
+  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+};
+export const canDimText = (value, opacity) => {
+  const normalized = normalizeColorValue(value);
+  let background;
+  let text;
+  const match = /^var\(--([a-z][a-z0-9-]*)\)$/.exec(normalized || '');
+  if (match) {
+    const entry = (getRuntimeColorConfig()?.colors || []).find(
+      (c) => c.name === match[1],
+    );
+    if (!entry || !isHexColor(entry.value)) return true;
+    background = entry.value;
+    text = colorForeground(entry);
+  } else if (isHexColor(normalized)) {
+    background = normalized;
+    text = suggestDark(normalized) ? '#ffffff' : '#111111';
+  } else return true;
+  if (!isHexColor(text)) return true;
+  const [t, b] = [hexRgb(text), hexRgb(background)];
+  const dimmed = toHex(t.map((v, i) => v * opacity + b[i] * (1 - opacity)));
+  return contrast(dimmed, background) >= 4.5;
 };
 
 // ─── colorValueToKey ─────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@
  *
  * Props:
  *   blockClass  the block's BEM class, e.g. 'content-row' (required)
- *   label       accessible name for the carousel region (required)
+ *   label       accessible name for the carousel (required)
  *   autoplay    move on every 4 seconds (never with reduced motion)
  *   showDots    dots under the slides to jump to one
  *   startIndex  the slide shown first (0 by default)
@@ -21,6 +21,10 @@
  *               the text colour
  *   className   more classes on the root, e.g. the block's item alignment
  *               (`align-center`), so its grid rules can apply here too
+ *
+ * Screen readers hear "carousel" and "slide, 2 of 5"; the dots say which
+ * slide is current (aria-current). With autoplay, a stop / start button
+ * sits before the dots, or in its own row (AutoplayToggle.jsx).
  *
  * With arrows, the root also gets `mobile-carousel` and
  * `mobile-carousel--arrows-{position}`, and the buttons
@@ -33,6 +37,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { getButtonClasses } from '../../../config/colors';
 import NavArrowIcon from './NavArrowIcon';
+import AutoplayToggle, { useAutoplayToggle } from './AutoplayToggle';
 import shared from './messages';
 import './mobile-carousel.css';
 
@@ -65,6 +70,7 @@ const MobileCarousel = ({
   );
   const [selectedIndex, setSelectedIndex] = React.useState(startIndex);
   const slideCount = React.Children.count(children);
+  const autoplayControl = useAutoplayToggle(emblaApi);
 
   React.useEffect(() => {
     if (!emblaApi) return;
@@ -138,7 +144,16 @@ const MobileCarousel = ({
     <div className={`${blockClass}__embla-viewport`} ref={emblaRef}>
       <div className={`${blockClass}__embla-container`}>
         {React.Children.map(children, (child, i) => (
-          <div key={i} className={`${blockClass}__embla-slide`}>
+          <div
+            key={i}
+            className={`${blockClass}__embla-slide`}
+            role="group"
+            aria-roledescription={intl.formatMessage(shared.slide)}
+            aria-label={intl.formatMessage(shared.slideOfTotal, {
+              number: i + 1,
+              total: slideCount,
+            })}
+          >
             {child}
           </div>
         ))}
@@ -156,7 +171,10 @@ const MobileCarousel = ({
       ]
         .filter(Boolean)
         .join(' ')}
-      role="region"
+      // A group, not a region: the block around it is already the
+      // landmark, often with the same name.
+      role="group"
+      aria-roledescription={intl.formatMessage(shared.carousel)}
       aria-label={label}
     >
       {arrowPosition === 'above' && arrowRow}
@@ -171,17 +189,29 @@ const MobileCarousel = ({
       )}
       {arrowPosition === 'below' && arrowRow}
       {showDots && slideCount > 1 && (
-        <div className={`${blockClass}__embla-dots`}>
+        <div
+          className={`${blockClass}__embla-dots`}
+          role="group"
+          aria-label={intl.formatMessage(shared.slideNavigation)}
+        >
+          <AutoplayToggle {...autoplayControl} />
           {Array.from({ length: slideCount }).map((_, i) => (
             <button
               key={i}
+              type="button"
               className={`${blockClass}__embla-dot${i === selectedIndex ? ' is-selected' : ''}`}
               onClick={() => emblaApi?.scrollTo(i)}
               aria-label={intl.formatMessage(shared.goToSlide, {
                 number: i + 1,
               })}
+              aria-current={i === selectedIndex ? 'true' : undefined}
             />
           ))}
+        </div>
+      )}
+      {!(showDots && slideCount > 1) && autoplayControl.available && (
+        <div className="juizi-autoplay-row">
+          <AutoplayToggle {...autoplayControl} />
         </div>
       )}
     </div>

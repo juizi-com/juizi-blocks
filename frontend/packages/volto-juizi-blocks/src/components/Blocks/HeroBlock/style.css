@@ -49,6 +49,12 @@ html {
   opacity: 0.7;
 }
 
+/* Colours where dimmed text would fall below 4.5:1 (View.jsx). */
+.hero-block--section.hero-block--solid-secondary .hero-preheader,
+.hero-block--section.hero-block--solid-secondary .hero-breadcrumbs {
+  opacity: 1;
+}
+
 .hero-block--section:not(.bg-dark):not(.bg-light) {
   color: inherit;
 }
@@ -75,11 +81,30 @@ html {
   object-fit: cover;
 }
 
-/* Pause background video for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .hero-block__video-bg[data-reducemotion='pause'] {
-    animation-play-state: paused;
-  }
+/* Pause / play button for the background video (BackgroundVideo in
+   View.jsx), bottom right, above the overlay and content. White on a dark
+   disc so it shows on any video. */
+.hero-block__video-toggle {
+  position: absolute;
+  z-index: 3;
+  right: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+}
+
+.hero-block__video-toggle:hover,
+.hero-block__video-toggle:focus-visible {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* Overlay — intentional inline style exception (rgba compositing over image) */
