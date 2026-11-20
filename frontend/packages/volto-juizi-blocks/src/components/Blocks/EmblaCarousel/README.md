@@ -157,9 +157,17 @@ Section, heading and link structure follow the shared conventions (root README):
 
 **Arrow buttons** carry `aria-label="Previous slide"` / `"Next slide"` in every position. The icon is an inline SVG (`NavArrowIcon`) marked `aria-hidden`. The row below that isn't in use is `display: none`, so screen readers don't meet the arrows twice. Shape: the shared button shape; `--arrow-shape` overrides the radius for carousel arrows only.
 
-**Dot navigation** buttons carry `aria-label="Go to slide N"`, `role="tab"`, and `aria-selected` reflecting the current position. The dot container has `role="tablist"` and `aria-label="Slide navigation"`.
+**Dot navigation** buttons carry `aria-label="Go to slide N"`; the current one has `aria-current="true"`. They sit in a `role="group"` named "Slide navigation". (They used to be `role="tab"` in a `tablist`, which promises tab panels the carousel doesn't have.) Each dot is 12px with an invisible 24px circle around it to tap (WCAG 2.5.8), and the gap keeps the dots' centres 24px apart, so themes that resize the dots keep working.
 
-**Filter tabs** use `role="tablist"`, `role="tab"`, and `aria-selected`. The tablist has `aria-label="Filter content"`. On phones the tabs are replaced by a native `<select>` with a visible "Show:" label.
+**Slides** are `role="group"` with `aria-roledescription="slide"` and a label like "2 of 6", so screen readers say "slide, 2 of 6". Keyboard focus moving into a slide scrolls it into view (Embla's `watchFocus`).
+
+**Autoplay** shows a stop / start button (`_shared/AutoplayToggle.jsx`) before the dots, or in its own row when there are no dots (WCAG 2.2.2). Once a visitor stops the slides, they stay stopped until the visitor starts them again. Hovering (Reviews) or focusing a slide still holds them, and reduced motion still turns autoplay off.
+
+**Logo marquee**: the logos are rendered twice to make the loop seamless, and the second copy is `aria-hidden` with its links out of the tab order, so each logo is read and tabbed once. It holds still while a logo has keyboard focus, and has a stop / start button.
+
+**Filter buttons** are plain buttons in a `role="group"` named "Filter content", each with `aria-pressed` (they filter the slides; they aren't tabs). On phones they're replaced by a native `<select>` with a visible "Show:" label.
+
+**Heading levels**: the slide headings stay `<h3>` (so they look the same), but when the carousel has no title and the last heading before it is the page title, they carry `aria-level="2"` so screen readers don't hear a level missing (`_shared/headingLevel.js`).
 
 ### Clickable slides
 

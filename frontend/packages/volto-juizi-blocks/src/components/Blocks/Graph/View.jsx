@@ -28,6 +28,11 @@ import { paddingClasses } from '../_shared/choices';
 import { getChartPalette } from './palette';
 import { getView, PIE_VIEWS, viewKind } from './views';
 import messages from './messages';
+import {
+  headingLevels,
+  ItemHeadingContext,
+  levelAttrs,
+} from '../_shared/headingLevel';
 
 import './graph.scss';
 
@@ -187,6 +192,17 @@ const Graph = (props) => {
   const TitleTag = ['h2', 'h3', 'h4'].includes(data.titleLevel)
     ? data.titleLevel
     : 'h3';
+  // An editor's chosen level stands; the default h3 is corrected for screen
+  // readers where it would skip a level (_shared/headingLevel.js), and the
+  // ranked cards' group headings sit one below the title.
+  const tagLevel = Number(TitleTag.slice(1));
+  const auto = headingLevels(props.properties, blockId, {
+    designedTitle: 3,
+    designedItem: 4,
+    hasTitle: !!title,
+  });
+  const titleLevel = data.titleLevel ? tagLevel : auto.title;
+  const groupLevel = title ? Math.min(4, titleLevel + 1) : auto.item;
   const captionText = (data.description || '').trim();
   const figure = getFigureNumber(props.properties, blockId);
   const total = table.total || table.rows.length;
@@ -263,8 +279,17 @@ const Graph = (props) => {
           },
         )}
       >
-        {title && <TitleTag className="graph-block__title">{title}</TitleTag>}
-        {body}
+        {title && (
+          <TitleTag
+            className="graph-block__title"
+            {...levelAttrs(titleLevel, tagLevel)}
+          >
+            {title}
+          </TitleTag>
+        )}
+        <ItemHeadingContext.Provider value={levelAttrs(groupLevel, 4)}>
+          {body}
+        </ItemHeadingContext.Provider>
         {table.truncated && (
           <p className="graph-block__note">
             {t(messages.truncatedNote, { shown: rowCount, total: totalCount })}

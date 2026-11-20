@@ -29,6 +29,13 @@ import { BORDER_MODES, BORDER_STYLES, NO_ICON } from './schema';
 import './style.css';
 import MobileCarousel from '../_shared/MobileCarousel';
 import CountUp from '../_shared/CountUp';
+import {
+  blockIdOf,
+  headingLevels,
+  ItemHeadingContext,
+  levelAttrs,
+  useItemHeadingAttrs,
+} from '../_shared/headingLevel';
 
 // Kept as an export of this module for older imports.
 export { hasRichText };
@@ -107,6 +114,7 @@ const POSITION_CLASSES = {
 const getPositionClass = (iconPosition) => POSITION_CLASSES[iconPosition] || '';
 
 const NumberedItem = ({ item, index, iconPosition }) => {
+  const itemHeading = useItemHeadingAttrs();
   const href = getHref(item.link);
   const hasLink = !!href;
 
@@ -140,7 +148,7 @@ const NumberedItem = ({ item, index, iconPosition }) => {
           </p>
         )}
         {item.heading && (
-          <h3 className="content-row-item__heading">
+          <h3 className="content-row-item__heading" {...itemHeading}>
             {safeString(item.heading)}
           </h3>
         )}
@@ -250,6 +258,7 @@ const CustomIcon = ({ icon }) =>
   );
 
 const IconItem = ({ item, iconPosition }) => {
+  const itemHeading = useItemHeadingAttrs();
   const LucideIcon = lucideIconMap[item.icon];
   const CustomSvg = !LucideIcon ? getCustomSvg(item.icon) : null;
   const href = getHref(item.link);
@@ -293,7 +302,7 @@ const IconItem = ({ item, iconPosition }) => {
           </p>
         )}
         {item.heading && (
-          <h3 className="content-row-item__heading">
+          <h3 className="content-row-item__heading" {...itemHeading}>
             {safeString(item.heading)}
           </h3>
         )}
@@ -364,6 +373,7 @@ const CardButton = ({ item, href, isEditMode, stretched = false }) => {
 };
 
 const ImageAboveItem = ({ item, isEditMode }) => {
+  const itemHeading = useItemHeadingAttrs();
   const {
     style: bgStyle,
     imageUrl,
@@ -399,7 +409,7 @@ const ImageAboveItem = ({ item, isEditMode }) => {
           </p>
         )}
         {item.heading && (
-          <h3 className="content-row-item__heading">
+          <h3 className="content-row-item__heading" {...itemHeading}>
             {safeString(item.heading)}
           </h3>
         )}
@@ -413,6 +423,7 @@ const ImageAboveItem = ({ item, isEditMode }) => {
 };
 
 const ImageCardItem = ({ item, overlayStyle, isEditMode }) => {
+  const itemHeading = useItemHeadingAttrs();
   const {
     style: bgStyle,
     imageUrl,
@@ -454,7 +465,7 @@ const ImageCardItem = ({ item, overlayStyle, isEditMode }) => {
           </p>
         )}
         {item.heading && (
-          <h3 className="content-row-item__heading">
+          <h3 className="content-row-item__heading" {...itemHeading}>
             {safeString(item.heading)}
           </h3>
         )}
@@ -557,6 +568,14 @@ const View = (props) => {
     ? blockAnchorId(data.headerText, props.block)
     : undefined;
   // Separate ID for the heading element — used by aria-labelledby on the section wrapper.
+  // Item headings one level below the row's heading, or below the page's
+  // last heading when the row has none (see _shared/headingLevel.js).
+  const itemHeadingAttrs = levelAttrs(
+    headingLevels(props.properties, blockIdOf(props), {
+      hasTitle: !!data.headerText,
+    }).item,
+    3,
+  );
   const headingId = data.headerText
     ? `cr-heading-${props.block || 'block'}`
     : undefined;
@@ -767,97 +786,99 @@ const View = (props) => {
             )}
           </>
         )}
-        <div className={innerClasses} style={innerStyle}>
-          {/* Header section */}
-          {hasHeader && (
-            <div className={`content-row__header align-${headerAlignment}`}>
-              <div
-                className={`content-row__header-text${hasSideImage ? ' content-row__header-text--image-side' : ''}`}
-              >
-                <div className="content-row__header-text-inner">
-                  {data.preheaderText && (
-                    <div className="content-row__preheader juizi-preheader">
-                      {safeString(data.preheaderText)}
+        <ItemHeadingContext.Provider value={itemHeadingAttrs}>
+          <div className={innerClasses} style={innerStyle}>
+            {/* Header section */}
+            {hasHeader && (
+              <div className={`content-row__header align-${headerAlignment}`}>
+                <div
+                  className={`content-row__header-text${hasSideImage ? ' content-row__header-text--image-side' : ''}`}
+                >
+                  <div className="content-row__header-text-inner">
+                    {data.preheaderText && (
+                      <div className="content-row__preheader juizi-preheader">
+                        {safeString(data.preheaderText)}
+                      </div>
+                    )}
+                    {data.headerText && (
+                      // id ties this heading to the section aria-labelledby.
+                      <h2 className="content-row__heading" id={headingId}>
+                        {safeString(data.headerText)}
+                      </h2>
+                    )}
+                    {plainDescription ? (
+                      <p className="content-row__description">
+                        {plainDescription}
+                      </p>
+                    ) : (
+                      hasDescription && (
+                        <RichText
+                          data={data.descriptionText}
+                          className="content-row__description content-row__description--rich"
+                        />
+                      )
+                    )}
+                  </div>
+                  {blockImageUrl && (
+                    <div
+                      className={`content-row__block-image content-row__block-image--${blockImagePosition}`}
+                    >
+                      {/* alt uses the block heading; decorative (alt="") when
+                        no heading is set, matching the image-above card. */}
+                      {/* eslint-disable-next-line no-restricted-syntax */}
+                      <img
+                        src={blockImageUrl}
+                        alt={safeString(data.headerText)}
+                      />
                     </div>
                   )}
-                  {data.headerText && (
-                    // id ties this heading to the section aria-labelledby.
-                    <h2 className="content-row__heading" id={headingId}>
-                      {safeString(data.headerText)}
-                    </h2>
-                  )}
-                  {plainDescription ? (
-                    <p className="content-row__description">
-                      {plainDescription}
-                    </p>
-                  ) : (
-                    hasDescription && (
-                      <RichText
-                        data={data.descriptionText}
-                        className="content-row__description content-row__description--rich"
-                      />
-                    )
-                  )}
                 </div>
-                {blockImageUrl && (
-                  <div
-                    className={`content-row__block-image content-row__block-image--${blockImagePosition}`}
-                  >
-                    {/* alt uses the block heading; decorative (alt="") when
-                        no heading is set, matching the image-above card. */}
-                    {/* eslint-disable-next-line no-restricted-syntax */}
-                    <img
-                      src={blockImageUrl}
-                      alt={safeString(data.headerText)}
-                    />
-                  </div>
-                )}
+                {viewAllPosition === 'header' && viewAllButton}
               </div>
-              {viewAllPosition === 'header' && viewAllButton}
-            </div>
-          )}
+            )}
 
-          {/* Items */}
-          {items.length > 0 ? (
-            <div className="content-row__items">
-              {/* Normal grid — hidden on mobile when carousel is active */}
-              <div
-                className={`content-row__grid align-${itemsAlignment} columns-${columns}`}
-              >
-                {items.map((item, index) => renderItem(item, index))}
-              </div>
-              {/* Embla mobile carousel — only shown on mobile */}
-              {data.mobileCarousel && (
-                <ItemsWrapper
-                  mobileCarousel={true}
-                  autoplay={data.mobileAutoplay}
-                  showDots={data.mobileDots}
-                  // The items keep their alignment on mobile: the grid's
-                  // align-* rules apply to the carousel too
-                  className={`align-${itemsAlignment}`}
+            {/* Items */}
+            {items.length > 0 ? (
+              <div className="content-row__items">
+                {/* Normal grid — hidden on mobile when carousel is active */}
+                <div
+                  className={`content-row__grid align-${itemsAlignment} columns-${columns}`}
                 >
                   {items.map((item, index) => renderItem(item, index))}
-                </ItemsWrapper>
-              )}
-              {/* Side by side: under the items, in their column (a sibling
-                  of the two columns would become a third one). */}
-              {sideBySideLayout && viewAllBelow}
-            </div>
-          ) : (
-            isEditMode && (
-              <BlockPlaceholder
-                blockClass="content-row"
-                prompt={intl.formatMessage(
-                  displayMode === 'statistics'
-                    ? messages.noStatistics
-                    : messages.noItems,
+                </div>
+                {/* Embla mobile carousel — only shown on mobile */}
+                {data.mobileCarousel && (
+                  <ItemsWrapper
+                    mobileCarousel={true}
+                    autoplay={data.mobileAutoplay}
+                    showDots={data.mobileDots}
+                    // The items keep their alignment on mobile: the grid's
+                    // align-* rules apply to the carousel too
+                    className={`align-${itemsAlignment}`}
+                  >
+                    {items.map((item, index) => renderItem(item, index))}
+                  </ItemsWrapper>
                 )}
-              />
-            )
-          )}
+                {/* Side by side: under the items, in their column (a sibling
+                  of the two columns would become a third one). */}
+                {sideBySideLayout && viewAllBelow}
+              </div>
+            ) : (
+              isEditMode && (
+                <BlockPlaceholder
+                  blockClass="content-row"
+                  prompt={intl.formatMessage(
+                    displayMode === 'statistics'
+                      ? messages.noStatistics
+                      : messages.noItems,
+                  )}
+                />
+              )
+            )}
 
-          {!sideBySideLayout && viewAllBelow}
-        </div>
+            {!sideBySideLayout && viewAllBelow}
+          </div>
+        </ItemHeadingContext.Provider>
       </section>
     </BlockWrapper>
   );

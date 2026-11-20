@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import {
   getButtonClasses,
+  canDimText,
   isColorDark,
   colorValueToKey,
   getColorTextStyle,
@@ -21,12 +22,71 @@ import shared from '../_shared/messages';
 import { cssString } from '../_shared/i18n';
 import messages from './messages';
 import { isSectionHeading } from './tocHeadings';
+import { Pause, Play } from 'lucide-react';
 import './style.css';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
 // Resolve the best available page image URL.
 // Priority: preview_image_link → preview_image → image (lead image)
+// Decorative background video. It starts from the browser (not the HTML's
+// autoplay attribute) so visitors who asked for reduced motion get the still
+// poster instead, and it has a pause button: video that moves for more than
+// five seconds must be stoppable (WCAG 2.2.2).
+const BackgroundVideo = ({ src, poster }) => {
+  const intl = useIntl();
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const reduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    video.muted = true;
+    if (reduced) return;
+    const started = video.play();
+    if (started?.catch) started.catch(() => setPlaying(false));
+  }, [src]);
+
+  const toggle = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) video.play();
+    else video.pause();
+  };
+  const Icon = playing ? Pause : Play;
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        className="hero-block__video-bg"
+        muted
+        loop
+        playsInline
+        poster={poster}
+        aria-hidden="true"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+      <button
+        type="button"
+        className="hero-block__video-toggle"
+        onClick={toggle}
+        aria-label={intl.formatMessage(
+          playing ? shared.pauseVideo : shared.playVideo,
+        )}
+      >
+        <Icon size={16} strokeWidth={2} aria-hidden="true" />
+      </button>
+    </>
+  );
+};
+
 const getPreviewImageUrl = (properties) => {
   const baseUrl = flattenToAppURL(properties?.['@id'] || '');
   const linked = properties?.preview_image_link;
@@ -752,6 +812,12 @@ const View = (props) => {
   const backgroundColor = data.backgroundColor || 'transparent';
   const bgKey = colorValueToKey(backgroundColor);
   const isDark = isColorDark(backgroundColor);
+  // Preheader and breadcrumbs are dimmed (opacity in style.css); on
+  // mid-tone colours that falls below 4.5:1, so there they're shown solid.
+  const solidSecondary =
+    !isHeroMode &&
+    backgroundColor !== 'transparent' &&
+    !canDimText(backgroundColor, isDark ? 0.75 : 0.7);
 
   // ── Logo ───────────────────────────────────────────────────────────────
   const logoImage = data.heroLogo?.[0];
@@ -831,6 +897,7 @@ const View = (props) => {
     `hero-block--pad-bottom-${paddingBottom}`,
     !isHeroMode && bgKey ? `bg-${bgKey}` : '',
     !isHeroMode ? (isDark ? 'bg-dark' : 'bg-light') : '',
+    solidSecondary ? 'hero-block--solid-secondary' : '',
     imageUrl || videoUrl ? 'hero-block--has-bg' : '',
     sideImageUrl ? 'hero-block--has-side-image' : '',
     data.horizontalLayout ? 'hero-block--horizontal' : '',
@@ -878,21 +945,7 @@ const View = (props) => {
         {(imageUrl || videoUrl) && (
           <>
             {videoUrl ? (
-              // aria-hidden: purely decorative background video.
-              // data-reducemotion: CSS targets this to pause the video when
-              // the user has requested reduced motion in their OS settings.
-              <video
-                className="hero-block__video-bg"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster={imageUrl || undefined}
-                aria-hidden="true"
-                data-reducemotion="pause"
-              >
-                <source src={videoUrl} type="video/mp4" />
-              </video>
+              <BackgroundVideo src={videoUrl} poster={imageUrl || undefined} />
             ) : imageUrl ? (
               // aria-hidden: purely decorative background image div.
               <div

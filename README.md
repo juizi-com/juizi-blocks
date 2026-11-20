@@ -778,7 +778,11 @@ The two Embla blocks share these decisions, each in its own stylesheet:
 - A row that fits across can be aligned left, centre or right (logo strip,
   row of small pictures); once it scrolls, it starts at the left.
 - Autoplay and moving strips stop for visitors who ask their device for less
-  motion.
+  motion, and have a stop / start button for everyone else
+  (`AutoplayToggle`). Once a visitor stops them they stay stopped.
+- Slides are announced as "slide, 2 of 6"; dots are buttons named "Go to
+  slide N" with `aria-current` on the current one (not tabs), and have a
+  24px tap area around the visible dot.
 
 ## Shared block toolkit (`src/components/Blocks/_shared/`, `src/components/BlockEdit/`)
 
@@ -863,8 +867,9 @@ the Content Row and Pricing tiers. The block renders its normal grid too and
 its own CSS shows one or the other per screen size. Props: `blockClass` (the
 block's class; the carousel's classes are `{blockClass}__embla`,
 `__embla-viewport`, `__embla-container`, `__embla-slide`, `__embla-dots`,
-`__embla-dot`), `label` (the region's accessible name), `autoplay` (never with
-reduced motion), `showDots`, `startIndex` (the slide shown first), `arrows` (`'above'`, `'middle'` — one on each side, in columns of their own so the slide narrows instead of being covered — or `'below'`) and `arrowStyle` (a button style; empty is outlined in the text colour; `mobile-carousel.css`). Without arrows the markup is unchanged. Slides get equal heights.
+`__embla-dot`), `label` (the carousel's accessible name; it's a named group
+with `aria-roledescription="carousel"`, not a second landmark), `autoplay`
+(never with reduced motion; shows a stop / start button), `showDots`, `startIndex` (the slide shown first), `arrows` (`'above'`, `'middle'` — one on each side, in columns of their own so the slide narrows instead of being covered — or `'below'`) and `arrowStyle` (a button style; empty is outlined in the text colour; `mobile-carousel.css`). Without arrows the markup is unchanged. Slides get equal heights.
 
 **`CountUp`** — a figure that counts up from zero when it comes into view
 (Content Row statistics, Data visualisation key figures). Props: `end`,
@@ -898,6 +903,38 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 | `items.js` | `withItemTitles(items, ...fields)` names list items in the sidebar after their own heading (VLT's list widget shows `item.title`); `ensureIds(items)` |
 | `skeleton.css` | Loading skeleton tiles (`block-skeleton`, `block-skeleton__tile`, `--mixed`) |
 
+### Accessibility
+
+Checked against WCAG 2.2 AA. The November 2026 audit of every block
+(axe-core per block, desktop and phone, plus heading outlines, keyboard and
+behaviour in the browser) took the test pages from 92 findings to 2; the two
+left are a colour pairing chosen on the test page, not code.
+
+| Helper | What |
+|---|---|
+| `headingLevel.js` | Heading levels that never skip, without changing pages on screen. `headingLevels(properties, blockId, { hasTitle })` works out from the page's saved blocks where the block's title and items sit; `levelAttrs(level, tagLevel)` adds `aria-level` only when it differs from the tag. Item components read theirs from `ItemHeadingContext` / `useItemHeadingAttrs()`. Blocks inside a grid keep their tags. Used by Content Row, Carousel and Data visualisation (an editor's chosen title level wins); Pricing tiers already uses `<h2>` tier names when it has no title. |
+| `AutoplayToggle.jsx` | Stop / start button and `useAutoplayToggle(emblaApi)` for carousels that move on their own. Renders nothing when autoplay is off or reduced motion is on. |
+| `canDimText(colour, opacity)` (`config/colors.js`) | Whether secondary text dimmed to `opacity` still meets 4.5:1 on a background. The Hero shows its preheader and breadcrumbs solid where it doesn't, so pages that passed look the same. |
+
+What the blocks do:
+
+- **Carousels** (Carousel, and the phone carousels of Content Row, Pricing
+  tiers and Data visualisation): slides say "slide, 2 of 6"; dots are
+  buttons with `aria-current` and a 24px tap area (an invisible circle, so
+  themes that resize the dots keep working); filter buttons use
+  `aria-pressed`; a focused slide scrolls into view.
+- **Logo strip:** each logo is read and tabbed once (the copy that makes
+  the loop seamless is hidden from screen readers and the keyboard); it holds
+  still while a logo has focus, and has a stop button.
+- **Hero background video:** a pause button, and reduced motion really
+  pauses it (it used to keep playing).
+- **Gallery** enlarged view: a dialog named by the picture, Escape closes it,
+  focus returns to the picture that opened it.
+- **Data visualisation:** charts have a text alternative and the table a
+  caption; **Audio** offers a transcript.
+- Sub-headings that aren't sections carry `data-no-toc`, so the Hero's
+  "buttons to each heading" skip them.
+
 ## Conventions every block follows
 
 - **First choice:** a block starts with one choice (a display style or type,
@@ -910,7 +947,11 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
 - **Structure:** each block is a `<section>`, named by its heading through
   `aria-labelledby` when there is one. Block headings are `<h2>` (the Hero's
   can be the page's `<h1>`), item and slide headings `<h3>`. Every block
-  should have a heading, even a short one.
+  should have a heading, even a short one. Where a fixed tag would skip a
+  level (an untitled carousel straight under the page title: h1 → h3), the
+  heading keeps its tag and look but carries `aria-level` with the level
+  screen readers should hear (`_shared/headingLevel.js`, see
+  [Accessibility](#accessibility)).
 - **Decorative backgrounds:** background images, videos and overlays are
   `aria-hidden`; meaning goes in the heading and text.
 - **Links:** external links open in a new tab with `rel="noopener noreferrer"`
@@ -918,6 +959,12 @@ once a style exists (`WrappedEmblaCarousel`, `WrappedEmblaGallery`).
   card with CSS where the whole card is clickable.
 - **Reduced motion:** autoplay, count-ups, moving strips, videos and hover
   zooms stop or don't run for visitors who ask for less motion.
+- **Stop buttons:** anything that moves on its own (carousel autoplay, the
+  logo strip, the Hero's background video) has a stop / start button for
+  everyone (WCAG 2.2.2).
+- **Accessibility test:** a new or reworked block is checked in a browser
+  (axe at desktop and phone widths, heading outline, keyboard, names,
+  behaviour) before it's done. See [Accessibility](#accessibility).
 - **Languages:** every string an editor or visitor can read is a translatable
   message, and dates and numbers follow the site's language (`format.js`;
   British English for English). See [Languages](#languages-).

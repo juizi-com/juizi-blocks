@@ -13,6 +13,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { useIntl } from 'react-intl';
+import { useItemHeadingAttrs } from '../_shared/headingLevel';
 import {
   colorValueToKey,
   getColorTextStyle,
@@ -247,6 +248,7 @@ export const StatsCards = ({ table, data }) => {
 };
 
 export const RankedBars = ({ table, data }) => {
+  const groupHeading = useItemHeadingAttrs();
   const intl = useIntl();
   const format = useValueFormat();
   const look = getCardLook(data);
@@ -260,7 +262,9 @@ export const RankedBars = ({ table, data }) => {
       >
         {group.title && (
           <div className="graph-ranked__header">
-            <h4 className="graph-ranked__title">{group.title}</h4>
+            <h4 className="graph-ranked__title" {...groupHeading}>
+              {group.title}
+            </h4>
             {group.subtitle && (
               <p className="graph-ranked__subtitle">{group.subtitle}</p>
             )}
@@ -292,6 +296,7 @@ export const RankedBars = ({ table, data }) => {
 };
 
 export const RankedCards = ({ table, data }) => {
+  const groupHeading = useItemHeadingAttrs();
   const intl = useIntl();
   const format = useValueFormat();
   const look = getCardLook(data);
@@ -304,7 +309,9 @@ export const RankedCards = ({ table, data }) => {
       style={look.style}
     >
       <div className="graph-ranked__header">
-        <h4 className="graph-ranked__title">{group.title}</h4>
+        <h4 className="graph-ranked__title" {...groupHeading}>
+          {group.title}
+        </h4>
         {group.subtitle && (
           <p className="graph-ranked__subtitle">{group.subtitle}</p>
         )}

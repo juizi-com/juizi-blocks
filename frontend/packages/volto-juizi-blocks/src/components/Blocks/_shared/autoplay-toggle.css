@@ -1,0 +1,32 @@
+/* Stop / start button of carousels that move on their own
+   (AutoplayToggle.jsx). Outlined in the text colour, so it shows on any
+   background; 28px, above the 24px minimum target size (WCAG 2.5.8). */
+
+.juizi-autoplay-toggle {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.juizi-autoplay-toggle:hover,
+.juizi-autoplay-toggle:focus-visible {
+  opacity: 1;
+}
+
+/* Its own row when the carousel has no dots. */
+.juizi-autoplay-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+}

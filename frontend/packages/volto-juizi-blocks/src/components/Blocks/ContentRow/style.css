@@ -870,24 +870,40 @@
 
 .content-row__embla-dots {
   display: flex;
+  align-items: center;
   justify-content: center;
   margin-top: 1rem;
-  gap: 0.5rem;
+  gap: 14px;
 }
 
 .content-row__embla-dot {
+  position: relative;
   width: 10px;
   height: 10px;
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: var(--light, #ddd);
+  background-color: var(--light, #ddd);
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
+/* 24px to tap (WCAG 2.5.8) without changing the dot, which themes may
+   resize: an invisible circle around it. The dots' gap keeps their centres
+   at least 24px apart. */
+.content-row__embla-dot::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
 .content-row__embla-dot.is-selected {
-  background: currentColor;
+  background-color: currentColor;
 }
 
 /* ── Item preheader ──────────────────────────────────────────────────────── */
