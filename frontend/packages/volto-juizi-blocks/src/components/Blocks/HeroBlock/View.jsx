@@ -20,6 +20,7 @@ import { formatDate } from '../_shared/format';
 import shared from '../_shared/messages';
 import { cssString } from '../_shared/i18n';
 import messages from './messages';
+import { isSectionHeading } from './tocHeadings';
 import './style.css';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
@@ -102,16 +103,8 @@ const slugifyHeadingText = (text, seen) => {
 // up closer in — broader than ideal, but still correct, just potentially
 // picking up headings from elsewhere on the page (theme chrome, etc.) in
 // that fallback case.
-// A Listing or Search block renders each result item's own title as a
-// heading (h2 in every core Volto template, whichever the editor picked) —
-// that's a content-item title, not a structural section heading, and must
-// never feed the TOC. Volto wraps every block's rendered output in
-// `.block.<type>` regardless of template, so this catches all listing/search
-// variants without needing to know a specific template's markup — the same
-// reasoning that ruled out guessing a wrapper class for "the blocks layout"
-// container above, just applied to identifying a block's type instead.
-const isListingOrSearchHeading = (el) =>
-  !!el.closest('.block.listing, .block.search');
+// Which headings count (block titles and typed headings, never the titles
+// of a block's items): see tocHeadings.js.
 
 // A heading's visible text. Volto adds a "copy link" anchor to headings for
 // logged-in users in view mode, holding a <style> element and an icon; their
@@ -155,15 +148,15 @@ function useBlockLayoutHeadingTOC({
       return undefined;
     }
 
-    // Listing/search headings don't count as "another heading" either —
-    // otherwise a listing block sitting between two sparse sections could
-    // make the climb stop one level too early, on a container too narrow to
-    // hold the actual section heading it should have found.
+    // Item titles don't count as "another heading" either: otherwise a
+    // carousel or listing between two sparse sections could make the climb
+    // stop one level too early, on a container too narrow to hold the
+    // section headings it should have found.
     const hasOtherHeading = (el) =>
       Array.from(el.querySelectorAll(tagSelector)).some(
         (h) =>
           h.getAttribute('data-hero-self-id') !== selfBlockId &&
-          !isListingOrSearchHeading(h),
+          isSectionHeading(h),
       );
 
     let container = selfEl.parentElement;
@@ -180,7 +173,7 @@ function useBlockLayoutHeadingTOC({
         .filter(
           (el) =>
             el.getAttribute('data-hero-self-id') !== selfBlockId &&
-            !isListingOrSearchHeading(el),
+            isSectionHeading(el),
         )
         .map((el) => {
           const text = headingText(el);

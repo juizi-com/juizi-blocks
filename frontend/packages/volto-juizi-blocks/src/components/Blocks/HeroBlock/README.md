@@ -59,6 +59,7 @@ Both work in every mode and do nothing on an item without the underlying field. 
 - **Text only** (`text__<colour>`, offered on the buttons, not on TOC buttons) shows the label in the colour, underlined, with no box: for a second, quieter link beside a solid button. The arrow switch works with it as with the other styles.
 - **Use smaller buttons** adds the shared `btn-small` size (`config/buttons.scss`) to every button, including TOC buttons.
 - TOC buttons take their label from the heading text, so headings need to be descriptive; a heading like "Overview" used twice gives two identical buttons.
+- **Which headings make buttons** (`tocHeadings.js`): headings typed as text, and each block's own title. Never the titles of what a block shows: carousel slides (a news carousel's stories), cards in a content row, items in a listing or search block (only its headline), teasers, list entries. In any other block, only its first heading counts. Hidden headings and anything marked `data-no-toc` are skipped; a block can mark its own sub-headings that way (juizi.maps does for its "All places" list). Before, only listing and search results were skipped, so with H3 switched on a news carousel added a button per story.
 
 ## Background
 
@@ -121,6 +122,7 @@ For a band further down the page: add a Hero, choose **Section (content band)**,
 ## Known issues
 
 - The TOC mode finds headings by climbing the DOM from the block (`useBlockLayoutHeadingTOC`); in unusual layouts it can fall back to the whole page.
+- Changing saved pages: a listing or search block's headline now becomes a button (it's that block's title); before, every listing and search heading was skipped. Item titles that used to appear (carousel slides, content row cards, map list headings) disappear.
 
 ## Side image on the left
 
