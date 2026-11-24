@@ -40,6 +40,7 @@ import audio from '../components/Blocks/Audio';
 import pricingTiers from '../components/Blocks/PricingTiers';
 import printButton from '../components/Blocks/PrintButton';
 import graph from '../components/Blocks/Graph';
+import calendar from '../components/Blocks/Calendar';
 
 export type JuiziBlockDefinition = {
   id: string;
@@ -153,4 +154,5 @@ export const juiziBlocks: JuiziBlockDefinition[] = [
   pricingTiers,
   printButton,
   graph,
+  calendar,
 ];

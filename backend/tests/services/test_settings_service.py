@@ -92,6 +92,19 @@ class TestSettingsGet:
         assert color_config["blocks"] == {}
 
 
+class TestCanManage:
+    """The dashboard opens only for people who may change the settings."""
+
+    def test_manager_may(self, manager):
+        assert manager.get("/@juizi-blocks-settings").json()["can_manage"] is True
+
+    def test_site_administrator_may_not(self, editor):
+        assert editor.get("/@juizi-blocks-settings").json()["can_manage"] is False
+
+    def test_anonymous_may_not(self, anonymous):
+        assert anonymous.get("/@juizi-blocks-settings").json()["can_manage"] is False
+
+
 class TestSettingsBeforeUpgrade:
     def test_get_works_without_new_records(self, functional, anonymous):
         from plone.registry.interfaces import IRegistry

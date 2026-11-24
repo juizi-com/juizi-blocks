@@ -1,3 +1,4 @@
+import { REORDER_LIST } from '../_shared/ReorderList';
 import {
   getBlockColorList,
   getColorChoices,
@@ -254,7 +255,7 @@ const emblaCarouselSchema = ({ formData, intl } = {}) => {
       // carries over when the display style changes.
       slides: {
         title: t(isReviews ? messages.modeReviews : messages.slides),
-        widget: 'object_list',
+        widget: REORDER_LIST,
         schema: {
           title: t(isReviews ? messages.review : messages.slide),
           fieldsets: [

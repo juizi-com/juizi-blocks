@@ -3,6 +3,10 @@
  *
  * Edits a local draft of the settings and saves it with a single PATCH to
  * @juizi-blocks-settings (Manager only on the backend).
+ *
+ * Only for Managers (Manage portal), not Site Administrators: the backend
+ * says who in `can_manage`. Everybody else gets Volto's Unauthorized page.
+ * The backend refuses their saves anyway; the page itself shouldn't show.
  */
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -17,16 +21,17 @@ import Helmet from '@plone/volto/helpers/Helmet/Helmet';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Toast from '@plone/volto/components/manage/Toast/Toast';
+import Unauthorized from '@plone/volto/components/theme/Unauthorized/Unauthorized';
 import { useClient } from '@plone/volto/hooks/client/useClient';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
 import { listGroups } from '@plone/volto/actions/groups/groups';
-import { listActions } from '@plone/volto/actions/actions/actions';
 import backSVG from '@plone/volto/icons/back.svg';
 import saveSVG from '@plone/volto/icons/save.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
 import packageJson from '../../../package.json';
 import { juiziBlocks } from '../../blocks';
 import {
+  blockToggleState,
   EDITOR_LANGUAGES,
   getJuiziBlocksSettings,
   groupBlocks,
@@ -43,12 +48,14 @@ import CalloutTypesEditor from './CalloutTypesEditor';
 import ChartColorsEditor from './ChartColorsEditor';
 import PrintEditor from './PrintEditor';
 import TransferPanel from './TransferPanel';
+import CalendarSettings, { useCalendarSettings } from './CalendarSettings';
 import messages from './messages';
 
 const colorBlocks = juiziBlocks.filter((block) => block.usesColors);
 const themeBlocks = juiziBlocks.filter((block) => block.usesThemes);
 const hasCallout = juiziBlocks.some((block) => block.id === 'juiziCallout');
 const hasGraph = juiziBlocks.some((block) => block.id === 'graphBlock');
+const hasCalendar = juiziBlocks.some((block) => block.id === 'juiziCalendar');
 
 const Section = ({ title, help, children }) => (
   <section className="juizi-dashboard__section">
@@ -67,27 +74,21 @@ const toDraft = (data) => ({
   print_config: data.print_config,
 });
 
-const TABS = ['blocks', 'colors', 'print'];
-/** Only for people who can see Site Setup (Managers and Site
- * Administrators): saving an import needs their rights on the backend. */
-const ADMIN_TABS = ['transfer'];
+const TABS = [
+  'blocks',
+  'colors',
+  'print',
+  ...(hasCalendar ? ['calendar'] : []),
+  'transfer',
+];
 
 const TAB_LABELS = {
   blocks: messages.tabBlocks,
   colors: messages.tabColors,
   print: messages.tabPrint,
+  calendar: messages.tabCalendar,
   transfer: messages.tabTransfer,
 };
-
-/** Whether the user can see Site Setup, as Volto's toolbar decides it.
- * The dashboard loads the actions itself (see below). */
-const useCanManage = () =>
-  useSelector(
-    (state) =>
-      state.actions?.actions?.user?.some(
-        (action) => action.id === 'plone_setup',
-      ) ?? false,
-  );
 
 /** A problem from validateColorConfig as a sentence in the editor's
  * language. */
@@ -108,7 +109,7 @@ const issueText = (intl, { code, label, index, name, slot }) => {
   );
 };
 
-const Dashboard = () => {
+const DashboardPanel = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -120,16 +121,9 @@ const Dashboard = () => {
   const saved = useMemo(() => toDraft(state.data), [state.data]);
   const [draft, setDraft] = useState(saved);
   // The tab is kept in the URL hash (#colors) so it can be linked to.
-  const canManage = useCanManage();
-  const tabs = canManage ? [...TABS, ...ADMIN_TABS] : TABS;
   const [tab, setTab] = useState(
-    [...TABS, ...ADMIN_TABS].includes(location.hash.slice(1))
-      ? location.hash.slice(1)
-      : 'blocks',
+    TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'blocks',
   );
-  // A linked admin tab, or the user's actions not loaded yet: the page
-  // shows Blocks until it may show the tab.
-  const shownTab = tabs.includes(tab) ? tab : 'blocks';
   const selectTab = (next) => {
     setTab(next);
     history.replace({ ...location, hash: next === 'blocks' ? '' : next });
@@ -150,14 +144,9 @@ const Dashboard = () => {
   const userGroups =
     isClient && groups?.list?.loaded ? groups.groups || [] : null;
 
+  // The settings were loaded fresh by Dashboard, just before.
   useEffect(() => {
-    dispatch(getJuiziBlocksSettings());
     dispatch(listGroups());
-    // Volto gets the user's actions with the page's content, and a control
-    // panel has none: opened directly, the store has no actions and the
-    // admin tabs would stay hidden. Volto's own Users and Groups control
-    // panel loads them the same way.
-    dispatch(listActions(''));
   }, [dispatch]);
 
   // Reset the draft whenever fresh settings arrive from the backend.
@@ -165,12 +154,55 @@ const Dashboard = () => {
     setDraft(saved);
   }, [saved]);
 
-  const dirty = !isEqual(draft, saved);
+  // As saved: switching the calendar on takes effect on the backend when
+  // saved, and its settings load (afresh) from then on.
+  const calendarOn =
+    hasCalendar &&
+    blockToggleState(
+      'juiziCalendar',
+      config.blocks.blocksConfig.juiziCalendar,
+      saved,
+    ).on;
+  const calendarOnInDraft =
+    hasCalendar &&
+    blockToggleState(
+      'juiziCalendar',
+      config.blocks.blocksConfig.juiziCalendar,
+      draft,
+    ).on;
+  const calendar = useCalendarSettings(hasCalendar && isClient && calendarOn);
+  const mainDirty = !isEqual(draft, saved);
+  const dirty = mainDirty || calendar.dirty;
   const errors = validateColorConfig(draft.color_config);
   const saving = state.update.loading;
 
+  const cancel = () => {
+    setDraft(saved);
+    calendar.reset();
+  };
+
+  const saveCalendar = () =>
+    calendar
+      .save()
+      .then(() =>
+        toast.success(
+          <Toast success title={intl.formatMessage(messages.calendarSaved)} />,
+        ),
+      )
+      .catch((error) =>
+        toast.error(
+          <Toast
+            error
+            title={intl.formatMessage(messages.saveFailed)}
+            content={error?.response?.body?.error?.message || ''}
+          />,
+        ),
+      );
+
   const save = () => {
     if (errors.length || saving) return;
+    if (calendar.dirty) saveCalendar();
+    if (!mainDirty) return;
     const printChanged = !isEqual(draft.print_config, saved.print_config);
     dispatch(updateJuiziBlocksSettings(draft))
       .then((result) =>
@@ -253,7 +285,7 @@ const Dashboard = () => {
           <button
             type="button"
             className="juizi-dashboard__btn juizi-dashboard__btn--secondary"
-            onClick={() => setDraft(saved)}
+            onClick={cancel}
             disabled={saving}
           >
             {intl.formatMessage(messages.cancel)}
@@ -262,14 +294,14 @@ const Dashboard = () => {
       )}
 
       <div className="juizi-dashboard__tabs" role="tablist">
-        {tabs.map((id) => (
+        {TABS.map((id) => (
           <button
             key={id}
             type="button"
             role="tab"
-            aria-selected={shownTab === id}
+            aria-selected={tab === id}
             className={
-              shownTab === id
+              tab === id
                 ? 'juizi-dashboard__tab juizi-dashboard__tab--active'
                 : 'juizi-dashboard__tab'
             }
@@ -280,7 +312,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {shownTab === 'blocks' && (
+      {tab === 'blocks' && (
         <Section
           title={intl.formatMessage(messages.editingLanguage)}
           help={intl.formatMessage(messages.editingLanguageHelp)}
@@ -308,7 +340,7 @@ const Dashboard = () => {
         </Section>
       )}
 
-      {shownTab === 'blocks' && (
+      {tab === 'blocks' && (
         <Section
           title={intl.formatMessage(messages.blocks)}
           help={intl.formatMessage(messages.blocksHelp)}
@@ -324,7 +356,7 @@ const Dashboard = () => {
         </Section>
       )}
 
-      {shownTab === 'colors' && (
+      {tab === 'colors' && (
         <>
           <Section
             title={intl.formatMessage(messages.colors)}
@@ -403,13 +435,13 @@ const Dashboard = () => {
         </>
       )}
 
-      {shownTab === 'print' && state.printSupported === false && (
+      {tab === 'print' && state.printSupported === false && (
         <div className="juizi-dashboard__error" role="alert">
           {intl.formatMessage(messages.printNotSupported)}
         </div>
       )}
 
-      {shownTab === 'print' && (
+      {tab === 'print' && (
         <PrintEditor
           printConfig={draft.print_config}
           onChange={(print_config) =>
@@ -418,7 +450,31 @@ const Dashboard = () => {
         />
       )}
 
-      {shownTab === 'transfer' && (
+      {tab === 'calendar' &&
+        (calendarOn ? (
+          <CalendarSettings settings={calendar} />
+        ) : (
+          <div className="juizi-dashboard__notice">
+            <p>
+              {intl.formatMessage(
+                calendarOnInDraft
+                  ? messages.calendarSaveToSwitchOn
+                  : messages.calendarSwitchedOff,
+              )}
+            </p>
+            {!calendarOnInDraft && (
+              <button
+                type="button"
+                className="juizi-dashboard__btn juizi-dashboard__btn--secondary"
+                onClick={() => selectTab('blocks')}
+              >
+                {intl.formatMessage(messages.calendarGoToBlocks)}
+              </button>
+            )}
+          </div>
+        ))}
+
+      {tab === 'transfer' && (
         <TransferPanel
           saved={saved}
           draft={draft}
@@ -476,7 +532,7 @@ const Dashboard = () => {
                     className="cancel"
                     aria-label={intl.formatMessage(messages.cancel)}
                     title={intl.formatMessage(messages.cancel)}
-                    onClick={() => setDraft(saved)}
+                    onClick={cancel}
                   >
                     <Icon
                       name={clearSVG}
@@ -508,6 +564,45 @@ const Dashboard = () => {
         )}
     </div>
   );
+};
+
+/** Shows the dashboard only to people who may change the settings. Asks
+ * the backend each time it opens: the settings loaded with the first page
+ * were loaded as whoever was logged in then. */
+const Dashboard = () => {
+  const intl = useIntl();
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => !!state.userSession?.token);
+  // null while the backend hasn't answered.
+  const [canManage, setCanManage] = useState(loggedIn ? null : false);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      setCanManage(false);
+      return;
+    }
+    let current = true;
+    setCanManage(null);
+    dispatch(getJuiziBlocksSettings())
+      .then((result) => current && setCanManage(result?.can_manage === true))
+      // No settings service (404): the panel says the add-on isn't
+      // installed, which tells nobody anything.
+      .catch((error) => current && setCanManage(error?.status === 404));
+    return () => {
+      current = false;
+    };
+  }, [dispatch, loggedIn]);
+
+  if (canManage === false) return <Unauthorized />;
+  if (canManage === null) {
+    return (
+      <div className="juizi-dashboard controlpanel-juizi-blocks" aria-busy>
+        <Helmet title={intl.formatMessage(messages.title)} />
+        <h1>{intl.formatMessage(messages.title)}</h1>
+      </div>
+    );
+  }
+  return <DashboardPanel />;
 };
 
 export default Dashboard;

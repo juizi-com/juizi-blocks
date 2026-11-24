@@ -1,3 +1,4 @@
+import { REORDER_LIST } from '../_shared/ReorderList';
 import {
   getBlockColorList,
   getButtonChoices,
@@ -180,7 +181,7 @@ const pricingSchema = (args) => {
       tiers: {
         title: t(messages.tiers),
         description: t(messages.tiersHelp),
-        widget: 'object_list',
+        widget: REORDER_LIST,
         schema: tierSchema(t, colors),
       },
       highlightedTier: {

@@ -29,6 +29,8 @@ dependencies = [
     "plone.api",
     "plone.restapi",
     "plone.volto",
+    # Events calendar: other calendars' repeating events.
+    "recurring-ical-events>=3.8",
 ]
 
 [dependency-groups]
@@ -37,6 +39,7 @@ dependencies = [
 # (the devsite profile) and tests. The version is pinned in
 # constraint-dependencies.
 test = [
+    "cryptography",
     "kitconcept.voltolighttheme",
     "horse-with-no-namespace",
     "plone.app.testing",

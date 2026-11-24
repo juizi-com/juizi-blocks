@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-11-17T11:29:51.241Z\n"
+"POT-Creation-Date: 2026-11-24T07:37:28.679Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -16,6 +16,11 @@ msgstr ""
 #. Default: "A button visitors click to print the page, with the site’s header and footer on the printout."
 #: blocks/messages
 msgid "A button visitors click to print the page, with the site’s header and footer on the printout."
+msgstr ""
+
+#. Default: "A month of events with a list beside it, filtered by the kinds of event you choose."
+#: blocks/messages
+msgid "A month of events with a list beside it, filtered by the kinds of event you choose."
 msgstr ""
 
 #. Default: "A sound recording with a player, title, description and transcript."
@@ -46,6 +51,12 @@ msgstr ""
 #. Default: "Data visualisation"
 #: blocks/messages
 msgid "Data visualisation"
+msgstr ""
+
+#. Default: "Events calendar"
+#: blocks/messages
+#: components/Blocks/Calendar/messages
+msgid "Events calendar"
 msgstr ""
 
 #. Default: "Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file."
@@ -313,6 +324,476 @@ msgstr ""
 msgid "juizi-buttons"
 msgstr ""
 
+#. Default: "Button and today colour"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-accent"
+msgstr ""
+
+#. Default: "That button colour is too pale to read on white, so dark grey is used instead."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-accent-warning"
+msgstr ""
+
+#. Default: "Add event type"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-add-event-type"
+msgstr ""
+
+#. Default: "All day"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-all-day"
+msgstr ""
+
+#. Default: "All events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-all-events"
+msgstr ""
+
+#. Default: "As the site"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-as-the-site"
+msgstr ""
+
+#. Default: "Colour"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-color"
+msgstr ""
+
+#. Default: "Optional. Left empty, a colour is picked for you."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-color-help"
+msgstr ""
+
+#. Default: "Couldn’t copy. Select the link and copy it yourself."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-copy-failed"
+msgstr ""
+
+#. Default: "Copy link"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-copy-link"
+msgstr ""
+
+#. Default: "{start} to {end}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-date-range"
+msgstr ""
+
+#. Default: "Dates and times"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-dates-times"
+msgstr ""
+
+#. Default: "Download the events (.ics)"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-download"
+msgstr ""
+
+#. Default: "A copy of the events as they are now. It won’t update."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-download-help"
+msgstr ""
+
+#. Default: "{time} each day"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-each-day"
+msgstr ""
+
+#. Default: "No events on this day."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-empty-day"
+msgstr ""
+
+#. Default: "No events in {month}."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-empty-month"
+msgstr ""
+
+#. Default: "{count, plural, one {# event} other {# events}}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-event-count"
+msgstr ""
+
+#. Default: "Event type"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-event-type"
+msgstr ""
+
+#. Default: "Event types"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-event-types"
+msgstr ""
+
+#. Default: "Events in {month}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-events-in"
+msgstr ""
+
+#. Default: "Calendar link"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-feed"
+msgstr ""
+
+#. Default: "These events couldn’t be loaded: {names}."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-feed-failed"
+msgstr ""
+
+#. Default: "In Google Calendar, open Settings, choose the calendar and copy its address in iCal format. In Outlook, publish the calendar and copy the ICS link. The link is hidden once you save. Everyone who sees this page will see those events. Changes there usually show here within 15 minutes, or later if that calendar is slow to pass them on."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-feed-help"
+msgstr ""
+
+#. Default: "All of them"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-filter-all"
+msgstr ""
+
+#. Default: "Which ones?"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-filter-by"
+msgstr ""
+
+#. Default: "Tags"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-filter-tags"
+msgstr ""
+
+#. Default: "Show events by type"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-filters"
+msgstr ""
+
+#. Default: "Only events inside this folder"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-folder"
+msgstr ""
+
+#. Default: "Optional. Left empty, it shows events from the whole site, in this page’s language."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-folder-help"
+msgstr ""
+
+#. Default: "no longer on the site"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-gone"
+msgstr ""
+
+#. Default: "Use the arrow keys to move between days, Page Up and Page Down to change month, and Enter to show the events of a day."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-grid-help"
+msgstr ""
+
+#. Default: "Screen readers use it to name the calendar, so even a short one helps."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-heading-help"
+msgstr ""
+
+#. Default: "{count, plural, one {# event hidden by filters.} other {# events hidden by filters.}}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-hidden-by-filters"
+msgstr ""
+
+#. Default: "{count, plural, one {# hidden by filters} other {# hidden by filters}}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-hidden-count"
+msgstr ""
+
+#. Default: "Text under the title"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-intro"
+msgstr ""
+
+#. Default: "The calendar shows them in this order. An event that fits more than one takes the colour of the one highest in this list."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-items-help"
+msgstr ""
+
+#. Default: "A kind marked \"switched off\" can no longer appear in calendars, so this calendar leaves those events out. Your site administrator can switch it back on in Site Setup › Juizi Blocks › Calendar."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-kind-switched-off"
+msgstr ""
+
+#. Default: "Calendar link"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-link"
+msgstr ""
+
+#. Default: "Link copied"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-link-copied"
+msgstr ""
+
+#. Default: "For Google Calendar: under Other calendars, choose From URL and paste this link. Other calendar apps have a similar option."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-link-help"
+msgstr ""
+
+#. Default: "This list is no longer offered for new calendars. This calendar still uses it, until you choose another."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-list-not-offered"
+msgstr ""
+
+#. Default: "The events couldn’t be loaded."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-load-failed"
+msgstr ""
+
+#. Default: "Loading events…"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-loading"
+msgstr ""
+
+#. Default: "An event needs"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-match"
+msgstr ""
+
+#. Default: "All of these (and)"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-match-all"
+msgstr ""
+
+#. Default: "Any of these (or)"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-match-any"
+msgstr ""
+
+#. Default: "Monday"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-monday"
+msgstr ""
+
+#. Default: "+{count} more"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-more-short"
+msgstr ""
+
+#. Default: "Name on the button"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-name"
+msgstr ""
+
+#. Default: "Optional. Left empty, it uses what you chose for this event type."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-name-help"
+msgstr ""
+
+#. Default: "(opens in a new tab)"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-new-tab"
+msgstr ""
+
+#. Default: "Next event: {date}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-next-event"
+msgstr ""
+
+#. Default: "Next month, {month}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-next-month"
+msgstr ""
+
+#. Default: "no events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-no-events"
+msgstr ""
+
+#. Default: "All events are shown. To sort them into types with their own colours, add event types in the sidebar."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-no-items-hint"
+msgstr ""
+
+#. Default: "No kinds of event are switched on for calendars yet. Ask your site administrator to switch some on in Site Setup › Juizi Blocks › Calendar."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-no-kinds"
+msgstr ""
+
+#. Default: "no events shown"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-none-shown"
+msgstr ""
+
+#. Default: "no longer offered"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-not-offered"
+msgstr ""
+
+#. Default: "Other events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-other-events"
+msgstr ""
+
+#. Default: "These colours are pale on the calendar, so their dots get a grey outline: {names}."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-pale-warning"
+msgstr ""
+
+#. Default: "Previous month, {month}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-previous-month"
+msgstr ""
+
+#. Default: "Try again"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-retry"
+msgstr ""
+
+#. Default: "Let visitors subscribe"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-sharing"
+msgstr ""
+
+#. Default: "Show all events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-all"
+msgstr ""
+
+#. Default: "Show all of {month}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-month"
+msgstr ""
+
+#. Default: "Show other events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-other"
+msgstr ""
+
+#. Default: "Events that fit none of your event types show in grey, so none go missing."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-other-help"
+msgstr ""
+
+#. Default: "Show a subscribe link"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-subscribe"
+msgstr ""
+
+#. Default: "Visitors can add this calendar to their own and it stays up to date. Events from other calendars aren’t included."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-show-subscribe-help"
+msgstr ""
+
+#. Default: "{name}: last updated {count, plural, one {# day} other {# days}} ago. Check the link."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-stale"
+msgstr ""
+
+#. Default: "Add to your calendar"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-subscribe"
+msgstr ""
+
+#. Default: "Subscribe in your calendar app"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-subscribe-app"
+msgstr ""
+
+#. Default: "Opens Apple Calendar or Outlook. New and changed events keep coming through."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-subscribe-app-help"
+msgstr ""
+
+#. Default: "Sunday"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-sunday"
+msgstr ""
+
+#. Default: "switched off"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-switched-off"
+msgstr ""
+
+#. Default: "Tags"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-tags"
+msgstr ""
+
+#. Default: "Tags already used on this site. To use a new one, add it to an event first."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-tags-help"
+msgstr ""
+
+#. Default: "Which tech event?"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-tech-event"
+msgstr ""
+
+#. Default: "Optional. Left empty, sessions from every tech event."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-tech-event-help"
+msgstr ""
+
+#. Default: "Times are shown in {zone} time."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-times-in"
+msgstr ""
+
+#. Default: "Time zone"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-timezone"
+msgstr ""
+
+#. Default: "Leave empty to follow the site’s time zone. Set it only for a calendar meant for people in another country. All-day events keep their date."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-timezone-help"
+msgstr ""
+
+#. Default: "Today"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-today"
+msgstr ""
+
+#. Default: "{count, plural, one {# event type isn’t finished, so visitors don’t see it. Choose what goes in it in the sidebar.} other {# event types aren’t finished, so visitors don’t see them. Choose what goes in them in the sidebar.}}"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-unfinished-items"
+msgstr ""
+
+#. Default: "Choose"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-values"
+msgstr ""
+
+#. Default: "Anything marked \"no longer on the site\" matches nothing. Remove it or choose another."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-values-gone"
+msgstr ""
+
+#. Default: "View events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-view-events"
+msgstr ""
+
+#. Default: "Weeks start on"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-week-start"
+msgstr ""
+
+#. Default: "Leave empty to follow the site. Set it only for a calendar meant for people whose week starts on another day."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-week-start-help"
+msgstr ""
+
+#. Default: "What are we showing?"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-what"
+msgstr ""
+
+#. Default: "Another calendar, by its link (Google, Outlook)"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-what-feed"
+msgstr ""
+
+#. Default: "Pick one or more kinds of event. Leave it empty for every kind."
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-what-help"
+msgstr ""
+
+#. Default: "Which events"
+#: components/Blocks/Calendar/messages
+msgid "juizi-calendar-which-events"
+msgstr ""
+
 #. Default: "Text colour follows the background automatically."
 #: components/Blocks/Callout/messages
 msgid "juizi-callout-background-help"
@@ -521,6 +1002,11 @@ msgstr ""
 #. Default: "something the reader needs to be careful about"
 #: components/Blocks/Callout/messages
 msgid "juizi-callout-type-warning-help"
+msgstr ""
+
+#. Default: "carousel"
+#: components/Blocks/_shared/messages
+msgid "juizi-carousel"
 msgstr ""
 
 #. Default: "Add a picture to this slide in the sidebar."
@@ -1753,6 +2239,116 @@ msgstr ""
 msgid "juizi-dashboard-blocks-help"
 msgstr ""
 
+#. Default: "{count, plural, one {# event} other {# events}}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-events"
+msgstr ""
+
+#. Default: "Other calendars"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-feeds"
+msgstr ""
+
+#. Default: "Editors may add other calendars"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-feeds-allow"
+msgstr ""
+
+#. Default: "Editors can add events from a Google or Outlook calendar by its link. Off: calendars leave them out, including ones already added."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-feeds-help"
+msgstr ""
+
+#. Default: "Go to the Blocks tab"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-go-to-blocks"
+msgstr ""
+
+#. Default: "Not shown in any calendar."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-kind-off"
+msgstr ""
+
+#. Default: "Kinds of event calendars can show"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-kinds"
+msgstr ""
+
+#. Default: "Only the kinds ticked here can appear in calendars on this site, and editors choose from these. Each also gets a “Calendar entry only” tick box, for events with no page of their own to link to."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-kinds-help"
+msgstr ""
+
+#. Default: "Name editors see"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-list-name"
+msgstr ""
+
+#. Default: "None of the kinds ticked above use this list, so it would match nothing."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-list-unused"
+msgstr ""
+
+#. Default: "Lists editors can choose events by"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-lists"
+msgstr ""
+
+#. Default: "Tags are always offered. Tick the lists meant for calendars and, if you like, give each the name editors should see. A list taken off here keeps working in calendars that already use it."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-lists-help"
+msgstr ""
+
+#. Default: "The calendar settings could not be loaded. The site may need its Juizi Blocks upgrade step run (Site Setup › Add-ons)."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-load-failed"
+msgstr ""
+
+#. Default: "Loading the calendar settings…"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-loading"
+msgstr ""
+
+#. Default: "This site has no content with dates a calendar can show."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-no-kinds"
+msgstr ""
+
+#. Default: "This site has no lists of its own (taxonomies). Editors can still choose events by tag."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-no-lists"
+msgstr ""
+
+#. Default: "Save to switch the Events calendar on. Its settings appear here once it is saved."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-save-to-switch-on"
+msgstr ""
+
+#. Default: "Calendar settings saved"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-saved"
+msgstr ""
+
+#. Default: "Talks, keynotes and trainings can also be chosen by their tech event’s tracks, levels and audiences."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-session-lists"
+msgstr ""
+
+#. Default: "can be chosen by {lists}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-sorted-by"
+msgstr ""
+
+#. Default: "The Events calendar is switched off on this site. Switch it on in the Blocks tab and save. Events then get a “Calendar entry only” tick box, and you can choose here what calendars may show."
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-switched-off"
+msgstr ""
+
+#. Default: "on {kinds}"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-calendar-used-on"
+msgstr ""
+
 #. Default: "Background colour"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-callout-background"
@@ -2296,6 +2892,11 @@ msgstr ""
 #. Default: "Blocks"
 #: components/Dashboard/messages
 msgid "juizi-dashboard-tab-blocks"
+msgstr ""
+
+#. Default: "Calendar"
+#: components/Dashboard/messages
+msgid "juizi-dashboard-tab-calendar"
 msgstr ""
 
 #. Default: "Colours"
@@ -4473,6 +5074,26 @@ msgstr ""
 msgid "juizi-padding-help"
 msgstr ""
 
+#. Default: "Stop moving the slides"
+#: components/Blocks/_shared/messages
+msgid "juizi-pause-slides"
+msgstr ""
+
+#. Default: "Pause the background video"
+#: components/Blocks/_shared/messages
+msgid "juizi-pause-video"
+msgstr ""
+
+#. Default: "Move the slides automatically"
+#: components/Blocks/_shared/messages
+msgid "juizi-play-slides"
+msgstr ""
+
+#. Default: "Play the background video"
+#: components/Blocks/_shared/messages
+msgid "juizi-play-video"
+msgstr ""
+
 #. Default: "Previous image"
 #: components/Blocks/_shared/messages
 msgid "juizi-previous-image"
@@ -4883,6 +5504,41 @@ msgstr ""
 msgid "juizi-redirect-will-be-sent"
 msgstr ""
 
+#. Default: "Item"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-item"
+msgstr ""
+
+#. Default: "Move down"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-move-down"
+msgstr ""
+
+#. Default: "Move down: {name}"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-move-down-named"
+msgstr ""
+
+#. Default: "Move up"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-move-up"
+msgstr ""
+
+#. Default: "Move up: {name}"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-move-up-named"
+msgstr ""
+
+#. Default: "{name} is now {number} of {total}"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-moved"
+msgstr ""
+
+#. Default: "Position {number} of {total}"
+#: components/Blocks/_shared/messages
+msgid "juizi-reorder-position"
+msgstr ""
+
 #. Default: "Above the details"
 #: extensions/resourceBlocks/messages
 msgid "juizi-resource-facts-above"
@@ -4983,9 +5639,19 @@ msgstr ""
 msgid "juizi-shop-second-button"
 msgstr ""
 
+#. Default: "slide"
+#: components/Blocks/_shared/messages
+msgid "juizi-slide"
+msgstr ""
+
 #. Default: "Slide navigation"
 #: components/Blocks/_shared/messages
 msgid "juizi-slide-navigation"
+msgstr ""
+
+#. Default: "{number} of {total}"
+#: components/Blocks/_shared/messages
+msgid "juizi-slide-of-total"
 msgstr ""
 
 #. Default: "Small"

@@ -197,3 +197,22 @@ describe('anchors', () => {
     expect(blockAnchorId('', 'abcdef123')).toBeUndefined();
   });
 });
+
+describe('withStableIds', () => {
+  const { withStableIds } = require('./items');
+  it('gives items saved without an id the same one every time', () => {
+    const saved = [{ '@id': 'a' }, { label: 'Old' }];
+    expect(withStableIds(saved, 'button')).toEqual([
+      { '@id': 'a' },
+      { label: 'Old', '@id': 'button-saved-1' },
+    ]);
+    expect(withStableIds(saved, 'button')).toEqual(
+      withStableIds(saved, 'button'),
+    );
+  });
+  it('leaves lists with ids, and anything else, alone', () => {
+    const fine = [{ '@id': 'a' }];
+    expect(withStableIds(fine)[0]).toBe(fine[0]);
+    expect(withStableIds(undefined)).toBeUndefined();
+  });
+});

@@ -1,0 +1,1003 @@
+// Events calendar. Every colour and size has a fallback of its own: nothing
+// needs Volto Light Theme. The layout follows the size of the block, not of
+// the window, so it also works inside Columns.
+//
+// Sizes are multiples of --calendar-unit, which is rem-based (so they follow
+// text resizing), and heights are minimums (text
+// spacing can't clip). Selectors start with the block's class twice to win
+// over Semantic UI's table, button and heading styles without !important.
+
+.juizi-calendar.juizi-calendar {
+  // 16px as drawn, on plain Volto's 14px root and Volto Light Theme's 18px
+  // one alike. A theme with another root sets --juizi-calendar-unit.
+  --calendar-unit: var(--juizi-calendar-unit, calc(1rem * 8 / 7));
+  --calendar-muted: #5b6475;
+  --calendar-line: #dde2ec;
+  // 3:1 on white, for the edges of controls.
+  --calendar-edge: #868fa1;
+  --calendar-wash: #f6f7fb;
+
+  position: relative;
+  box-sizing: border-box;
+
+  .juizi-calendar__inner {
+    container: juizi-calendar / inline-size;
+  }
+
+  .juizi-calendar__title {
+    margin-top: 0;
+  }
+
+  // The title, with Subscribe at its right.
+  .juizi-calendar__header {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    .juizi-calendar__title {
+      min-width: 0;
+      flex: 1;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .juizi-calendar__intro {
+    max-width: var(--juizi-description-max-width, 65ch);
+    margin: 0 0 calc(var(--calendar-unit) * 1.5);
+    font-size: var(--calendar-unit);
+    line-height: 1.55;
+  }
+
+  // The card is always white, whatever is behind it.
+  .juizi-calendar__card {
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid var(--calendar-line);
+    border-radius: var(--juizi-calendar-radius, 10px);
+    background: #fff;
+    box-shadow:
+      0 1px 2px rgba(29, 36, 51, 0.06),
+      0 4px 16px rgba(29, 36, 51, 0.06);
+    color: var(--calendar-ink);
+    font-size: var(--calendar-unit);
+    // Volto Light Theme's body text is too thin at these sizes.
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: left;
+
+    p {
+      font-weight: 400;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    button {
+      min-width: 0;
+      margin: 0;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: inherit;
+      text-transform: none;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex='-1']:focus-visible {
+      outline: 3px solid var(--calendar-accent);
+      outline-offset: 2px;
+    }
+  }
+
+  // Toolbar
+
+  .juizi-calendar__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 var(--calendar-unit);
+    gap: var(--calendar-unit);
+  }
+
+  .juizi-calendar__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--calendar-unit) * 0.5);
+  }
+
+  .juizi-calendar__month {
+    min-width: calc(var(--calendar-unit) * 10.625);
+    padding: 0;
+    border: 0;
+    margin: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: calc(var(--calendar-unit) * 1.25);
+    font-weight: 700;
+    letter-spacing: inherit;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .juizi-calendar__arrow,
+  .juizi-calendar__today,
+  .juizi-calendar__filter {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--calendar-edge);
+    background: #fff;
+    color: var(--calendar-accent);
+  }
+
+  .juizi-calendar__arrow {
+    width: calc(var(--calendar-unit) * 2.25);
+    height: calc(var(--calendar-unit) * 2.25);
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .juizi-calendar__today {
+    min-height: calc(var(--calendar-unit) * 2.25);
+    padding: calc(var(--calendar-unit) * 0.375)
+      calc(var(--calendar-unit) * 0.875);
+    border-radius: 999px;
+    font-size: calc(var(--calendar-unit) * 0.85);
+    font-weight: 600;
+    line-height: 1.55;
+  }
+
+  .juizi-calendar__filters {
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: calc(var(--calendar-unit) * 0.375);
+  }
+
+  .juizi-calendar__filter {
+    max-width: 100%;
+    min-height: calc(var(--calendar-unit) * 2);
+    padding: calc(var(--calendar-unit) * 0.3125)
+      calc(var(--calendar-unit) * 0.75);
+    border-radius: 999px;
+    color: var(--calendar-ink);
+    font-size: calc(var(--calendar-unit) * 0.82);
+    font-weight: 500;
+    gap: calc(var(--calendar-unit) * 0.375);
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+
+    // Pressed is a ring and a tick, apart from the type's own dot. Neither
+    // takes up room, so the row never shifts under the pointer.
+    &[aria-pressed='true'] {
+      border-color: var(--calendar-accent);
+      box-shadow: inset 0 0 0 1px var(--calendar-accent);
+
+      &::after {
+        position: absolute;
+        top: -5px;
+        right: -3px;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background: var(--calendar-accent)
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2l2 2L9 4' fill='none' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E")
+          center / contain no-repeat;
+        content: '';
+      }
+    }
+  }
+
+  .juizi-calendar__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border: 1px solid var(--event-edge, transparent);
+    border-radius: 50%;
+    background: var(--event-color);
+    background-clip: border-box;
+  }
+
+  // Month and list
+
+  .juizi-calendar__layout {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .juizi-calendar__month-grid {
+    min-width: 0;
+  }
+
+  table.juizi-calendar__grid {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid var(--calendar-line);
+    border-left: 1px solid var(--calendar-line);
+    margin: 0;
+    background: none;
+    box-shadow: none;
+
+    > thead,
+    > tbody {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+    tr.juizi-calendar__week {
+      display: grid;
+      width: 100%;
+      border: 0;
+      background: none;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    th.juizi-calendar__weekday {
+      display: block;
+      overflow: hidden;
+      width: auto;
+      min-width: 0;
+      padding: calc(var(--calendar-unit) * 0.5)
+        min(calc(var(--calendar-unit) * 0.5), 5%);
+      border: 0;
+      border-right: 1px solid var(--calendar-line);
+      border-bottom: 1px solid var(--calendar-line);
+      background: var(--calendar-wash);
+      color: var(--calendar-muted);
+      font-size: calc(var(--calendar-unit) * 0.72);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    // Capitals can be read out letter by letter.
+    th.juizi-calendar__weekday .visually-hidden {
+      text-transform: none;
+    }
+
+    td.juizi-calendar__cell {
+      position: relative;
+      display: flex;
+      width: auto;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      border-right: 1px solid var(--calendar-line);
+      border-bottom: 1px solid var(--calendar-line);
+      background: #fff;
+    }
+
+    td.juizi-calendar__cell--outside {
+      background: var(--calendar-wash);
+    }
+
+    td.juizi-calendar__cell--selected {
+      background: color-mix(in srgb, var(--calendar-accent) 7%, #fff);
+    }
+  }
+
+  button.juizi-calendar__day {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: calc(var(--calendar-unit) * 5.75);
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 6px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--calendar-ink);
+    font-size: var(--calendar-unit);
+    gap: 4px;
+    line-height: 1.55;
+    text-align: left;
+
+    &:hover {
+      background: color-mix(in srgb, var(--calendar-accent) 4%, transparent);
+    }
+
+    &:focus-visible {
+      z-index: 2;
+      outline: 3px solid var(--calendar-accent);
+      outline-offset: -3px;
+    }
+  }
+
+  .juizi-calendar__cell--selected::after {
+    position: absolute;
+    z-index: 1;
+    border: 2px solid var(--calendar-accent);
+    content: '';
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .juizi-calendar__number {
+    display: inline-flex;
+    min-width: calc(var(--calendar-unit) * 1.625);
+    min-height: calc(var(--calendar-unit) * 1.625);
+    align-items: center;
+    align-self: flex-start;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: calc(var(--calendar-unit) * 0.82);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .juizi-calendar__cell--outside .juizi-calendar__number {
+    color: var(--calendar-muted);
+    font-weight: 400;
+  }
+
+  .juizi-calendar__cell--today .juizi-calendar__number {
+    background: var(--calendar-accent);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .juizi-calendar__labels {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .juizi-calendar__label {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 2px 6px 2px 9px;
+    border-radius: 4px;
+    // The 12% matches TINT in colours.js, which checks the contrast.
+    background: color-mix(in srgb, var(--event-color) 12%, #fff);
+    color: var(--event-text);
+    font-size: calc(var(--calendar-unit) * 0.7);
+    font-weight: 500;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      background: var(--event-color);
+      box-shadow: inset 0 0 0 1px var(--event-edge);
+      content: '';
+    }
+  }
+
+  .juizi-calendar__more {
+    color: var(--calendar-muted);
+    font-size: calc(var(--calendar-unit) * 0.7);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .juizi-calendar__dots {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  // Long events: thin bars that run on from one day to the next.
+  .juizi-calendar__bars {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2px;
+    margin: auto -7px -3px -6px;
+    gap: 2px;
+  }
+
+  .juizi-calendar__cell:last-child .juizi-calendar__bars {
+    margin-right: -6px;
+  }
+
+  .juizi-calendar__bar {
+    display: block;
+    height: 4px;
+    border-top: 1px solid var(--event-edge, transparent);
+    border-bottom: 1px solid var(--event-edge, transparent);
+    background: var(--event-color);
+    background-clip: border-box;
+  }
+
+  .juizi-calendar__bar--space {
+    visibility: hidden;
+  }
+
+  .juizi-calendar__bar--starts {
+    margin-left: 6px;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+  }
+
+  .juizi-calendar__bar--ends {
+    margin-right: 7px;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  // Only phones need pointing to the list: elsewhere it's beside the grid.
+  .juizi-calendar__day-summary {
+    display: none;
+  }
+
+  .juizi-calendar__agenda {
+    min-width: 0;
+    padding-top: var(--calendar-unit);
+    border-top: 1px solid var(--calendar-line);
+  }
+
+  .juizi-calendar__list-title {
+    padding: 0;
+    border: 0;
+    margin: 0 0 calc(var(--calendar-unit) * 0.75);
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--calendar-unit);
+    font-weight: 700;
+    letter-spacing: inherit;
+    line-height: 1.55;
+  }
+
+  button.juizi-calendar__text-button {
+    display: inline-flex;
+    min-height: calc(var(--calendar-unit) * 2.75);
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--calendar-accent);
+    font-size: calc(var(--calendar-unit) * 0.85);
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .juizi-calendar__list-title + .juizi-calendar__text-button {
+    margin: calc(var(--calendar-unit) * -0.625) 0
+      calc(var(--calendar-unit) * 0.375);
+  }
+
+  ul.juizi-calendar__events {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: var(--calendar-unit);
+    list-style: none;
+  }
+
+  li.juizi-calendar__event {
+    position: relative;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font-size: var(--calendar-unit);
+    gap: calc(var(--calendar-unit) * 0.75);
+    line-height: 1.55;
+
+    &::before,
+    &::marker {
+      content: none;
+    }
+  }
+
+  .juizi-calendar__event-bar {
+    width: 4px;
+    flex: none;
+    border-radius: 2px;
+    background: var(--event-color);
+    box-shadow: inset 0 0 0 1px var(--event-edge);
+  }
+
+  .juizi-calendar__event-body {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  p.juizi-calendar__meta {
+    margin: 0;
+    color: var(--calendar-muted);
+    font-size: calc(var(--calendar-unit) * 0.78);
+    line-height: 1.55;
+  }
+
+  .juizi-calendar__tag {
+    margin-left: 6px;
+    color: var(--event-tag);
+    font-weight: 700;
+  }
+
+  .juizi-calendar__event-title {
+    padding: 0;
+    border: 0;
+    margin: 2px 0 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--calendar-unit);
+    font-weight: 600;
+    letter-spacing: inherit;
+    line-height: 1.55;
+  }
+
+  a.juizi-calendar__event-link.juizi-calendar__event-link {
+    --link-foreground-color: var(--calendar-ink);
+
+    color: var(--calendar-ink);
+    font: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--calendar-edge);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+
+    // One link, over the whole entry.
+    &::after {
+      position: absolute;
+      content: '';
+      inset: 0;
+    }
+
+    &:focus-visible {
+      outline: 0;
+    }
+
+    &:focus-visible::after {
+      outline: 3px solid var(--calendar-accent);
+      outline-offset: 3px;
+    }
+  }
+
+  .juizi-calendar__event--linked:hover a.juizi-calendar__event-link {
+    text-decoration-color: currentcolor;
+  }
+
+  p.juizi-calendar__where {
+    margin: 0;
+    color: var(--calendar-accent);
+    font-size: calc(var(--calendar-unit) * 0.85);
+    line-height: 1.55;
+  }
+
+  p.juizi-calendar__summary {
+    margin: 4px 0 0;
+    color: var(--calendar-muted);
+    font-size: calc(var(--calendar-unit) * 0.85);
+    line-height: 1.55;
+  }
+
+  p.juizi-calendar__empty,
+  p.juizi-calendar__zone,
+  .juizi-calendar__notice p {
+    margin: 0;
+    color: var(--calendar-muted);
+    font-size: calc(var(--calendar-unit) * 0.85);
+    line-height: 1.55;
+  }
+
+  p.juizi-calendar__zone {
+    margin-top: var(--calendar-unit);
+  }
+
+  .juizi-calendar__notice {
+    padding: calc(var(--calendar-unit) * 0.5) calc(var(--calendar-unit) * 0.75)
+      0;
+    border-radius: 4px;
+    margin: 0 0 var(--calendar-unit);
+    background: var(--calendar-wash);
+  }
+
+  .juizi-calendar__skeleton span {
+    display: block;
+    height: calc(var(--calendar-unit) * 4.5);
+    border-radius: 4px;
+    margin-bottom: var(--calendar-unit);
+    background: var(--calendar-wash);
+  }
+
+  // No title: still at the right, above the card.
+  .juizi-calendar__header--bare {
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .juizi-calendar__subscribe-wrap {
+    position: relative;
+    flex: none;
+  }
+
+  button.juizi-calendar__subscribe.juizi-calendar__subscribe {
+    position: relative;
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid currentcolor;
+    border-radius: 50%;
+    margin: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: none;
+
+    &[aria-expanded='true'] {
+      background: var(--calendar-wash);
+      color: #1d2433;
+    }
+
+    &:focus-visible {
+      outline: 3px solid currentcolor;
+      outline-offset: 2px;
+    }
+
+    &:hover .juizi-calendar__subscribe-tip,
+    &:focus-visible .juizi-calendar__subscribe-tip {
+      display: block;
+    }
+  }
+
+  .juizi-calendar__subscribe-tip {
+    position: absolute;
+    z-index: 3;
+    top: 100%;
+    right: 0;
+    display: none;
+    width: max-content;
+    max-width: 220px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    // The gap is part of it, so the pointer can reach it.
+    border-top: 6px solid transparent;
+    background: #1d2433;
+    background-clip: padding-box;
+    color: #fff;
+    font-size: calc(var(--calendar-unit) * 0.82);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  // Add to your calendar: under the button, inside the block.
+  .juizi-calendar__subscribe-panel {
+    position: absolute;
+    z-index: 4;
+    top: calc(100% + 8px);
+    right: 0;
+    width: min(calc(var(--calendar-unit) * 22), calc(100cqi - 2px));
+    box-sizing: border-box;
+    padding: calc(var(--calendar-unit) * 1);
+    border: 1px solid var(--calendar-edge);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 24px rgb(29 36 51 / 18%);
+    color: #1d2433;
+    font-size: calc(var(--calendar-unit) * 0.9);
+    line-height: 1.45;
+    text-align: left;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .juizi-calendar__subscribe-heading {
+    margin: 0 0 calc(var(--calendar-unit) * 0.5);
+    font-size: var(--calendar-unit);
+    font-weight: 700;
+  }
+
+  ul.juizi-calendar__subscribe-options {
+    display: grid;
+    // Rows shrink to the panel, whatever the theme gives lists.
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    gap: calc(var(--calendar-unit) * 0.9);
+    grid-template-columns: minmax(0, 1fr);
+    list-style: none;
+
+    li {
+      display: grid;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      gap: 4px;
+      grid-template-columns: minmax(0, 1fr);
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+
+  a.juizi-calendar__subscribe-option,
+  button.juizi-calendar__subscribe-option {
+    display: inline-flex;
+    min-height: 44px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border: 1px solid var(--calendar-edge);
+    border-radius: 6px;
+    margin: 0;
+    background: #fff;
+    color: #1d2433;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--calendar-wash);
+    }
+
+    &:focus-visible {
+      outline: 3px solid #1d2433;
+      outline-offset: 2px;
+    }
+  }
+
+  .juizi-calendar__subscribe-label {
+    font-weight: 600;
+  }
+
+  .juizi-calendar__subscribe-copy {
+    display: flex;
+    gap: 6px;
+
+    input {
+      min-width: 0;
+      min-height: 44px;
+      box-sizing: border-box;
+      flex: 1;
+      padding: 6px 8px;
+      border: 1px solid var(--calendar-edge);
+      border-radius: 6px;
+      margin: 0;
+      background: var(--calendar-wash);
+      color: #1d2433;
+      font: inherit;
+      font-size: calc(var(--calendar-unit) * 0.8);
+
+      &:focus-visible {
+        outline: 3px solid #1d2433;
+        outline-offset: 2px;
+      }
+    }
+
+    button.juizi-calendar__subscribe-option {
+      flex: none;
+    }
+  }
+
+  .juizi-calendar__subscribe-help {
+    color: var(--calendar-muted);
+    font-size: calc(var(--calendar-unit) * 0.82);
+  }
+
+  .juizi-calendar__subscribe-status {
+    margin: 8px 0 0;
+    font-weight: 600;
+
+    &:empty {
+      margin: 0;
+    }
+  }
+
+  // List beside the month.
+  @container juizi-calendar (min-width: 860px) {
+    .juizi-calendar__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+    }
+
+    .juizi-calendar__agenda {
+      position: relative;
+      min-height: calc(var(--calendar-unit) * 20);
+      padding: 0;
+      border-top: 0;
+      border-left: 1px solid var(--calendar-line);
+    }
+
+    // The month sets the height and the list scrolls beside it. The room
+    // round it keeps focus rings from being clipped.
+    .juizi-calendar__scroller {
+      position: absolute;
+      padding: 4px 6px 6px 20px;
+      inset: -4px -6px -6px 0;
+      overflow-y: auto;
+      overscroll-behavior: auto;
+      scroll-padding: 8px;
+
+      &:focus-visible {
+        outline: 3px solid var(--calendar-accent);
+        outline-offset: -3px;
+      }
+    }
+  }
+
+  @container juizi-calendar (min-width: 1100px) {
+    .juizi-calendar__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+    }
+  }
+
+  // Phones and narrow columns: dots instead of labels.
+  @container juizi-calendar (max-width: 600px) {
+    .juizi-calendar__card {
+      padding: 12px;
+    }
+
+    .juizi-calendar__nav {
+      width: 100%;
+    }
+
+    .juizi-calendar__month {
+      // A long month's name sends Today to the next line, never overflows.
+      min-width: min-content;
+      flex: 1;
+      font-size: calc(var(--calendar-unit) * 1.05);
+    }
+
+    .juizi-calendar__arrow {
+      width: calc(var(--calendar-unit) * 2.5);
+      height: calc(var(--calendar-unit) * 2.5);
+    }
+
+    .juizi-calendar__today,
+    .juizi-calendar__filter {
+      min-height: calc(var(--calendar-unit) * 2.5);
+    }
+
+    table.juizi-calendar__grid th.juizi-calendar__weekday {
+      padding: 6px 1px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    button.juizi-calendar__day {
+      min-height: calc(var(--calendar-unit) * 3.375);
+      padding: 4px 2px;
+    }
+
+    .juizi-calendar__number {
+      align-self: center;
+    }
+
+    .juizi-calendar__labels {
+      display: none;
+    }
+
+    .juizi-calendar__dots {
+      display: flex;
+    }
+
+    .juizi-calendar__bars {
+      margin: auto -3px -1px -2px;
+    }
+
+    .juizi-calendar__cell:last-child .juizi-calendar__bars {
+      margin-right: -2px;
+    }
+
+    .juizi-calendar__bar--starts {
+      margin-left: 4px;
+    }
+
+    .juizi-calendar__bar--ends {
+      margin-right: 5px;
+    }
+
+    p.juizi-calendar__day-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: calc(var(--calendar-unit) * 0.5) 0 0;
+      font-size: calc(var(--calendar-unit) * 0.85);
+      gap: 0 calc(var(--calendar-unit) * 0.75);
+    }
+  }
+
+  // Very narrow: no room for the card's padding.
+  @container juizi-calendar (max-width: 340px) {
+    .juizi-calendar__card {
+      padding: 10px 0;
+      border-radius: 0;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .juizi-calendar__toolbar,
+    .juizi-calendar__agenda,
+    p.juizi-calendar__day-summary {
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .juizi-calendar__dot,
+    .juizi-calendar__bar,
+    .juizi-calendar__event-bar,
+    .juizi-calendar__label::before {
+      border-color: CanvasText;
+      background: CanvasText;
+      forced-color-adjust: none;
+    }
+
+    .juizi-calendar__filter[aria-pressed='true'] {
+      border: 3px solid Highlight;
+
+      &::after {
+        border-color: Canvas;
+        background-color: Highlight;
+        forced-color-adjust: none;
+      }
+    }
+
+    .juizi-calendar__cell--selected::after {
+      border: 3px solid Highlight;
+    }
+
+    .juizi-calendar__cell--today .juizi-calendar__number {
+      background: CanvasText;
+      color: Canvas;
+      forced-color-adjust: none;
+    }
+
+    .juizi-calendar__card button:focus-visible,
+    button.juizi-calendar__day:focus-visible {
+      outline-color: Highlight;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .juizi-calendar__card * {
+      scroll-behavior: auto;
+      transition: none;
+    }
+  }
+}
+
+// Volto Light Theme: only it has these wrappers, the first on the page (see
+// juizi-common.scss), the second in the editor.
+.blocks-group-wrapper .juizi-calendar.juizi-calendar,
+.q.container .juizi-calendar.juizi-calendar {
+  --calendar-unit: var(--juizi-calendar-unit, calc(1rem * 8 / 9));
+}

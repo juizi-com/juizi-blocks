@@ -3,6 +3,26 @@ import { defineMessages } from 'react-intl';
 // Messages shared by several Juizi blocks: common field names, choices and
 // the short prompts editors see on the canvas.
 export default defineMessages({
+  // Lists that can be put in order without dragging (ReorderList.jsx).
+  item: { id: 'juizi-reorder-item', defaultMessage: 'Item' },
+  position: {
+    id: 'juizi-reorder-position',
+    defaultMessage: 'Position {number} of {total}',
+  },
+  moveUp: { id: 'juizi-reorder-move-up', defaultMessage: 'Move up' },
+  moveDown: { id: 'juizi-reorder-move-down', defaultMessage: 'Move down' },
+  moveUpNamed: {
+    id: 'juizi-reorder-move-up-named',
+    defaultMessage: 'Move up: {name}',
+  },
+  moveDownNamed: {
+    id: 'juizi-reorder-move-down-named',
+    defaultMessage: 'Move down: {name}',
+  },
+  moved: {
+    id: 'juizi-reorder-moved',
+    defaultMessage: '{name} is now {number} of {total}',
+  },
   default: { id: 'juizi-default', defaultMessage: 'Default' },
   options: { id: 'juizi-options', defaultMessage: 'Options' },
   content: { id: 'juizi-content', defaultMessage: 'Content' },

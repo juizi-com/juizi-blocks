@@ -23,8 +23,12 @@ const VALUES = {
   current: 2,
   date: '13 November 2024',
   destination: '/news',
+  end: '30 November',
   groups: 'Editors',
+  kinds: 'Event, Talk',
   label: 'Gold',
+  lists: 'Tags, Track',
+  month: 'November 2026',
   name: 'gold',
   names: 'Year, Price',
   number: 3,
@@ -39,12 +43,15 @@ const VALUES = {
   shown: 4,
   site: 'https://plone.org',
   slot: 'Text',
+  start: '2 November',
   strength: 'Light',
   tag: 'News',
   title: 'Harbour',
   tone: 'dark',
+  time: '09:00–13:00',
   total: 9,
   view: 'Bars',
+  zone: 'Johannesburg',
 };
 
 describe('locales', () => {

@@ -10,4 +10,11 @@
   <!-- Metadata
   <column value="industry" />
 -->
+  <!-- Events calendar block: see calendar/indexers.py -->
+  <index meta_type="FieldIndex"
+         name="juizi_event_kind"
+  >
+    <indexed_attr value="juizi_event_kind" />
+  </index>
+  <column value="juizi_event_info" />
 </object>

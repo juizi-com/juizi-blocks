@@ -30,6 +30,17 @@ export const withItemTitles = (items, ...fields) =>
 
 /** Gives every list item the '@id' the sortable list widget needs, and
  * drops empty entries. */
+/** An id for items saved without one (older content): the same on every
+ * render, so the sidebar list can follow them, and kept once saved. */
+export const withStableIds = (items, prefix = 'item') =>
+  Array.isArray(items)
+    ? items.map((item, index) =>
+        item && typeof item === 'object' && !item['@id']
+          ? { ...item, '@id': `${prefix}-saved-${index}` }
+          : item,
+      )
+    : items;
+
 export const ensureIds = (items, prefix = 'item') =>
   (items || []).filter(Boolean).map((item) =>
     item['@id']

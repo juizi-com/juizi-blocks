@@ -1,5 +1,5 @@
 import makeBlockEdit from '../../BlockEdit/BlockEdit';
-import { withItemTitles } from '../_shared/items';
+import { withItemTitles, withStableIds } from '../_shared/items';
 import HeroView from './View';
 import HeroSchema from './schema';
 import './style.css';
@@ -88,11 +88,21 @@ const getChangedData = (id, value, data) => {
 // Applied to every change, from single fields and from the whole form.
 const normalizeData = (data) =>
   data.buttons
-    ? { ...data, buttons: autoFillButtonLabels(data.buttons) }
+    ? {
+        ...data,
+        buttons: withStableIds(autoFillButtonLabels(data.buttons), 'button'),
+      }
+    : data;
+
+// Buttons saved without an id still show in the sidebar list.
+const getFormData = (data) =>
+  data.buttons
+    ? { ...data, buttons: withStableIds(data.buttons, 'button') }
     : data;
 
 export const HeroEdit = makeBlockEdit(HeroView, {
   getChangedData,
   normalizeData,
+  getFormData,
 });
 export { HeroView, HeroSchema };
