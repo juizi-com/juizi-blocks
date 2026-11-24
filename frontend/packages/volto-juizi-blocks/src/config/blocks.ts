@@ -5,6 +5,11 @@ import { juiziBlocks } from '../blocks';
 import { registerJuiziBlocks, registerThemedBlocks } from '../settings/runtime';
 import { withEditorLanguage } from '../editorLanguage/EditorLanguage';
 import { JUIZI_GROUP } from './group';
+import ReorderList, {
+  ITEM_POSITION,
+  ItemPosition,
+  REORDER_LIST,
+} from '../components/Blocks/_shared/ReorderList';
 
 /** First-Time Editor Test: no Styling tab until the first choice is made. */
 const hideStylingUntilConfigured =
@@ -31,6 +36,15 @@ export default function install(config: ConfigType) {
     groups.splice(mostUsed + 1, 0, { id: JUIZI_GROUP, title: 'Juizi' });
     config.blocks.groupBlocksOrder = groups;
   }
+
+  // Lists the blocks' editors can put in order by keyboard, not only by
+  // dragging (_shared/ReorderList.jsx).
+  config.widgets = config.widgets || ({} as any);
+  config.widgets.widget = {
+    ...config.widgets.widget,
+    [REORDER_LIST]: ReorderList,
+    [ITEM_POSITION]: ItemPosition,
+  } as any;
 
   juiziBlocks.forEach((definition) => {
     const {

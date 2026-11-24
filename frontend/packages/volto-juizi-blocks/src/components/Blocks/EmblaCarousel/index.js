@@ -1,5 +1,5 @@
 import makeBlockEdit from '../../BlockEdit/BlockEdit';
-import { withItemTitles } from '../_shared/items';
+import { withItemTitles, withStableIds } from '../_shared/items';
 import EmblaCarouselView from './View';
 import emblaCarouselSchema from './schema';
 
@@ -35,20 +35,24 @@ const normalizeData = (data) =>
   Array.isArray(data.slides)
     ? {
         ...data,
-        slides: withItemTitles(
-          data.slides.map((slide) => ({
-            ...slide,
-            link: Array.isArray(slide.link) ? slide.link[0] : slide.link,
-          })),
-          'heading',
+        slides: withStableIds(
+          withItemTitles(
+            data.slides.map((slide) => ({
+              ...slide,
+              link: Array.isArray(slide.link) ? slide.link[0] : slide.link,
+            })),
+            'heading',
+          ),
+          'slide',
         ),
       }
     : data;
 
 const getFormData = (data) => ({
   ...data,
+  // Slides saved without an id still show in the sidebar list.
   slides: Array.isArray(data.slides)
-    ? data.slides.map((slide) => ({
+    ? withStableIds(data.slides, 'slide').map((slide) => ({
         ...slide,
         link: Array.isArray(slide.link)
           ? slide.link

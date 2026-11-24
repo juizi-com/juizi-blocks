@@ -16,6 +16,7 @@
   <include file="profiles.zcml" />
   <include file="permissions.zcml" />
 
+  <include package=".calendar" />
   <include package=".controlpanels" />
   <include package=".graph" />
   <include package=".indexers" />

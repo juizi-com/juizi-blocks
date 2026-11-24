@@ -111,6 +111,7 @@
   --juizi-redirect-width: var(--juizi-content-width);
   --juizi-audio-width: var(--juizi-content-width);
   --juizi-pricing-width: var(--juizi-content-width);
+  --juizi-calendar-width: var(--juizi-content-width);
   --juizi-donation-width: var(--juizi-content-width);
   // The column the page title and text sit in
   --juizi-resource-width: var(--default-container-width, 100%);
@@ -213,7 +214,7 @@ $juizi-preheaders: '.hero-preheader', '.content-row__preheader',
 $juizi-titles: '.hero-block--section .hero-title',
   '.hero-block--snapshot .hero-title', '.content-row__heading', '.embla__title',
   '.gallery__title', '.juizi-audio__title', '.juizi-form-side__heading',
-  '.juizi-pricing__title';
+  '.juizi-pricing__title', '.juizi-calendar__title';
 // A Section with "Large title" on takes the Hero size; the extra class
 // outranks the Section rule above.
 $juizi-hero-titles: '.hero-block--hero .hero-title',
@@ -227,7 +228,7 @@ $juizi-item-titles: '.content-row-item__heading', '.embla .card-content h3',
   '.embla .slide__body h3', '.juizi-pricing__name';
 // Blocks with paddingTop / paddingBottom options: `<block>--pad-top-<size>`
 $juizi-padded-blocks: 'hero-block', 'content-row', 'juizi-form-wrapper',
-  'juizi-pricing';
+  'juizi-pricing', 'juizi-calendar';
 // Blocks whose paddingTop / paddingBottom are optional: left empty, the
 // block keeps its usual space above and below (no class), so saved blocks
 // don't change. `<block>: <inner layer>`: the inner layer's own space above
@@ -284,6 +285,10 @@ $juizi-layers: (
   '.juizi-pricing': (
     '.juizi-pricing__inner',
     --juizi-pricing-width,
+  ),
+  '.juizi-calendar': (
+    '.juizi-calendar__inner',
+    --juizi-calendar-width,
   ),
   '.redirect-block-wrapper': (
     '.redirect-block',
@@ -619,15 +624,23 @@ $juizi-pad-sizes: (
 // Audio block and the Redirect pad their own box (above).
 #page-document
   > .block
-  > :is(.hero-block, .content-row, .embla, .gallery, .juizi-pricing):not(
-    .hero-block--full-width,
-    .full-width
-  ),
+  > :is(
+    .hero-block,
+    .content-row,
+    .embla,
+    .gallery,
+    .juizi-pricing,
+    .juizi-calendar
+  ):not(.hero-block--full-width, .full-width),
 #page-document
-  > :is(.hero-block, .content-row, .embla, .gallery, .juizi-pricing):not(
-    .hero-block--full-width,
-    .full-width
-  ) {
+  > :is(
+    .hero-block,
+    .content-row,
+    .embla,
+    .gallery,
+    .juizi-pricing,
+    .juizi-calendar
+  ):not(.hero-block--full-width, .full-width) {
   box-sizing: border-box;
   padding-right: var(--juizi-gutter);
   padding-left: var(--juizi-gutter);

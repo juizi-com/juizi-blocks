@@ -11,19 +11,40 @@ jest.mock('@plone/volto/components/manage/Toolbar/Toolbar', () => () => null);
 // Only the tabs matter here: no blocks, and no Volto Light Theme.
 jest.mock('../../blocks', () => ({ juiziBlocks: [] }));
 jest.mock('../../config/vlt', () => ({ hasVLT: () => false }));
+jest.mock(
+  '@plone/volto/components/theme/Unauthorized/Unauthorized',
+  () => () => <h1>Unauthorized</h1>,
+);
 
 const idle = { loading: false, loaded: true, error: null };
 
-const renderDashboard = (userActions, hash = '') => {
-  const store = configureStore()({
+/** The backend's answer to the settings request: its result, an error, or
+ * `pending` (never answers). */
+const backend = (answer) => () => (next) => (action) => {
+  next(action);
+  if (action.type !== 'GET_JUIZI_BLOCKS_SETTINGS') return action;
+  if (answer === 'pending') return new Promise(() => {});
+  return answer instanceof Error
+    ? Promise.reject(answer)
+    : Promise.resolve(answer);
+};
+
+const notFound = Object.assign(new Error('Not found'), { status: 404 });
+
+const renderDashboard = (
+  answer,
+  hash = '',
+  { token = 'abc', installed = true } = {},
+) => {
+  const store = configureStore([backend(answer)])({
     juiziBlocksSettings: {
       data: DEFAULT_SETTINGS,
-      installed: true,
+      installed,
       printSupported: true,
       get: idle,
       update: idle,
     },
-    actions: { actions: { user: userActions } },
+    userSession: { token },
     groups: { list: { loaded: true }, groups: [] },
     intl: { locale: 'en', messages: {} },
   });
@@ -50,8 +71,9 @@ describe('Dashboard', () => {
   });
   afterEach(() => document.getElementById('toolbar')?.remove());
 
-  it('offers Export and import to people who can see Site Setup', () => {
-    renderDashboard([{ id: 'plone_setup' }, { id: 'logout' }]);
+  it('shows every tab to Managers', async () => {
+    renderDashboard({ can_manage: true });
+    await screen.findAllByRole('tab');
     expect(tabNames()).toEqual([
       'Blocks',
       'Colours',
@@ -60,31 +82,49 @@ describe('Dashboard', () => {
     ]);
   });
 
-  it('leaves Export and import out for everybody else', () => {
-    renderDashboard([{ id: 'logout' }]);
-    expect(tabNames()).toEqual(['Blocks', 'Colours', 'Print']);
+  it('opens on the tab it is linked to', async () => {
+    renderDashboard({ can_manage: true }, '#transfer');
+    expect(await screen.findByText('Download settings')).toBeTruthy();
   });
 
-  it('shows Blocks when linked to Export and import without the rights', () => {
-    renderDashboard([], '#transfer');
+  it('turns away anonymous visitors without asking the backend', () => {
+    const store = renderDashboard({ can_manage: false }, '', { token: null });
+    expect(screen.getByText('Unauthorized')).toBeTruthy();
+    expect(store.getActions()).toEqual([]);
+  });
+
+  it('turns away Site Administrators and everybody else', async () => {
+    const store = renderDashboard({ can_manage: false });
+    expect(await screen.findByText('Unauthorized')).toBeTruthy();
+    expect(screen.queryByRole('tab')).toBeNull();
+    expect(store.getActions()).not.toContainEqual(
+      expect.objectContaining({ type: 'LIST_GROUPS' }),
+    );
+  });
+
+  it('turns people away when the backend fails', async () => {
+    renderDashboard(Object.assign(new Error('Oops'), { status: 500 }));
+    expect(await screen.findByText('Unauthorized')).toBeTruthy();
+  });
+
+  it('says the add-on is not installed when the backend lacks it', async () => {
+    renderDashboard(notFound, '', { installed: false });
     expect(
-      screen.getByRole('tab', { name: 'Blocks' }).getAttribute('aria-selected'),
-    ).toBe('true');
-    expect(screen.queryByText('Download settings')).toBeNull();
+      await screen.findByText(/is not installed on this site/),
+    ).toBeTruthy();
+    expect(screen.queryByText('Unauthorized')).toBeNull();
   });
 
-  it('opens on Export and import when linked to it', () => {
-    renderDashboard([{ id: 'plone_setup' }], '#transfer');
-    expect(screen.getByText('Download settings')).toBeTruthy();
+  it('shows neither tabs nor Unauthorized while it asks', () => {
+    renderDashboard('pending');
+    expect(screen.queryByRole('tab')).toBeNull();
+    expect(screen.queryByText('Unauthorized')).toBeNull();
   });
 
-  it('loads the user’s actions itself, as a control panel has no content', () => {
-    const store = renderDashboard([]);
+  it('asks the backend afresh each time it opens', () => {
+    const store = renderDashboard('pending');
     expect(store.getActions()).toContainEqual(
-      expect.objectContaining({
-        type: 'LIST_ACTIONS',
-        request: expect.objectContaining({ path: '/@actions' }),
-      }),
+      expect.objectContaining({ type: 'GET_JUIZI_BLOCKS_SETTINGS' }),
     );
   });
 });

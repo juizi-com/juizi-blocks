@@ -1,3 +1,4 @@
+import { REORDER_LIST } from '../_shared/ReorderList';
 import {
   getBlockColorList,
   getColorChoices,
@@ -612,7 +613,7 @@ const schema = (args) => {
 
       items: {
         title: itemsTitle,
-        widget: 'object_list',
+        widget: REORDER_LIST,
         default: [],
         schema: modeSelected
           ? variationItemSchemas[displayMode]

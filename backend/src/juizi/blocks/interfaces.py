@@ -1,6 +1,7 @@
 """Module where all interfaces, events and exceptions live."""
 
 from juizi.blocks import _
+from juizi.blocks.calendar.siteconfig import DEFAULT_CALENDAR_CONFIG_JSON
 from juizi.blocks.settings import DEFAULT_COLOR_CONFIG_JSON
 from juizi.blocks.settings import DEFAULT_PRINT_CONFIG_JSON
 from zope import schema
@@ -85,4 +86,16 @@ class IJuiziBlocksSettings(Interface):
         ),
         required=False,
         default=DEFAULT_PRINT_CONFIG_JSON,
+    )
+
+    calendar_config = schema.Text(
+        title=_("Events calendar settings"),
+        description=_(
+            "JSON document with what the Events calendar may offer editors: "
+            "the lists events can be sorted by, and whether other calendars "
+            "may be added by their link. Which kinds of event can be shown "
+            "is the 'Calendar entry only' behaviour on each content type."
+        ),
+        required=False,
+        default=DEFAULT_CALENDAR_CONFIG_JSON,
     )

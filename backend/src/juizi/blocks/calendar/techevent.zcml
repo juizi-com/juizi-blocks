@@ -1,0 +1,14 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <!-- Only loaded where collective.techevent is installed. -->
+
+  <adapter
+      factory=".techevent_indexers.slot_kind"
+      name="juizi_event_kind"
+      />
+  <adapter
+      factory=".techevent_indexers.slot_info"
+      name="juizi_event_info"
+      />
+
+</configure>

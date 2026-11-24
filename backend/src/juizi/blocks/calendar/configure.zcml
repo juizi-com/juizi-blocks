@@ -1,0 +1,100 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="juizi.blocks"
+    >
+
+  <!-- Events calendar block (juiziCalendar). See __init__.py. -->
+
+  <plone:behavior
+      name="juizi.blocks.calendar_entry"
+      title="Calendar entry only"
+      description="A tick box on events that have no detail page to link to."
+      provides=".behavior.ICalendarEntry"
+      />
+
+  <adapter
+      factory=".indexers.juizi_event_kind"
+      name="juizi_event_kind"
+      />
+  <adapter
+      factory=".indexers.juizi_event_info"
+      name="juizi_event_info"
+      />
+
+  <include
+      file="techevent.zcml"
+      zcml:condition="installed collective.techevent"
+      />
+
+  <subscriber
+      factory=".transforms.CalendarSerializer"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      for="*
+           juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+  <subscriber
+      factory=".transforms.CalendarDeserializer"
+      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+      for="*
+           juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+  <plone:service
+      method="GET"
+      factory=".service.CalendarGet"
+      for="*"
+      permission="zope2.View"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-calendar"
+      />
+
+  <plone:service
+      method="POST"
+      factory=".service.CalendarPost"
+      for="*"
+      permission="cmf.ModifyPortalContent"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-calendar"
+      />
+
+  <plone:service
+      method="GET"
+      factory=".service.CalendarOptionsGet"
+      for="*"
+      permission="cmf.ModifyPortalContent"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-calendar-options"
+      />
+
+  <!-- Site Setup > Juizi Blocks > Calendar: Managers only, like the dashboard. -->
+  <plone:service
+      method="GET"
+      factory=".service.CalendarSettingsGet"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="cmf.ManagePortal"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-calendar-settings"
+      />
+
+  <plone:service
+      method="PATCH"
+      factory=".service.CalendarSettingsPatch"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      permission="cmf.ManagePortal"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      name="@juizi-calendar-settings"
+      />
+
+  <browser:page
+      name="juizi-calendar.ics"
+      for="*"
+      class=".ics.CalendarFile"
+      permission="zope2.View"
+      layer="juizi.blocks.interfaces.IBrowserLayer"
+      />
+
+</configure>

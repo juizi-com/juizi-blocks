@@ -1,3 +1,4 @@
+import { REORDER_LIST } from '../_shared/ReorderList';
 import {
   getBlockColorList,
   getColorChoices,
@@ -424,7 +425,7 @@ const schema = (args) => {
       },
       buttons: {
         title: t(shared.buttons),
-        widget: 'object_list',
+        widget: REORDER_LIST,
         schema: buttonSchema(backgroundColor, colors, t),
         default: [],
       },

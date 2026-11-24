@@ -60,6 +60,36 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      profile="juizi.blocks:default"
+      source="1004"
+      destination="1005"
+      >
+    <genericsetup:upgradeDepends
+        title="Add the Events calendar's catalog index and column"
+        import_steps="catalog"
+        />
+    <genericsetup:upgradeStep
+        title="Add 'Calendar entry only' to events and index them, where the calendar is switched on"
+        handler="juizi.blocks.calendar.setup.install"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="juizi.blocks:default"
+      source="1005"
+      destination="1006"
+      >
+    <genericsetup:upgradeDepends
+        title="Add the juizi.blocks.calendar_config registry record"
+        import_steps="plone.app.registry"
+        />
+    <genericsetup:upgradeStep
+        title="Let tech event slots appear in calendars, where the calendar is switched on"
+        handler="juizi.blocks.calendar.setup.install"
+        />
+  </genericsetup:upgradeSteps>
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>

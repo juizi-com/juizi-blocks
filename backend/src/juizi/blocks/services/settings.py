@@ -14,8 +14,13 @@ editor_language: the language of the Juizi blocks' editing interface
                  ("en", "pt", ...); "" follows the page's language.
 print_config:    the Print button block's site-wide settings
                  (juizi.blocks.settings.validate_print_config).
+can_manage:      GET only, read-only: whether the user asking may change
+                 the settings (Manage portal: Managers, not Site
+                 Administrators). The dashboard opens only for them.
 """
 
+from AccessControl import getSecurityManager
+from juizi.blocks.calendar import setup as calendar_setup
 from juizi.blocks.interfaces import IJuiziBlocksSettings
 from juizi.blocks.settings import load_block_groups
 from juizi.blocks.settings import load_color_config
@@ -67,7 +72,11 @@ def _editor_language(value) -> str:
 
 class SettingsGet(Service):
     def reply(self):
-        return serialize_settings(self.context, _records())
+        data = serialize_settings(self.context, _records())
+        data["can_manage"] = bool(
+            getSecurityManager().checkPermission("Manage portal", self.context)
+        )
+        return data
 
 
 class SettingsPatch(Service):
@@ -80,6 +89,7 @@ class SettingsPatch(Service):
             return self._error("Expected a JSON object")
 
         records = _records()
+        was_on = calendar_setup.is_on(records.disabled_blocks, records.enabled_blocks)
         try:
             block_lists = {
                 key: validate_block_ids(data[key], key)
@@ -126,6 +136,13 @@ class SettingsPatch(Service):
             records.color_config = json.dumps(color_config, indent=2)
         if print_config is not None:
             records.print_config = json.dumps(print_config, indent=2)
+
+        # Switching the calendar on is when events get its tick box and are
+        # indexed for it; a site that never uses it is left alone.
+        if not was_on and calendar_setup.is_on(
+            records.disabled_blocks, records.enabled_blocks
+        ):
+            calendar_setup.activate()
 
         return serialize_settings(self.context, records)
 

@@ -14,7 +14,7 @@ class TestSetupInstall:
 
     def test_latest_version(self, profile_last_version):
         """Test latest version of default profile."""
-        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1004"
+        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1006"
 
     def test_site_title_untouched(self, portal):
         """Installing doesn't rename the site."""
@@ -74,7 +74,7 @@ class TestUpgrade1001:
         # Existing values survive the registry re-import.
         assert registry["juizi.blocks.disabled_blocks"] == ["toc"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1004",
+            "1006",
         )
 
 
@@ -94,7 +94,7 @@ class TestUpgrade1002:
         assert registry[key] == "{}"
         assert registry["juizi.blocks.enabled_blocks"] == ["hero"]
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1004",
+            "1006",
         )
 
 
@@ -114,7 +114,7 @@ class TestUpgrade1003:
         assert registry[key] == ""
         assert registry["juizi.blocks.block_groups"] == '{"hero": ["x"]}'
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1004",
+            "1006",
         )
 
 
@@ -137,7 +137,61 @@ class TestUpgrade1004:
         assert json.loads(registry[key]) == DEFAULT_PRINT_CONFIG
         assert registry["juizi.blocks.editor_language"] == "fr"
         assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
-            "1004",
+            "1006",
+        )
+
+
+class TestUpgrade1005:
+    def _back_to_1004(self, portal, setup_tool):
+        catalog = portal.portal_catalog
+        catalog.delIndex("juizi_event_kind")
+        catalog.delColumn("juizi_event_info")
+        event_type = portal.portal_types.Event
+        others = tuple(b for b in event_type.behaviors if "calendar_entry" not in b)
+        event_type.manage_changeProperties(behaviors=others)
+        setup_tool.setLastVersionForProfile(f"{PACKAGE_NAME}:default", "1004")
+        return catalog, event_type, others
+
+    def test_adds_the_calendar_index_only(self, portal, setup_tool):
+        """A site that doesn't use the calendar: its events are left alone."""
+        catalog, event_type, others = self._back_to_1004(portal, setup_tool)
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert "juizi_event_kind" in catalog.indexes()
+        assert "juizi_event_info" in catalog.schema()
+        assert event_type.behaviors == others
+        assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
+            "1006",
+        )
+
+    def test_adds_the_tick_box_where_the_calendar_is_on(self, portal, setup_tool):
+        from plone import api
+
+        _catalog, event_type, others = self._back_to_1004(portal, setup_tool)
+        api.portal.set_registry_record("juizi.blocks.enabled_blocks", ["juiziCalendar"])
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert event_type.behaviors == (*others, "juizi.blocks.calendar_entry")
+
+
+class TestUpgrade1006:
+    def test_adds_the_calendar_settings_record(self, portal, setup_tool):
+        from juizi.blocks.calendar import siteconfig
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+
+        registry = getUtility(IRegistry)
+        del registry.records[siteconfig.RECORD]
+        setup_tool.setLastVersionForProfile(f"{PACKAGE_NAME}:default", "1005")
+
+        setup_tool.upgradeProfile(f"{PACKAGE_NAME}:default")
+
+        assert siteconfig.read() == siteconfig.DEFAULT_CALENDAR_CONFIG
+        assert siteconfig.RECORD in registry.records
+        assert setup_tool.getLastVersionForProfile(f"{PACKAGE_NAME}:default") == (
+            "1006",
         )
 
 

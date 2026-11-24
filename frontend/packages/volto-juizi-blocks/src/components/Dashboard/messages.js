@@ -462,6 +462,107 @@ export default defineMessages({
     id: 'juizi-dashboard-tab-transfer',
     defaultMessage: 'Export and import',
   },
+  tabCalendar: {
+    id: 'juizi-dashboard-tab-calendar',
+    defaultMessage: 'Calendar',
+  },
+  calendarSwitchedOff: {
+    id: 'juizi-dashboard-calendar-switched-off',
+    defaultMessage:
+      'The Events calendar is switched off on this site. Switch it on in the Blocks tab and save. Events then get a “Calendar entry only” tick box, and you can choose here what calendars may show.',
+  },
+  calendarSaveToSwitchOn: {
+    id: 'juizi-dashboard-calendar-save-to-switch-on',
+    defaultMessage:
+      'Save to switch the Events calendar on. Its settings appear here once it is saved.',
+  },
+  calendarGoToBlocks: {
+    id: 'juizi-dashboard-calendar-go-to-blocks',
+    defaultMessage: 'Go to the Blocks tab',
+  },
+  calendarLoading: {
+    id: 'juizi-dashboard-calendar-loading',
+    defaultMessage: 'Loading the calendar settings…',
+  },
+  calendarLoadFailed: {
+    id: 'juizi-dashboard-calendar-load-failed',
+    defaultMessage:
+      'The calendar settings could not be loaded. The site may need its Juizi Blocks upgrade step run (Site Setup › Add-ons).',
+  },
+  calendarSaved: {
+    id: 'juizi-dashboard-calendar-saved',
+    defaultMessage: 'Calendar settings saved',
+  },
+  calendarKinds: {
+    id: 'juizi-dashboard-calendar-kinds',
+    defaultMessage: 'Kinds of event calendars can show',
+  },
+  calendarKindsHelp: {
+    id: 'juizi-dashboard-calendar-kinds-help',
+    defaultMessage:
+      'Only the kinds ticked here can appear in calendars on this site, and editors choose from these. Each also gets a “Calendar entry only” tick box, for events with no page of their own to link to.',
+  },
+  calendarNoKinds: {
+    id: 'juizi-dashboard-calendar-no-kinds',
+    defaultMessage: 'This site has no content with dates a calendar can show.',
+  },
+  calendarEvents: {
+    id: 'juizi-dashboard-calendar-events',
+    defaultMessage: '{count, plural, one {# event} other {# events}}',
+  },
+  calendarSortedBy: {
+    id: 'juizi-dashboard-calendar-sorted-by',
+    defaultMessage: 'can be chosen by {lists}',
+  },
+  calendarKindOff: {
+    id: 'juizi-dashboard-calendar-kind-off',
+    defaultMessage: 'Not shown in any calendar.',
+  },
+  calendarLists: {
+    id: 'juizi-dashboard-calendar-lists',
+    defaultMessage: 'Lists editors can choose events by',
+  },
+  calendarListsHelp: {
+    id: 'juizi-dashboard-calendar-lists-help',
+    defaultMessage:
+      'Tags are always offered. Tick the lists meant for calendars and, if you like, give each the name editors should see. A list taken off here keeps working in calendars that already use it.',
+  },
+  calendarNoLists: {
+    id: 'juizi-dashboard-calendar-no-lists',
+    defaultMessage:
+      'This site has no lists of its own (taxonomies). Editors can still choose events by tag.',
+  },
+  calendarUsedOn: {
+    id: 'juizi-dashboard-calendar-used-on',
+    defaultMessage: 'on {kinds}',
+  },
+  calendarListName: {
+    id: 'juizi-dashboard-calendar-list-name',
+    defaultMessage: 'Name editors see',
+  },
+  calendarListUnused: {
+    id: 'juizi-dashboard-calendar-list-unused',
+    defaultMessage:
+      'None of the kinds ticked above use this list, so it would match nothing.',
+  },
+  calendarSessionLists: {
+    id: 'juizi-dashboard-calendar-session-lists',
+    defaultMessage:
+      'Talks, keynotes and trainings can also be chosen by their tech event’s tracks, levels and audiences.',
+  },
+  calendarFeeds: {
+    id: 'juizi-dashboard-calendar-feeds',
+    defaultMessage: 'Other calendars',
+  },
+  calendarFeedsHelp: {
+    id: 'juizi-dashboard-calendar-feeds-help',
+    defaultMessage:
+      'Editors can add events from a Google or Outlook calendar by its link. Off: calendars leave them out, including ones already added.',
+  },
+  calendarFeedsAllow: {
+    id: 'juizi-dashboard-calendar-feeds-allow',
+    defaultMessage: 'Editors may add other calendars',
+  },
   transferExport: {
     id: 'juizi-dashboard-transfer-export',
     defaultMessage: 'Export',

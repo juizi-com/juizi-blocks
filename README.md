@@ -341,8 +341,14 @@ listed after `volto-form-block`.
 
 ## The dashboard (Site Setup → Juizi Blocks)
 
-Three tabs, and a fourth (Export and import) for people who can see Site
-Setup, sharing one Save: the save button in Volto's toolbar, or the bar
+Only for Managers (Plone's Manage portal permission), not Site
+Administrators: the settings shape every page, so they stay with whoever
+runs the site. The backend says who may in `can_manage` on
+`@juizi-blocks-settings`, and refuses everybody else's saves. Anyone else,
+logged in or not, gets Volto's Unauthorized page. Site Administrators still
+see the entry in Site Setup, as Volto lists add-on panels to everyone who
+can open it. The tabs (Blocks, Colours, Print, Calendar, Export and
+import) share one Save: the save button in Volto's toolbar, or the bar
 that appears at the top as soon as something has changed (Save / Discard
 changes). Problems that would stop a save (a colour without a valid name, a
 theme missing its text colour, …) are listed there in the editor's language.
@@ -431,9 +437,7 @@ Advanced, a custom HTML header and footer for the web team replace the
 fields when filled in. See `PrintButton/README.md`.
 
 **Export and import tab** — copies the settings from one site to another,
-e.g. from a development site to production. Shown only to people who can see
-Site Setup (Managers and Site Administrators: Volto's `plone_setup` action),
-the same people the backend lets save.
+e.g. from a development site to production.
 
 - *Download settings* saves a JSON file holding the saved settings (not
   unsaved changes): block switches and groups, editing language, colours and

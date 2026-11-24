@@ -57,6 +57,12 @@ export default defineMessages({
     defaultMessage:
       'Price cards side by side, each with a name, price, features and a button.',
   },
+  calendar: { id: 'Events calendar', defaultMessage: 'Events calendar' },
+  calendarDescription: {
+    id: 'A month of events with a list beside it, filtered by the kinds of event you choose.',
+    defaultMessage:
+      'A month of events with a list beside it, filtered by the kinds of event you choose.',
+  },
   graph: { id: 'Data visualisation', defaultMessage: 'Data visualisation' },
   graphDescription: {
     id: 'Figures from a spreadsheet as a chart, a table or cards, kept up to date with the file.',
